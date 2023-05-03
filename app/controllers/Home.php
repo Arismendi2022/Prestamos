@@ -1,9 +1,9 @@
 <?php
 	
-	class Home extends Controllers{
+	class Home {
 		public function __construct()
 		{
-		
+			//parent::__construct();
 		}
 		
 		public function home($params)
@@ -13,7 +13,7 @@
 		
 		public function datos($params)
 		{
-			echo "Dato recibido: " .$params;
+			echo "Dato recibido: ".$params;
 		}
 		
 		

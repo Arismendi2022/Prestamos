@@ -1,17 +1,15 @@
 <?php
-	$controller = ucwords($controller);
-	$controllerFile = "App/Controllers/".$controller.".php";
-	if(file_exists($controllerFile))
-	{
+	/*$controller = ucwords($controller);
+	$controllerFile = "Controllers/" . $controller . ".php";
+	if (file_exists($controllerFile)) {
 		require_once($controllerFile);
 		$controller = new $controller();
-		if(method_exists($controller, $method))
-		{
+		if (method_exists($controller, $method)) {
 			$controller->{$method}($params);
-		}else{
+		} else {
 			require_once("App/Controllers/Error.php");
 		}
-	}else{
+	} else {
 		require_once("App/Controllers/Error.php");
-	}
+	}*/
 

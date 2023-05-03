@@ -26,5 +26,32 @@
 			$params = trim($params,',');
 		}
 	}
-	require_once("App/Libraries/Core/Autoload.php");
-	require_once("App/Libraries/Core/Load.php");
+	
+	spl_autoload_register(function($class){
+		if(file_exists(LIBS.'Core/'.$class.".php")){
+			require_once(LIBS.'Core/'.$class.".php");
+		}
+		
+	});
+	
+	//Load
+	$controllerFile = "App/Controllers/".$controller.".php";
+	if(file_exists($controllerFile))
+	{
+		require_once($controllerFile);
+		$controller = new $controller();
+		if(method_exists($controller, $method))
+		{
+			$controller->{$method}($params);
+		}else{
+			echo "No existe el metodo";
+		}
+	
+	}else{
+		echo "No existe contolador";
+	}
+	
+	
+	
+	//require_once("App/Libraries/Core/Autoload.php");
+	//require_once("App/Libraries/Core/Load.php");
