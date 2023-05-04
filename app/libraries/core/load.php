@@ -1,6 +1,6 @@
 <?php
 	//Load
-	$controllerFile = "../App/Controllers/".$controller.".php";
+	$controllerFile = "../App/controllers/".$controller.".php";
 	if(file_exists($controllerFile))
 	{
 		require_once($controllerFile);
@@ -9,10 +9,10 @@
 		{
 			$controller->{$method}($params);
 		}else{
-			require_once("../App/Controllers/Error.php");
+			require_once("../App/controllers/Error.php");
 		}
 		
 	}else{
-		require_once("../App/Controllers/Error.php");
+		require_once("../App/controllers/Error.php");
 	}
 	
