@@ -3518,9 +3518,9 @@ function createImage(url) {
   return external_jQuery_default().Deferred(function (deferred) {
     var $img = external_jQuery_default()('<img>');
     $img.one('load', function () {
-      $img.off('error abort');
+      $img.off('errors abort');
       deferred.resolve($img);
-    }).one('error abort', function () {
+    }).one('errors abort', function () {
       $img.off('load').detach();
       deferred.reject($img);
     }).css({
@@ -5847,7 +5847,7 @@ var Editor = /*#__PURE__*/function () {
 
         _this3.afterCommand();
       }).fail(function (e) {
-        _this3.context.triggerEvent('image.upload.error', e);
+        _this3.context.triggerEvent('image.upload.errors', e);
       });
     }
     /**
@@ -5864,12 +5864,12 @@ var Editor = /*#__PURE__*/function () {
         var filename = file.name;
 
         if (_this4.options.maximumImageFileSize && _this4.options.maximumImageFileSize < file.size) {
-          _this4.context.triggerEvent('image.upload.error', _this4.lang.image.maximumFileSizeError);
+          _this4.context.triggerEvent('image.upload.errors', _this4.lang.image.maximumFileSizeError);
         } else {
           readFileAsDataURL(file).then(function (dataURL) {
             return _this4.insertImage(dataURL, filename);
           }).fail(function () {
-            _this4.context.triggerEvent('image.upload.error');
+            _this4.context.triggerEvent('image.upload.errors');
           });
         }
       });
@@ -9707,7 +9707,7 @@ var HintPopover = /*#__PURE__*/function () {
       'fullscreen': Fullscreen,
       'handle': Handle,
       // FIXME: HintPopover must be front of autolink
-      //  - Script error about range when Enter key is pressed on hint popover
+      //  - Script errors about range when Enter key is pressed on hint popover
       'hintPopover': HintPopover,
       'autoLink': AutoLink,
       'autoSync': AutoSync,

@@ -1,14 +1,31 @@
-<!doctype html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Sistema de Crédito</title>
-</head>
-<body>
+<?php 
+	require_once("../Config/config.php");
+	require_once("../App/Helpers/helpers.php");
+	$url = !empty($_GET['url']) ? $_GET['url'] : 'Home/home';
+	$arrUrl = explode("/", $url);
+	$controller = $arrUrl[0];
+	$method = $arrUrl[0];
+	$params = "";
 
-<h1>Bienvenido a mi Banco.</h1>
+	if(!empty($arrUrl[1]))
+	{
+		if($arrUrl[1] != "")
+		{
+			$method = $arrUrl[1];	
+		}
+	}
 
-</body>
-</html>
+	if(!empty($arrUrl[2]))
+	{
+		if($arrUrl[2] != "")
+		{
+			for ($i=2; $i < count($arrUrl); $i++) {
+				$params .=  $arrUrl[$i].',';
+				
+			}
+			$params = trim($params,',');
+		}
+	}
+	
+	require_once("../App/Libraries/Core/Autoload.php");
+	require_once("../App/Libraries/Core/Load.php");
