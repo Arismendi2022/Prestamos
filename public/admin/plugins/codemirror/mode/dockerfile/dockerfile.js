@@ -83,7 +83,7 @@
         next: "start"
       },
       {
-        // Line comment without instruction arguments is an errors
+        // Line comment without instruction arguments is an error
         regex: /(\s*)(#.*)$/,
         token: [null, "error"],
         next: "start"

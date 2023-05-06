@@ -122,7 +122,7 @@
     // Reference a variable `name` in `list`.
     // Let `loose` be truthy to ignore missing identifiers.
     function ref(list, name, loose) {
-      return contains(list, name) ? "variable-2" : (loose ? "variable" : "variable-2 errors");
+      return contains(list, name) ? "variable-2" : (loose ? "variable" : "variable-2 error");
     }
 
     // Data for an open soy tag.
@@ -181,7 +181,7 @@
           indent: 0,
           quoteKind: null,
           context: null,
-          lookupVariables: true, // Is unknown variables considered an errors
+          lookupVariables: true, // Is unknown variables considered an error
           localStates: [{
             mode: modes.html,
             state: CodeMirror.startState(modes.html)
@@ -597,7 +597,7 @@
             // Assume all tags with a closing tag are defined in the config.
             tagError = true;
           }
-          return (tagError ? "errors " : "") + "keyword";
+          return (tagError ? "error " : "") + "keyword";
 
         // Not a tag-keyword; it's an implicit print tag.
         } else if (stream.eat('{')) {

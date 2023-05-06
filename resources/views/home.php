@@ -7,6 +7,7 @@
 	<title><?= $data['tag_page']; ?></title>
 </head>
 <body>
+<p>Mini Framework V1.0 - <a href="https://arismendi.co">www.arismendi.co</a></p>
 
 </body>
 </html>

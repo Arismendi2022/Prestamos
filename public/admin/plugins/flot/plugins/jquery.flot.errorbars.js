@@ -1,4 +1,4 @@
-/* Flot plugin for plotting errors bars.
+/* Flot plugin for plotting error bars.
 
 Copyright (c) 2007-2014 IOLA and Ole Laursen.
 Licensed under the MIT license.
@@ -8,8 +8,8 @@ properties in a plot.
 
 * Created by Rui Pereira  -  rui (dot) pereira (at) gmail (dot) com
 
-This plugin allows you to plot errors-bars over points. Set "errorbars" inside
-the points series to the axis name over which there will be errors values in
+This plugin allows you to plot error-bars over points. Set "errorbars" inside
+the points series to the axis name over which there will be error values in
 your data array (*even* if you do not intend to plot them later, by setting
 "show: null" on xerr/yerr).
 
@@ -36,14 +36,14 @@ Each data point array is expected to be of the type:
     "y"  [ x, y, yerr ]
     "xy" [ x, y, xerr, yerr ]
 
-Where xerr becomes xerr_lower,xerr_upper for the asymmetric errors case, and
+Where xerr becomes xerr_lower,xerr_upper for the asymmetric error case, and
 equivalently for yerr. Eg., a datapoint for the "xy" case with symmetric
-errors-bars on X and asymmetric on Y would be:
+error-bars on X and asymmetric on Y would be:
 
     [ x, y, xerr, yerr_lower, yerr_upper ]
 
 By default no end caps are drawn. Setting upperCap and/or lowerCap to "-" will
-draw a small cap perpendicular to the errors bar. They can also be set to a
+draw a small cap perpendicular to the error bar. They can also be set to a
 user-defined drawing function, with (ctx, x, y, radius) as parameters, as eg.
 
     function drawSemiCircle( ctx, x, y, radius ) {
@@ -56,8 +56,8 @@ user-defined drawing function, with (ctx, x, y, radius) as parameters, as eg.
 
 Color and radius both default to the same ones of the points series if not
 set. The independent radius parameter on xerr/yerr is useful for the case when
-we may want to add errors-bars to a line, without showing the interconnecting
-points (with radius: 0), and still showing end caps on the errors-bars.
+we may want to add error-bars to a line, without showing the interconnecting
+points (with radius: 0), and still showing end caps on the error-bars.
 shadowSize and lineWidth are derived as well from the points series.
 
 */
@@ -85,9 +85,9 @@ shadowSize and lineWidth are derived as well from the points series.
         ];
 
         var errors = series.points.errorbars;
-        // errors bars - first X then Y
+        // error bars - first X then Y
         if (errors === 'x' || errors === 'xy') {
-            // lower / upper errors
+            // lower / upper error
             if (series.points.xerr.asymmetric) {
                 format.push({ x: true, number: true, required: true });
                 format.push({ x: true, number: true, required: true });
@@ -96,7 +96,7 @@ shadowSize and lineWidth are derived as well from the points series.
             }
         }
         if (errors === 'y' || errors === 'xy') {
-            // lower / upper errors
+            // lower / upper error
             if (series.points.yerr.asymmetric) {
                 format.push({ y: true, number: true, required: true });
                 format.push({ y: true, number: true, required: true });
@@ -119,7 +119,7 @@ shadowSize and lineWidth are derived as well from the points series.
             yerr = series.points.yerr;
 
         var eb = series.points.errorbars;
-        // errors bars - first X
+        // error bars - first X
         if (eb === 'x' || eb === 'xy') {
             if (xerr.asymmetric) {
                 exl = points[i + 2];
@@ -205,7 +205,7 @@ shadowSize and lineWidth are derived as well from the points series.
             for (var e = 0; e < err.length; e++) {
                 var minmax = [ax[e].min, ax[e].max];
 
-                //draw this errors?
+                //draw this error?
                 if (errRanges[e * err.length]) {
                     //data coordinates
                     var x = points[i],
@@ -295,7 +295,7 @@ shadowSize and lineWidth are derived as well from the points series.
         upper += offset;
         lower += offset;
 
-        // errors bar - avoid plotting over circles
+        // error bar - avoid plotting over circles
         if (err.err === 'x') {
             if (upper > x + radius) drawPath(ctx, [[upper, y], [Math.max(x + radius, minmax[0]), y]]);
             else drawUpper = false;

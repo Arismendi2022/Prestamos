@@ -128,7 +128,7 @@ CodeMirror.defineMode("xml", function(editorConf, config_) {
       state.state = baseState;
       state.tagName = state.tagStart = null;
       var next = state.tokenize(stream, state);
-      return next ? next + " tag errors" : "tag errors";
+      return next ? next + " tag error" : "tag error";
     } else if (/[\'\"]/.test(ch)) {
       state.tokenize = inAttribute(ch);
       state.stringStartCol = stream.column();
@@ -250,7 +250,7 @@ CodeMirror.defineMode("xml", function(editorConf, config_) {
         setStyle = "tag";
         return closeState;
       } else {
-        setStyle = "tag errors";
+        setStyle = "tag error";
         return closeStateErr;
       }
     } else if (config.allowMissingTagName && type == "endTag") {
@@ -332,7 +332,7 @@ CodeMirror.defineMode("xml", function(editorConf, config_) {
         setStyle = null;
         state.state = state.state(type || style, stream, state);
         if (setStyle)
-          style = setStyle == "error" ? style + " errors" : setStyle;
+          style = setStyle == "error" ? style + " error" : setStyle;
       }
       return style;
     },

@@ -3189,7 +3189,7 @@ var FullCalendar = (function (exports) {
             }
             var state = this.getCurrentData();
             var selection = parseDateSpan(selectionInput, state.dateEnv, createDuration({ days: 1 }));
-            if (selection) { // throw parse errors otherwise?
+            if (selection) { // throw parse error otherwise?
                 this.dispatch({ type: 'SELECT_DATES', selection: selection });
                 triggerDateSelect(selection, null, state);
             }
@@ -3326,7 +3326,7 @@ var FullCalendar = (function (exports) {
                 return sourceInput;
             }
             var eventSource = parseEventSource(sourceInput, state);
-            if (eventSource) { // TODO: errors otherwise?
+            if (eventSource) { // TODO: error otherwise?
                 this.dispatch({ type: 'ADD_EVENT_SOURCES', sources: [eventSource] });
                 return new EventSourceApi(state, eventSource);
             }
