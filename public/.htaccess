@@ -1,5 +1,9 @@
+
 Options All -Indexes
 RewriteEngine on
+
+Header set Access-Control-Allow-Origin "http://banco.co"
+Header always set Access-Control-Allow-Methods "POST, GET, DELETE, PUT"
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

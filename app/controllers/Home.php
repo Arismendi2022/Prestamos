@@ -9,7 +9,7 @@
 		public function home()
 		{
 			$data['page_id'] = 1;
-			$data['tag_page'] = "Home";
+			$data['page_tag'] = "Mi-Banco | Pagina Principal";
 			$data['page_title'] = "Pagina principal";
 			$data['page_name'] = "home";
 			$data['page_content'] = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa debitis delectus, et exercitationem iusto modi porro quas

@@ -1,4 +1,7 @@
-<?php 
+<?php
+	
+	//header('Access-Control-Allow-Origin: *');
+	
 	require_once("../Config/config.php");
 	require_once("../App/Helpers/helpers.php");
 	$url = !empty($_GET['url']) ? $_GET['url'] : 'Home/home';

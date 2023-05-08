@@ -16,4 +16,5 @@
 	
 	$notFound = new Errors();
 	$notFound->notFound();
-?>
+
+	
