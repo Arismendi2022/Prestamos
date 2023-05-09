@@ -17,13 +17,14 @@
 				<a href="#" class="d-block">Alexander Pierce</a>
 			</div>
 		</div>
+		
 		<!-- Sidebar Menu -->
 		<nav class="mt-2">
-			<ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
 						 with font-awesome or any other icon font library -->
 				<li class="nav-item">
-					<a href="#" style="cursor: pointer;" class="nav-link active" onclick="CargarContenido('views/Dashboard/dashboard.php', 'content-wrapper')">
+					<a href="#" class="nav-link active">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
 							Dashboard
@@ -31,62 +32,32 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" style="cursor: pointer;" class="nav-link" onclick="CargarContenido('views/clientes/clientes.php', 'content-wrapper')">
-						<i class="nav-icon fas fa-users"></i>
+					<a href="#" class="nav-link">
+						<i class="nav-icon fa-solid fa-users"></i>
 						<p>
 							Clientes
 						</p>
 					</a>
 				</li>
-				<li class="nav-item ">
+				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-sack-dollar"></i>
 						<p>
 							Préstamos
-							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/prestamos.php', 'content-wrapper')">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Agregar Préstamo</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/prestamos.php', 'content-wrapper')">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Ver Préstamos</p>
-							</a>
-						</li>
-					</ul>
 				</li>
-				<li class="nav-item ">
+				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-hand-holding-usd"></i>
 						<p>
 							Pagos
-							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/pagos.php', 'content-wrapper')">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Agregar Pago</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/pagos.php', 'content-wrapper')">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Ver Pagos</p>
-							</a>
-						</li>
-					</ul>
 				</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fa-solid fa-user-gear"></i>
+						<i class="nav-icon fa-solid fa-gear"></i>
 						<p>
 							Configuración
 							<i class="right fas fa-angle-left"></i>
@@ -94,13 +65,13 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/pagos.php', 'content-wrapper')">
+							<a href="#" class="nav-link active">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Usuarios</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/roles/roles.php', 'content-wrapper')">
+							<a href="#" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Roles</p>
 							</a>
@@ -109,56 +80,18 @@
 				</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fa-solid fa-chart-line"></i>
-						<p>
-							Reportes
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/prestamos.php', 'content-wrapper')">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Usuarios</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/prestamos.php', 'content-wrapper')">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Roles</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item ">
-					<a href="#" class="nav-link">
 						<i class="nav-icon fa-solid fa-scale-balanced"></i>
 						<p>
 							Contabilidad
-							<i class="right fas fa-angle-left"></i>
+							<span class="right badge badge-danger">New</span>
 						</p>
 					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/contabilidad.php', 'content-wrapper')">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Flujo de Efectivo</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('Views/contabilidad.php', 'content-wrapper')">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Hoja de Balance</p>
-							</a>
-						</li>
-					</ul>
 				</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-sign-out-alt"></i>
 						<p>
 							Cerrar Sesión
-							<span class="right badge badge-danger">New</span>
 						</p>
 					</a>
 				</li>

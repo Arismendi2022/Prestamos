@@ -4,6 +4,7 @@
 		public function __construct()
 		{
 			parent::__construct();
+			session_start();
 		}
 		
 		public function clientes()
@@ -13,7 +14,6 @@
 			$data['page_name'] = "clientes";
 			$this->views->getView($this,"clientes",$data);
 		}
-		
 		
 	}
 	// end file clientes.php

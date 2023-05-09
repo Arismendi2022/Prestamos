@@ -12,6 +12,24 @@
 		return BASE_URL."public/";
 	}
 	
+	//Retorna la url de Assets
+	function data()
+	{
+		return BASE_URL."resources/";
+	}
+	
+	function headerAdmin($data="")
+	{
+		$view_header = "../resources/views/modulos/header.php";
+		require_once ($view_header);
+	}
+	
+	function footerAdmin($data="")
+	{
+		$view_footer = "../resources/views/modulos/footer.php";
+		require_once($view_footer);
+	}
+	
 	//Muestra información formateada
 	function dep($data)
 	{

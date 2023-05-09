@@ -4,7 +4,7 @@
 	
 	require_once("../Config/config.php");
 	require_once("../App/Helpers/helpers.php");
-	$url = !empty($_GET['url']) ? $_GET['url'] : 'Home/home';
+	$url = !empty($_GET['url']) ? $_GET['url'] : 'dashboard';
 	$arrUrl = explode("/", $url);
 	$controller = $arrUrl[0];
 	$method = $arrUrl[0];
