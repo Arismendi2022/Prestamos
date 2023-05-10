@@ -4,7 +4,7 @@
 	
 	require_once("../Config/config.php");
 	require_once("../App/Helpers/helpers.php");
-	$url = !empty($_GET['url']) ? $_GET['url'] : 'dashboard';
+	$url = !empty($_GET['url']) ? $_GET['url'] : 'dashboard/dashboard';
 	$arrUrl = explode("/", $url);
 	$controller = $arrUrl[0];
 	$method = $arrUrl[0];
@@ -30,5 +30,5 @@
 		}
 	}
 	
-	require_once("../App/Libraries/Core/Autoload.php");
-	require_once("../App/Libraries/Core/Load.php");
+	require_once("../App/Libraries/Core/autoload.php");
+	require_once("../App/Libraries/Core/load.php");

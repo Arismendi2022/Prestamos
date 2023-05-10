@@ -14,12 +14,12 @@
 
 <!-- jQuery -->
 <script src="<?= media(); ?>admin/plugins/jquery/jquery.min.js"></script>
-<!-- FontAwesome Icons js -->
-<script src="<?= media(); ?>admin/plugins/fontawesome-free/js/fontawesome.js" crossorigin="anonymous"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= media(); ?>admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= media(); ?>admin/dist/js/adminlte.min.js"></script>
+<!-- Funciones propias -->
+<script src="<?= data(); ?>assets/js/functions_admin.js"></script>
 
 <script>
 	$(document).ready(function () {

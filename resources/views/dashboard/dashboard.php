@@ -6,11 +6,14 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0"><?= $data['page_title'] ?></h1>
+						<div class="input-group">
+						<h1><i class="fa-solid fa-gauge mr-1"></i><?= $data['page_title'] ?>
+						</h1>
+						</div>
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item"><a href="<?= media(); ?>dashboard/">Home</a></li>
 							<li class="breadcrumb-item active">Dashboard</li>
 						</ol>
 					</div><!-- /.col -->
@@ -74,7 +77,6 @@
 						<div class="small-box bg-danger">
 							<div class="inner">
 								<h3>65</h3>
-								
 								<p>Unique Visitors</p>
 							</div>
 							<div class="icon">
@@ -91,16 +93,6 @@
 		<!-- /.content -->
 	</div>
 	<!-- /.content-wrapper -->
-	
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-		<!-- Control sidebar content goes here -->
-		<div class="p-3">
-			<h5>Title</h5>
-			<p>Sidebar content</p>
-		</div>
-	</aside>
-	<!-- /.control-sidebar -->
 
 <?php footerAdmin($data); ?>
 	

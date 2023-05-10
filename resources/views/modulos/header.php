@@ -14,11 +14,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="<?= media(); ?>admin/plugins/fontawesome-free/css/all.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?= media(); ?>admin/dist/css/adminlte.min.css">
 	<!-- style -->
 	<link rel="stylesheet" href="<?= data(); ?>assets/css/style.css">
-	
 	
 </head>
 <body class="hold-transition sidebar-mini">
@@ -35,27 +36,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		
 		<!-- Right navbar links -->
 		<ul class="navbar-nav ml-auto">
-			<!-- Notifications Dropdown Menu -->
+			<!-- User Menu -->
 			<li class="nav-item dropdown">
-				<a class="nav-link" data-toggle="dropdown" href="#">
-					<i class="far fa-bell"></i>
-					<span class="badge badge-warning navbar-badge">7</span>
+				<a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="true">
+					<i class="fa fa-user fa-lg mr-2"></i>
 				</a>
-				<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-					<span class="dropdown-header">7 Notifications</span>
-					<div class="dropdown-divider"></div>
-					<a href="#" class="dropdown-item">
-						<i class="fas fa-envelope mr-2"></i> 4 new messages
-						<span class="float-right text-muted text-sm">3 mins</span>
-					</a>
-					<div class="dropdown-divider"></div>
-					<a href="#" class="dropdown-item">
-						<i class="fas fa-file mr-2"></i> 3 new reports
-						<span class="float-right text-muted text-sm">2 days</span>
-					</a>
-					<div class="dropdown-divider"></div>
-					<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-				</div>
+				<ul class="dropdown-menu settings-menu dropdown-menu-right">
+					<li><a class="dropdown-item" href="#"><i class="fa fa-cog mr-2"></i>Opciones</a></li>
+					<li><a class="dropdown-item" href="<?= media(); ?>perfil/"><i class="fa fa-user mr-2"></i>Perfil</a></li>
+					<li><a class="dropdown-item" href="<?= media(); ?>Logout/"><i class="fa fa-sign-out mr-2"></i>Cerrar Sesión</a></li>
+				</ul>
 			</li>
 		</ul>
 	</nav>
