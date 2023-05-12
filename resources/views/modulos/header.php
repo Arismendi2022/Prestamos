@@ -14,8 +14,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<!-- Font Awesome -->
+	<!-- Font Awesome CSS -->
 	<link rel="stylesheet" href="<?= media(); ?>admin/plugins/fontawesome-free/css/all.min.css">
+	<!-- SweetAlert2 CSS -->
+	<link rel="stylesheet" href="<?= media(); ?>admin/plugins/sweetalert2/sweetalert2.min.css">
+	<!-- CSS PARA DATATABLES -->
+	<link rel="stylesheet" href="<?= media(); ?>admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?= media(); ?>admin/dist/css/adminlte.min.css">
 	<!-- style -->

@@ -39,6 +39,12 @@
 		return $format;
 	}
 	
+	function getModal(string $nameModal, $data)
+	{
+		$view_modal = "../resources/views/modulos/modals/{$nameModal}.php";
+		require_once $view_modal;
+	}
+	
 	//Elimina exceso de espacios entre palabras
 	function strClean($strCadena)
 	{
