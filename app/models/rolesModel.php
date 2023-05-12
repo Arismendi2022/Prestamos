@@ -11,14 +11,13 @@
 			parent::__construct();
 		}
 		
+		//Extrae Roles para datatable
 		public function selectRoles()
 		{
-			//Extrae Roles
 			$sql = "SELECT * FROM rol WHERE estado != 0";
 			$request = $this->select_all($sql);
 			return $request;
 		}
-		
 		//Buscar Roles
 		public function selectRol(int $idrol)
 		{
@@ -27,7 +26,6 @@
 			$request = $this->select($sql);
 			return $request;
 		}
-		
 		//Inserta datos del nuevo rol
 		public function insertRol(string $rol, string $descripcion, int $status){
 			
@@ -50,7 +48,6 @@
 			}
 			return $return;
 		}
-		
 		//Actualiza Rol
 		public function updateRol(int $idrol, string $rol, string $descripcion, int $status){
 			$this->intIdrol = $idrol;
@@ -68,6 +65,28 @@
 				$request = $this->update($sql,$arrData);
 			}else{
 				$request = "exist";
+			}
+			return $request;
+		}
+		//elimina rol
+		public function deleteRol(int $idrol)
+		{
+			$this->intIdrol = $idrol;
+			$sql = "SELECT * FROM usuarios WHERE rolid = $this->intIdrol";
+			$request = $this->select_all($sql);
+			if(empty($request))
+			{
+				$sql = "UPDATE rol SET estado = ? WHERE idrol = $this->intIdrol ";
+				$arrData = array(0);
+				$request = $this->update($sql,$arrData);
+				if($request)
+				{
+					$request = 'ok';
+				}else{
+					$request = 'error';
+				}
+			}else{
+				$request = 'exist';
 			}
 			return $request;
 		}

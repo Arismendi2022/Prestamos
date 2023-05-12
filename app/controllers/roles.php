@@ -17,6 +17,7 @@
 			$this->views->getView($this, "roles", $data);
 		}
 		
+		//muestra listado de roles en datatable
 		public function getRoles()
 		{
 			$arrData = $this->model->selectRoles();
@@ -52,7 +53,8 @@
 			}
 			die();
 		}
-		//Crear Rol
+		
+		//Guarda Rol
 		public function setRol()
 		{
 			$intIdrol = intval($_POST['idRol']);
@@ -81,6 +83,24 @@
 				$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
 			}
 			echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+		
+		// eliminar rol
+		public function delRol()
+		{
+			if ($_POST) {
+				$intIdrol = intval($_POST['idrol']);
+				$requestDelete = $this->model->deleteRol($intIdrol);
+				if ($requestDelete == 'ok') {
+					$arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el Rol');
+				} elseif ($requestDelete == 'exist') {
+					$arrResponse = array('status' => false, 'msg' => 'No es posible eliminar un Rol asociado a usuarios.');
+				} else {
+					$arrResponse = array('status' => false, 'msg' => 'Error al eliminar el Rol.');
+				}
+				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+			}
 			die();
 		}
 		

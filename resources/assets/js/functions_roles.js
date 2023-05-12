@@ -74,7 +74,7 @@ function openModal() {
 	$('#modalFormRol').modal('show');
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 }, false);
 
 // evento click para boton editar rol
@@ -115,4 +115,41 @@ function fntEditRol(idrol) {
 			}
 		}
 	}
+}
+
+// evento click para boton eliminar rol
+function fntDelRol(idrol) {
+	var idrol = idrol;
+	//validar("Eliminar Rol", "¿Realmente quiere eliminar el Rol?", "warning");
+	Swal.fire({
+		title: "Eliminar Rol",
+		text: "¿Realmente quiere eliminar el Rol?",
+		icon: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: "Si, eliminar!",
+		cancelButtonText: "No, cancelar!",
+	}).then((result) => {
+		if (result.isConfirmed) {
+			const request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+			const ajaxUrl = base_url + 'Roles/delRol/';
+			const strData = "idrol=" + idrol;
+			request.open("POST", ajaxUrl, true);
+			request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			request.send(strData);
+			request.onreadystatechange = function () {
+				if (request.readyState == 4 && request.status == 200) {
+					const objData = JSON.parse(request.responseText);
+					if (objData.status) {
+						alerta("Eliminar!", objData.msg, "success");
+						tableRoles.api().ajax.reload();
+					} else {
+						alerta("Atención!", objData.msg, "error");
+					}
+				}
+			}
+		}
+	})
+
 }
