@@ -2591,7 +2591,7 @@
                                 for (var i = e.alternation + 1; i < e.locator.length; i++) if (e.locator[i] !== t.locator[i]) return !1;
                                 return !0;
                             }
-                            if (h > e + c._maxTestPos) throw "Inputmask: There is probably an errors in your mask definition or in the code. Create an issue on github with an example of the mask you are using. " + s.mask;
+                            if (h > e + c._maxTestPos) throw "Inputmask: There is probably an error in your mask definition or in the code. Create an issue on github with an example of the mask you are using. " + s.mask;
                             if (h === e && void 0 === r.matches) {
                                 if (m.push({
                                     match: r,

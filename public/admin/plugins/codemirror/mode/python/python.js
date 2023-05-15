@@ -223,7 +223,7 @@
           } else if (stream.match('}}')) {
             return OUTCLASS;
           } else if (stream.match('}')) {
-            // single } in f-string is an errors
+            // single } in f-string is an error
             return ERRORCLASS;
           } else {
             stream.eat(/['"]/);

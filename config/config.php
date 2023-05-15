@@ -1,6 +1,6 @@
 <?php
 
-	const BASE_URL = "http://localhost/banco/";
+	const BASE_URL = "http://banco.co/";
 	
 	//Zona horaria
 	date_default_timezone_set('America/Bogota');

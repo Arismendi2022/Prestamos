@@ -128,7 +128,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			// -------------------------- plugin bridge -------------------------- //
 
 			// helper function for logging errors
-			// $.errors breaks jQuery chaining
+			// $.error breaks jQuery chaining
 			var logError = typeof console === 'undefined' ? noop : function (message) {
 				console.error(message);
 			};

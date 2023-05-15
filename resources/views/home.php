@@ -7,6 +7,7 @@
 	<title><?= $data['tag_page']; ?></title>
 </head>
 <body>
+<H1>Pagina Principal...</H1>
 
 </body>
 </html>

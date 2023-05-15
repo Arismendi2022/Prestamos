@@ -296,7 +296,7 @@ $.extend( $.validator, {
 		onfocusin: function( element ) {
 			this.lastActive = element;
 
-			// Hide errors label and remove errors class on focus if enabled
+			// Hide error label and remove error class on focus if enabled
 			if ( this.settings.focusCleanup ) {
 				if ( this.settings.unhighlight ) {
 					this.settings.unhighlight.call( this, element, this.settings.errorClass, this.settings.validClass );
@@ -516,7 +516,7 @@ $.extend( $.validator, {
 
 				if ( !this.numberOfInvalids() ) {
 
-					// Hide errors containers on last errors
+					// Hide error containers on last error
 					this.toHide = this.toHide.add( this.containers );
 				}
 				this.showErrors();
@@ -533,7 +533,7 @@ $.extend( $.validator, {
 			if ( errors ) {
 				var validator = this;
 
-				// Add items to errors list and map
+				// Add items to error list and map
 				$.extend( this.errorMap, errors );
 				this.errorList = $.map( this.errorMap, function( message, name ) {
 					return {
@@ -596,7 +596,7 @@ $.extend( $.validator, {
 				i;
 			for ( i in obj ) {
 
-				// This check allows counting elements with empty errors
+				// This check allows counting elements with empty error
 				// message as invalid elements
 				if ( obj[ i ] !== undefined && obj[ i ] !== null && obj[ i ] !== false ) {
 					count++;
@@ -956,16 +956,16 @@ $.extend( $.validator, {
 
 			if ( error.length ) {
 
-				// Refresh errors/success class
+				// Refresh error/success class
 				error.removeClass( this.settings.validClass ).addClass( this.settings.errorClass );
 
 				// Replace message on existing label
 				error.html( message );
 			} else {
 
-				// Create errors element
+				// Create error element
 				error = $( "<" + this.settings.errorElement + ">" )
-					.attr( "id", elementID + "-errors" )
+					.attr( "id", elementID + "-error" )
 					.addClass( this.settings.errorClass )
 					.html( message || "" );
 
@@ -985,10 +985,10 @@ $.extend( $.validator, {
 					place.insertAfter( element );
 				}
 
-				// Link errors back to the element
+				// Link error back to the element
 				if ( error.is( "label" ) ) {
 
-					// If the errors is a label, then associate using 'for'
+					// If the error is a label, then associate using 'for'
 					error.attr( "for", elementID );
 
 					// If the element is not a child of an associated label, then it's necessary
@@ -996,7 +996,7 @@ $.extend( $.validator, {
 				} else if ( error.parents( "label[for='" + this.escapeCssMeta( elementID ) + "']" ).length === 0 ) {
 					errorID = error.attr( "id" );
 
-					// Respect existing non-errors aria-describedby
+					// Respect existing non-error aria-describedby
 					if ( !describedBy ) {
 						describedBy = errorID;
 					} else if ( !describedBy.match( new RegExp( "\\b" + this.escapeCssMeta( errorID ) + "\\b" ) ) ) {
@@ -1035,7 +1035,7 @@ $.extend( $.validator, {
 				describer = $( element ).attr( "aria-describedby" ),
 				selector = "label[for='" + name + "'], label[for='" + name + "'] *";
 
-			// 'aria-describedby' should directly reference the errors element
+			// 'aria-describedby' should directly reference the error element
 			if ( describer ) {
 				selector = selector + ", #" + this.escapeCssMeta( describer )
 					.replace( /\s+/g, ", #" );

@@ -87,7 +87,7 @@
       if (stream.match(doubleOperators) || stream.match(singleOperators))
         return "operator";
 
-      // Prevents leading "." in DO block from falling through to errors
+      // Prevents leading "." in DO block from falling through to error
       if (stream.match(singleDelimiters))
         return null;
 

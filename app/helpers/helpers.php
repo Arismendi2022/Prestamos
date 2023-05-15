@@ -9,7 +9,19 @@
 	//Retorna la url de Assets
 	function media()
 	{
-		return BASE_URL . "Assets/";
+		return BASE_URL . "Admin/";
+	}
+	
+	function headerAdmin($data="")
+	{
+		$view_header = "../resources/views/modulos/header.php";
+		require_once ($view_header);
+	}
+	
+	function footerAdmin($data="")
+	{
+		$view_footer = "../resources/views/modulos/footer.php";
+		require_once($view_footer);
 	}
 	
 	//Muestra información formateada
@@ -21,6 +33,11 @@
 		return $format;
 	}
 	
+	function getModal(string $nameModal, $data)
+	{
+		$view_modal = "../resources/views/modulos/modals/{$nameModal}.php";
+		require_once $view_modal;
+	}
 	//Elimina exceso de espacios entre palabras
 	function strClean($strCadena)
 	{
