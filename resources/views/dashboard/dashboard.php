@@ -61,7 +61,6 @@
 					<div class="small-box bg-warning">
 						<div class="inner">
 							<h3>44</h3>
-							
 							<p>User Registrations</p>
 						</div>
 						<div class="icon">
@@ -94,4 +93,3 @@
 <!-- /.content-wrapper -->
 
 <?php footerAdmin($data); ?>
-

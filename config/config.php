@@ -18,6 +18,15 @@
 
 	// * Símbolo de moneda
 	const SMONEY = "$";
+	
+	// * Módulos
+	const MDASHBOARD = 1;
+	const MCLIENTES = 2;
+	const MPRESTAMOS = 3;
+	const MPAGOS = 4;
+	const MCONFIGURACION = 5;
+	const MREPORTES = 6;
+	const MCONTABILIDAD = 7;
 
 	
 

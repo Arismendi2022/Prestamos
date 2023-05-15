@@ -54,4 +54,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		</ul>
 	</nav>
 	<!-- /.navbar -->
-	<?php require_once("sidebar.php"); ?>
+<?php require_once("sidebar.php"); ?>

@@ -1,0 +1,19 @@
+.headerRegister, .header-primary {
+    background: #007BFF;
+    color: #FFF;
+}
+
+.headerUpdate {
+    background: #17A2BB;
+    color: #FFF;
+}
+
+.notBlock {
+    display: none;
+}
+
+.required{
+    color: red;
+    font-size: 13pt;
+    font-weight: bold;
+}

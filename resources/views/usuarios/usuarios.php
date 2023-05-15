@@ -35,6 +35,3 @@
 <!-- /.content-wrapper -->
 
 <?php footerAdmin($data); ?>
-
-
-

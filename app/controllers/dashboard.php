@@ -15,7 +15,6 @@
 			$data['page_name'] = "dashboard";
 			$this->views->getView($this, "dashboard", $data);
 		}
-		
 	}
 	// end file dashboard.php
 

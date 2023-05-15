@@ -16,7 +16,8 @@
 			//$data['page_functions_js'] = "functions_roles.js";
 			$this->views->getView($this, "roles", $data);
 		}
-		
+
 	}
 
+	// end file roles.php
 

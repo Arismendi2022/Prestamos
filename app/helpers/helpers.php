@@ -43,7 +43,7 @@
 	{
 		$string = preg_replace(['/\s+/', '/^\s|\s$/'], [' ', ''], $strCadena);
 		$string = trim($string); //Elimina espacios en blanco al inicio y al final
-		$string = stripslashes($string); // Elimina las \ invertidas
+		$string = stripslashes($string); // Elimina las \ invertida			
 		$string = str_ireplace("<script>", "", $string);
 		$string = str_ireplace("</script>", "", $string);
 		$string = str_ireplace("<script src>", "", $string);
