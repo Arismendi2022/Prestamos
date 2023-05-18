@@ -1,5 +1,5 @@
 <script>
-	const base_url = "<?= media(); ?>";
+	const base_url = "<?= ROOT ?>";
 </script>
 <!-- Main Footer -->
 <footer class="main-footer">
@@ -16,20 +16,20 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="<?= media(); ?>plugins/jquery/jquery.min.js"></script>
+<script src="<?=ROOT?>/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="<?= media(); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?=ROOT?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- SweetAlert2 JS -->
-<script src="<?= media(); ?>plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="<?=ROOT?>/admin/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <!-- Datatable js -->
-<script src="<?= media(); ?>plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= media(); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?=ROOT?>/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?=ROOT?>/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?= media(); ?>dist/js/adminlte.min.js"></script>
+<script src="<?=ROOT?>/admin/dist/js/adminlte.min.js"></script>
 <!-- Funciones propias -->
-<!--<script src="--><?php //= data(); ?><!--js/script.js"></script>-->
-<!--<script src="--><?php //= data(); ?><!--js/functions_admin.js"></script>-->
-<!--<script src="--><?php //= data(); ?><!--js/functions_roles.js"></script>-->
+<script src="<?= media(); ?>/assets/js/script.js"></script>
+<script src="<?= media(); ?>/assets/js/functions_admin.js"></script>
+<script src="<?= media(); ?>/assets/js/functions_roles.js"></script>
 
 <script>
 	$(document).ready(function () {

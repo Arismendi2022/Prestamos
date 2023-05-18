@@ -1,10 +1,15 @@
 // Función para alertas
 function alerta(titulo, msg, icono) {
 	Swal.fire({
-		icon: icono, title: titulo, text: msg, confirmButtonColor: '#3085d6', confirmButtonText: 'Aceptar'
+		icon: icono,
+		title: titulo,
+		text: msg,
+		confirmButtonColor: '#3085d6',
+		confirmButtonText: 'Aceptar'
 	})
 }
 
+/*
 function validar(titulo, msg, icono) {
 	return new Promise(resolve => {
 		Swal.fire({
@@ -23,3 +28,4 @@ function validar(titulo, msg, icono) {
 
 }
 
+*/

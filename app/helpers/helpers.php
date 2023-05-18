@@ -9,7 +9,7 @@
 	//Retorna la url de Assets
 	function media()
 	{
-		return BASE_URL . "Admin/";
+		return ROOT . "/../resources";
 	}
 	
 	function headerAdmin($data="")
@@ -38,6 +38,7 @@
 		$view_modal = "../resources/views/modulos/modals/{$nameModal}.php";
 		require_once $view_modal;
 	}
+	
 	//Elimina exceso de espacios entre palabras
 	function strClean($strCadena)
 	{

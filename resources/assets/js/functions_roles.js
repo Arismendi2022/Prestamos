@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
 		},
 		"ajax": {
-			"url": " " + base_url + "roles/getRoles",
+			"url": " " + base_url + "/roles/getRoles",
 			"dataSrc": ""
 		},
 		"columns": [
@@ -24,45 +24,44 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	//Nuevo Rol
-	var formRol = document.querySelector("#formRol");
-	formRol.onsubmit = function (e) {
-		e.preventDefault();
+	if (document.querySelector("#formRol")) {
+		let formRol = document.querySelector("#formRol");
+		formRol.onsubmit = function (e) {
+			e.preventDefault();
 
-		//const intIdRol = document.querySelector('#idRol').value;
-		const strNombre = document.querySelector('#txtNombre').value;
-		const strDescripcion = document.querySelector('#txtDescripcion').value;
-		const intStatus = document.querySelector('#listStatus').value;
-		if (strNombre == '' || strDescripcion == '' || intStatus == '') {
-			alerta("Atención", "Todos los campos son obligatorios.", "error");
-			return false;
-		}
-		const request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-		const ajaxUrl = base_url + 'roles/setRol';
-		const formData = new FormData(formRol);
-		request.open("POST", ajaxUrl, true);
-		request.send(formData);
-		request.onreadystatechange = function () {
-			if (request.readyState === 4 && request.status === 200) {
+			const intIdRol = document.querySelector('#idRol').value;
+			const strNombre = document.querySelector('#txtNombre').value;
+			const strDescripcion = document.querySelector('#txtDescripcion').value;
+			const intStatus = document.querySelector('#listStatus').value;
+			if (strNombre == '' || strDescripcion == '' || intStatus == '') {
+				alerta("Atención", "Todos los campos son obligatorios.", "error");
+				return false;
+			}
+			const request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+			const ajaxUrl = base_url + '/roles/setRol';
+			const formData = new FormData(formRol);
+			request.open("POST", ajaxUrl, true);
+			request.send(formData);
+			request.onreadystatechange = function () {
+				if (request.readyState === 4 && request.status === 200) {
 
-				const objData = JSON.parse(request.responseText);
-				if (objData.status) {
-					$('#modalFormRol').modal("hide");
-					formRol.reset();
-					alerta("Roles de usuario", objData.msg, "success");
-					tableRoles.api().ajax.reload();
-				} else {
-					alerta("Error", objData.msg, "error");
+					const objData = JSON.parse(request.responseText);
+					if (objData.status) {
+						$('#modalFormRol').modal("hide");
+						formRol.reset();
+						alerta("Roles de usuario", objData.msg, "success");
+						tableRoles.api().ajax.reload();
+					} else {
+						alerta("Error", objData.msg, "error");
+					}
 				}
 			}
 		}
-
 	}
-
 });
 
-function openModal() {
-	$('#modalFormRol').modal('show');
-}
+
+$("#tableRoles").DataTable();
 
 function openModal() {
 	document.querySelector("#idRol").value = "";
@@ -86,7 +85,7 @@ function fntEditRol(idrol) {
 
 	var idrol = idrol;
 	const request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	const ajaxUrl = base_url + 'Roles/getRol/' + idrol;
+	const ajaxUrl = base_url + '/roles/getRol/' + idrol;
 	request.open("GET", ajaxUrl, true);
 	request.send();
 
@@ -133,7 +132,7 @@ function fntDelRol(idrol) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			const request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-			const ajaxUrl = base_url + 'Roles/delRol/';
+			const ajaxUrl = base_url + '/roles/delRol';
 			const strData = "idrol=" + idrol;
 			request.open("POST", ajaxUrl, true);
 			request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -153,3 +152,4 @@ function fntDelRol(idrol) {
 	})
 
 }
+

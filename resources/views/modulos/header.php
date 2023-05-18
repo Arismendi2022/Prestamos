@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="<?= media(); ?>dist/img/favicon.png">
+	<link rel="shortcut icon" href="<?=ROOT?>/admin/dist/img/favicon.png">
 	<title><?= $data['page_tag'] ?></title>
 	
 	<!-- Google Font: Source Sans Pro -->
@@ -15,15 +15,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Font Awesome CSS -->
-	<link rel="stylesheet" href="<?= media(); ?>plugins/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/fontawesome-free/css/all.min.css">
 	<!-- SweetAlert2 CSS -->
-	<link rel="stylesheet" href="<?= media(); ?>plugins/sweetalert2/sweetalert2.min.css">
+	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/sweetalert2/sweetalert2.min.css">
 	<!-- CSS PARA DATATABLES -->
-	<link rel="stylesheet" href="<?= media(); ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="<?= media(); ?>dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="<?=ROOT?>/admin/dist/css/adminlte.min.css">
 	<!-- style -->
-<!--	<link rel="stylesheet" href="--><?php //= data(); ?><!--css/style.css">-->
+	<link rel="stylesheet" href="<?=media(); ?>/assets/css/style.css">
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -47,8 +47,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</a>
 				<ul class="dropdown-menu settings-menu dropdown-menu-right">
 					<li><a class="dropdown-item" href="#"><i class="fa fa-cog mr-2"></i>Opciones</a></li>
-					<li><a class="dropdown-item" href="<?= media(); ?>perfil/"><i class="fa fa-user mr-2"></i>Perfil</a></li>
-					<li><a class="dropdown-item" href="<?= media(); ?>Logout/"><i class="fa fa-sign-out mr-2"></i>Cerrar Sesión</a></li>
+					<li><a class="dropdown-item" href="<?=ROOT?>/perfil/"><i class="fa fa-user mr-2"></i>Perfil</a></li>
+					<li><a class="dropdown-item" href="<?=ROOT?>/logout/"><i class="fa fa-sign-out mr-2"></i>Cerrar Sesión</a></li>
 				</ul>
 			</li>
 		</ul>
