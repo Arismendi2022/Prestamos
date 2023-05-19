@@ -42,6 +42,93 @@
 	</div>
 </div>
 
+<!-- Extra large modal -->
+<div class="modal fade modalPermisos" tabindex=" -1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header bg-success">
+				<h5 class="modal-title">Permisos Roles de Usuario</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">x</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<!-- /.form -->
+							<form action="" id="formPermisos" name="formPermisos">
+								<!-- /.card-header -->
+								<div class="card-body table-responsive">
+									<table class="table">
+										<thead>
+										<tr>
+											<th>#</th>
+											<th>Módulos</th>
+											<th>Leer</th>
+											<th>Escribir</th>
+											<th>Actualizar</th>
+											<th>Eliminar</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<td>Usuarios</td>
+											<td>
+												<div class="form-check">
+													<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm">
+												</div>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- /.card-body -->
+								<div class="text-center">
+									<button class="btn btn-success my-4" type="submit"><i class="fa fa-fw fa-lg fa-check-circle" aria-hidden="true"></i> Guardar</button>
+									<button class="btn btn-danger ml-2" type="button" data-dismiss="modal"><i class="app-menu__icon fas fa-sign-out-alt" aria-hidden="true"></i>Salir
+									</button>
+								</div>
+							</form>
+							<!-- /.form -->
+						</div>
+						<!-- /.card-->
+					</div>
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.modal-body -->
+		</div>
+	</div>
+</div>
 
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	

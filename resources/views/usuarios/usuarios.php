@@ -7,7 +7,7 @@
 			<div class="row mb-2">
 				<div class="col-sm-6">
 					<div class="input-group">
-						<h1><i class="fa-solid fa-users"></i> <?= $data['page_title'] ?>
+						<h1><i class="fa-solid fa-user-group"></i> <?= $data['page_title'] ?>
 							<button class="btn btn-primary ml-2" type="button" onclick="openModal();"><i class="fa-solid fa-circle-plus"></i> Nuevo</button>
 						</h1>
 					</div>

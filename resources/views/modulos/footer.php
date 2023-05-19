@@ -17,6 +17,8 @@
 
 <!-- jQuery -->
 <script src="<?=ROOT?>/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap Toggle JS -->
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?=ROOT?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- SweetAlert2 JS -->

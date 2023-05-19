@@ -16,6 +16,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Font Awesome CSS -->
 	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/fontawesome-free/css/all.min.css">
+	<!-- Bootstrap Toggle CSS -->
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	<!-- SweetAlert2 CSS -->
 	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/sweetalert2/sweetalert2.min.css">
 	<!-- CSS PARA DATATABLES -->
