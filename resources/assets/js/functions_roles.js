@@ -174,8 +174,9 @@ function fntDelRol(idrol) {
 		request.onreadystatechange = function () {
 			if (request.readyState == 4 && request.status == 200) {
 				document.querySelector('#contentAjax').innerHTML = request.responseText;
+				$('input[data-toggle="toggle"]').bootstrapToggle();
 				$('.modalPermisos').modal('show');
-				document.querySelector('#formPermisos').addEventListener('submit', fntSavePermisos, false);
+				//document.querySelector('#formPermisos').addEventListener('submit', fntSavePermisos, false);
 			}
 		}
 	}
