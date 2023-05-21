@@ -15,6 +15,7 @@
 						<div class="card">
 							<!-- /.form -->
 							<form action="" id="formPermisos" name="formPermisos">
+								<input type="hidden" id="idrol" name="idrol" value="<?= $data['idrol']; ?>" required="">
 								<!-- /.card-header -->
 								<div class="card-body table-responsive">
 									<table class="table">
@@ -22,8 +23,8 @@
 										<tr>
 											<th>#</th>
 											<th>Módulos</th>
-											<th>Leer</th>
-											<th>Escribir</th>
+											<th>Ver</th>
+											<th>Crear</th>
 											<th>Actualizar</th>
 											<th>Eliminar</th>
 										</tr>
@@ -45,33 +46,39 @@
 												$idmod = $modulos[$i]['idmodulo'];
 												?>
 												<tr>
-													<td> <?= $no; ?>
-														<input type="hidden" name="modulos[<?= $i; ?>][idmodulo]" value="<?= $idmod ?>" required></td>
+													<td>
+														<?= $no; ?>
+														<input type="hidden" name="modulos[<?= $i; ?>][idmodulo]" value="<?= $idmod ?>" required>
+													</td>
 													<td>
 														<?= $modulos[$i]['titulo']; ?>
 													</td>
 													<td>
-														<div class="form-check">
-															<input type="checkbox" name="modulos[<?= $i; ?>][r]" <?= $rCheck ?> data-toggle="toggle" data-onstyle="success"
-															       data-size="sm">
+														<div class="form-check pl-0">
+															<label>
+																<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm" name="modulos[<?= $i; ?>][r]" <?= $rCheck ?>>
+															</label>
 														</div>
 													</td>
 													<td>
-														<div class="form-check">
-															<input type="checkbox" name="modulos[<?= $i; ?>][w]" <?= $rCheck ?> data-toggle="toggle" data-onstyle="success"
-															       data-size="sm">
+														<div class="form-check pl-0">
+															<label>
+																<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm" name="modulos[<?= $i; ?>][w]" <?= $wCheck ?>>
+															</label>
 														</div>
 													</td>
 													<td>
-														<div class="form-check">
-															<input type="checkbox" name="modulos[<?= $i; ?>][u]" <?= $rCheck ?> data-toggle="toggle" data-onstyle="success"
-															       data-size="sm">
+														<div class="form-check pl-0">
+															<label>
+																<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm" name="modulos[<?= $i; ?>][u]" <?= $uCheck ?>>
+															</label>
 														</div>
 													</td>
 													<td>
-														<div class="form-check">
-															<input type="checkbox" name="modulos[<?= $i; ?>][d]" <?= $rCheck ?> data-toggle="toggle" data-onstyle="success"
-															       data-size="sm">
+														<div class="form-check pl-0">
+															<label>
+																<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm" name="modulos[<?= $i; ?>][d]" <?= $dCheck ?>>
+															</label>
 														</div>
 													</td>
 												</tr>
@@ -101,5 +108,3 @@
 		</div>
 	</div>
 </div>
-
-

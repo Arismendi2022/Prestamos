@@ -42,7 +42,6 @@
 	</div>
 </div>
 
-<!-- Extra large modal -->
 
 
 
