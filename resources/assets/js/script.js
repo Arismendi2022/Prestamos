@@ -9,23 +9,22 @@ function alerta(titulo, msg, icono) {
 	})
 }
 
-/*
-function validar(titulo, msg, icono) {
-	return new Promise(resolve => {
-		Swal.fire({
-			icon: icono,
-			title: titulo,
-			text: msg,
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: "Si, eliminar!",
-			cancelButtonText: "No, cancelar!",
-		}).then((result) => {
-				resolve(result.isConfirmed);
-		})
-	})
-
+function confirmarBorrado(titulo, msg, icono) {
+	return Swal.fire({
+		icon: icono,
+		title: titulo,
+		text: msg,
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: "Si, eliminar!",
+		cancelButtonText: "No, cancelar!",
+	}).then((result) => {
+		if (result.isConfirmed) {
+			return true;  // Devuelve true si se confirma el borrado
+		} else {
+			return false; // Devuelve false si se cancela el borrado
+		}
+	});
 }
 
-*/

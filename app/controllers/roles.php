@@ -38,6 +38,22 @@
 			die();
 		}
 		
+		// Extrae roles para usuarios
+		public function getSelectRoles()
+		{
+			$htmlOptions = "";
+			$arrData = $this->model->selectRoles();
+			if(count($arrData) > 0 ){
+				for ($i=0; $i < count($arrData); $i++) {
+					if($arrData[$i]['estado'] == 1 ){
+						$htmlOptions .= '<option value="'.$arrData[$i]['idrol'].'">'.$arrData[$i]['nombrerol'].'</option>';
+					}
+				}
+			}
+			echo $htmlOptions;
+			die();
+		}
+		
 		//Actualiza Rol
 		public function getRol(int $idrol)
 		{

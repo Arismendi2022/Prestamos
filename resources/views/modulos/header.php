@@ -18,10 +18,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/fontawesome-free/css/all.min.css">
 	<!-- Bootstrap Toggle CSS -->
 	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
-	<!-- SweetAlert2 CSS -->
-	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/sweetalert2/sweetalert2.min.css">
+	<!-- Select2 -->
+	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/select2/css/bootstrap-select.min.css">
 	<!-- CSS PARA DATATABLES -->
 	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	<!-- SweetAlert2 CSS -->
+	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/sweetalert2/sweetalert2.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?=ROOT?>/admin/dist/css/adminlte.min.css">
 	<!-- style -->

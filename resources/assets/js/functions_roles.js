@@ -119,18 +119,8 @@ function fntEditRol(idrol) {
 // evento click para boton eliminar rol
 function fntDelRol(idrol) {
 	var idrol = idrol;
-	//validar("Eliminar Rol", "¿Realmente quiere eliminar el Rol?", "warning");
-	Swal.fire({
-		title: "Eliminar Rol",
-		text: "¿Realmente quiere eliminar el Rol?",
-		icon: "warning",
-		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
-		confirmButtonText: "Si, eliminar!",
-		cancelButtonText: "No, cancelar!",
-	}).then((result) => {
-		if (result.isConfirmed) {
+	confirmarBorrado("Eliminar Rol", "¿Realmente quiere eliminar el Rol?", "warning").then((borrar) => {
+		if (borrar) {
 			const request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 			const ajaxUrl = base_url + '/roles/delRol';
 			const strData = "idrol=" + idrol;
@@ -164,7 +154,10 @@ function fntDelRol(idrol) {
 			if (request.readyState == 4 && request.status == 200) {
 				document.querySelector('#contentAjax').innerHTML = request.responseText;
 				$('.modalPermisos').modal('show');
-				$('input[data-toggle="toggle"]').bootstrapToggle();
+				//$('input[data-toggle="toggle"]').bootstrapToggle();
+				$("input[data-bootstrap-switch]").each(function(){
+					$(this).bootstrapSwitch('state', $(this).prop('checked'));
+				})
 				document.querySelector('#formPermisos').addEventListener('submit', fntSavePermisos, false);
 			}
 		}
