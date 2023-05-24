@@ -9,6 +9,7 @@ function alerta(titulo, msg, icono) {
 	})
 }
 
+// Funcion para confirmar borrado
 function confirmarBorrado(titulo, msg, icono) {
 	return Swal.fire({
 		icon: icono,
@@ -27,4 +28,11 @@ function confirmarBorrado(titulo, msg, icono) {
 		}
 	});
 }
+
+// Funcion para mascara de telefono
+/*$(document).ready(function() {
+	$('#txtTelefono').inputmask('999 999 9999', { clearMaskOnLostFocus: false });
+});*/
+
+// Funcion Menu active bar
 

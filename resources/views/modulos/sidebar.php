@@ -66,7 +66,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?=ROOT?>/usuarios" class="nav-link active">
+							<a href="<?=ROOT?>/usuarios" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Usuarios</p>
 							</a>
