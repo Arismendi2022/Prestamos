@@ -141,7 +141,6 @@ function fntDelRol(idrol) {
 		}
 	})
 }
-
 	// evento click para boton permisos rol
 	function fntPermisos(idrol) {
 		var idrol = idrol;

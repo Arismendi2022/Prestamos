@@ -1,6 +1,6 @@
 <?php
 
-	const BASE_URL = "http://localhost/banco/public";
+	//const BASE_URL = "http://localhost/banco/public";
 	
 	define('ROOT', 'http://localhost/banco/public');
 	

@@ -3,7 +3,7 @@
 	//Retorna la url del proyecto
 	function base_url()
 	{
-		return BASE_URL;
+		return ROOT;
 	}
 	
 	//Retorna la url de Assets
@@ -44,7 +44,8 @@
 	{
 		$string = preg_replace(['/\s+/', '/^\s|\s$/'], [' ', ''], $strCadena);
 		$string = trim($string); //Elimina espacios en blanco al inicio y al final
-		$string = stripslashes($string); // Elimina las \ invertida			
+		$string = stripslashes($string); // Elimina las \ invertida
+		$string = str_replace(['(', ')', '-'], '', $string); // Elimina guiones
 		$string = str_ireplace("<script>", "", $string);
 		$string = str_ireplace("</script>", "", $string);
 		$string = str_ireplace("<script src>", "", $string);
@@ -95,4 +96,4 @@
 		$cantidad = number_format($cantidad, 2, SPD, SPM);
 		return $cantidad;
 	}
-
+	

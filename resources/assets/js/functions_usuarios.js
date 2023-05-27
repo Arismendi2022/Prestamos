@@ -111,6 +111,102 @@ function fntRolesUsuario() {
 	}
 }
 
+function fntViewUsuario(idpersona){
+	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+	let ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
+	request.open("GET",ajaxUrl,true);
+	request.send();
+	request.onreadystatechange = function(){
+		if(request.readyState == 4 && request.status == 200){
+			let objData = JSON.parse(request.responseText);
+
+			if(objData.status)
+			{
+				let estadoUsuario = objData.data.estado == 1 ?
+					'<span class="badge badge-success">Activo</span>' :
+					'<span class="badge badge-danger">Inactivo</span>';
+
+				document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
+				document.querySelector("#celNombre").innerHTML = objData.data.nombres;
+				document.querySelector("#celApellido").innerHTML = objData.data.apellidos;
+				//document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
+				document.querySelector("#celTelefono").innerHTML = formatoPhone(objData.data.telefono);
+				document.querySelector("#celEmail").innerHTML = objData.data.email_user;
+				document.querySelector("#celTipoUsuario").innerHTML = objData.data.nombrerol;
+				document.querySelector("#celEstado").innerHTML = estadoUsuario;
+				document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
+				$('#modalViewUser').modal('show');
+			}else{
+				alerta("Error", objData.msg , "error");
+			}
+		}
+	}
+}
+
+function fntEditUsuario(element,idpersona){
+	rowTable = element.parentNode.parentNode.parentNode;
+	document.querySelector('#titleModal').innerHTML ="Actualizar Usuario";
+	document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
+	document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+	document.querySelector('#btnText').innerHTML ="Actualizar";
+	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+	let ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
+	request.open("GET",ajaxUrl,true);
+	request.send();
+	request.onreadystatechange = function(){
+
+		if(request.readyState == 4 && request.status == 200){
+			let objData = JSON.parse(request.responseText);
+
+			if(objData.status)
+			{
+				document.querySelector("#idUsuario").value = objData.data.idpersona;
+				document.querySelector("#txtIdentificacion").value = objData.data.identificacion;
+				document.querySelector("#txtNombre").value = objData.data.nombres;
+				document.querySelector("#txtApellido").value = objData.data.apellidos;
+				document.querySelector("#txtTelefono").value = objData.data.telefono;
+				document.querySelector("#txtEmail").value = objData.data.email_user;
+				document.querySelector("#listRolid").value =objData.data.idrol;
+				$('#listRolid').selectpicker('render');
+
+				if(objData.data.estado == 1){
+					document.querySelector("#listStatus").value = 1;
+				}else{
+					document.querySelector("#listStatus").value = 2;
+				}
+				$('#listStatus').selectpicker('render');
+			}
+		}
+
+		$('#modalFormUsuario').modal('show');
+	}
+}
+
+function fntDelUsuario(idpersona) {
+	confirmarBorrado("Eliminar Usuario", "¿Realmente quiere eliminar el Usuario?", "warning").then((borrar) => {
+		if (borrar) {
+			const request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+			let ajaxUrl = base_url+'/Usuarios/delUsuario';
+			let strData = "idUsuario="+idpersona;
+			request.open("POST", ajaxUrl, true);
+			request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			request.send(strData);
+			request.onreadystatechange = function () {
+				if (request.readyState == 4 && request.status == 200) {
+					const objData = JSON.parse(request.responseText);
+					if (objData.status) {
+						alerta("Eliminar!", objData.msg, "success");
+						tableUsuarios.api().ajax.reload();
+					} else {
+						alerta("Atención!", objData.msg, "error");
+					}
+				}
+			}
+		}
+	})
+}
+
+
 function openModal() {
 	document.querySelector("#idUsuario").value = "";
 	document.querySelector(".modal-header").classList.replace("headerUpdate", "headerRegister");

@@ -90,7 +90,7 @@
 			if ($option == 1) {
 				if ($request_rol != 'exist') {
 					$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
-				} elseif ($request_rol === 'exist') {
+				} elseif ($request_rol == 'exist') {
 					$arrResponse = array('status' => false, 'msg' => '¡Atención! El Rol ya existe.');
 				} else {
 					$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
