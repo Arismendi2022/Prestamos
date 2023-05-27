@@ -68,6 +68,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			return false;
 		}
 
+		let elementsValid = document.getElementsByClassName("valid");
+		for (let i = 0; i < elementsValid.length; i++) {
+			if(elementsValid[i].classList.contains('is-invalid')) {
+				alerta("Atención", "Por favor verifique los campos en rojo." , "error");
+				return false;
+			}
+		}
+
 		let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 		let ajaxUrl = base_url + '/Usuarios/setUsuario';
 		let formData = new FormData(formUsuario);

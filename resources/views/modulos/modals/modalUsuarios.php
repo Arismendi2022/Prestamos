@@ -17,7 +17,7 @@
 						<div class="form-group col-md-6">
 							<label for="txtIdentificacion">Identificación</label>
 							<input type="text" class="form-control valid
-							validNumber" id="txtIdentificacion" name="txtIdentificacion" required="">
+							validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return controlTag(event);">
 						</div>
 					</div>
 					<div class="form-row">
@@ -33,8 +33,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="txtTelefono">Teléfono</label>
-							<input type="text" class="form-control valid
-							validNumber" id="txtTelefono" name="txtTelefono" required="">
+							<input type="text" class="form-control" id="txtTelefono" name="txtTelefono" required="">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="txtEmail">Email</label>
