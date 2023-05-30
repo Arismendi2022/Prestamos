@@ -14,7 +14,7 @@
 			$data['page_tag'] = "Usuarios";
 			$data['page_title'] = "Usuarios - <small> Sistema de Crédito</small>";
 			$data['page_name'] = "usuarios";
-			//$data['page_functions_js'] = "functions_usuarios.js";
+			$data['page_functions_js'] = "functions_usuarios.js";
 			$this->views->getView($this, "usuarios", $data);
 		}
 		
@@ -46,6 +46,13 @@
 							$strPassword,
 							$intTipoId,
 							$intStatus);
+						
+						if ($request_user > 0) {
+							$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+						} else {
+							$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');
+						}
+						
 					} else {
 						$option = 2;
 						$strPassword = empty($_POST['txtPassword']) ? "" : hash("SHA256", $_POST['txtPassword']);
@@ -58,17 +65,12 @@
 							$strPassword,
 							$intTipoId,
 							$intStatus);
-					}
-					if ($option == 1) {
-						if ($request_user != 'exist') {
-							$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
-						} elseif ($request_user == 'exist') {
-							$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');
+						
+						if ($request_user > 0) {
+							$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
 						} else {
-							$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+							$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');
 						}
-					} else {
-						$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
 					}
 				}
 				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);

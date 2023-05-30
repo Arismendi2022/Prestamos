@@ -48,8 +48,6 @@
 					$this->intStatus);
 				$request_insert = $this->insert($query_insert, $arrData);
 				$return = $request_insert;
-			} else {
-				$return = "exist";
 			}
 			return $return;
 		}
@@ -81,7 +79,8 @@
 			return $request;
 		}
 		
-		public function updateUsuario(int $idUsuario, string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password, int $tipoid, int $status){
+		public function updateUsuario(int $idUsuario, string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password, int $tipoid, int $status)
+		{
 			
 			$this->intIdUsuario = $idUsuario;
 			$this->strIdentificacion = $identificacion;
@@ -97,10 +96,8 @@
 										  OR (identificacion = '{$this->strIdentificacion}' AND idpersona != $this->intIdUsuario) ";
 			$request = $this->select_all($sql);
 			
-			if(empty($request))
-			{
-				if($this->strPassword  != "")
-				{
+			if (empty($request)) {
+				if ($this->strPassword != "") {
 					$sql = "UPDATE persona SET identificacion=?, nombres=?, apellidos=?, telefono=?, email_user=?, password=?, rolid=?, estado=?
 							WHERE idpersona = $this->intIdUsuario ";
 					$arrData = array($this->strIdentificacion,
@@ -111,7 +108,7 @@
 						$this->strPassword,
 						$this->intTipoId,
 						$this->intStatus);
-				}else{
+				} else {
 					$sql = "UPDATE persona SET identificacion=?, nombres=?, apellidos=?, telefono=?, email_user=?, rolid=?, estado=?
 							WHERE idpersona = $this->intIdUsuario ";
 					$arrData = array($this->strIdentificacion,
@@ -122,9 +119,10 @@
 						$this->intTipoId,
 						$this->intStatus);
 				}
-				$request = $this->update($sql,$arrData);
-			}else{
-				$request = "exist";
+				$request = $this->update($sql, $arrData);
+				$return = $request;
+			} else {
+				$request = 0;
 			}
 			return $request;
 			
@@ -135,9 +133,10 @@
 			$this->intIdUsuario = $intIdpersona;
 			$sql = "UPDATE persona SET estado = ? WHERE idpersona = $this->intIdUsuario ";
 			$arrData = array(0);
-			$request = $this->update($sql,$arrData);
+			$request = $this->update($sql, $arrData);
 			return $request;
 		}
 		
 	}
 	// End of file usuariosModel.php
+	

@@ -13,7 +13,7 @@
 			$data['page_tag'] = "Roles usuarios";
 			$data['page_title'] = "Roles Usuarios - <small>Sistema de Crédito</small>";
 			$data['page_name'] = "rol_usuario";
-			//$data['page_functions_js'] = "functions_roles.js";
+			$data['page_functions_js'] = "functions_roles.js";
 			$this->views->getView($this, "roles", $data);
 		}
 		
