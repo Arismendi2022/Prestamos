@@ -24,9 +24,9 @@
 <div class="center-form">
 <div class="login-box">
 	<!-- /.login-logo -->
-	<div class="card card-outline card-primary">
+	<div class="card card-outline card-secondary">
 		<div class="card-header text-center">
-			<a class="h1">Mi-Banco</a>
+			<a class="h1"><?= $data['page_title']; ?><a>
 		</div>
 		<div class="card-body">
 			<p class="login-box-msg">Ingresa para iniciar sesión</p>
@@ -56,7 +56,7 @@
 					<!-- /.col -->
 					<div class="col-md-12">
 						<div class="form-group btn-container mt-2">
-							<button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt fa-lg mr-2"></i>INGRESAR</button>
+							<button type="submit" class="btn btn-info btn-block"><i class="fas fa-sign-in-alt fa-lg mr-2"></i>INGRESAR</button>
 						</div>
 					</div>
 					<!-- /.col -->

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 	if (document.querySelector("#formLogin")) {
 
 		let formLogin = document.querySelector("#formLogin");
@@ -11,12 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (strEmail === "" || strPassword === "") {
 				alerta("Por favor!", "Escribe usuario y contraseña.", "error");
 				return false;
-			/*} else {
+			} else {
 				const request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 				const ajaxUrl = base_url + '/Login/loginUser';
 				const formData = new FormData(formLogin);
 				request.open("POST", ajaxUrl, true);
 				request.send(formData);
+
 				request.onreadystatechange = function () {
 					if (request.readyState !== 4) return;
 					if (request.status === 200) {
@@ -28,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
 							document.querySelector('#txtPassword').value = "";
 						}
 					} else {
-						swal.fire("Atención!", "Error en el proceso", "error");
+						alerta("Atención!", "Error en el proceso", "error");
 					}
 					return false;
-				}*/
+				}
 			}
 		}
 	}
-});
+})

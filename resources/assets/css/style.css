@@ -23,7 +23,15 @@
 }
 
 .center-form{
-    background-color: #e7e7e7;
+    /*background-color: #e7e7e7;*/
+    background-image: linear-gradient(
+    to bottom,
+    #17a2b8 0%,
+    #17a2b8 50%,
+    #e7e7e7 50%,
+    #e7e7e7 100%
+    );
+
     display: flex;
     justify-content: center;
     align-items: center;
