@@ -66,4 +66,4 @@
 		}
 		
 	}
-	// End of file permisos.php
+	/** end file permisos.php **/

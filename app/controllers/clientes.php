@@ -20,5 +20,5 @@
 		}
 		
 	}
-	// end file clientes.php
+	/** end file clientes.php **/
 

@@ -40,8 +40,8 @@
 							$_SESSION['idUser'] = $arrData['idpersona'];
 							$_SESSION['login'] = true;
 							
-							//$arrData = $this->model->sessionLogin($_SESSION['idUser']);
-							//sessionUser($_SESSION['idUser']);
+							$arrData = $this->model->sessionLogin($_SESSION['idUser']);
+							$_SESSION['userData'] = $arrData;
 							$arrResponse = array('status' => true, 'msg' => 'ok');
 						} else {
 							$arrResponse = array('status' => false, 'msg' => 'Usuario inactivo.');
@@ -55,4 +55,4 @@
 		
 		
 	}
-	// End of file login.php
+	/** end file login.php **/

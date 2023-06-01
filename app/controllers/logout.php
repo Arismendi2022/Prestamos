@@ -11,5 +11,5 @@
 		}
 		
 	}
-	// end of file logout.php
+	/** end file logout.php **/
 

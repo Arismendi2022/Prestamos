@@ -138,5 +138,5 @@
 		
 		
 	}
-	// End of file Usuarios.php
+	/** end file usuarios.php **/
 	

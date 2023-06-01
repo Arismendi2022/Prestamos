@@ -126,5 +126,5 @@
 		}
 		
 	}
-	// end of file roles.php
+	//** end file roles.php **/
 

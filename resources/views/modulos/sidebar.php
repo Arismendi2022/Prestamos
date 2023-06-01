@@ -14,8 +14,8 @@
 				<img src="<?=ROOT?>/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="" class="d-block">Arismendi Güiza</a>
-				<a href="" class="d-block"><small>Administrador</small></a>
+				<a class="d-block"><?= $_SESSION['userData']['nombres']; ?></a>
+				<a class="d-block"><small><?= $_SESSION['userData']['nombrerol']; ?></small></a>
 			</div>
 		</div>
 		

@@ -19,10 +19,10 @@
 			$data['page_tag'] = "Dashboard | Sistema de Crédito";
 			$data['page_title'] = "Dashboard - <small>Sistema de Crédito</small>";
 			$data['page_name'] = "dashboard";
+			$data['page_functions_js'] = "functions_dashboard.js";
 			$this->views->getView($this, "dashboard", $data);
 		}
 		
-		
 	}
-	// end file dashboard.php
+	/** end file dashboard.php **/
 

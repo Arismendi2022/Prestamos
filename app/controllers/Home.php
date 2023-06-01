@@ -21,7 +21,7 @@
 		
 		
 	}
-	// end file home.php
+	/** end file home.php **/
 
 
 
