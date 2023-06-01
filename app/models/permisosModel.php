@@ -52,8 +52,29 @@
 			return $request_insert;
 		}
 		
+		public function permisosModulo(int $idrol){
+			$this->intRolid = $idrol;
+			$sql = "SELECT p.rolid,
+						   p.moduloid,
+						   m.titulo as modulos,
+						   p.r,
+						   p.w,
+						   p.u,
+						   p.d
+					FROM permisos p
+					INNER JOIN modulos m
+					ON p.moduloid = m.idmodulo
+					WHERE p.rolid = $this->intRolid";
+			$request = $this->select_all($sql);
+			$arrPermisos = array();
+			for ($i=0; $i < count($request); $i++) {
+				$arrPermisos[$request[$i]['moduloid']] = $request[$i];
+			}
+			return $arrPermisos;
+		}
+		
 	}
-	// End of file permisosModel.php
+	/** End of file permisosModel.php **/
 
 
 

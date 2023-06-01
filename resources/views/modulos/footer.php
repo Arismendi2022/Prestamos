@@ -8,7 +8,7 @@
 		<b>Versión</b> 1.3.0
 	</div>
 	<!-- Default to the left -->
-	<strong>Copyright &copy; <?= date("Y") ?> <a href="https://banco.co">Sistema de Crédito</a>.</strong> Reservados todos los derechos.
+	<strong>Copyright &copy; <?= date("Y") ?> <a href="">Sistema de Crédito</a>.</strong> Reservados todos los derechos.
 </footer>
 </div>
 <!-- ./wrapper -->

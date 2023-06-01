@@ -24,6 +24,7 @@
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
 						 with font-awesome or any other icon font library -->
+				<?php if(!empty($_SESSION['permisos'][1]['r'])){ ?>
 				<li class="nav-item">
 					<a href="<?=ROOT?>/dashboard" class="nav-link active">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
@@ -32,6 +33,8 @@
 						</p>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($_SESSION['permisos'][2]['r'])){ ?>
 				<li class="nav-item">
 					<a href="<?=ROOT?>/clientes" class="nav-link">
 						<i class="nav-icon fa-solid fa-users"></i>
@@ -40,6 +43,8 @@
 						</p>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($_SESSION['permisos'][3]['r'])){ ?>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-sack-dollar"></i>
@@ -48,6 +53,8 @@
 						</p>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($_SESSION['permisos'][4]['r'])){ ?>
 				<li class="nav-item">
 					<a href="<?=ROOT?>/pagos" class="nav-link">
 						<i class="nav-icon fas fa-hand-holding-usd"></i>
@@ -56,6 +63,8 @@
 						</p>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($_SESSION['permisos'][5]['r']) || !empty($_SESSION['permisos'][6]['r'])){ ?>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fa-solid fa-user-gear"></i>
@@ -66,19 +75,25 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
+						<?php if(!empty($_SESSION['permisos'][5]['r'])){ ?>
 							<a href="<?=ROOT?>/usuarios" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Usuarios</p>
 							</a>
+						<?php } ?>
 						</li>
 						<li class="nav-item">
+						<?php if(!empty($_SESSION['permisos'][6]['r'])){ ?>
 							<a href="<?=ROOT?>/roles" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Roles</p>
 							</a>
+						<?php } ?>
 						</li>
 					</ul>
 				</li>
+				<?php } ?>
+				<?php if(!empty($_SESSION['permisos'][7]['r'])){ ?>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fa-solid fa-chart-line"></i>
@@ -88,6 +103,8 @@
 						</p>
 					</a>
 				</li>
+				<?php } ?>
+				<?php if(!empty($_SESSION['permisos'][8]['r'])){ ?>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fa-solid fa-scale-balanced"></i>
@@ -97,6 +114,7 @@
 						</p>
 					</a>
 				</li>
+				<?php } ?>
 				<li class="nav-item">
 					<a href="<?=ROOT?>/logout" class="nav-link">
 						<i class="nav-icon fas fa-sign-out-alt"></i>

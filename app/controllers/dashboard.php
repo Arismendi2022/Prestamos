@@ -12,6 +12,7 @@
 				header('Location: '.base_url().'/login');
 				die();
 			}
+			getPermisos(1);
 		}
 		
 		public function dashboard()

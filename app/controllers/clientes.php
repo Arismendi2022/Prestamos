@@ -15,7 +15,7 @@
 
 			$data['page_title'] = "Clientes - <small>Sistema de Crédito</small>";
 			$data['page_name'] = "clientes";
-			//$data['page_functions_js'] = "functions_roles.js";
+			$data['page_functions_js'] = "functions_clientes.js";
 			$this->views->getView($this, "clientes", $data);
 		}
 		
