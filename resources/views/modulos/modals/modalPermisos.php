@@ -54,30 +54,30 @@
 														<?= $modulos[$i]['titulo']; ?>
 													</td>
 													<td>
-														<div class="bootstrap-switch-container">
+														<div class="form-check pl-0">
 															<label>
-																<input type="checkbox" name="modulos[<?= $i; ?>][r]" <?= $rCheck ?> data-bootstrap-switch data-on-color="success">
+																<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm" name="modulos[<?= $i; ?>][r]" <?= $rCheck ?>>
 															</label>
 														</div>
 													</td>
 													<td>
-														<div class="bootstrap-switch-container">
+														<div class="form-check pl-0">
 															<label>
-																<input type="checkbox" name="modulos[<?= $i; ?>][w]" <?= $wCheck ?> data-bootstrap-switch data-on-color="success">
+																<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm" name="modulos[<?= $i; ?>][w]" <?= $wCheck ?>>
 															</label>
 														</div>
 													</td>
 													<td>
-														<div class="bootstrap-switch-container">
+														<div class="form-check pl-0">
 															<label>
-																<input type="checkbox" name="modulos[<?= $i; ?>][u]" <?= $uCheck ?> data-bootstrap-switch data-on-color="success">
+																<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm" name="modulos[<?= $i; ?>][u]" <?= $uCheck ?>>
 															</label>
 														</div>
 													</td>
 													<td>
-														<div class="bootstrap-switch-container">
+														<div class="form-check pl-0">
 															<label>
-																<input type="checkbox" name="modulos[<?= $i; ?>][d]" <?= $dCheck ?> data-bootstrap-switch data-on-color="success">
+																<input type="checkbox" data-toggle="toggle" data-onstyle="success" data-size="sm" name="modulos[<?= $i; ?>][d]" <?= $dCheck ?>>
 															</label>
 														</div>
 													</td>
