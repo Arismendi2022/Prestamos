@@ -9,7 +9,8 @@
 	//Retorna la url de Assets
 	function media()
 	{
-		return ROOT . "/../resources";
+		//return ROOT . "/../resources";
+		return ROOT;
 	}
 	
 	function headerAdmin($data="")

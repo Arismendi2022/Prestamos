@@ -11,10 +11,15 @@
 				header('Location: '.base_url().'/login');
 				die();
 			}
+			getPermisos(MROLES);
 		}
 		
 		public function roles()
 		{
+			if (empty($_SESSION['permisosMod']['r'])) {
+				header("Location:" . base_url() . '/dashboard');
+			}
+			
 			$data['page_tag'] = "Roles usuarios";
 			$data['page_title'] = "Roles Usuarios - <small>Sistema de Crédito</small>";
 			$data['page_name'] = "rol_usuario";
@@ -25,6 +30,10 @@
 		//muestra listado de roles en datatable
 		public function getRoles()
 		{
+			$btnView = '';
+			$btnEdit = '';
+			$btnDelete = '';
+			
 			$arrData = $this->model->selectRoles();
 			
 			for ($i = 0; $i < count($arrData); $i++) {
@@ -33,11 +42,16 @@
 				} else {
 					$arrData[$i]['estado'] = '<span class="badge bg-danger">Inactivo</span>';
 				}
-				$arrData[$i]['options'] = '<div class="text-center">
-					<button type="button" class="btn btn-success btn-sm btnPermisosRol" onClick="fntPermisos(' . $arrData[$i]['idrol'] . ')" title="Permisos"><i class="fas fa-key"></i></button>
-					<button type="button" class="btn btn-info btn-sm btnEditRol" onClick="fntEditRol(' . $arrData[$i]['idrol'] . ')" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-					<button type="button" class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol(' . $arrData[$i]['idrol'] . ')" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-				</div>';
+				
+				if ($_SESSION['permisosMod']['u']) {
+					$btnView = '<button type="button" class="btn btn-success btn-sm btnPermisosRol" onClick="fntPermisos(' . $arrData[$i]['idrol'] . ')" title="Permisos"><i class="fas fa-key"></i></button>';
+					$btnEdit = '<button type="button" class="btn btn-info btn-sm btnEditRol" onClick="fntEditRol(' . $arrData[$i]['idrol'] . ')" title="Editar"><i class="fas fa-pencil-alt"></i></button>';
+				}
+				if ($_SESSION['permisosMod']['d']) {
+					$btnDelete = '<button type="button" class="btn btn-danger btn-sm btnDelRol" onClick="fntDelRol(' . $arrData[$i]['idrol'] . ')" title="Eliminar"><i class="fas fa-trash-alt"></i></button>';
+				}
+				$arrData[$i]['options'] = '<div class="text-center">' . $btnView . ' ' . $btnEdit . ' ' . $btnDelete . '</div>';
+				
 			}
 			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 			die();

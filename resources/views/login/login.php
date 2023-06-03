@@ -57,7 +57,7 @@
 					<!-- /.col -->
 					<div class="col-md-12">
 						<div class="form-group btn-container mt-2">
-							<button type="submit" class="btn btn-info btn-block"><i class="fas fa-sign-in-alt fa-lg mr-2"></i>INGRESAR</button>
+							<button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt fa-lg mr-2"></i>INGRESAR</button>
 						</div>
 					</div>
 					<!-- /.col -->

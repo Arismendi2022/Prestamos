@@ -12,7 +12,9 @@
 				<div class="col-sm-6">
 					<div class="input-group">
 						<h1><i class="fa-solid fa-user-gear"></i> <?= $data['page_title'] ?>
+							<?php if($_SESSION['permisosMod']['w']){ ?>
 							<button class="btn btn-primary ml-2" type="button" onclick="openModal();"><i class="fa-solid fa-circle-plus"></i> Nuevo</button>
+							<?php } ?>
 						</h1>
 					</div>
 				</div><!-- /.col -->

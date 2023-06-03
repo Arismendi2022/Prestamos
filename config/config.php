@@ -5,7 +5,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 define('ROOT', 'http://localhost/banco/public');
 } else {
 
-define('ROOT', 'https://www.yourwebsite.com');
+define('ROOT', 'http://banco.net');
 }
 
 /** Zona horaria **/
@@ -30,9 +30,10 @@ const MDASHBOARD = 1;
 const MCLIENTES = 2;
 const MPRESTAMOS = 3;
 const MPAGOS = 4;
-const MCONFIGURACION = 5;
-const MREPORTES = 6;
-const MCONTABILIDAD = 7;
+const MUSUARIOS = 5;
+const MROLES = 6;
+const MREPORTES = 7;
+const MCONTABILIDAD = 8;
 
 	
 
