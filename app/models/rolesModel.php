@@ -14,7 +14,12 @@
 		//Extrae Roles para datatable
 		public function selectRoles()
 		{
-			$sql = "SELECT * FROM rol WHERE estado != 0";
+			$whereAdmin = "";
+			if($_SESSION['idUser'] != 1 ){
+				$whereAdmin = " and idrol != 1 ";
+			}
+			
+			$sql = "SELECT * FROM rol WHERE estado != 0".$whereAdmin;
 			$request = $this->select_all($sql);
 			return $request;
 		}
