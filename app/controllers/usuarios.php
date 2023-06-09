@@ -38,7 +38,7 @@
 					$strIdentificacion = intval(strClean($_POST['txtIdentificacion']));
 					$strNombre = ucwords(strClean($_POST['txtNombre']));
 					$strApellido = ucwords(strClean($_POST['txtApellido']));
-					$intTelefono = intval(strClean($_POST['txtTelefono']));
+					$strTelefono = strClean($_POST['txtTelefono']);
 					$strEmail = strtolower(strClean($_POST['txtEmail']));
 					$intTipoId = intval(strClean($_POST['listRolid']));
 					$intStatus = intval(strClean($_POST['listStatus']));
@@ -49,7 +49,7 @@
 						$request_user = $this->model->insertUsuario($strIdentificacion,
 							$strNombre,
 							$strApellido,
-							$intTelefono,
+							$strTelefono,
 							$strEmail,
 							$strPassword,
 							$intTipoId,
@@ -68,7 +68,7 @@
 							$strIdentificacion,
 							$strNombre,
 							$strApellido,
-							$intTelefono,
+							$strTelefono,
 							$strEmail,
 							$strPassword,
 							$intTipoId,
@@ -156,6 +156,48 @@
 					$arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el usuario');
 				} else {
 					$arrResponse = array('status' => false, 'msg' => 'Error al eliminar el usuario.');
+				}
+				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
+		
+		public function perfil()
+		{
+			$data['page_tag'] = "Perfil";
+			$data['page_title'] = "Perfil de Usuario";
+			$data['page_name'] = "perfil";
+			$data['page_functions_js'] = "functions_usuarios.js";
+			$this->views->getView($this, "perfil", $data);
+		}
+		
+		public function putPerfil()
+		{
+			if ($_POST) {
+				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono'])) {
+					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
+				} else {
+					$idUsuario = $_SESSION['idUser'];
+					$strIdentificacion = strClean($_POST['txtIdentificacion']);
+					$strNombre = strClean($_POST['txtNombre']);
+					$strApellido = strClean($_POST['txtApellido']);
+					$strTelefono = strClean($_POST['txtTelefono']);
+					$strPassword = "";
+					if (!empty($_POST['txtPassword'])) {
+						$strPassword = hash("SHA256", $_POST['txtPassword']);
+					}
+					$request_user = $this->model->updatePerfil($idUsuario,
+						$strIdentificacion,
+						$strNombre,
+						$strApellido,
+						$strTelefono,
+						$strPassword);
+					if ($request_user) {
+						sessionUser($_SESSION['idUser']);
+						$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
+					} else {
+						$arrResponse = array("status" => false, "msg" => 'No es posible actualizar los datos.');
+					}
 				}
 				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 			}

@@ -33,6 +33,7 @@
 <!-- Datatable js -->
 <script src="<?=ROOT?>/admin/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?=ROOT?>/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
 <!-- Buttons js -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>

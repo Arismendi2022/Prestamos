@@ -6,7 +6,7 @@
 		private $strIdentificacion;
 		private $strNombre;
 		private $strApellido;
-		private $intTelefono;
+		private $strTelefono;
 		private $strEmail;
 		private $strPassword;
 		private $strToken;
@@ -18,13 +18,13 @@
 			parent::__construct();
 		}
 		
-		public function insertUsuario(string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password, int $tipoid, int $status)
+		public function insertUsuario(string $identificacion, string $nombre, string $apellido, string $telefono, string $email, string $password, int $tipoid, int $status)
 		{
 			
 			$this->strIdentificacion = $identificacion;
 			$this->strNombre = $nombre;
 			$this->strApellido = $apellido;
-			$this->intTelefono = $telefono;
+			$this->strTelefono = $telefono;
 			$this->strEmail = $email;
 			$this->strPassword = $password;
 			$this->intTipoId = $tipoid;
@@ -41,7 +41,7 @@
 				$arrData = array($this->strIdentificacion,
 					$this->strNombre,
 					$this->strApellido,
-					$this->intTelefono,
+					$this->strTelefono,
 					$this->strEmail,
 					$this->strPassword,
 					$this->intTipoId,
@@ -79,14 +79,15 @@
 			return $request;
 		}
 		
-		public function updateUsuario(int $idUsuario, string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password, int $tipoid, int $status)
+		public function updateUsuario(int $idUsuario, string $identificacion, string $nombre, string $apellido, string $telefono, string $email, string $password, int
+		$tipoid, int $status)
 		{
 			
 			$this->intIdUsuario = $idUsuario;
 			$this->strIdentificacion = $identificacion;
 			$this->strNombre = $nombre;
 			$this->strApellido = $apellido;
-			$this->intTelefono = $telefono;
+			$this->strTelefono = $telefono;
 			$this->strEmail = $email;
 			$this->strPassword = $password;
 			$this->intTipoId = $tipoid;
@@ -103,7 +104,7 @@
 					$arrData = array($this->strIdentificacion,
 						$this->strNombre,
 						$this->strApellido,
-						$this->intTelefono,
+						$this->strTelefono,
 						$this->strEmail,
 						$this->strPassword,
 						$this->intTipoId,
@@ -114,7 +115,7 @@
 					$arrData = array($this->strIdentificacion,
 						$this->strNombre,
 						$this->strApellido,
-						$this->intTelefono,
+						$this->strTelefono,
 						$this->strEmail,
 						$this->intTipoId,
 						$this->intStatus);
@@ -134,6 +135,35 @@
 			$sql = "UPDATE persona SET estado = ? WHERE idpersona = $this->intIdUsuario ";
 			$arrData = array(0);
 			$request = $this->update($sql, $arrData);
+			return $request;
+		}
+		
+		public function updatePerfil(int $idUsuario, string $identificacion, string $nombre, string $apellido, string $telefono, string $password){
+			$this->intIdUsuario = $idUsuario;
+			$this->strIdentificacion = $identificacion;
+			$this->strNombre = $nombre;
+			$this->strApellido = $apellido;
+			$this->strTelefono = $telefono;
+			$this->strPassword = $password;
+			
+			if($this->strPassword != "")
+			{
+				$sql = "UPDATE persona SET identificacion=?, nombres=?, apellidos=?, telefono=?, password=?
+						WHERE idpersona = $this->intIdUsuario ";
+				$arrData = array($this->strIdentificacion,
+					$this->strNombre,
+					$this->strApellido,
+					$this->strTelefono,
+					$this->strPassword);
+			}else{
+				$sql = "UPDATE persona SET identificacion=?, nombres=?, apellidos=?, telefono=?
+						WHERE idpersona = $this->intIdUsuario ";
+				$arrData = array($this->strIdentificacion,
+					$this->strNombre,
+					$this->strApellido,
+					$this->strTelefono);
+			}
+			$request = $this->update($sql,$arrData);
 			return $request;
 		}
 		

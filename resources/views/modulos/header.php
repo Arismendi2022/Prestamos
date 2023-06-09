@@ -51,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</a>
 				<ul class="dropdown-menu settings-menu dropdown-menu-right">
 					<li><a class="dropdown-item" href="#"><i class="fa fa-cog mr-2"></i>Opciones</a></li>
-					<li><a class="dropdown-item" href="<?=ROOT?>/perfil/"><i class="fa fa-user mr-2"></i>Perfil</a></li>
+					<li><a class="dropdown-item" href="<?=ROOT?>/usuarios/perfil/"><i class="fa fa-user mr-2"></i>Perfil</a></li>
 					<li><a class="dropdown-item" href="<?=ROOT?>/logout/"><i class="fa fa-sign-out mr-2"></i>Cerrar Sesión</a></li>
 				</ul>
 			</li>

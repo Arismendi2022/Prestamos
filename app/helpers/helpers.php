@@ -57,13 +57,20 @@
 		//}
 	}
 	
+	function sessionUser(int $idpersona){
+		require_once ("../App/Models/LoginModel.php");
+		$objLogin = new LoginModel();
+		$request = $objLogin->sessionLogin($idpersona);
+		return $request;
+	}
+	
 	//Elimina exceso de espacios entre palabras
 	function strClean($strCadena)
 	{
 		$string = preg_replace(['/\s+/', '/^\s|\s$/'], [' ', ''], $strCadena);
 		$string = trim($string); //Elimina espacios en blanco al inicio y al final
 		$string = stripslashes($string); // Elimina las \ invertida
-		$string = str_replace(['(', ')', '-'], '', $string); // Elimina guiones
+		//$string = str_replace(['(', ')', '-'], '', $string); // Elimina guiones a formato telefono (000-000-0000)
 		$string = str_ireplace("<script>", "", $string);
 		$string = str_ireplace("</script>", "", $string);
 		$string = str_ireplace("<script src>", "", $string);
