@@ -37,7 +37,7 @@
 								<img class="profile-user-img img-fluid img-circle" src="<?= ROOT ?>/admin/dist/img/avatar.jpg" alt="User profile picture">
 							</div>
 							<h3 class="profile-username text-center"><?= $_SESSION['userData']['nombres'] . ' ' . $_SESSION['userData']['apellidos']; ?></h3>
-							<p class="text-muted text-center">Ingeniera de Software</p>
+							<p class="text-muted text-center"><?= $_SESSION['userData']['nombrerol']; ?></p>
 							<ul class="list-group list-group-unbordered mb-3">
 								<li class="list-group-item">
 									<b>Seguidores</b> <a class="float-right">1,322</a>
