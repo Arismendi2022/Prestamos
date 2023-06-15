@@ -1,0 +1,40 @@
+
+.headerRegister, .header-primary {
+    background: #007BFF;
+    color: #FFF;
+}
+
+.headerUpdate {
+    background: #17A2BB;
+    color: #FFF;
+}
+
+.bootstrap-select > .dropdown-toggle{
+    border: 1px solid #CCC;
+}
+
+.notBlock {
+    display: none;
+}
+
+.required{
+    color: red;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+.center-form{
+    /*background-color: #e7e7e7;*/
+    background-image: linear-gradient(
+            to bottom,
+            #044db3 0%,
+            #044db3 50%,
+            #e7e7e7 50%,
+            #e7e7e7 100%
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

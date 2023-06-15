@@ -49,7 +49,7 @@
 										<th>Nombres</th>
 										<th>Apellidos</th>
 										<th>Email</th>
-										<th>Telefono</th>
+										<th>Teléfono</th>
 										<th>Rol</th>
 										<th>Estado</th>
 										<th class="text-center">Acciones</th>

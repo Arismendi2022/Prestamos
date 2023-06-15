@@ -46,8 +46,8 @@
 				<?php } ?>
 				<?php if(!empty($_SESSION['permisos'][3]['r'])){ ?>
 				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-sack-dollar"></i>
+					<a href="<?=ROOT?>/prestamos" class="nav-link">
+						<i class="nav-icon fa-solid fa-landmark"></i>
 						<p>
 							Préstamos
 						</p>
