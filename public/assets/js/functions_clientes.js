@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function(){
 						$('#modalFormCliente').modal("hide");
 						formCliente.reset();
 						alerta("Usuarios", objData.msg ,"success");
+						//tableClientes.api().ajax.reload(function () {
 					}else{
 						alerta("Error", objData.msg , "error");
 					}

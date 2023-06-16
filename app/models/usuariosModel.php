@@ -186,5 +186,5 @@
 		
 		
 	}
-	// End of file usuariosModel.php
+	/** End of file usuariosModel.php **/
 	
