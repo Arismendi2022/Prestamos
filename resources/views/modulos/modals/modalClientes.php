@@ -45,12 +45,12 @@
 					<p class="text-primary">Datos Fiscales.</p>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label>Identificación Tributaria <span class="required">*</span></label>
-							<input class="form-control valid validNumber" type="text" id="txtNit" name="txtNit" required="" onkeypress="return controlTag(event);">
+							<label>Identificación Tributaria <span class="required"></span></label>
+							<input class="form-control valid validNumber" type="text" id="txtNit" name="txtNit" onkeypress="return controlTag(event);">
 						</div>
 						<div class="form-group col-md-6">
-							<label>Nombre fiscal <span class="required">*</span></label>
-							<input class="form-control" type="text" id="txtNombreFiscal" name="txtNombreFiscal" required="">
+							<label>Nombre fiscal <span class="required"></span></label>
+							<input class="form-control" type="text" id="txtNombreFiscal" name="txtNombreFiscal">
 						</div>
 						
 						<div class="form-group col-md-12">

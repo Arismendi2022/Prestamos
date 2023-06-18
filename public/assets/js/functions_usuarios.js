@@ -92,8 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						$('#modalFormUsuario').modal("hide");
 						formUsuario.reset();
 						alerta("Usuarios", objData.msg, "success");
-						tableUsuarios.api().ajax.reload(function () {
-						});
+						tableUsuarios.api().ajax.reload();
 					} else {
 						alerta("Error", objData.msg, "error");
 					}

@@ -56,12 +56,6 @@
 								$strPassword,
 								$intTipoId,
 								$intStatus);
-							
-							if ($request_user > 0) {
-								$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
-							} else {
-								$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');
-							}
 						}
 						
 					} else {
@@ -78,12 +72,18 @@
 								$intTipoId,
 								$intStatus);
 							
-							if ($request_user > 0) {
-								$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
-							} else {
-								$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');
-							}
 						}
+					}
+					if ($request_user > 0) {
+						if ($option == 1) {
+							$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+						} else {
+							$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
+						}
+					} else if ($request_user == 0) {
+						$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');
+					} else {
+						$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
 					}
 				}
 				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);

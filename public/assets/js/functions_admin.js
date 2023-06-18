@@ -129,17 +129,19 @@ $(document).ready(function() {
 	$('#txtTelefono').inputmask('999-999-9999');
 });
 
-/*$(document).ready(function() {
-	$('#txtTelefono').inputmask('999-999-9999', { clearMaskOnLostFocus: false });
-});*/
-
 
 /** Base nav **/
 $('#myTab a').on('click', function (e) {
 	e.preventDefault()
 	$(this).tab('show')
-})
+});
 
+
+/** Date picker **/
+$('#txtFecha').datetimepicker({
+	language: 'es',
+	format: 'L'
+});
 
 
 

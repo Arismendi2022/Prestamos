@@ -51,6 +51,8 @@
 					$this->intStatus);
 				$request_insert = $this->insert($query_insert, $arrData);
 				$return = $request_insert;
+			} else {
+				$return = 0;
 			}
 			return $return;
 		}

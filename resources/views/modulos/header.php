@@ -16,6 +16,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- Font Awesome CSS -->
 	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/fontawesome-free/css/all.min.css">
+	<!-- daterange picker -->
+	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/daterangepicker/daterangepicker.css">
+	<!-- Tempusdominus Bootstrap 4 -->
+	<link rel="stylesheet" href="<?=ROOT?>/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 	<!-- Bootstrap Toggle CSS -->
 	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	<!-- Select2 -->

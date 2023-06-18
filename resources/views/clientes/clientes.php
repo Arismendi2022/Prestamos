@@ -54,16 +54,6 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										<td>1</td>
-										<td>Carlos</td>
-										<td>Hernandez</td>
-										<td>carlos@info.com</td>
-										<td>3134502036</td>
-										<td>Administrador</td>
-										<td>Activo</td>
-										<td></td>
-									</tr>
 									</tbody>
 								</table>
 								<!-- /.Table -->

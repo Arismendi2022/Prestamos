@@ -1,9 +1,58 @@
+let tableClientes;
 
-document.addEventListener('DOMContentLoaded', function(){
+	document.addEventListener('DOMContentLoaded', function () {
+		tableClientes = $('#tableClientes').dataTable( {
+			"aProcessing":true,
+			"aServerSide":true,
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+			},
+			"ajax":{
+				"url": " "+base_url+"/Clientes/getClientes",
+				"dataSrc":""
+			},
+			"columns":[
+				{"data":"idpersona"},
+				{"data":"identificacion"},
+				{"data":"nombres"},
+				{"data":"apellidos"},
+				{"data":"email_user"},
+				{"data":"telefono"},
+				{"data":"options"}
+			],
+			'dom': 'lBfrtip',
+			'buttons': [
+				{
+					"extend": "copyHtml5",
+					"text": "<i class='far fa-copy'></i> Copiar",
+					"titleAttr":"Copiar",
+					"className": "btn btn-secondary"
+				},{
+					"extend": "excelHtml5",
+					"text": "<i class='fas fa-file-excel'></i> Excel",
+					"titleAttr":"Esportar a Excel",
+					"className": "btn btn-success"
+				},{
+					"extend": "pdfHtml5",
+					"text": "<i class='fas fa-file-pdf'></i> PDF",
+					"titleAttr":"Esportar a PDF",
+					"className": "btn btn-danger"
+				},{
+					"extend": "csvHtml5",
+					"text": "<i class='fas fa-file-csv'></i> CSV",
+					"titleAttr":"Esportar a CSV",
+					"className": "btn btn-info"
+				}
+			],
+			"resonsieve":"true",
+			"bDestroy": true,
+			"iDisplayLength": 10,
+			"order":[[0,"desc"]]
+		});
 
-	if(document.querySelector("#formCliente")){
+	if (document.querySelector("#formCliente")) {
 		let formCliente = document.querySelector("#formCliente");
-		formCliente.onsubmit = function(e) {
+		formCliente.onsubmit = function (e) {
 			e.preventDefault();
 			let strIdentificacion = document.querySelector('#txtIdentificacion').value;
 			let strNombre = document.querySelector('#txtNombre').value;
@@ -15,35 +64,33 @@ document.addEventListener('DOMContentLoaded', function(){
 			let strDirFiscal = document.querySelector('#txtDirFiscal').value;
 			let strPassword = document.querySelector('#txtPassword').value;
 
-			if(strIdentificacion == '' || strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == '' || strNit == '' || strDirFiscal == '' || strNomFical=='' )
-			{
-				alerta("Atención", "Todos los campos son obligatorios." , "error");
+			if (strIdentificacion == '' || strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == '' || strDirFiscal == '') {
+				alerta("Atención", "Todos los campos son obligatorios.", "error");
 				return false;
 			}
 
 			let elementsValid = document.getElementsByClassName("valid");
 			for (let i = 0; i < elementsValid.length; i++) {
-				if(elementsValid[i].classList.contains('is-invalid')) {
-					alerta("Atención", "Por favor verifique los campos en rojo." , "error");
+				if (elementsValid[i].classList.contains('is-invalid')) {
+					alerta("Atención", "Por favor verifique los campos en rojo.", "error");
 					return false;
 				}
 			}
 			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-			let ajaxUrl = base_url+'/Clientes/setCliente';
+			let ajaxUrl = base_url + '/Clientes/setCliente';
 			let formData = new FormData(formCliente);
-			request.open("POST",ajaxUrl,true);
+			request.open("POST", ajaxUrl, true);
 			request.send(formData);
-			request.onreadystatechange = function(){
-				if(request.readyState == 4 && request.status == 200){
+			request.onreadystatechange = function () {
+				if (request.readyState == 4 && request.status == 200) {
 					let objData = JSON.parse(request.responseText);
-					if(objData.status)
-					{
+					if (objData.status) {
 						$('#modalFormCliente').modal("hide");
 						formCliente.reset();
-						alerta("Usuarios", objData.msg ,"success");
-						//tableClientes.api().ajax.reload(function () {
-					}else{
-						alerta("Error", objData.msg , "error");
+						alerta("Usuarios", objData.msg, "success");
+						tableClientes.api().ajax.reload();
+					} else {
+						alerta("Error", objData.msg, "error");
 					}
 				}
 				return false;
@@ -54,13 +101,11 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-
-function openModal()
-{
-	document.querySelector('#idUsuario').value ="";
+function openModal() {
+	document.querySelector('#idUsuario').value = "";
 	document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
 	document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
-	document.querySelector('#btnText').innerHTML ="Guardar";
+	document.querySelector('#btnText').innerHTML = "Guardar";
 	document.querySelector('#titleModal').innerHTML = "Nuevo Cliente";
 	document.querySelector("#formCliente").reset();
 	$('#modalFormCliente').modal('show');

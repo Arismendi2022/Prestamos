@@ -28,6 +28,10 @@
 <!-- InputMask -->
 <script src="<?=ROOT?>/admin/plugins/moment/moment.min.js"></script>
 <script src="<?=ROOT?>/admin/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- date-range-picker -->
+<script src="<?=ROOT?>/admin/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="<?=ROOT?>/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=ROOT?>/admin/dist/js/adminlte.min.js"></script>
 <!-- Datatable js -->
@@ -46,15 +50,13 @@
 <script src="<?= media(); ?>/assets/js/functions_admin.js"></script>
 <script src="<?= media(); ?>/assets/js/<?= $data['page_functions_js']; ?>"></script>
 
-
 <script>
-	$(document).ready(function () {
-		$('.nav-link').click(function(e) {
-			$('.nav-link').removeClass('active');
-			$(this).addClass("active");
-		});
-	});
+	$(".nav-link").on('click', function() {
+		$(".nav-link").removeClass('active');
+		$(this).addClass('active');
+	})
 </script>
+
 
 </body>
 </html>

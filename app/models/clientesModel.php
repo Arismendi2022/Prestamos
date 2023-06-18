@@ -61,6 +61,14 @@
 			return $return;
 		}
 		
+		public function selectClientes()
+		{
+			$sql = "SELECT idpersona,identificacion,nombres,apellidos,telefono,email_user,estado
+				FROM persona
+				WHERE rolid = ".RCLIENTES." and estado != 0 ";
+			$request = $this->select_all($sql);
+			return $request;
+		}
 		
 	}
 	/** End of file clientesModel.php **/

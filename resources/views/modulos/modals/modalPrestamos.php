@@ -15,57 +15,159 @@
 						<!-- general form elements -->
 						<div class="card card-primary">
 							<div class="card-header">
-								<h3 class="card-title">Quick Example</h3>
+								<h3 class="card-title"><b>INFORMACION DEL CREDITO</b></h3>
 							</div>
 							<!-- /.card-header -->
 							<!-- form start -->
-							<form>
+							<form id="formPrestamo" name="formPrestamo" class="form-horizontal">
+								<input type="hidden" id="idUsuario" name="idUsuario" value="">
 								<div class="card-body">
-									<div class="col-sm-4">
-										<!-- /btn-group -->
-										<div class="form-group">
-											<label>Buscar Cliente</label>
+									<!--Información del Cliente-->
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="txtIdentificacion">Identificación</label>
 											<div class="input-group">
-												<input type="text" class="form-control">
-												<span class="input-group-append">
-                         <button type="button" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
-                      </span>
+												<input autofocus="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return
+											controlTag(event);">
+												<div class="input-group-append">
+													<button type="button" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
+												</div>
 											</div>
 										</div>
 									</div>
 									<!-- /input-group -->
-									<div class="form-group">
-										<label for="exampleInputEmail1">Email address</label>
-										<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-									</div>
-									<!-- /input-group -->
-									<div class="form-group">
-										<label for="exampleInputPassword1">Password</label>
-										<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-									</div>
-									<!-- /input-group -->
-									<div class="form-group">
-										<label for="exampleInputFile">File input</label>
-										<div class="input-group">
-											<div class="custom-file">
-												<input type="file" class="custom-file-input" id="exampleInputFile">
-												<label class="custom-file-label" for="exampleInputFile">Choose file</label>
-											</div>
-											<div class="input-group-append">
-												<span class="input-group-text">Upload</span>
+									<div class="form-row">
+										<div class="form-group col-md-12">
+											<label for="txtNombre">Nombres y Apellidos</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+												</div>
+												<input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required="">
 											</div>
 										</div>
 									</div>
 									<!-- /input-group -->
-									<div class="form-check">
-										<input type="checkbox" class="form-check-input" id="exampleCheck1">
-										<label class="form-check-label" for="exampleCheck1">Check me out</label>
+									<!--Información del préstamo-->
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="txtMonto">Monto del Préstamo <span class="required">*</span></label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
+												</div>
+												<input type="text" class="form-control valid validNumber" id="txtMonto" name="txtMonto" required=""
+												       onkeypress="return controlTag(event);">
+											</div>
+										</div>
+										
+										<div class="form-group col-md-3">
+											<label for="txtCuota">Nro Cuotas <span class="required">*</span></label>
+											<input type="text" class="form-control valid validText" id="txtCuota" name="txtCuota" required="">
+										</div>
+										
+										<div class="form-group col-md-3">
+											<label for="txtInteres">Interes Anual <span class="required">*</span></label>
+											<div class="input-group">
+												<input type="text" class="form-control valid validNumber" id="txtInteres" name="txtInteres" required="">
+												<div class="input-group-append">
+													<span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
+												</div>
+											</div>
+										</div>
 									</div>
+									<!-- /.row -->
+									<!-- /input-group -->
+									<div class="row">
+										<div class="col-md-4">
+											<label for="listFormPago">Forma de Pago <span class="required">*</span></label>
+											<select class="form-control selectpicker" id="listFormPago" name="listFormPago" required="">
+												<option value="1">Diario</option>
+												<option value="2">Mensual</option>
+												<option value="3">Quincenal</option>
+												<option value="4">Semanal</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<label for="listMoneda">T. Moneda <span class="required">*</span></label>
+											<select class="form-control selectpicker" id="listMoneda" name="listMoneda" required="">
+												<option value="1">COP</option>
+												<option value="2">USD</option>
+												<option value="3">EUR</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<label for="txtFecha">Fecha Emisión <span class="required">*</span></label>
+											<div class="input-group date" id="txtFecha" data-target-input="nearest">
+												<input type="text" class="form-control datetimepicker-input" data-target="#txtFecha" required="">
+												<div class="input-group-append" data-target="#txtFecha" data-toggle="datetimepicker">
+													<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+												</div>
+											</div>
+										</div>
+									</div> <!-- /.row -->
+									<!-- /input-group -->
 								</div>
 								<!-- /.card-body -->
-								<div class="card-footer">
-									<button type="submit" class="btn btn-primary">Submit</button>
-								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<div class="card-footer">
+											<button type="submit" id="btnCalcular" class="btn btn-block btn-danger btn-sm"><i class="fa-solid fa-calculator mr-2"></i><b>CALCULAR</b></button>
+										</div>
+									</div>
+								</div> <!-- /.row -->
+								<div class="row">
+									<div class="col-md-12">
+										<form>
+											<div class="card-body">
+												<div class="tile">
+													<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
+													<table id="tableCuotas" class="table table-striped table-bordered table-sm">
+														<thead>
+														<tr>
+															<th>#</th>
+															<th>Fecha de Pago</th>
+															<th>Monto Cuota</th>
+															<th>Interes</th>
+															<th>Capital</th>
+															<th>Saldo</th>
+														</tr>
+														</thead>
+														<tbody>
+														<tr>
+															<td>1</td>
+															<td>20/05/2023</td>
+															<td>20.000</td>
+															<td>2.000</td>
+															<td>18.000</td>
+															<td align="right">$ 180.000</td>
+														</tr>
+														<tr>
+															<td>2</td>
+															<td>20/06/2023</td>
+															<td>20.000</td>
+															<td>2.000</td>
+															<td>18.000</td>
+															<td align="right">$ 160.000</td>
+														</tr>
+														<tr>
+															<td>3</td>
+															<td>20/07/2023</td>
+															<td>20.000</td>
+															<td>2.000</td>
+															<td>18.000</td>
+															<td align="right">$ 140.000</td>
+														</tr>
+														</tbody>
+													</table>
+												</div>
+												<!-- /.Table -->
+											</div>
+											<!-- /.card-body -->
+										</form>
+										<!-- /.form-->
+									</div>
+								</div> <!-- /.row -->
 							</form>
 						</div>
 						<!-- /.card -->
