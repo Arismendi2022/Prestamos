@@ -2,7 +2,7 @@
 <div class="modal fade bd-example-modal-xl" id="modalFormPrestamos" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header bg-info">
 				<h5 class="modal-title" id="titleModal">Formulario Préstamos</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -13,7 +13,7 @@
 					<!-- left column -->
 					<div class="col-md-9">
 						<!-- general form elements -->
-						<div class="card card-primary">
+						<div class="card card-primary card-outline">
 							<div class="card-header">
 								<h3 class="card-title"><b>INFORMACION DEL CREDITO</b></h3>
 							</div>
@@ -123,7 +123,7 @@
 												<div class="tile">
 													<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
 													<table id="tableCuotas" class="table table-striped table-bordered table-sm">
-														<thead>
+														<thead align="center">
 														<tr>
 															<th>#</th>
 															<th>Fecha de Pago</th>
@@ -139,7 +139,7 @@
 															<td>20/05/2023</td>
 															<td>20.000</td>
 															<td>2.000</td>
-															<td>18.000</td>
+															<td align="right">$ 18.000</td>
 															<td align="right">$ 180.000</td>
 														</tr>
 														<tr>
@@ -147,7 +147,7 @@
 															<td>20/06/2023</td>
 															<td>20.000</td>
 															<td>2.000</td>
-															<td>18.000</td>
+															<td align="right">$ 18.000</td>
 															<td align="right">$ 160.000</td>
 														</tr>
 														<tr>
@@ -155,7 +155,7 @@
 															<td>20/07/2023</td>
 															<td>20.000</td>
 															<td>2.000</td>
-															<td>18.000</td>
+															<td align="right">$ 18.000</td>
 															<td align="right">$ 140.000</td>
 														</tr>
 														</tbody>
@@ -176,7 +176,7 @@
 					<!-- right column -->
 					<div class="col-md-3">
 						<!-- Form Element sizes -->
-						<div class="card card-success">
+						<div class="card card-success card-outline">
 							<div class="card-header">
 								<h3 class="card-title"><b>VALORES CALCULADOS</b></h3>
 							</div>

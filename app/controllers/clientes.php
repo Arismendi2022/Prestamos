@@ -41,7 +41,7 @@
 					$strNit = strClean($_POST['txtNit']);
 					$strNomFiscal = strClean($_POST['txtNombreFiscal']);
 					$strDirFiscal = strClean($_POST['txtDirFiscal']);
-					$intTipoId = 3;
+					$intTipoId = RCLIENTES;
 					
 					if ($idUsuario == 0) {
 						$option = 1;

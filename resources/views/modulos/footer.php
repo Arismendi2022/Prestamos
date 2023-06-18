@@ -16,27 +16,27 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="<?=ROOT?>/admin/plugins/jquery/jquery.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap Toggle JS -->
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="<?=ROOT?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
-<script src="<?=ROOT?>/admin/plugins/select2/js/bootstrap-select.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/select2/js/bootstrap-select.min.js"></script>
 <!-- SweetAlert2 JS -->
-<script src="<?=ROOT?>/admin/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <!-- InputMask -->
-<script src="<?=ROOT?>/admin/plugins/moment/moment.min.js"></script>
-<script src="<?=ROOT?>/admin/plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/moment/moment.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- date-range-picker -->
-<script src="<?=ROOT?>/admin/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="<?=ROOT?>/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?=ROOT?>/admin/dist/js/adminlte.min.js"></script>
+<script src="<?= ROOT ?>/admin/dist/js/adminlte.min.js"></script>
 <!-- Datatable js -->
-<script src="<?=ROOT?>/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?=ROOT?>/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 
 <!-- Buttons js -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
@@ -51,12 +51,19 @@
 <script src="<?= media(); ?>/assets/js/<?= $data['page_functions_js']; ?>"></script>
 
 <script>
-	$(".nav-link").on('click', function() {
-		$(".nav-link").removeClass('active');
-		$(this).addClass('active');
-	})
+	/** agregar clase activa y permanecer abierto cuando se selecciona */
+	var url = window.location;
+	
+	/** para el menú de la barra lateral por completo, pero no cubre la vista de árbol */
+	$('ul.nav-sidebar a').filter(function () {
+		return this.href == url;
+	}).addClass('active');
+	
+	/** para vista de árbol */
+	$('ul.nav-treeview a').filter(function () {
+		return this.href == url;
+	}).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
 </script>
-
 
 </body>
 </html>
