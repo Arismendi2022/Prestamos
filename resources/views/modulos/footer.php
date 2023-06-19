@@ -22,7 +22,7 @@
 <!-- Bootstrap 4 -->
 <script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
-<script src="<?= ROOT ?>/admin/plugins/select2/js/bootstrap-select.min.js"></script>
+<script src="<?= ROOT ?>/admin/plugins/select2/js/select2.full.min.js"></script>
 <!-- SweetAlert2 JS -->
 <script src="<?= ROOT ?>/admin/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <!-- InputMask -->

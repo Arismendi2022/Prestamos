@@ -232,7 +232,7 @@ function fntRolesUsuario() {
 		request.onreadystatechange = function () {
 			if (request.readyState == 4 && request.status == 200) {
 				document.querySelector('#listRolid').innerHTML = request.responseText;
-				$('#listRolid').selectpicker('render');
+				$('#listRolid').select2();
 			}
 		}
 	}
@@ -294,14 +294,14 @@ function fntEditUsuario(element,idpersona){
 				document.querySelector("#txtTelefono").value = objData.data.telefono;
 				document.querySelector("#txtEmail").value = objData.data.email_user;
 				document.querySelector("#listRolid").value =objData.data.idrol;
-				$('#listRolid').selectpicker('render');
+				$('#listRolid').select2();
 
 				if(objData.data.estado == 1){
 					document.querySelector("#listStatus").value = 1;
 				}else{
 					document.querySelector("#listStatus").value = 2;
 				}
-				$('#listStatus').selectpicker('render');
+				$('#listStatus').select2();
 			}
 		}
 

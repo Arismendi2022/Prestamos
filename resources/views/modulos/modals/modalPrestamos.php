@@ -11,6 +11,7 @@
 			<div class="modal-body">
 				<div class="row">
 					<!-- left column -->
+					<!--INFORMACION DEL CREDITO-->
 					<div class="col-md-9">
 						<!-- general form elements -->
 						<div class="card card-primary card-outline">
@@ -81,7 +82,7 @@
 									<div class="row">
 										<div class="col-md-4">
 											<label for="listFormPago">Forma de Pago <span class="required">*</span></label>
-											<select class="form-control selectpicker" id="listFormPago" name="listFormPago" required="">
+											<select class="form-control select2" id="listFormPago" name="listFormPago" required="">
 												<option value="1">Diario</option>
 												<option value="2">Mensual</option>
 												<option value="3">Quincenal</option>
@@ -90,7 +91,7 @@
 										</div>
 										<div class="col-md-4">
 											<label for="listMoneda">T. Moneda <span class="required">*</span></label>
-											<select class="form-control selectpicker" id="listMoneda" name="listMoneda" required="">
+											<select class="form-control select2" id="listMoneda" name="listMoneda" required="">
 												<option value="1">COP</option>
 												<option value="2">USD</option>
 												<option value="3">EUR</option>
@@ -174,6 +175,7 @@
 					</div>
 					<!--/.col (left) -->
 					<!-- right column -->
+					<!--VALORES CALCULADOS-->
 					<div class="col-md-3">
 						<!-- Form Element sizes -->
 						<div class="card card-success card-outline">
@@ -181,16 +183,28 @@
 								<h3 class="card-title"><b>VALORES CALCULADOS</b></h3>
 							</div>
 							<div class="card-body">
-								<input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
-								<br>
-								<input class="form-control" type="text" placeholder="Default input">
-								<br>
-								<input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<span>Valor por Cuota</span>
+										<h3><span id="valorCuota">$ 0.00</span></h3>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<span>Interes</span>
+										<h3><span id="Interes">$ 0.00</span></h3>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<span>Monto Total</span>
+										<h3><span id="montoTotal">$ 0.00</span></h3>
+									</div>
+								</div>
 							</div>
 							<div class="card-body">
-								<button type="button" class="btn btn-block btn-success">Guardar Préstamo</button>
+								<button type="button" class="btn btn-block btn-success"><b>Guardar Préstamo</b></button>
 							</div>
-							
 							<!-- /.card-body -->
 						</div>
 						<!-- /.card -->
@@ -199,9 +213,9 @@
 								<h3 class="card-title"><b>ACCIONES</b></h3>
 							</div>
 							<div class="card-body">
-								<button type="button" class="btn btn-block btn-primary">Primary</button>
-								<button type="button" class="btn btn-block btn-info">Secondary</button>
-								<button type="button" class="btn btn-block btn-danger">Info</button>
+								<button type="button" class="btn btn-block btn-primary"><b>IMP. PRESTAMO</b></button>
+								<button type="button" class="btn btn-block btn-warning"><b>LIMPIAR CAMPOS</b></button>
+								<button type="button" data-dismiss="modal" class="btn btn-block btn-danger"><b>CERRAR</b></button>
 							</div>
 						</div>
 						<!-- /.card -->

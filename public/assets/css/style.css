@@ -38,3 +38,8 @@
     align-items: center;
     height: 100vh;
 }
+
+.table-alto td, .table-alto th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}

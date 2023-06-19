@@ -23,7 +23,7 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleSelect1">Estado</label>
-								<select class="form-control" id="listStatus" name="listStatus" required="">
+								<select class="form-control select2" id="listStatus" name="listStatus" required="">
 									<option value="1">Activo</option>
 									<option value="2">Inactivo</option>
 								</select>
