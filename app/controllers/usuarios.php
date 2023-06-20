@@ -241,7 +241,6 @@
 			die();
 		}
 		
-		
 	}
 	/** end file usuarios.php **/
 	

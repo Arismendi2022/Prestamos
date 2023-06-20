@@ -2,7 +2,7 @@
 <div class="modal fade bd-example-modal-xl" id="modalFormPrestamos" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
-			<div class="modal-header bg-info">
+			<div class="modal-header bg-gradient-primary">
 				<h5 class="modal-title" id="titleModal">Formulario Préstamos</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -44,7 +44,7 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
 												</div>
-												<input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required="">
+												<input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required="" disabled="">
 											</div>
 										</div>
 									</div>
