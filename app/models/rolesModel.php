@@ -49,7 +49,7 @@
 				$request_insert = $this->insert($query_insert,$arrData);
 				$return = $request_insert;
 			}else{
-				$return = "exist";
+				$return = 0;
 			}
 			return $return;
 		}
@@ -69,7 +69,7 @@
 				$arrData = array($this->strRol, $this->strDescripcion, $this->intStatus);
 				$request = $this->update($sql,$arrData);
 			}else{
-				$request = "exist";
+				$request = 0;
 			}
 			return $request;
 		}
@@ -91,7 +91,7 @@
 					$request = 'error';
 				}
 			}else{
-				$request = 'exist';
+				$request = 0;
 			}
 			return $request;
 		}

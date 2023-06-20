@@ -114,16 +114,19 @@
 					$option = 2;
 				}
 			}
-			if ($option == 1) {
-				if ($request_rol != 'exist') {
+			if($request_rol > 0 )
+			{
+				if($option == 1)
+				{
 					$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
-				} elseif ($request_rol == 'exist') {
-					$arrResponse = array('status' => false, 'msg' => '¡Atención! El Rol ya existe.');
-				} else {
-					$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+				}else{
+					$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
 				}
-			} else {
-				$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
+			}else if($request_rol == 0){
+				
+				$arrResponse = array('status' => false, 'msg' => '¡Atención! El Rol ya existe.');
+			}else{
+				$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
 			}
 			echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 			die();
@@ -138,7 +141,7 @@
 					$requestDelete = $this->model->deleteRol($intIdrol);
 					if ($requestDelete == 'ok') {
 						$arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el Rol');
-					} elseif ($requestDelete == 'exist') {
+					} elseif ($requestDelete == 0) {
 						$arrResponse = array('status' => false, 'msg' => 'No es posible eliminar un Rol asociado a usuarios.');
 					} else {
 						$arrResponse = array('status' => false, 'msg' => 'Error al eliminar el Rol.');
