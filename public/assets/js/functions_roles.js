@@ -97,24 +97,20 @@ function fntEditRol(idrol) {
 				document.querySelector("#idRol").value = objData.data.idrol;
 				document.querySelector("#txtNombre").value = objData.data.nombrerol;
 				document.querySelector("#txtDescripcion").value = objData.data.descripcion;
+				$('#listRolid').select2();
 
 				if (objData.data.estado == 1) {
-					var optionSelect = '<option value="1" selected class="notBlock">Activo</option>';
+					document.querySelector("#listStatus").value = 1;
 				} else {
-					var optionSelect = '<option value="2" selected class="notBlock">Inactivo</option>';
+					document.querySelector("#listStatus").value = 2;
 				}
-				let htmlSelect = `${optionSelect}
-																		<option value="1">Activo</option>
-																		<option value="2">Inactivo</option>
-																	`;
-				document.querySelector("#listStatus").innerHTML = htmlSelect;
-				$("#modalFormRol").modal("show");
-			} else {
-				alerta("Error", objData.msg, "error");
+				$('#listStatus').select2();
 			}
 		}
+		$("#modalFormRol").modal("show");
 	}
 }
+
 
 // evento click para boton eliminar rol
 function fntDelRol(idrol) {
@@ -141,6 +137,7 @@ function fntDelRol(idrol) {
 		}
 	})
 }
+
 // evento click para boton permisos rol
 function fntPermisos(idrol) {
 	var idrol = idrol;
