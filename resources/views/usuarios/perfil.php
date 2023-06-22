@@ -29,34 +29,51 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3">
-					<!-- Profile Image -->
-					<div class="card card-primary card-outline">
-						<div class="card-body box-profile">
-							<div class="text-center">
-								<img class="profile-user-img img-fluid img-circle" src="<?= ROOT ?>/admin/dist/img/avatar.jpg" alt="User profile picture">
-							</div>
+				<div class="col-md-4">
+					<!-- Widget: user widget style 1 -->
+					<div class="card card-widget widget-user shadow">
+						<!-- Add the bg color to the header using any of the bg-* classes -->
+						<div class="widget-user-header bg-info">
 							<h3 class="profile-username text-center"><?= $_SESSION['userData']['nombres'] . ' ' . $_SESSION['userData']['apellidos']; ?></h3>
-							<p class="text-muted text-center"><?= $_SESSION['userData']['nombrerol']; ?></p>
-							<ul class="list-group list-group-unbordered mb-3">
-								<li class="list-group-item">
-									<b>Seguidores</b> <a class="float-right">1,322</a>
-								</li>
-								<li class="list-group-item">
-									<b>Seguidos</b> <a class="float-right">543</a>
-								</li>
-								<li class="list-group-item">
-									<b>Amigos</b> <a class="float-right">13,287</a>
-								</li>
-							</ul>
-							<a href="#" class="btn btn-primary btn-block"><b>Seguir</b></a>
+							<h5 class="widget-user-desc"><?= $_SESSION['userData']['nombrerol']; ?></h5>
 						</div>
-						<!-- /.card-body -->
+						<div class="widget-user-image">
+							<img class="profile-user-img img-fluid img-circle" src="<?= ROOT ?>/admin/dist/img/avatar.jpg" alt="User profile picture">
+						</div>
+						<div class="card-footer">
+							<div class="row">
+								<div class="col-sm-4 border-right">
+									<div class="description-block">
+										<h5 class="description-header">3,200</h5>
+										<span class="description-text">VENTAS</span>
+									</div>
+									<!-- /.description-block -->
+								</div>
+								<!-- /.col -->
+								<div class="col-sm-4 border-right">
+									<div class="description-block">
+										<h5 class="description-header">13,000</h5>
+										<span class="description-text">SEGUIDORES</span>
+									</div>
+									<!-- /.description-block -->
+								</div>
+								<!-- /.col -->
+								<div class="col-sm-4">
+									<div class="description-block">
+										<h5 class="description-header">35</h5>
+										<span class="description-text">PRODUCTOS</span>
+									</div>
+									<!-- /.description-block -->
+								</div>
+								<!-- /.col -->
+							</div>
+							<!-- /.row -->
+						</div>
 					</div>
-					<!-- /.card -->
+					<!-- /.widget-user -->
 					
 					<!-- About Me Box -->
-					<div class="card card-primary">
+					<div class="card card-primary shadow">
 						<div class="card-header">
 							<h3 class="card-title">Acerca de mi</h3>
 						</div>
@@ -70,13 +87,16 @@
 							<strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicación</strong>
 							<p class="text-muted">Bogotá, Colombia</p>
 							<hr>
+							<strong><i class="far fa-file-alt mr-1"></i> Notas</strong>
+							<p class="text-muted">El mejor apoyo para el
+							                      crecimiento y progreso. Únete en esta plataforma.</p>
 						</div>
 						<!-- /.card-body -->
 					</div>
 					<!-- /.card -->
 				</div>
 				<!-- /.col -->
-				<div class="col-md-9">
+				<div class="col-md-8">
 					<div class="card card-primary card-outline">
 						<div class="card-header p-2">
 							<ul class="nav nav-pills" id="myTab">
