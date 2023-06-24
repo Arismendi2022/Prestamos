@@ -21,6 +21,14 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="<?= ROOT ?>/admin/plugins/chart.js/Chart.min.js"></script>
+<script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>
+<!--Highcharts-->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 <!-- Select2 -->
 <script src="<?= ROOT ?>/admin/plugins/select2/js/select2.full.min.js"></script>
 <!-- SweetAlert2 JS -->

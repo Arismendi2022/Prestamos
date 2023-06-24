@@ -29,9 +29,9 @@
 											<label for="txtIdentificacion">Identificación</label>
 											<div class="input-group">
 												<input autofocus="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return
-											controlTag(event);">
+												controlTag(event);">
 												<div class="input-group-append">
-													<button type="button" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
+													<button type="button" onclick="openModalListC();" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
 												</div>
 											</div>
 										</div>
@@ -227,3 +227,73 @@
 		</div>
 	</div>
 </div>
+
+<!-- /.modal -->
+<div class="modal fade" id="modalListClientes" tabindex="-1" role="dialog" aria-hidden="true">>
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-gradient-success">
+				<h5 class="modal-title w-100 text-center" id="titleModal">Listado de Clientes</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table id="tableListClientes" class="table table table-striped table-bordered table-alto" style="width:100%">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>Identificación</th>
+						<th>Clientes</th>
+						<th>Telefono</th>
+						<th>Estado</th>
+						<th class="text-center">Acciones</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>1</td>
+						<td>79425387</td>
+						<td>Paula Andrea Bejarano</td>
+						<td>320-456-2045</td>
+						<td><span class="badge bg-success">Sin Prestamo</span></td>
+						<td>X</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>65478520</td>
+						<td>Lorena Silvera Vargas</td>
+						<td>320-456-2045</td>
+						<td><span class="badge bg-success">Sin Prestamo</span></td>
+						<td>X</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>79425387</td>
+						<td>Paula Andrea Bejarano</td>
+						<td>320-456-2045</td>
+						<td><span class="badge bg-success">Sin Prestamo</span></td>
+						<td>X</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>65478520</td>
+						<td>Lorena Silvera Vargas</td>
+						<td>320-456-2045</td>
+						<td><span class="badge bg-danger">Con Prestamo</span></td>
+						<td>X</td>
+					</tr>
+					</tbody>
+				</table>
+				<!-- /.Table -->
+			</div>
+			<div class="modal-footer justify-content-right">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+ <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

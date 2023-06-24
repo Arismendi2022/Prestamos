@@ -179,9 +179,7 @@ function fntDelInfo(idpersona) {
 		}
 
 	});
-
 }
-
 
 function openModal() {
 	document.querySelector('#idUsuario').value = "";

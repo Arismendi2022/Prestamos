@@ -257,7 +257,6 @@ function fntViewUsuario(idpersona){
 				document.querySelector("#celNombre").innerHTML = objData.data.nombres;
 				document.querySelector("#celApellido").innerHTML = objData.data.apellidos;
 				document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
-				//document.querySelector("#celTelefono").innerHTML = formatoPhone(objData.data.telefono);
 				document.querySelector("#celEmail").innerHTML = objData.data.email_user;
 				document.querySelector("#celTipoUsuario").innerHTML = objData.data.nombrerol;
 				document.querySelector("#celEstado").innerHTML = estadoUsuario;
