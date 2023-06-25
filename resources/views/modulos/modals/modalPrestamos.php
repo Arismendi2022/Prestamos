@@ -3,7 +3,7 @@
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header bg-gradient-primary">
-				<h5 class="modal-title" id="titleModal">Formulario Préstamos</h5>
+				<h5 class="modal-title w-100 text-center" id="titleModal"><b>Formulario Préstamos</b></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -25,7 +25,7 @@
 								<div class="card-body">
 									<!--Información del Cliente-->
 									<div class="form-row">
-										<div class="form-group col-md-6">
+										<div class="form-group col-md-4">
 											<label for="txtIdentificacion">Identificación</label>
 											<div class="input-group">
 												<input autofocus="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return
@@ -233,7 +233,7 @@
 	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-gradient-success">
-				<h5 class="modal-title w-100 text-center" id="titleModal">Listado de Clientes</h5>
+				<h5 class="modal-title w-100 text-center" id="titleModal"><b>Listado de Clientes</b></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -244,45 +244,14 @@
 					<tr>
 						<th>ID</th>
 						<th>Identificación</th>
-						<th>Clientes</th>
+						<th>Nombres</th>
+						<th>Apellidos</th>
 						<th>Telefono</th>
 						<th>Estado</th>
 						<th class="text-center">Acciones</th>
 					</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<td>1</td>
-						<td>79425387</td>
-						<td>Paula Andrea Bejarano</td>
-						<td>320-456-2045</td>
-						<td><span class="badge bg-success">Sin Prestamo</span></td>
-						<td>X</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>65478520</td>
-						<td>Lorena Silvera Vargas</td>
-						<td>320-456-2045</td>
-						<td><span class="badge bg-success">Sin Prestamo</span></td>
-						<td>X</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>79425387</td>
-						<td>Paula Andrea Bejarano</td>
-						<td>320-456-2045</td>
-						<td><span class="badge bg-success">Sin Prestamo</span></td>
-						<td>X</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>65478520</td>
-						<td>Lorena Silvera Vargas</td>
-						<td>320-456-2045</td>
-						<td><span class="badge bg-danger">Con Prestamo</span></td>
-						<td>X</td>
-					</tr>
 					</tbody>
 				</table>
 				<!-- /.Table -->

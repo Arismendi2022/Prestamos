@@ -63,7 +63,7 @@
 										<td>3134502036</td>
 										<td>Administrador</td>
 										<td>Activo</td>
-										<td></td>
+										<td>X</td>
 									</tr>
 									</tbody>
 								</table>
