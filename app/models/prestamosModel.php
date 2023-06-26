@@ -10,7 +10,7 @@
 		
 		public function selectClientesLoan()
 		{
-			$sql = "SELECT idpersona,identificacion,nombres,apellidos,telefono,prestamos
+			$sql = "SELECT idpersona,identificacion,concat(nombres, ' ', apellidos) as nombres,telefono,prestamos
 				FROM persona
 				WHERE rolid = ".RCLIENTES." and estado != 0 ";
 			$request = $this->select_all($sql);

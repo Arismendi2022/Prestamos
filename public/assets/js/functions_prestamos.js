@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			{"data": "idpersona"},
 			{"data": "identificacion"},
 			{"data": "nombres"},
-			{"data": "apellidos"},
 			{"data": "telefono"},
 			{"data": "prestamos"},
 			{"data": "options"}
@@ -27,6 +26,25 @@ document.addEventListener('DOMContentLoaded', function () {
 		"order": [[0, "desc"]]
 
 	});
+
+	if (document.querySelector("#formPrestamo")) {
+		let formPrestamo = document.querySelector("#formPrestamo");
+		formPrestamo.onsubmit = function (e) {
+			e.preventDefault();
+
+			let strIdentificacion = document.querySelector('#txtIdentificacion').value;
+			let strNombre = document.querySelector('#txtNombre').value;
+
+			if (strIdentificacion == '' || strNombre == '') {
+				alerta("Atención", "Todos los campos son obligatorios.", "error");
+				return false;
+			}
+
+
+
+
+		}
+	}
 
 });
 
@@ -51,6 +69,8 @@ function fntAgregar(idpersona) {
 }
 
 function openModal() {
+	document.querySelector('#idUsuario').value = "";
+	document.querySelector("#formPrestamo").reset();
 	$('#modalFormPrestamos').modal('show');
 }
 
