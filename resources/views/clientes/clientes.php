@@ -41,7 +41,7 @@
 						<!-- form start -->
 						<form>
 							<div class="card-body">
-								<table id="tableClientes" class="table table table-striped table-hover table-bordered table-alto" style="width:100%">
+								<table id="tableClientes" class="table table table-striped table-hover table-bordered" style="width:100%">
 									<thead>
 									<tr>
 										<th>ID</th>

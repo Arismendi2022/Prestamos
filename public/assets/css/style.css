@@ -39,8 +39,15 @@
     height: 100vh;
 }
 
-.table-alto td, .table-alto th {
-    border: 1px solid #ddd;
-    padding: 8px;
+.textcenter{
+    text-align: center;
 }
+.textright{
+    text-align: right;
+}
+.textleft{
+    text-align: left;
+}
+
+
 

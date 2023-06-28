@@ -1,6 +1,6 @@
 <!-- Extra large modal -->
 <div class="modal fade bd-example-modal-xl" id="modalFormPrestamos" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-xl">
+	<div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-gradient-primary">
 				<h5 class="modal-title w-100 text-center" id="titleModal"><b>Formulario Préstamos</b></h5>
@@ -25,9 +25,9 @@
 										<!--Información del Cliente-->
 										<div class="form-row">
 											<div class="form-group col-md-4">
-												<label for="txtIdentificacion">Identificación</label>
+												<label for="txtIdentificacion">Identificación <span class="required">*</span></label>
 												<div class="input-group">
-													<input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" disabled="" onkeypress="return
+													<input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return
 													controlTag(event);">
 													<div class="input-group-append">
 														<button type="button" onclick="openModalListC();" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -38,7 +38,7 @@
 										<!-- /input-group -->
 										<div class="form-row">
 											<div class="form-group col-md-12">
-												<label for="txtNombre">Nombres y Apellidos</label>
+												<label for="txtNombre">Nombres y Apellidos </span></label>
 												<div class="input-group">
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
@@ -56,14 +56,13 @@
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
 													</div>
-													<input type="text" class="form-control valid validNumber" id="txtMonto" name="txtMonto" required=""
-													       onkeypress="return controlTag(event);">
+													<input type="text" class="form-control" id="txtMonto" name="txtMonto" oninput="formatearInput(this)" required="">
 												</div>
 											</div>
 											
 											<div class="form-group col-md-3">
 												<label for="txtCuota">Nro Cuotas <span class="required">*</span></label>
-												<input type="text" class="form-control valid validNumber" id="txtCuota" name="txtCuota" required="" onkeypress="return controlTag(event);">
+												<input type="text" class="form-control valid validNumber" id="txtCuotas" name="txtCuotas" required="" onkeypress="return controlTag(event);">
 											</div>
 											
 											<div class="form-group col-md-3">
@@ -98,9 +97,9 @@
 											</div>
 											<div class="col-md-4">
 												<label for="txtFecha">Fecha Emisión <span class="required">*</span></label>
-												<div class="input-group date" id="txtFecha" data-target-input="nearest">
-													<input type="text" class="form-control datetimepicker-input" data-target="#txtFecha" required="">
-													<div class="input-group-append" data-target="#txtFecha" data-toggle="datetimepicker">
+												<div class="input-group date" id="datetimepicker" data-target-input="nearest">
+													<input type="text" id="datePicker" class="form-control datetimepicker-input" data-target="#datetimepicker" required="">
+													<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
 														<div class="input-group-text"><i class="fa fa-calendar"></i></div>
 													</div>
 												</div>
@@ -112,13 +111,14 @@
 									<div class="row">
 										<div class="col-md-4">
 											<div class="card-footer">
-												<button type="submit" id="btnCalcular" class="btn btn-block btn-danger btn-sm"><i class="fa-solid fa-calculator mr-2"></i><b>CALCULAR</b></button>
+												<button type="button" onclick="btnCalcular();" class="btn btn-block btn-danger btn-sm"><i class="fa-solid fa-calculator
+												mr-2"></i><b>CALCULAR</b></button>
 											</div>
 										</div>
 									</div> <!-- /.row -->
 									<div class="row">
-										<div class="col-md-12">
-											<form>
+										<div class="col-12">
+											<div class="card">
 												<div class="card-body">
 													<div class="tile">
 														<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
@@ -134,38 +134,14 @@
 															</tr>
 															</thead>
 															<tbody>
-															<tr>
-																<td>1</td>
-																<td>20/05/2023</td>
-																<td>20.000</td>
-																<td>2.000</td>
-																<td align="right">$ 18.000</td>
-																<td align="right">$ 180.000</td>
-															</tr>
-															<tr>
-																<td>2</td>
-																<td>20/06/2023</td>
-																<td>20.000</td>
-																<td>2.000</td>
-																<td align="right">$ 18.000</td>
-																<td align="right">$ 160.000</td>
-															</tr>
-															<tr>
-																<td>3</td>
-																<td>20/07/2023</td>
-																<td>20.000</td>
-																<td>2.000</td>
-																<td align="right">$ 18.000</td>
-																<td align="right">$ 140.000</td>
-															</tr>
 															</tbody>
 														</table>
 													</div>
 													<!-- /.Table -->
 												</div>
 												<!-- /.card-body -->
-											</form>
-											<!-- /.form-->
+											</div>
+											<!-- /.card -->
 										</div>
 									</div> <!-- /.row -->
 								
@@ -227,14 +203,14 @@
 <div class="modal fade" id="modalListClientes" tabindex="-1" role="dialog" aria-hidden="true">>
 	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">
-			<div class="modal-header bg-gradient-success">
+			<div class="modal-header bg-gradient-info">
 				<h5 class="modal-title w-100 text-center" id="titleModal"><b>Listado de Clientes</b></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<table id="tableListClientes" class="table table table-striped table-bordered table-sm" style="width:100%">
+				<table id="tableListClientes" class="table table table-striped table-bordered" style="width:100%">
 					<thead>
 					<tr>
 						<th>ID</th>
@@ -256,7 +232,7 @@
 		</div>
 		<!-- /.modal-content -->
 	</div>
-                                                                                              <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
 

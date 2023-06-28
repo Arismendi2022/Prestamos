@@ -138,7 +138,7 @@ $('#myTab a').on('click', function (e) {
 
 
 /** Date picker **/
-$('#txtFecha').datetimepicker({
+$('#datetimepicker').datetimepicker({
 	language: 'es',
 	format: 'L'
 });
@@ -154,6 +154,21 @@ $(function () {
 		theme: 'bootstrap4'
 	})
 });
+
+// fotmato numero input
+function formatearInput(input) {
+	// Obtener el valor actual del campo de entrada
+	var numero = input.value;
+
+	// Eliminar cualquier carácter que no sea un dígito
+	numero = numero.replace(/\D/g, '');
+
+	// Aplicar el formato deseado (por ejemplo, separador de miles)
+	numero = numero.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+	// Actualizar el valor del campo de entrada
+	input.value = numero;
+}
 
 
 
