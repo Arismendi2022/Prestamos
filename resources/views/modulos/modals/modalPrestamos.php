@@ -118,59 +118,57 @@
 									</div> <!-- /.row -->
 									<div class="row">
 										<div class="col-12">
-											<div class="card">
-												<div class="card-body">
-													<div class="tile">
-														<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
-														<table id="tableCuotas" class="table table-striped table-bordered table-sm">
-															<thead align="center">
-															<tr>
-																<th>#</th>
-																<th>Fecha de Pago</th>
-																<th>Monto Cuota</th>
-																<th>Interes</th>
-																<th>Capital</th>
-																<th>Saldo</th>
-															</tr>
-															</thead>
-															<tbody>
-															</tbody>
-														</table>
-													</div>
+											<div class="card-footer">
+												<div class="tile">
+													<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
+													<table id="tableCuotas" class="table table-striped table-bordered table-sm">
+														<thead align="center">
+														<tr>
+															<th>#</th>
+															<th>Fecha de Pago</th>
+															<th>Monto Cuota</th>
+															<th>Interes</th>
+															<th>Capital</th>
+															<th>Saldo</th>
+														</tr>
+														</thead>
+														<tbody>
+														</tbody>
+													</table>
 													<!-- /.Table -->
 												</div>
-												<!-- /.card-body -->
 											</div>
-											<!-- /.card -->
+											<!-- /.card-footer-->
 										</div>
-									</div> <!-- /.row -->
-								
+									</div>
+									<!-- /.row -->
 								</form>
+								<!-- /.form -->
 							</div>
 							<!-- /.card -->
 						</div>
 						<div class="col-md-3">
 							<div class="card card-primary card-outline">
 								<div class="card-header">
-									<h3 class="card-title w-100 text-center"><b>VALORES CALCULADOS</b></h3>
+									<h4 class="card-title w-100 text-center"><b>VALORES CALCULADOS</b></h4>
 								</div>
 								<div class="card-body">
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Valor por Cuota</span>
-											<h4><span id="valorCuota">$ 0.00</span></h4>
+											<h4><span id="valorCuota" class="font-weight-bold"> $ 0.00</span></h4>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Interes</span>
-											<h4><span id="Interes">$ 0.00</span></h4>
+											<h4><span id="Interes" class="font-weight-bold">$ 0.00</span></h4>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Monto Total</span>
-											<h4><span id="montoTotal">$ 0.00</span></h4>
+											<h4><span id="montoTotal" class="font-weight-bold">$ 0.00</span></h4>
 										</div>
 									</div>
 								</div>
@@ -186,7 +184,7 @@
 								</div>
 								<div class="card-body">
 									<button type="button" class="btn btn-block btn-info"><b>IMP. PRESTAMO</b></button>
-									<button type="reset" class="btn btn-block btn-success"><b>LIMPIAR CAMPOS</b></button>
+									<button type="button" onclick="resetFormulario();" class="btn btn-block btn-success"><b>LIMPIAR CAMPOS</b></button>
 									<button type="button" data-dismiss="modal" class="btn btn-block btn-danger"><b>CERRAR</b></button>
 								</div>
 							</div>
@@ -233,6 +231,3 @@
 		<!-- /.modal-content -->
 	</div>
 </div>
-<!-- /.modal -->
-
-

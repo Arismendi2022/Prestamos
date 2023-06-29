@@ -155,7 +155,7 @@ $(function () {
 	})
 });
 
-// fotmato numero input
+/** fotmato numero input */
 function formatearInput(input) {
 	// Obtener el valor actual del campo de entrada
 	var numero = input.value;
@@ -170,5 +170,4 @@ function formatearInput(input) {
 	input.value = numero;
 }
 
-
-
+/** Formato numeros */

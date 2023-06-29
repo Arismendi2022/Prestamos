@@ -47,23 +47,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-
 /** Calcula la amortizacion del prestamo metodo frances **/
 function btnCalcular() {
-
 	$(function () {
 		tableCuotas = $('#tableCuotas').dataTable({
 			"language": {
 				"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
 			},
 			"columnDefs": [
-				{ 'className': "textcenter", "targets": [ 1 ] },
-				{ 'className': "textright", "targets": [ 2 ] },
-				{ 'className': "textright", "targets": [ 3 ] },
-				{ 'className': "textright", "targets": [ 4 ] },
-				{ 'className': "textright", "targets": [ 5 ] }
+				{'className': "textcenter", "targets": [1]},
+				{'className': "textright", "targets": [2]},
+				{'className': "textright", "targets": [3]},
+				{'className': "textright", "targets": [4]},
+				{'className': "textright", "targets": [5]}
 			],
-
 			"paging": true,
 			"lengthChange": false,
 			"searching": false,
@@ -72,10 +69,11 @@ function btnCalcular() {
 			"autoWidth": false,
 			"responsive": true,
 			"bDestroy": true,
-
 		});
+
 	});
-	const llenarTabla = document.querySelector('#tableCuotas tbody');
+
+	let llenarTabla = document.querySelector('#tableCuotas tbody');
 
 	let txtIdentificacion = document.querySelector('#txtIdentificacion').value;
 	let montoCredito = document.querySelector('#txtMonto').value;
@@ -96,7 +94,7 @@ function btnCalcular() {
 		return false;
 	}
 
-
+	// Borrar el contenido de la DataTable
 	while (llenarTabla.firstChild) {
 		llenarTabla.removeChild(llenarTabla.firstChild);
 	}
@@ -109,14 +107,22 @@ function btnCalcular() {
 	/** Calculamos la cuota mensual */
 	cuotaMes = montoCredito * (tasaInteresMensual / (1 - Math.pow(1 + tasaInteresMensual, -plazoMeses)));
 
-	// * formato de numeros
+	/** formato de numeros */
 	const formatter = new Intl.NumberFormat('en-US', {
-		style: 'currency',
-		currency: 'USD',
+		/*style: 'currency',
+		currency: 'USD',*/
 		minimumFractionDigits: 2,
 		round: Math.round
 
 	})
+
+	/** agregamos los valores calculados */
+	const montoTotal = cuotaMes * plazoMeses
+	const intereses = montoTotal - montoCredito
+
+	document.querySelector("#valorCuota").innerHTML = formatter.format((cuotaMes.toFixed(0)));
+	document.querySelector("#Interes").innerHTML = formatter.format((intereses.toFixed(0)));
+	document.querySelector("#montoTotal").innerHTML = formatter.format((montoTotal.toFixed(0)));
 
 	//* Array para almacenar los detalles de cada cuota */
 	//const detallesCuotas = [];
@@ -137,8 +143,8 @@ function btnCalcular() {
 			<td>${[i]}</td>
 			<td>${fecha}</td>
 			<td>${formatter.format((cuotaMes.toFixed(0)))}</td>
-			<td>${formatter.format((pagoCapital.toFixed(0)))}</td>
 			<td>${formatter.format((pagoInteres.toFixed(0)))}</td>
+			<td>${formatter.format((pagoCapital.toFixed(0)))}</td>
 			<td>${formatter.format((montoCredito.toFixed(0)))}</td>
 		`;
 		llenarTabla.appendChild(row)
@@ -170,9 +176,21 @@ function fntAgregar(idpersona) {
 function openModal() {
 	document.querySelector('#idUsuario').value = "";
 	document.querySelector("#formPrestamo").reset();
+	resetFormulario();
 	$('#modalFormPrestamos').modal('show');
 }
 
 function openModalListC() {
 	$('#modalListClientes').modal('show');
 }
+
+function resetFormulario() {
+	$("#tableCuotas tr").slice(1).remove();
+	document.querySelector("#formPrestamo").reset();
+	document.querySelector("#valorCuota").innerHTML = "";
+	document.querySelector("#Interes").innerHTML = "";
+	document.querySelector("#montoTotal").innerHTML = "";
+
+}
+
+
