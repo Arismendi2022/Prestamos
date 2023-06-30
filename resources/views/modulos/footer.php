@@ -47,6 +47,8 @@
 <script src="<?= ROOT ?>/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <!-- Dayjs -->
 <script src="<?= ROOT ?>/admin/plugins/dayjs/dayjs.min.js"></script>
+<!-- Numeraljs-->
+<script src="<?= ROOT ?>/admin/plugins/numeral/numeral.min.js"></script>
 
 <!-- Buttons js -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>

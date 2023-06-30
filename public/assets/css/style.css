@@ -49,5 +49,14 @@
     text-align: left;
 }
 
+.font-size-20 {
+    font-size: 20px; /* Tamaño de fuente inicial */
+}
+
+.font-size {
+    font-size: 18px; /* Tamaño de fuente inicial */
+}
+
+
 
 

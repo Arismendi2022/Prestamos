@@ -1,7 +1,9 @@
 let tableListClientes;
 let tableCuotas;
+let tablePrestamos;
 
 document.addEventListener('DOMContentLoaded', function () {
+	/** Datatable de listado de clientes con prestamos */
 	tableListClientes = $('#tableListClientes').dataTable({
 		"aProcessing": true,
 		"aServerSide": true,
@@ -19,6 +21,57 @@ document.addEventListener('DOMContentLoaded', function () {
 			{"data": "telefono"},
 			{"data": "prestamos"},
 			{"data": "options"}
+		],
+
+		"resonsieve": "true",
+		"bDestroy": true,
+		"iDisplayLength": 10,
+		"order": [[0, "desc"]]
+
+	});
+
+	/** Datatable de listado de préstamos */
+	tablePrestamos = $('#tablePrestamos').dataTable({
+		"aProcessing": true,
+		"aServerSide": true,
+		"language": {
+			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+		},
+		/*"ajax": {
+			"url": " " + base_url + "/Prestamos/getClientesLoan",
+			"dataSrc": ""
+		},
+		"columns": [
+			{"data": "idpersona"},
+			{"data": "identificacion"},
+			{"data": "nombres"},
+			{"data": "telefono"},
+			{"data": "prestamos"},
+			{"data": "options"}
+		],*/
+		'dom': 'lBfrtip',
+		'buttons': [
+			{
+				"extend": "copyHtml5",
+				"text": "<i class='far fa-copy'></i> Copiar",
+				"titleAttr":"Copiar",
+				"className": "btn btn-secondary"
+			},{
+				"extend": "excelHtml5",
+				"text": "<i class='fas fa-file-excel'></i> Excel",
+				"titleAttr":"Esportar a Excel",
+				"className": "btn btn-success"
+			},{
+				"extend": "pdfHtml5",
+				"text": "<i class='fas fa-file-pdf'></i> PDF",
+				"titleAttr":"Esportar a PDF",
+				"className": "btn btn-danger"
+			},{
+				"extend": "csvHtml5",
+				"text": "<i class='fas fa-file-csv'></i> CSV",
+				"titleAttr":"Esportar a CSV",
+				"className": "btn btn-info"
+			}
 		],
 
 		"resonsieve": "true",
@@ -47,29 +100,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+
+
 /** Calcula la amortizacion del prestamo metodo frances **/
 function btnCalcular() {
 	$(function () {
-		tableCuotas = $('#tableCuotas').dataTable({
-			"language": {
-				"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-			},
-			"columnDefs": [
-				{'className': "textcenter", "targets": [1]},
-				{'className': "textright", "targets": [2]},
-				{'className': "textright", "targets": [3]},
-				{'className': "textright", "targets": [4]},
-				{'className': "textright", "targets": [5]}
-			],
-			"paging": true,
-			"lengthChange": false,
-			"searching": false,
-			"ordering": true,
-			"info": true,
-			"autoWidth": false,
-			"responsive": true,
-			"bDestroy": true,
-		});
+	tableCuotas = $('#tableCuotas').dataTable({
+		"language": {
+			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+		},
+		"columnDefs": [
+			{'className': "textcenter", "targets": [1]},
+			{'className': "textright", "targets": [2]},
+			{'className': "textright", "targets": [3]},
+			{'className': "textright", "targets": [4]},
+			{'className': "textright", "targets": [5]}
+		],
+		"paging": true,
+		"lengthChange": false,
+		"searching": false,
+		"ordering": true,
+		"info": true,
+		"autoWidth": false,
+		"responsive": true,
+		"bDestroy": true,
+	});
 
 	});
 
@@ -84,7 +139,8 @@ function btnCalcular() {
 	let fechaInicio = document.querySelector('#datePicker').value;
 
 	/** Eliminar cualquier carácter que no sea un dígito */
-	montoCredito = montoCredito.replace(/,/g, '');
+	montoCredito = montoCredito.replace(/\./g, "");
+
 
 	/** Creamos un objeto dayjs con la fecha de inicio */
 	let mesActual = dayjs(fechaInicio).add(1, 'month');
@@ -108,12 +164,11 @@ function btnCalcular() {
 	cuotaMes = montoCredito * (tasaInteresMensual / (1 - Math.pow(1 + tasaInteresMensual, -plazoMeses)));
 
 	/** formato de numeros */
-	const formatter = new Intl.NumberFormat('en-US', {
+	const formatter = new Intl.NumberFormat('es-CO', {
 		/*style: 'currency',
 		currency: 'USD',*/
 		minimumFractionDigits: 2,
 		round: Math.round
-
 	})
 
 	/** agregamos los valores calculados */
@@ -173,20 +228,15 @@ function fntAgregar(idpersona) {
 
 }
 
-function openModal() {
-	document.querySelector('#idUsuario').value = "";
-	document.querySelector("#formPrestamo").reset();
-	resetFormulario();
-	$('#modalFormPrestamos').modal('show');
-}
-
-function openModalListC() {
+function openModalClientes() {
 	$('#modalListClientes').modal('show');
 }
 
 function resetFormulario() {
 	$("#tableCuotas tr").slice(1).remove();
-	document.querySelector("#formPrestamo").reset();
+	document.getElementById("formPrestamo").reset();
+	$('#listFormPago').select2('val', '1');
+	$('#listMoneda').select2('val', '1');
 	document.querySelector("#valorCuota").innerHTML = "";
 	document.querySelector("#Interes").innerHTML = "";
 	document.querySelector("#montoTotal").innerHTML = "";

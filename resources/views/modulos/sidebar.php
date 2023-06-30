@@ -21,7 +21,7 @@
 		
 		<!-- Sidebar Menu -->
 		<nav class="mt-2">
-			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+			<ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
 						 with font-awesome or any other icon font library -->
 				<?php if(!empty($_SESSION['permisos'][1]['r'])){ ?>
@@ -45,13 +45,32 @@
 				</li>
 				<?php } ?>
 				<?php if(!empty($_SESSION['permisos'][3]['r'])){ ?>
-				<li class="nav-item">
-					<a href="<?=ROOT?>/prestamos" class="nav-link">
+					<li class="nav-item">
+					<a href="#" class="nav-link">
 						<i class="nav-icon fa-solid fa-landmark"></i>
 						<p>
 							Préstamos
+							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<?php if(!empty($_SESSION['permisos'][3]['r'])){ ?>
+								<a href="<?=ROOT?>/prestamos" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Realizar Préstamo</p>
+								</a>
+							<?php } ?>
+						</li>
+						<li class="nav-item">
+							<?php if(!empty($_SESSION['permisos'][3]['r'])){ ?>
+								<a href="<?=ROOT?>/prestamos/listado" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Listado Préstamos</p>
+								</a>
+							<?php } ?>
+						</li>
+					</ul>
 				</li>
 				<?php } ?>
 				<?php if(!empty($_SESSION['permisos'][4]['r'])){ ?>

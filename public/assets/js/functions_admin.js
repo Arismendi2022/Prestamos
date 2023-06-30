@@ -164,10 +164,11 @@ function formatearInput(input) {
 	numero = numero.replace(/\D/g, '');
 
 	// Aplicar el formato deseado (por ejemplo, separador de miles)
-	numero = numero.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	numero = numero.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
 	// Actualizar el valor del campo de entrada
 	input.value = numero;
 }
 
-/** Formato numeros */
+/** formatear números en JavaScript numeral js */
+

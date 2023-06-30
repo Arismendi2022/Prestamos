@@ -69,6 +69,18 @@
 			die();
 		}
 		
+		public function Listado()
+		{
+			if (empty($_SESSION['permisosMod']['r'])) {
+				header("Location:" . base_url() . '/dashboard');
+			}
+			
+			$data['page_tag'] = "Listado";
+			$data['page_title'] = "Listado de Préstamos - <small> Sistema de Crédito</small>";
+			$data['page_name'] = "listado";
+			$data['page_functions_js'] = "functions_prestamos.js";
+			$this->views->getView($this, "listado", $data);
+		}
 		
 	}
 	/** end file prestamos.php **/
