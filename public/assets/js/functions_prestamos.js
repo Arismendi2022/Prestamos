@@ -54,22 +54,22 @@ document.addEventListener('DOMContentLoaded', function () {
 			{
 				"extend": "copyHtml5",
 				"text": "<i class='far fa-copy'></i> Copiar",
-				"titleAttr":"Copiar",
+				"titleAttr": "Copiar",
 				"className": "btn btn-secondary"
-			},{
+			}, {
 				"extend": "excelHtml5",
 				"text": "<i class='fas fa-file-excel'></i> Excel",
-				"titleAttr":"Esportar a Excel",
+				"titleAttr": "Esportar a Excel",
 				"className": "btn btn-success"
-			},{
+			}, {
 				"extend": "pdfHtml5",
 				"text": "<i class='fas fa-file-pdf'></i> PDF",
-				"titleAttr":"Esportar a PDF",
+				"titleAttr": "Esportar a PDF",
 				"className": "btn btn-danger"
-			},{
+			}, {
 				"extend": "csvHtml5",
 				"text": "<i class='fas fa-file-csv'></i> CSV",
-				"titleAttr":"Esportar a CSV",
+				"titleAttr": "Esportar a CSV",
 				"className": "btn btn-info"
 			}
 		],
@@ -88,43 +88,54 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			let strIdentificacion = document.querySelector('#txtIdentificacion').value;
 			let strNombre = document.querySelector('#txtNombre').value;
+			let intMonto = document.querySelector('#txtMonto').value;
+			let intCuotas = document.querySelector('#txtCuotas').value;
+			let intInteres = document.querySelector('#txtInteres').value;
+			let intFormaPago = document.querySelector('#listFormPago').value;
+			let intMoneda = document.querySelector('#listMoneda').value;
+			let strFecha = document.querySelector('#datePicker').value;
+			let intvalorCuota = document.querySelector("#valorCuota").innerHTML
 
-			if (strIdentificacion == '' || strNombre == '') {
+			if (strIdentificacion == '' || strNombre == '' || intMonto == '' || intCuotas == '' || intInteres == '' || intFormaPago == '' || intMoneda == '' || strFecha == ''
+					|| intvalorCuota == '$ 0.00') {
 				alerta("Atención", "Todos los campos son obligatorios.", "error");
 				return false;
 			}
 
-
+			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+			let ajaxUrl = base_url + '/Prestamos/setPrestamo';
+			let formData = new FormData(formPrestamo);
+			request.open("POST", ajaxUrl, true);
+			request.send(formData)
 		}
 	}
 
 });
 
 
-
 /** Calcula la amortizacion del prestamo metodo frances **/
 function btnCalcular() {
 	$(function () {
-	tableCuotas = $('#tableCuotas').dataTable({
-		"language": {
-			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-		},
-		"columnDefs": [
-			{'className': "textcenter", "targets": [1]},
-			{'className': "textright", "targets": [2]},
-			{'className': "textright", "targets": [3]},
-			{'className': "textright", "targets": [4]},
-			{'className': "textright", "targets": [5]}
-		],
-		"paging": true,
-		"lengthChange": false,
-		"searching": false,
-		"ordering": true,
-		"info": true,
-		"autoWidth": false,
-		"responsive": true,
-		"bDestroy": true,
-	});
+		tableCuotas = $('#tableCuotas').dataTable({
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+			},
+			"columnDefs": [
+				{'className': "textcenter", "targets": [1]},
+				{'className': "textright", "targets": [2]},
+				{'className': "textright", "targets": [3]},
+				{'className': "textright", "targets": [4]},
+				{'className': "textright", "targets": [5]}
+			],
+			"paging": true,
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"bDestroy": true,
+		});
 
 	});
 
@@ -207,25 +218,25 @@ function btnCalcular() {
 
 }
 
-
 function fntAgregar(idpersona) {
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	let ajaxUrl = base_url + '/Prestamos/getClienteLoan/' + idpersona;
 	request.open("GET", ajaxUrl, true);
 	request.send();
 	request.onreadystatechange = function () {
-
 		if (request.readyState == 4 && request.status == 200) {
 			let objData = JSON.parse(request.responseText);
 			if (objData.status) {
 				document.querySelector("#idUsuario").value = objData.data.idpersona;
 				document.querySelector("#txtIdentificacion").value = objData.data.identificacion;
 				document.querySelector("#txtNombre").value = objData.data.nombres;
+
+				$('#modalListClientes').modal('hide');
+			} else {
+				alerta("Atención", objData.msg, "error");
 			}
 		}
-		$('#modalListClientes').modal('hide');
 	}
-
 }
 
 function openModalClientes() {

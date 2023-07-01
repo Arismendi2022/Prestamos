@@ -13,6 +13,13 @@
 			getPermisos(MPRESTAMOS);
 		}
 		
+		public function setPrestamo()
+		{
+			dep($_POST);
+			die();
+			
+		}
+		
 		public function Prestamos()
 		{
 			if (empty($_SESSION['permisosMod']['r'])) {
@@ -51,19 +58,23 @@
 			die();
 		}
 		
-		public function getClienteloan($idpersona){
-			if($_SESSION['permisosMod']['r']){
+		public function getClienteloan($idpersona)
+		{
+			if ($_SESSION['permisosMod']['r']) {
 				$idusuario = intval($idpersona);
-				if($idusuario > 0)
-				{
+				if ($idusuario > 0) {
 					$arrData = $this->model->selectClienteLoan($idusuario);
-					if(empty($arrData))
-					{
-						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
-					}else{
-						$arrResponse = array('status' => true, 'data' => $arrData);
+					
+					if ($arrData['prestamos'] == '1') {
+						$arrResponse = array('status' => false, 'msg' => '¡Cliente con préstamo pendiente.',);
+					} else {
+						if (empty($arrData)) {
+							$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+						} else {
+							$arrResponse = array('status' => true, 'data' => $arrData);
+						}
 					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 				}
 			}
 			die();

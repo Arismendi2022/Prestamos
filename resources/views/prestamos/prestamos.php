@@ -45,134 +45,131 @@
 											</div>
 											<!-- /.card-header -->
 											<!-- form start -->
-											<form id="formPrestamo" name="formPrestamo" class="form-horizontal">
-												<input type="hidden" id="idUsuario" name="idUsuario" value="">
-												<div class="card-body">
-													<!--Información del Cliente-->
-													<div class="form-row">
-														<div class="form-group col-md-4">
-															<label for="txtIdentificacion">Identificación <span class="required">*</span></label>
-															<div class="input-group">
-																<input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return
+											<div class="card-body">
+												<!--Información del Cliente-->
+												<div class="form-row">
+													<div class="form-group col-md-4">
+														<label for="txtIdentificacion">Identificación <span class="required">*</span></label>
+														<div class="input-group">
+															<input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return
 													controlTag(event);">
-																<div class="input-group-append">
-																	<button type="button" onclick="openModalClientes();" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
-																</div>
+															<div class="input-group-append">
+																<button type="button" onclick="openModalClientes();" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
 															</div>
 														</div>
 													</div>
-													<!-- /input-group -->
-													<div class="form-row">
-														<div class="form-group col-md-12">
-															<label for="txtNombre">Nombres y Apellidos </span></label>
-															<div class="input-group">
-																<div class="input-group-prepend">
-																	<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-																</div>
-																<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required="" disabled="">
-															</div>
-														</div>
-													</div>
-													<!-- /input-group -->
-													<!--Información del préstamo-->
-													<div class="form-row">
-														<div class="form-group col-md-6">
-															<label for="txtMonto">Monto del Préstamo <span class="required">*</span></label>
-															<div class="input-group">
-																<div class="input-group-prepend">
-																	<span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
-																</div>
-																<input type="text" class="form-control font-weight-bold font-size-20" id="txtMonto" name="txtMonto" oninput="formatearInput
-																                                                                               (this)"
-																       required="">
-															</div>
-														</div>
-														
-														<div class="form-group col-md-3">
-															<label for="txtCuota">Nro Cuotas <span class="required">*</span></label>
-															<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtCuotas" name="txtCuotas" required=""
-															       onkeypress="return controlTag(event);">
-														</div>
-														
-														<div class="form-group col-md-3">
-															<label for="txtInteres">Interes Anual <span class="required">*</span></label>
-															<div class="input-group">
-																<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtInteres" name="txtInteres" required=""
-																       onkeypress="return controlTag(event);">
-																<div class="input-group-append">
-																	<span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
-																</div>
-															</div>
-														</div>
-													</div>
-													<!-- /.row -->
-													<!-- /input-group -->
-													<div class="row">
-														<div class="col-md-4">
-															<label for="listFormPago">Forma de Pago <span class="required">*</span></label>
-															<select class="form-control select2" id="listFormPago" name="listFormPago" required="">
-																<option value="1">Diario</option>
-																<option value="2">Mensual</option>
-																<option value="3">Quincenal</option>
-																<option value="4">Semanal</option>
-															</select>
-														</div>
-														<div class="col-md-4">
-															<label for="listMoneda">T. Moneda <span class="required">*</span></label>
-															<select class="form-control select2" id="listMoneda" name="listMoneda" required="">
-																<option value="1">COP</option>
-																<option value="2">USD</option>
-																<option value="3">EUR</option>
-															</select>
-														</div>
-														<div class="col-md-4">
-															<label for="txtFecha">Fecha Emisión <span class="required">*</span></label>
-															<div class="input-group date" id="datetimepicker" data-target-input="nearest">
-																<input type="text" id="datePicker" class="form-control datetimepicker-input" data-target="#datetimepicker" required="">
-																<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
-																	<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-																</div>
-															</div>
-														</div>
-													</div> <!-- /.row -->
-													<!-- /input-group -->
 												</div>
-												<!-- /.card-body -->
-												<div class="row">
-													<div class="col-md-4">
-														<div class="card-footer">
-															<button type="button" onclick="btnCalcular();" class="btn btn-block btn-danger btn-sm"><i class="fa-solid fa-calculator
-												mr-2"></i><b>CALCULAR</b></button>
+												<!-- /input-group -->
+												<div class="form-row">
+													<div class="form-group col-md-12">
+														<label for="txtNombre">Nombres y Apellidos </span></label>
+														<div class="input-group">
+															<div class="input-group-prepend">
+																<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+															</div>
+															<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required="" disabled="">
 														</div>
 													</div>
-												</div> <!-- /.row -->
-												<div class="row">
-													<div class="col-12">
-														<div class="card-footer">
-															<div class="tile">
-																<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
-																<table id="tableCuotas" class="table table-striped table-bordered table-sm">
-																	<thead align="center">
-																	<tr>
-																		<th>#</th>
-																		<th>Fecha de Pago</th>
-																		<th>Monto Cuota</th>
-																		<th>Interes</th>
-																		<th>Capital</th>
-																		<th>Saldo</th>
-																	</tr>
-																	</thead>
-																	<tbody>
-																	</tbody>
-																</table>
-																<!-- /.Table -->
+												</div>
+												<!-- /input-group -->
+												<!--Información del préstamo-->
+												<div class="form-row">
+													<div class="form-group col-md-6">
+														<label for="txtMonto">Monto del Préstamo <span class="required">*</span></label>
+														<div class="input-group">
+															<div class="input-group-prepend">
+																<span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
+															</div>
+															<input type="text" class="form-control font-weight-bold font-size-20" id="txtMonto" name="txtMonto" oninput="formatearInput
+																                                                                               (this)"
+															       required="">
+														</div>
+													</div>
+													
+													<div class="form-group col-md-3">
+														<label for="txtCuota">Nro Cuotas <span class="required">*</span></label>
+														<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtCuotas" name="txtCuotas" required=""
+														       onkeypress="return controlTag(event);">
+													</div>
+													
+													<div class="form-group col-md-3">
+														<label for="txtInteres">Interes Anual <span class="required">*</span></label>
+														<div class="input-group">
+															<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtInteres" name="txtInteres" required=""
+															       onkeypress="return controlTag(event);">
+															<div class="input-group-append">
+																<span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
 															</div>
 														</div>
-														<!-- /.card-footer-->
 													</div>
 												</div>
 												<!-- /.row -->
-											</form>
+												<!-- /input-group -->
+												<div class="row">
+													<div class="col-md-4">
+														<label for="listFormPago">Forma de Pago <span class="required">*</span></label>
+														<select class="form-control select2" id="listFormPago" name="listFormPago" required="">
+															<option value="1">Diario</option>
+															<option value="2">Mensual</option>
+															<option value="3">Quincenal</option>
+															<option value="4">Semanal</option>
+														</select>
+													</div>
+													<div class="col-md-4">
+														<label for="listMoneda">T. Moneda <span class="required">*</span></label>
+														<select class="form-control select2" id="listMoneda" name="listMoneda" required="">
+															<option value="1">COP</option>
+															<option value="2">USD</option>
+															<option value="3">EUR</option>
+														</select>
+													</div>
+													<div class="col-md-4">
+														<label for="txtFecha">Fecha Emisión <span class="required">*</span></label>
+														<div class="input-group date" id="datetimepicker" data-target-input="nearest">
+															<input type="text" id="datePicker" class="form-control datetimepicker-input" data-target="#datetimepicker" required="">
+															<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+																<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+															</div>
+														</div>
+													</div>
+												</div> <!-- /.row -->
+												<!-- /input-group -->
+											</div>
+											<!-- /.card-body -->
+											<div class="row">
+												<div class="col-md-4">
+													<div class="card-footer">
+														<button type="button" onclick="btnCalcular();" class="btn btn-block btn-danger btn-sm"><i class="fa-solid fa-calculator
+												mr-2"></i><b>CALCULAR</b></button>
+													</div>
+												</div>
+											</div> <!-- /.row -->
+											<div class="row">
+												<div class="col-12">
+													<div class="card-footer">
+														<div class="tile">
+															<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
+															<table id="tableCuotas" class="table table-striped table-bordered table-sm">
+																<thead align="center">
+																<tr>
+																	<th>#</th>
+																	<th>Fecha de Pago</th>
+																	<th>Monto Cuota</th>
+																	<th>Interes</th>
+																	<th>Capital</th>
+																	<th>Saldo</th>
+																</tr>
+																</thead>
+																<tbody>
+																</tbody>
+															</table>
+															<!-- /.Table -->
+														</div>
+													</div>
+													<!-- /.card-footer-->
+												</div>
+											</div>
+											<!-- /.row -->
 											<!-- /.form -->
 										</div>
 										<!-- /.card -->
