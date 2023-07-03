@@ -67,7 +67,8 @@
 															<div class="input-group-prepend">
 																<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
 															</div>
-															<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required="" disabled="">
+															<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required=""
+															       disabled="">
 														</div>
 													</div>
 												</div>
@@ -109,18 +110,18 @@
 													<div class="col-md-4">
 														<label for="listFormPago">Forma de Pago <span class="required">*</span></label>
 														<select class="form-control select2" id="listFormPago" name="listFormPago" required="">
-															<option value="1">Diario</option>
-															<option value="2">Mensual</option>
-															<option value="3">Quincenal</option>
-															<option value="4">Semanal</option>
+															<option value="diario">Diario</option>
+															<option value="Mensual">Mensual</option>
+															<option value="Quincenal">Quincenal</option>
+															<option value="Semanal">Semanal</option>
 														</select>
 													</div>
 													<div class="col-md-4">
 														<label for="listMoneda">T. Moneda <span class="required">*</span></label>
 														<select class="form-control select2" id="listMoneda" name="listMoneda" required="">
-															<option value="1">COP</option>
-															<option value="2">USD</option>
-															<option value="3">EUR</option>
+															<option value="COP">COP</option>
+															<option value="USD">USD</option>
+															<option value="EUR">EUR</option>
 														</select>
 													</div>
 													<div class="col-md-4">
@@ -183,19 +184,19 @@
 												<div class="row">
 													<div class="col-md-12 text-center">
 														<span>Valor por Cuota</span>
-														<h4><span id="valorCuota" class="font-weight-bold"> $ 0.00</span></h4>
+														<h4><span id="valorCuota" class="font-weight-bold">0,00</span></h4>
 													</div>
 												</div>
 												<div class="row">
 													<div class="col-md-12 text-center">
 														<span>Interes</span>
-														<h4><span id="Interes" class="font-weight-bold">$ 0.00</span></h4>
+														<h4><span id="Interes" class="font-weight-bold">0,00</span></h4>
 													</div>
 												</div>
 												<div class="row">
 													<div class="col-md-12 text-center">
 														<span>Monto Total</span>
-														<h4><span id="montoTotal" class="font-weight-bold">$ 0.00</span></h4>
+														<h4><span id="montoTotal" class="font-weight-bold">0,00</span></h4>
 													</div>
 												</div>
 											</div>
@@ -211,7 +212,7 @@
 											</div>
 											<div class="card-body">
 												<button type="button" class="btn btn-block btn-info"><b>IMP. PRESTAMO</b></button>
-												<button type="button" onclick="resetFormulario();" class="btn btn-block btn-danger"><b>LIMPIAR CAMPOS</b></button>
+												<button type="button" onclick="btnLimpiarForm();" class="btn btn-block btn-danger"><b>LIMPIAR CAMPOS</b></button>
 											</div>
 										</div>
 										<!-- /.card -->
