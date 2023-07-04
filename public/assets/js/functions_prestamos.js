@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			let formData = new FormData(formPrestamo);
 
 			/** Agrega otras variables al objeto FormData */
-			formData.append('fecha_inicial', fecha);
+			formData.append('fecha_prestamo', fecha);
 			formData.append('valor_cuota', cuota);
 			formData.append('valor_interes', interes);
 			formData.append('valor_total', total);

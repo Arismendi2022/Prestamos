@@ -15,9 +15,42 @@
 		
 		public function setPrestamo()
 		{
-			dep($_POST);
+			if ($_POST) {
+				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtMonto']) || empty($_POST['txtInteres']) || empty(['txtCuotas']) || empty(['valor_cuota']) || empty
+					(['listFormPago']) || empty(['listMoneda']) || empty(['fecha_prestamo'])) {
+					
+					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
+				} else {
+					/** cabecera prestamos */
+					$idUsuario = intval($_POST['idUsuario']);
+					$intMonto = cleanMillares($_POST['txtMonto']);
+					$intInteres = intval($_POST['txtInteres']);
+					$intCuotas = intval($_POST['txtCuotas']);
+					$intValorCuota = intval($_POST['valor_cuota']);
+					$strFormaPago = strClean($_POST['listFormPago']);
+					$strMoneda = strClean($_POST['listMoneda']);
+					$dtFecha = date("Y-m-d", strtotime($_POST['fecha_prestamo']));
+					
+					$request_user = $this->model->insertPrestamo($idUsuario,
+						$intMonto,
+						$intInteres,
+						$intCuotas,
+						$intValorCuota,
+						$strFormaPago,
+						$strMoneda,
+						$dtFecha);
+					
+					/** Detalle prestamos */
+					
+					if ($request_user > 0) {
+						$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+					} else {
+						$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+					}
+				}
+				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+			}
 			die();
-			
 		}
 		
 		public function Prestamos()

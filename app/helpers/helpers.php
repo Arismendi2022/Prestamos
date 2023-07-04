@@ -100,6 +100,11 @@
 		return $string;
 	}
 	
+	/** Elimina el punto en los millares */
+	function cleanMillares($numero) {
+		return str_replace(".", "", $numero); // Elimina el punto en los millares
+	}
+	
 	//Genera una contraseña de 10 caracteres
 	function passGenerator($length = 10)
 	{
