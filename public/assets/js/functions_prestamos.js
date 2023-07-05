@@ -88,8 +88,23 @@ document.addEventListener('DOMContentLoaded', function () {
 			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 			let ajaxUrl = base_url + '/Prestamos/setPrestamo';
 			request.open("POST", ajaxUrl, true);
-			request.send(formData)
+			request.send(formData);
+
+			request.onreadystatechange = function () {
+				if (request.readyState == 4 && request.status == 200) {
+					let objData = JSON.parse(request.responseText);
+					if (objData.status) {
+
+						btnLimpiarForm();
+						alerta("Prestamos", objData.msg, "success");
+						tableListClientes.api().ajax.reload();
+					} else {
+						alerta("Error", objData.msg, "error");
+					}
+				}
+			}
 		}
+
 	}
 	/** querySelector **/
 
@@ -198,7 +213,7 @@ function btnCalcular() {
 
 }
 
-function fntAgregar(idpersona) {
+function fntBuscarCliente(idpersona) {
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	let ajaxUrl = base_url + '/Prestamos/getClienteLoan/' + idpersona;
 	request.open("GET", ajaxUrl, true);
@@ -213,7 +228,7 @@ function fntAgregar(idpersona) {
 
 				$('#modalListClientes').modal('hide');
 			} else {
-				alerta("Atención", objData.msg, "error");
+				alerta("", objData.msg, "error");
 			}
 		}
 	}

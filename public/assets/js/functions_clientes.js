@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					if (objData.status) {
 						$('#modalFormCliente').modal("hide");
 						formCliente.reset();
-						alerta("Usuarios", objData.msg, "success");
+						alerta("Clientes", objData.msg, "success");
 						tableClientes.api().ajax.reload();
 					} else {
 						alerta("Error", objData.msg, "error");

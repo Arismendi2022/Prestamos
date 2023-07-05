@@ -101,7 +101,7 @@
 	}
 	
 	/** Elimina el punto en los millares */
-	function cleanMillares($numero) {
+	function quitarMillar($numero) {
 		return str_replace(".", "", $numero); // Elimina el punto en los millares
 	}
 	

@@ -16,6 +16,12 @@
 		public function setPrestamo()
 		{
 			if ($_POST) {
+				
+				$datos =  quitarMillar($_POST['datos']);
+				
+				dep($datos);
+				exit;
+				
 				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtMonto']) || empty($_POST['txtInteres']) || empty(['txtCuotas']) || empty(['valor_cuota']) || empty
 					(['listFormPago']) || empty(['listMoneda']) || empty(['fecha_prestamo'])) {
 					
@@ -23,14 +29,14 @@
 				} else {
 					/** cabecera prestamos */
 					$idUsuario = intval($_POST['idUsuario']);
-					$intMonto = cleanMillares($_POST['txtMonto']);
+					$intMonto = intval(quitarMillar($_POST['txtMonto']));
 					$intInteres = intval($_POST['txtInteres']);
 					$intCuotas = intval($_POST['txtCuotas']);
-					$intValorCuota = intval($_POST['valor_cuota']);
+					$intValorCuota = intVal(quitarMillar($_POST['valor_cuota']));
 					$strFormaPago = strClean($_POST['listFormPago']);
 					$strMoneda = strClean($_POST['listMoneda']);
 					$dtFecha = date("Y-m-d", strtotime($_POST['fecha_prestamo']));
-					
+				
 					$request_user = $this->model->insertPrestamo($idUsuario,
 						$intMonto,
 						$intInteres,
@@ -80,7 +86,7 @@
 					}
 					
 					if ($_SESSION['permisosMod']['r']) {
-						$btnAgregar = '<button type="button" class="btn btn-info btn-sm" onClick="fntAgregar(' . $arrData[$i]['idpersona'] . ')" title="Agregar Cliente">
+						$btnAgregar = '<button type="button" class="btn btn-info btn-sm" onClick="fntBuscarCliente(' . $arrData[$i]['idpersona'] . ')" title="Agregar Cliente">
 							<i class="fa-solid fa-plus"></i></button>';
 					}
 					

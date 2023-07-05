@@ -27,12 +27,11 @@
 			return $request;
 		}
 		
-		public function insertPrestamo(int $idUsuario, int $intMonto, int $intInteres, int $intCuotas, int $intValorCuota, string $strFormaPago, string $strMoneda,
-																			 $dtFecha)
+		public function insertPrestamo(int $idUsuario, int $intMonto, int $intInteres, int $intCuotas, int $intValorCuota, string $strFormaPago, string $strMoneda, $dtFecha)
 		{
 			$this->intidUsuario = $idUsuario;
 			$this->intMonto = $intMonto;
-			$this->intintInteres = $intInteres;
+			$this->intInteres = $intInteres;
 			$this->intCuotas = $intCuotas;
 			$this->intValorCuota = $intValorCuota;
 			$this->strFormaPago = $strFormaPago;
@@ -41,11 +40,11 @@
 			$return = 0;
 			
 			/** inserta cabecera prestamos */
-			$query_insert = "insert into prestamos(personaid,monto_credito,interes,mun_cuotas,valor_cuota,forma_pago,moneda,fecha_prestamo)
+			$query_insert = "insert into prestamos(personaid,monto_credito,interes,num_cuotas,valor_cuota,forma_pago,moneda,fecha_prestamo)
 												values(?,?,?,?,?,?,?,?)";
 			$arrData = array($this->intidUsuario,
 				$this->intMonto,
-				$this->intIntereses,
+				$this->intInteres,
 				$this->intCuotas,
 				$this->intValorCuota,
 				$this->strFormaPago,
