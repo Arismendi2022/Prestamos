@@ -17,11 +17,6 @@
 		{
 			if ($_POST) {
 				
-				$datos =  quitarMillar($_POST['datos']);
-				
-				dep($datos);
-				exit;
-				
 				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtMonto']) || empty($_POST['txtInteres']) || empty(['txtCuotas']) || empty(['valor_cuota']) || empty
 					(['listFormPago']) || empty(['listMoneda']) || empty(['fecha_prestamo'])) {
 					
@@ -36,7 +31,7 @@
 					$strFormaPago = strClean($_POST['listFormPago']);
 					$strMoneda = strClean($_POST['listMoneda']);
 					$dtFecha = date("Y-m-d", strtotime($_POST['fecha_prestamo']));
-				
+					
 					$request_user = $this->model->insertPrestamo($idUsuario,
 						$intMonto,
 						$intInteres,
@@ -46,7 +41,30 @@
 						$strMoneda,
 						$dtFecha);
 					
-					/** Detalle prestamos */
+					/** Detalle prestamo */
+					$datos = quitarMillar($_POST['datos']);
+					
+					$listaPrestamo = [];
+					for ($i = 0; $i < count($datos); ++$i) {
+						
+						$listaPrestamo = explode(",", $datos[$i]);
+						
+						$nroCuota = strClean($listaPrestamo[0]);
+						$fechaVencimiento = strClean($listaPrestamo[1]);
+						$cuota = strClean($listaPrestamo[2]);
+						$interes = strClean($listaPrestamo[3]);
+						$capital = strClean($listaPrestamo[4]);
+						$saldo = strClean($listaPrestamo[5]);
+						
+						$request_user = $this->model->insertPrestamoItems($idUsuario,
+							$nroCuota,
+							$fechaVencimiento,
+							$cuota,
+							$interes,
+							$capital,
+							$saldo);
+					}
+					/** Final Detalle prestamo */
 					
 					if ($request_user > 0) {
 						$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
@@ -97,7 +115,7 @@
 			die();
 		}
 		
-		public function getClienteloan($idpersona)
+		public function getClienteLoan($idpersona)
 		{
 			if ($_SESSION['permisosMod']['r']) {
 				$idusuario = intval($idpersona);

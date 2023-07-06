@@ -29,7 +29,7 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-11" style="width: auto; margin: auto auto;">
 					<div class="card card-outline card-light shadow">
 						<div class="card-header">
 							<h3 class="card-title w-100 text-center"><b>FORMULARIO PRESTAMOS</b></h3>

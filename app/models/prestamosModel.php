@@ -59,6 +59,13 @@
 			$arrData = array(1);
 			$request = $this->update($sql,$arrData);
 			
+			/** actualizamos el consecutivo del prestamo */
+			$sql = "CALL consecutivoPrestamo()";
+			$request = $this->select($sql);
+			$consecutivo = $request['consecutivo'];
+			
+			/** inserta detalle prestamos */
+			
 			/** retornamos a controlador prestamos */
 			return $return;
 		}

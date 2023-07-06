@@ -109,8 +109,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	/** querySelector **/
 
 });
-
 /** Fin addEventListener */
+
 
 /** Calcula la amortizacion del prestamo metodo frances **/
 function btnCalcular() {
@@ -174,7 +174,8 @@ function btnCalcular() {
 	const formatter = new Intl.NumberFormat('es-CO', {
 		/*style: 'currency',
 		currency: 'USD',*/
-		minimumFractionDigits: 2, round: Math.round
+		minimumFractionDigits: 0,
+		round: Math.round
 	})
 
 	/** agregamos los valores calculados */
