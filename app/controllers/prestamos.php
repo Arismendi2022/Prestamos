@@ -11,19 +11,50 @@
 				die();
 			}
 			getPermisos(MPRESTAMOS);
+			
+		}
+		
+		public function Prestamos()
+		{
+			if (empty($_SESSION['permisosMod']['r'])) {
+				header("Location:" . base_url() . '/dashboard');
+			}
+			
+			$data['page_tag'] = "Prestamos";
+			$data['page_title'] = "Prestamos - <small> Sistema de Crédito</small>";
+			$data['page_name'] = "prestamos";
+			$data['page_functions_js'] = "functions_prestamos.js";
+			$this->views->getView($this, "prestamos", $data);
 		}
 		
 		public function setPrestamo()
 		{
 			if ($_POST) {
 				
-				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtMonto']) || empty($_POST['txtInteres']) || empty(['txtCuotas']) || empty(['valor_cuota']) || empty
+				
+				$datos = json_decode($_POST['datos']);
+				
+				dep($datos);
+				exit;
+				
+			}
+			
+			// Assuming you have a database connection established
+			/*	foreach ($data as $row) {
+					// Assuming you have a table named 'your_table' with columns 'column1', 'column2', etc.
+					$column1 = $row[0];
+					$column2 = $row[1];
+				}
+				*/
+				
+				
+				/*if (empty($_POST['txtIdentificacion']) || empty($_POST['txtMonto']) || empty($_POST['txtInteres']) || empty(['txtCuotas']) || empty(['valor_cuota']) || empty
 					(['listFormPago']) || empty(['listMoneda']) || empty(['fecha_prestamo'])) {
 					
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
-				} else {
+				} else {*/
 					/** cabecera prestamos */
-					$idUsuario = intval($_POST['idUsuario']);
+				/*	$idUsuario = intval($_POST['idUsuario']);
 					$intMonto = intval(quitarMillar($_POST['txtMonto']));
 					$intInteres = intval($_POST['txtInteres']);
 					$intCuotas = intval($_POST['txtCuotas']);
@@ -40,9 +71,9 @@
 						$strFormaPago,
 						$strMoneda,
 						$dtFecha);
-					
+					*/
 					/** Detalle prestamo */
-					$datos = quitarMillar($_POST['datos']);
+					/*$datos = $_POST['datos'];
 					
 					$listaPrestamo = [];
 					for ($i = 0; $i < count($datos); ++$i) {
@@ -50,44 +81,32 @@
 						$listaPrestamo = explode(",", $datos[$i]);
 						
 						$nroCuota = strClean($listaPrestamo[0]);
-						$fechaVencimiento = strClean($listaPrestamo[1]);
-						$cuota = strClean($listaPrestamo[2]);
-						$interes = strClean($listaPrestamo[3]);
-						$capital = strClean($listaPrestamo[4]);
-						$saldo = strClean($listaPrestamo[5]);
+						$dtFecha = date('Y-m-d', strtotime(strClean($listaPrestamo[1])));
+						$intCuota = strClean($listaPrestamo[2]);
+						$intInteres = strClean($listaPrestamo[3]);
+						$intCapital = strClean($listaPrestamo[4]);
+						$intSaldo = strClean($listaPrestamo[5]);
 						
-						$request_user = $this->model->insertPrestamoItems($idUsuario,
-							$nroCuota,
-							$fechaVencimiento,
-							$cuota,
-							$interes,
-							$capital,
-							$saldo);
-					}
+						$request_user = $this->model->insertPrestamoItems($nroCuota,
+							$dtFecha,
+							$intCuota,
+							$intInteres,
+							$intCapital,
+							$intSaldo);
+					}*/
+					
+					
 					/** Final Detalle prestamo */
 					
-					if ($request_user > 0) {
+				/*	if ($request_user > 0) {
 						$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
 					} else {
 						$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
 					}
 				}
 				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-			}
-			die();
-		}
-		
-		public function Prestamos()
-		{
-			if (empty($_SESSION['permisosMod']['r'])) {
-				header("Location:" . base_url() . '/dashboard');
-			}
-			
-			$data['page_tag'] = "Prestamos";
-			$data['page_title'] = "Prestamos - <small> Sistema de Crédito</small>";
-			$data['page_name'] = "prestamos";
-			$data['page_functions_js'] = "functions_prestamos.js";
-			$this->views->getView($this, "prestamos", $data);
+			}*/
+			/*die();*/
 		}
 		
 		public function getClientesLoan()

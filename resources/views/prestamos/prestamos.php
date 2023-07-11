@@ -3,7 +3,7 @@
 	getModal('modalPrestamos', $data);
 ?>
 <!-- Content Wrapper. Contains page content -->
-<div id="contentAjax"></div>
+<div id="contentAjax" xmlns="http://www.w3.org/1999/html"></div>
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<div class="content-header">
@@ -150,7 +150,7 @@
 													<div class="card-footer">
 														<div class="tile">
 															<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
-															<table id="tableCuotas" class="table table-striped table-bordered table-sm">
+															<table id="tableCuotas" class="table table-striped table-bordered table-sm w-100">
 																<thead align="center">
 																<tr>
 																	<th>#</th>
@@ -201,7 +201,7 @@
 												</div>
 											</div>
 											<div class="card-body">
-												<button id="btnActionForm" class="btn btn-block btn-success" type="submit"><span id="btnText"><b>GUARDAR PRESTAMO</b></span>
+												<button id="btnActionForm" class="btn btn-block btn-success" type="submit"><span id="btnText"><b>GUARDAR PRESTAMO</b></span></button>
 											</div>
 											<!-- /.card-body -->
 										</div>

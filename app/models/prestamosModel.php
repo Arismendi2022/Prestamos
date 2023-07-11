@@ -58,16 +58,42 @@
 			$sql = "UPDATE persona SET prestamos = ? WHERE idpersona = $this->intIdUsuario";
 			$arrData = array(1);
 			$request = $this->update($sql,$arrData);
-			
+			/** retornamos a controlador prestamos */
+			return true;
+		}
+		
+		/** inserta detalle prestamos */
+		public function insertPrestamoItems(int $nroCuota, $dtFecha, int $intCuota, int $intInteres,int $intCapital,int $intSaldo)
+		{
 			/** actualizamos el consecutivo del prestamo */
 			$sql = "CALL consecutivoPrestamo()";
 			$request = $this->select($sql);
 			$consecutivo = $request['consecutivo'];
 			
-			/** inserta detalle prestamos */
+			$this->intConsecutivo = $consecutivo;
+			$this->nroCuota = $nroCuota;
+			$this->dtFecha = $dtFecha;
+			$this->intCuota = $intCuota;
+			$this->intInteres = $intInteres;
+			$this->intCapital = $intCapital;
+			$this->intSaldo = $intSaldo;
+			$return = 0;
 			
-			/** retornamos a controlador prestamos */
-			return $return;
+			/** inserta items prestamo_detalle */
+			$query_insert = "insert into pagos(prestamoid,num_cuota,fecha_cuota,valor_cuota,interes,capital,saldo)
+												values(?,?,?,?,?,?,?)";
+			$arrData = array($this->intConsecutivo,
+				$this->nroCuota,
+				$this->dtFecha,
+				$this->intCuota,
+				$this->intInteres,
+				$this->intCapital,
+				$this->intSaldo);
+			$request_insert = $this->insert($query_insert, $arrData);
+			$return = $request_insert;
+			
+			return true;
+			
 		}
 		
 		
