@@ -36,7 +36,7 @@
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
 				} else {
 					/** cabecera prestamos */
-					/*$idUsuario = intval($_POST['idUsuario']);
+					$idUsuario = intval($_POST['idUsuario']);
 					$intMonto = intval(quitarMillar($_POST['txtMonto']));
 					$intInteres = intval($_POST['txtInteres']);
 					$intCuotas = intval($_POST['txtCuotas']);
@@ -52,7 +52,7 @@
 						$intValorCuota,
 						$strFormaPago,
 						$strMoneda,
-						$dtFecha);*/
+						$dtFecha);
 					
 					/** Detalle prestamo */
 					$datos = json_decode($_POST['datos'], true);

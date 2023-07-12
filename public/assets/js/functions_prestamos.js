@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		request.open("POST", ajaxUrl, true);
 		request.send(formData);
 
-		/*request.onreadystatechange = function () {
+		request.onreadystatechange = function () {
 			if (request.readyState == 4 && request.status == 200) {
 				let objData = JSON.parse(request.responseText);
 				if (objData.status) {
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					alerta("Error", objData.msg, "error");
 				}
 			}
-		}*/
+		}
 	}
 });
 /** Fin document addEventListener */
@@ -109,10 +109,10 @@ $(document).ready(function () {
 
 	});
 	/** Datatable de listado de préstamos */
-	/*tablePrestamos = $('#tablePrestamos').dataTable({
+	tablePrestamos = $('#tablePrestamos').dataTable({
 		"aProcessing": true, "aServerSide": true, "language": {
 			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-		}, /!*"ajax": {
+		}, /*"ajax": {
 			"url": " " + base_url + "/Prestamos/getClientesLoan",
 			"dataSrc": ""
 		},
@@ -123,7 +123,7 @@ $(document).ready(function () {
 			{"data": "telefono"},
 			{"data": "prestamos"},
 			{"data": "options"}
-		],*!/
+		],*/
 		'dom': 'lBfrtip', 'buttons': [{
 			"extend": "copyHtml5", "text": "<i class='far fa-copy'></i> Copiar", "titleAttr": "Copiar", "className": "btn btn-secondary"
 		}, {
@@ -136,10 +136,9 @@ $(document).ready(function () {
 
 		"resonsieve": "true", "bDestroy": true, "iDisplayLength": 10, "order": [[0, "desc"]]
 
-	});*/
+	});
 
 });
-
 /** Fin Document Ready */
 
 /** Calcula la amortizacion del prestamo metodo frances */
