@@ -97,7 +97,7 @@
 		$string = str_ireplace("[", "", $string);
 		$string = str_ireplace("]", "", $string);
 		$string = str_ireplace("==", "", $string);
-		$string = str_replace('"', '', $string);
+		//$string = str_replace('"', '', $string);
 		return $string;
 	}
 	

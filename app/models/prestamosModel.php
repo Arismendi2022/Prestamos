@@ -79,7 +79,7 @@
 			$this->intSaldo = $intSaldo;
 			$return = 0;
 			
-			/** inserta items prestamo_detalle */
+			/** inserta items pagos */
 			$query_insert = "insert into pagos(prestamoid,num_cuota,fecha_cuota,valor_cuota,interes,capital,saldo)
 												values(?,?,?,?,?,?,?)";
 			$arrData = array($this->intConsecutivo,
@@ -92,10 +92,9 @@
 			$request_insert = $this->insert($query_insert, $arrData);
 			$return = $request_insert;
 			
-			return true;
+			return $return;
 			
 		}
-		
 		
 	}
 	/** End of file prestamosModel.php **/

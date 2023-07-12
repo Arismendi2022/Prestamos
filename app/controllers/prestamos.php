@@ -30,31 +30,13 @@
 		public function setPrestamo()
 		{
 			if ($_POST) {
-				
-				
-				$datos = json_decode($_POST['datos']);
-				
-				dep($datos);
-				exit;
-				
-			}
-			
-			// Assuming you have a database connection established
-			/*	foreach ($data as $row) {
-					// Assuming you have a table named 'your_table' with columns 'column1', 'column2', etc.
-					$column1 = $row[0];
-					$column2 = $row[1];
-				}
-				*/
-				
-				
-				/*if (empty($_POST['txtIdentificacion']) || empty($_POST['txtMonto']) || empty($_POST['txtInteres']) || empty(['txtCuotas']) || empty(['valor_cuota']) || empty
+				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtMonto']) || empty($_POST['txtInteres']) || empty(['txtCuotas']) || empty(['valor_cuota']) || empty
 					(['listFormPago']) || empty(['listMoneda']) || empty(['fecha_prestamo'])) {
 					
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
-				} else {*/
+				} else {
 					/** cabecera prestamos */
-				/*	$idUsuario = intval($_POST['idUsuario']);
+					/*$idUsuario = intval($_POST['idUsuario']);
 					$intMonto = intval(quitarMillar($_POST['txtMonto']));
 					$intInteres = intval($_POST['txtInteres']);
 					$intCuotas = intval($_POST['txtCuotas']);
@@ -70,22 +52,26 @@
 						$intValorCuota,
 						$strFormaPago,
 						$strMoneda,
-						$dtFecha);
-					*/
-					/** Detalle prestamo */
-					/*$datos = $_POST['datos'];
+						$dtFecha);*/
 					
-					$listaPrestamo = [];
-					for ($i = 0; $i < count($datos); ++$i) {
+					/** Detalle prestamo */
+					$datos = json_decode($_POST['datos'], true);
+					
+					/** Recorrer los datos y enviarlos a la base de datos */
+					foreach ($datos as $row) {
+						$columna1 = $row[0];
+						$columna2 = $row[1];
+						$columna3 = $row[2];
+						$columna4 = $row[3];
+						$columna5 = $row[4];
+						$columna6 = $row[5];
 						
-						$listaPrestamo = explode(",", $datos[$i]);
-						
-						$nroCuota = strClean($listaPrestamo[0]);
-						$dtFecha = date('Y-m-d', strtotime(strClean($listaPrestamo[1])));
-						$intCuota = strClean($listaPrestamo[2]);
-						$intInteres = strClean($listaPrestamo[3]);
-						$intCapital = strClean($listaPrestamo[4]);
-						$intSaldo = strClean($listaPrestamo[5]);
+						$nroCuota = intval($columna1);
+						$dtFecha = date('Y-m-d', strtotime(strClean($columna2)));
+						$intCuota = intval(quitarMillar($columna3));
+						$intInteres = intval(quitarMillar($columna4));
+						$intCapital = intval(quitarMillar($columna5));
+						$intSaldo = intval(quitarMillar($columna6));
 						
 						$request_user = $this->model->insertPrestamoItems($nroCuota,
 							$dtFecha,
@@ -93,20 +79,18 @@
 							$intInteres,
 							$intCapital,
 							$intSaldo);
-					}*/
-					
+					}
 					
 					/** Final Detalle prestamo */
-					
-				/*	if ($request_user > 0) {
+					if ($request_user > 0) {
 						$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
 					} else {
 						$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
 					}
 				}
 				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-			}*/
-			/*die();*/
+			}
+			die();
 		}
 		
 		public function getClientesLoan()
