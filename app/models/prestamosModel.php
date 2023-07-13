@@ -10,7 +10,7 @@
 		
 		public function selectClientesLoan()
 		{
-			$sql = "SELECT idpersona,identificacion,concat(nombres, ' ', apellidos) as nombres,telefono,prestamos
+			$sql = "SELECT idpersona,identificacion,concat(nombres,' ',apellidos) as nombres,telefono,prestamos
 				FROM persona
 				WHERE rolid = " . RCLIENTES . " and estado != 0 ";
 			$request = $this->select_all($sql);
@@ -27,26 +27,29 @@
 			return $request;
 		}
 		
-		public function insertPrestamo(int $idUsuario, int $intMonto, int $intInteres, int $intCuotas, int $intValorCuota, string $strFormaPago, string $strMoneda, $dtFecha)
+		public function insertPrestamo(int $idUsuario, int $intMonto, int $intInteres, int $intCuotas, int $intValorCuota, int $intMontoTotal, string $strFormaPago, string
+	$strMoneda, $dtFecha)
 		{
 			$this->intidUsuario = $idUsuario;
 			$this->intMonto = $intMonto;
 			$this->intInteres = $intInteres;
 			$this->intCuotas = $intCuotas;
 			$this->intValorCuota = $intValorCuota;
+			$this->intMontoTotal = $intMontoTotal;
 			$this->strFormaPago = $strFormaPago;
 			$this->strMoneda = $strMoneda;
 			$this->dtFecha = $dtFecha;
 			$return = 0;
 			
 			/** inserta cabecera prestamos */
-			$query_insert = "insert into prestamos(personaid,monto_credito,interes,num_cuotas,valor_cuota,forma_pago,moneda,fecha_prestamo)
-												values(?,?,?,?,?,?,?,?)";
+			$query_insert = "insert into prestamos(personaid,monto_credito,interes,num_cuotas,valor_cuota,monto_total,forma_pago,moneda,fecha_prestamo)
+												values(?,?,?,?,?,?,?,?,?)";
 			$arrData = array($this->intidUsuario,
 				$this->intMonto,
 				$this->intInteres,
 				$this->intCuotas,
 				$this->intValorCuota,
+				$this->intMontoTotal,
 				$this->strFormaPago,
 				$this->strMoneda,
 				$this->dtFecha);
@@ -59,7 +62,7 @@
 			$arrData = array(1);
 			$request = $this->update($sql,$arrData);
 			/** retornamos a controlador prestamos */
-			return true;
+			return $return;
 		}
 		
 		/** inserta detalle prestamos */

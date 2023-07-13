@@ -30,8 +30,8 @@
 		public function setPrestamo()
 		{
 			if ($_POST) {
-				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtMonto']) || empty($_POST['txtInteres']) || empty(['txtCuotas']) || empty(['valor_cuota']) || empty
-					(['listFormPago']) || empty(['listMoneda']) || empty(['fecha_prestamo'])) {
+				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtMonto']) || empty($_POST['txtInteres']) || empty(['txtCuotas']) || empty(['valor_cuota'])
+					|| empty(['valor_total']) || empty(['listFormPago']) || empty(['listMoneda']) || empty(['fecha_prestamo'])) {
 					
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
 				} else {
@@ -41,6 +41,7 @@
 					$intInteres = intval($_POST['txtInteres']);
 					$intCuotas = intval($_POST['txtCuotas']);
 					$intValorCuota = intVal(quitarMillar($_POST['valor_cuota']));
+					$intMontoTotal = intVal(quitarMillar($_POST['valor_total']));
 					$strFormaPago = strClean($_POST['listFormPago']);
 					$strMoneda = strClean($_POST['listMoneda']);
 					$dtFecha = date("Y-m-d", strtotime($_POST['fecha_prestamo']));
@@ -50,6 +51,7 @@
 						$intInteres,
 						$intCuotas,
 						$intValorCuota,
+						$intMontoTotal,
 						$strFormaPago,
 						$strMoneda,
 						$dtFecha);

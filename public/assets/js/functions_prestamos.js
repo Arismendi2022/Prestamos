@@ -1,4 +1,4 @@
-var tableCuotas;
+let tableCuotas;
 //let tableListClientes;
 //let tablePrestamos;
 
@@ -30,64 +30,62 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	/** Guardar Préstamo */
-		//if (document.querySelector("#formPrestamo")) {
-	let formPrestamo = document.querySelector("#formPrestamo");
-	formPrestamo.onsubmit = function (e) {
-		e.preventDefault();
+	if (document.querySelector("#formPrestamo")) {
+		let formPrestamo = document.querySelector("#formPrestamo");
+		formPrestamo.onsubmit = function (e) {
+			e.preventDefault();
 
-		let fecha = $("#datePicker").val();
-		let cuota = $("#valorCuota").html();
-		let interes = $("#Interes").html();
-		let total = $("#montoTotal").html();
+			let fecha = $("#datePicker").val();
+			let cuota = $("#valorCuota").html();
+			let interes = $("#Interes").html();
+			let total = $("#montoTotal").html();
 
-		if (total == '0,00') {
-			alerta("", "Falta ejecutar CALCULAR préstamo.", "error");
-			return false;
-		}
+			if (total == '0,00') {
+				alerta("", "Falta ejecutar CALCULAR préstamo.", "error");
+				return false;
+			}
+			/** Obtener los datos de la DataTable */
+			var tabla = document.getElementById("tableCuotas");
+			var filas = tabla.getElementsByTagName("tr");
+			var matriz = [];
 
-		/** Obtener los datos de la DataTable */
-		var tabla = document.getElementById("tableCuotas");
-		var filas = tabla.getElementsByTagName("tr");
-		var matriz = [];
+			for (var i = 1; i < filas.length; i++) { // Comenzamos desde 1 para omitir la fila de encabezados
+				var celdas = filas[i].getElementsByTagName("td");
+				var filaMatriz = [];
 
-		for (var i = 1; i < filas.length; i++) { // Comenzamos desde 1 para omitir la fila de encabezados
-			var celdas = filas[i].getElementsByTagName("td");
-			var filaMatriz = [];
+				for (var j = 0; j < celdas.length; j++) {
+					filaMatriz.push(celdas[j].textContent);
+				}
 
-			for (var j = 0; j < celdas.length; j++) {
-				filaMatriz.push(celdas[j].textContent);
+				matriz.push(filaMatriz);
 			}
 
-			matriz.push(filaMatriz);
-		}
+			/** Crear un objeto FormData */
+			let formData = new FormData(formPrestamo);
+			formData.append('datos', JSON.stringify(matriz));
 
-		//console.log(matriz); // Imprimir la matriz en la consola
+			/** Agrega otras variables al objeto FormData */
+			formData.append('fecha_prestamo', fecha);
+			formData.append('valor_cuota', cuota);
+			formData.append('valor_interes', interes);
+			formData.append('valor_total', total);
 
-		/** Crear un objeto FormData */
-		let formData = new FormData(formPrestamo);
-		formData.append('datos', JSON.stringify(matriz));
+			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+			let ajaxUrl = base_url + '/Prestamos/setPrestamo';
+			request.open("POST", ajaxUrl, true);
+			request.send(formData);
 
-		/** Agrega otras variables al objeto FormData */
-		formData.append('fecha_prestamo', fecha);
-		formData.append('valor_cuota', cuota);
-		formData.append('valor_interes', interes);
-		formData.append('valor_total', total);
+			request.onreadystatechange = function () {
+				if (request.readyState == 4 && request.status == 200) {
+					let objData = JSON.parse(request.responseText);
+					if (objData.status) {
 
-		let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-		let ajaxUrl = base_url + '/Prestamos/setPrestamo';
-		request.open("POST", ajaxUrl, true);
-		request.send(formData);
-
-		request.onreadystatechange = function () {
-			if (request.readyState == 4 && request.status == 200) {
-				let objData = JSON.parse(request.responseText);
-				if (objData.status) {
-
-					btnLimpiarForm();
-					alerta("Prestamos", objData.msg, "success");
-					tableListClientes.api().ajax.reload();
-				} else {
-					alerta("Error", objData.msg, "error");
+						alerta("Guardar!", objData.msg, "success");
+						btnLimpiarForm();
+						tableListClientes.api().ajax.reload();
+					} else {
+						alerta("Error", objData.msg, "error");
+					}
 				}
 			}
 		}
@@ -96,16 +94,24 @@ document.addEventListener('DOMContentLoaded', function () {
 /** Fin document addEventListener */
 
 $(document).ready(function () {
-
 	/** Datatable de listado de clientes con prestamos */
 	tableListClientes = $('#tableListClientes').dataTable({
 		"aProcessing": true, "aServerSide": true, "language": {
 			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
 		}, "ajax": {
 			"url": " " + base_url + "/Prestamos/getClientesLoan", "dataSrc": ""
-		}, "columns": [{"data": "idpersona"}, {"data": "identificacion"}, {"data": "nombres"}, {"data": "telefono"}, {"data": "prestamos"}, {"data": "options"}],
-
-		"resonsieve": "true", "bDestroy": true, "iDisplayLength": 10, "order": [[0, "desc"]]
+		}, "columns": [
+			{"data": "idpersona"},
+			{"data": "identificacion"},
+			{"data": "nombres"},
+			{"data": "telefono"},
+			{"data": "prestamos"},
+			{"data": "options"}
+		],
+		"resonsieve": "true",
+		"bDestroy": true,
+		"iDisplayLength": 10,
+		"order": [[0, "desc"]]
 
 	});
 	/** Datatable de listado de préstamos */
@@ -124,21 +130,38 @@ $(document).ready(function () {
 			{"data": "prestamos"},
 			{"data": "options"}
 		],*/
-		'dom': 'lBfrtip', 'buttons': [{
-			"extend": "copyHtml5", "text": "<i class='far fa-copy'></i> Copiar", "titleAttr": "Copiar", "className": "btn btn-secondary"
-		}, {
-			"extend": "excelHtml5", "text": "<i class='fas fa-file-excel'></i> Excel", "titleAttr": "Esportar a Excel", "className": "btn btn-success"
-		}, {
-			"extend": "pdfHtml5", "text": "<i class='fas fa-file-pdf'></i> PDF", "titleAttr": "Esportar a PDF", "className": "btn btn-danger"
-		}, {
-			"extend": "csvHtml5", "text": "<i class='fas fa-file-csv'></i> CSV", "titleAttr": "Esportar a CSV", "className": "btn btn-info"
-		}],
-
-		"resonsieve": "true", "bDestroy": true, "iDisplayLength": 10, "order": [[0, "desc"]]
-
+		'dom': 'lBfrtip',
+		'buttons': [
+			{
+				"extend": "copyHtml5",
+				"text": "<i class='far fa-copy'></i> Copiar",
+				"titleAttr": "Copiar",
+				"className": "btn btn-secondary"
+			}, {
+				"extend": "excelHtml5",
+				"text": "<i class='fas fa-file-excel'></i> Excel",
+				"titleAttr": "Esportar a Excel",
+				"className": "btn btn-success"
+			}, {
+				"extend": "pdfHtml5",
+				"text": "<i class='fas fa-file-pdf'></i> PDF",
+				"titleAttr": "Esportar a PDF",
+				"className": "btn btn-danger"
+			}, {
+				"extend": "csvHtml5",
+				"text": "<i class='fas fa-file-csv'></i> CSV",
+				"titleAttr": "Esportar a CSV",
+				"className": "btn btn-info"
+			}
+		],
+		"resonsieve": "true",
+		"bDestroy": true,
+		"iDisplayLength": 10,
+		"order": [[0, "desc"]]
 	});
 
 });
+
 /** Fin Document Ready */
 
 /** Calcula la amortizacion del prestamo metodo frances */
