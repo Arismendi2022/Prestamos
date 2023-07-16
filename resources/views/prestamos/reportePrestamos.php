@@ -41,26 +41,20 @@
 									<thead>
 									<tr>
 										<th>iD</th>
-										<th>Nombres</th>
-										<th>Apellidos</th>
-										<th>Email</th>
-										<th>Teléfono</th>
-										<th>Rol</th>
+										<th>Cliente</th>
+										<th>Fecha Crédito</th>
+										<th>Forma</th>
+										<th>Cuotas</th>
+										<th>Valor Cuota</th>
+										<th>Monto Crédito</th>
+										<th>Total a Pagar</th>
+										<th>Total Abonos</th>
+										<th>Saldo</th>
 										<th>Estado</th>
 										<th class="text-center">Acciones</th>
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										<td>1</td>
-										<td>Carlos</td>
-										<td>Hernandez</td>
-										<td>carlos@info.com</td>
-										<td>3134502036</td>
-										<td>Administrador</td>
-										<td>Activo</td>
-										<td>X</td>
-									</tr>
 									</tbody>
 								</table>
 								<!-- /.Table -->

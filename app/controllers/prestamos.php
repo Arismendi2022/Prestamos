@@ -142,18 +142,48 @@
 			die();
 		}
 		
-		public function Listado()
+		public function reportePrestamos()
 		{
 			if (empty($_SESSION['permisosMod']['r'])) {
 				header("Location:" . base_url() . '/dashboard');
 			}
 			
-			$data['page_tag'] = "Listado";
-			$data['page_title'] = "Listado de Préstamos - <small> Sistema de Crédito</small>";
-			$data['page_name'] = "listado";
+			$data['page_tag'] = "Reporte de Prestamos";
+			$data['page_title'] = "Reporte de Préstamos - <small> Sistema de Crédito</small>";
+			$data['page_name'] = "reporte prestamos";
 			$data['page_functions_js'] = "functions_prestamos.js";
-			$this->views->getView($this, "listado", $data);
+			$this->views->getView($this, "reportePrestamos", $data);
 		}
+		
+		public function getPrestamos()
+		{
+			if ($_SESSION['permisosMod']['r']) {
+				$arrData = $this->model->selectPrestamos();
+				
+				for ($i = 0; $i < count($arrData); $i++) {
+					$btnView = '';
+					if ($arrData[$i]['estado'] == 1) {
+						$arrData[$i]['estado'] = '<span class="badge badge-danger">Pendiente</span>';
+					} else {
+						$arrData[$i]['estado'] = '<span class="badge badge-primary">Pagado</span>';
+					}
+					$arrData[$i]['valor_cuota'] = SMONEY . ' ' . formatMoney($arrData[$i]['valor_cuota']);
+					$arrData[$i]['monto_credito'] = SMONEY . ' ' . formatMoney($arrData[$i]['monto_credito']);
+					$arrData[$i]['monto_total'] = SMONEY . ' ' . formatMoney($arrData[$i]['monto_total']);
+					$arrData[$i]['abonos'] = SMONEY . ' ' . formatMoney($arrData[$i]['abonos']);
+					$arrData[$i]['saldo'] = SMONEY . ' ' . formatMoney($arrData[$i]['saldo']);
+					
+					if ($_SESSION['permisosMod']['r']) {
+						$btnView = '<button type="button" class="btn btn-primary btn-sm" onClick="fntViewInfo(' . $arrData[$i]['idprestamo'] . ')" title="Ver préstamo"><i class="far fa-eye"></i></button>';
+					}
+					$arrData[$i]['options'] = '<div class="text-center">' . $btnView . '</div>';
+					
+				}
+				echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
+		
 		
 	}
 	/** end file prestamos.php **/

@@ -64,7 +64,7 @@
 						</li>
 						<li class="nav-item">
 							<?php if(!empty($_SESSION['permisos'][3]['r'])){ ?>
-								<a href="<?=ROOT?>/prestamos/listado" class="nav-link">
+								<a href="<?=ROOT?>/prestamos/reportePrestamos" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
 									<p>Listado Préstamos</p>
 								</a>

@@ -110,7 +110,7 @@
 													<div class="col-md-4">
 														<label for="listFormPago">Forma de Pago <span class="required">*</span></label>
 														<select class="form-control select2" id="listFormPago" name="listFormPago" required="">
-															<option value="diario">Diario</option>
+															<option value="Diario">Diario</option>
 															<option value="Mensual">Mensual</option>
 															<option value="Quincenal">Quincenal</option>
 															<option value="Semanal">Semanal</option>
@@ -184,19 +184,19 @@
 												<div class="row">
 													<div class="col-md-12 text-center">
 														<span>Valor por Cuota</span>
-														<h4><span id="valorCuota" class="font-weight-bold">0,00</span></h4>
+														<h4><span id="valorCuota" class="font-weight-bold">0</span></h4>
 													</div>
 												</div>
 												<div class="row">
 													<div class="col-md-12 text-center">
 														<span>Interes</span>
-														<h4><span id="Interes" class="font-weight-bold">0,00</span></h4>
+														<h4><span id="Interes" class="font-weight-bold">0</span></h4>
 													</div>
 												</div>
 												<div class="row">
 													<div class="col-md-12 text-center">
 														<span>Monto Total</span>
-														<h4><span id="montoTotal" class="font-weight-bold">0,00</span></h4>
+														<h4><span id="montoTotal" class="font-weight-bold">0</span></h4>
 													</div>
 												</div>
 											</div>

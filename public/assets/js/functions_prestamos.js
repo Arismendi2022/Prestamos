@@ -1,6 +1,6 @@
 let tableCuotas;
-//let tableListClientes;
-//let tablePrestamos;
+let tableListClientes;
+let tablePrestamos;
 
 /** Evento para guardar el prestamo*/
 document.addEventListener('DOMContentLoaded', function () {
@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		"info": true,
 		"autoWidth": false,
 		"responsive": true,
-		"bDestroy": true,
 	});
 
 	/** Guardar Préstamo */
@@ -91,88 +90,19 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 });
+
 /** Fin document addEventListener */
-
-$(document).ready(function () {
-	/** Datatable de listado de clientes con prestamos */
-	tableListClientes = $('#tableListClientes').dataTable({
-		"aProcessing": true, "aServerSide": true, "language": {
-			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-		}, "ajax": {
-			"url": " " + base_url + "/Prestamos/getClientesLoan", "dataSrc": ""
-		}, "columns": [
-			{"data": "idpersona"},
-			{"data": "identificacion"},
-			{"data": "nombres"},
-			{"data": "telefono"},
-			{"data": "prestamos"},
-			{"data": "options"}
-		],
-		"resonsieve": "true",
-		"bDestroy": true,
-		"iDisplayLength": 10,
-		"order": [[0, "desc"]]
-
-	});
-	/** Datatable de listado de préstamos */
-	tablePrestamos = $('#tablePrestamos').dataTable({
-		"aProcessing": true, "aServerSide": true, "language": {
-			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-		}, /*"ajax": {
-			"url": " " + base_url + "/Prestamos/getClientesLoan",
-			"dataSrc": ""
-		},
-		"columns": [
-			{"data": "idpersona"},
-			{"data": "identificacion"},
-			{"data": "nombres"},
-			{"data": "telefono"},
-			{"data": "prestamos"},
-			{"data": "options"}
-		],*/
-		'dom': 'lBfrtip',
-		'buttons': [
-			{
-				"extend": "copyHtml5",
-				"text": "<i class='far fa-copy'></i> Copiar",
-				"titleAttr": "Copiar",
-				"className": "btn btn-secondary"
-			}, {
-				"extend": "excelHtml5",
-				"text": "<i class='fas fa-file-excel'></i> Excel",
-				"titleAttr": "Esportar a Excel",
-				"className": "btn btn-success"
-			}, {
-				"extend": "pdfHtml5",
-				"text": "<i class='fas fa-file-pdf'></i> PDF",
-				"titleAttr": "Esportar a PDF",
-				"className": "btn btn-danger"
-			}, {
-				"extend": "csvHtml5",
-				"text": "<i class='fas fa-file-csv'></i> CSV",
-				"titleAttr": "Esportar a CSV",
-				"className": "btn btn-info"
-			}
-		],
-		"resonsieve": "true",
-		"bDestroy": true,
-		"iDisplayLength": 10,
-		"order": [[0, "desc"]]
-	});
-
-});
-
-/** Fin Document Ready */
 
 /** Calcula la amortizacion del prestamo metodo frances */
 function btnCalcular() {
+	tableCuotas = $('#tableCuotas').dataTable()
 
 	let llenarTabla = document.querySelector('#tableCuotas tbody');
 	let txtIdentificacion = document.querySelector('#txtIdentificacion').value;
 	let montoCredito = document.querySelector('#txtMonto').value;
-	let plazoMeses = document.querySelector('#txtCuotas').value;
+	let cantidadPagos = document.querySelector('#txtCuotas').value;
 	let tasaInteresAnual = document.querySelector('#txtInteres').value;
-	let listPago = document.querySelector('#listFormPago').value;
+	let frecuenciaPago = document.querySelector('#listFormPago').value;
 	let listMoneda = document.querySelector('#listMoneda').value;
 	let fechaInicio = document.querySelector('#datePicker').value;
 
@@ -180,9 +110,9 @@ function btnCalcular() {
 	montoCredito = montoCredito.replace(/\./g, "");
 
 	/** Creamos un objeto dayjs con la fecha de inicio */
-	let mesActual = dayjs(fechaInicio).add(1, 'month');
+	let fechaActual = dayjs(fechaInicio).add(1, 'month');
 
-	if (txtIdentificacion == '' || montoCredito == '' || plazoMeses == '' || tasaInteresAnual == '' || listPago == '' || listMoneda == '' || fechaInicio == '') {
+	if (txtIdentificacion == '' || montoCredito == '' || cantidadPagos == '' || tasaInteresAnual == '' || cantidadPagos == '' || listMoneda == '' || fechaInicio == '') {
 		alerta("Atención", "Todos los campos son obligatorios.", "error");
 		return false;
 	}
@@ -192,13 +122,22 @@ function btnCalcular() {
 		llenarTabla.removeChild(llenarTabla.firstChild);
 	}
 
-	/** Calculamos la tasa de interés mensual */
-	const tasaInteresMensual = tasaInteresAnual / 12 / 100;
-	/** inicializamos variables a cero (0) *!/
-	let pagoInteres = 0, pagoCapital = 0, cuotaMes = 0;
+	/** Convertir la tasa de interés anual a tasa de interés periódica */
+	var tasaInteresPeriodica;
+	if (frecuenciaPago === 'Mensual') {
+		tasaInteresPeriodica = tasaInteresAnual / 12 / 100;
+	} else if (frecuenciaPago === 'Semanal') {
+		tasaInteresPeriodica = tasaInteresAnual / 52 / 100;
+	} else if (frecuenciaPago === 'Diario') {
+		tasaInteresPeriodica = tasaInteresAnual / 365 / 100;
+	} else if (frecuenciaPago === 'Quincenal') {
+		tasaInteresPeriodica = tasaInteresAnual / 24 / 100;
+	} else {
+		throw new Error('Frecuencia de pago no válida');
+	}
 
-	/** Calculamos la cuota mensual */
-	cuotaMes = montoCredito * (tasaInteresMensual / (1 - Math.pow(1 + tasaInteresMensual, -plazoMeses)));
+	/** para calcular la amortización del crédito utilizando el método francés */
+	cuotaMes = montoCredito * (tasaInteresPeriodica / (1 - Math.pow(1 + tasaInteresPeriodica, -cantidadPagos)));
 
 	/** formato de numeros */
 	const formatter = new Intl.NumberFormat('es-CO', {
@@ -209,31 +148,39 @@ function btnCalcular() {
 	})
 
 	/** agregamos los valores calculados */
-	const montoTotal = cuotaMes * plazoMeses
+	const montoTotal = cuotaMes * cantidadPagos
 	const intereses = montoTotal - montoCredito
 
 	document.querySelector("#valorCuota").innerHTML = formatter.format((cuotaMes.toFixed(0)));
 	document.querySelector("#Interes").innerHTML = formatter.format((intereses.toFixed(0)));
 	document.querySelector("#montoTotal").innerHTML = formatter.format((montoTotal.toFixed(0)));
 
-	//!* Array para almacenar los detalles de cada cuota *!/
-	//const detallesCuotas = [];
-
-	for (let i = 1; i <= plazoMeses; i++) {
-
-		pagoInteres = montoCredito * tasaInteresMensual;
+	/** Calcular calendario de amortización */
+	for (let i = 1; i <= cantidadPagos; i++) {
+		pagoInteres = montoCredito * tasaInteresPeriodica;
 		pagoCapital = cuotaMes - pagoInteres;
 		montoCredito = montoCredito - pagoCapital;
-
-		// * Formato fechas
-		let fecha = mesActual.format('DD-MM-YYYY');
-		//!* Avanzamos la fecha de vencimiento al próximo mes *!/
-		mesActual = mesActual.add(1, 'month');
-
+		/** Formato fechas */
+		const fechaPago = fechaActual.format('DD-MM-YYYY');
+		/** Pasar a la siguiente fecha de pago según la frecuencia */
+		switch (frecuenciaPago) {
+			case "Mensual":
+				fechaActual = fechaActual.add(1, "month");
+				break;
+			case "Semanal":
+				fechaActual = fechaActual.add(1, "week");
+				break;
+			case "Diario":
+				fechaActual = fechaActual.add(1, "day");
+				break;
+			case "Quincenal":
+				fechaActual = fechaActual.add(15, "day");
+				break;
+		}
 		var row = document.createElement('tr');
 		row.innerHTML = `
 			<td style="text-align: center;">${[i]}</td>
-			<td style="text-align: center;">${fecha}</td>
+			<td style="text-align: center;">${fechaPago}</td>
 			<td style="text-align: right;">${formatter.format((cuotaMes.toFixed(0)))}</td>
 			<td style="text-align: right;">${formatter.format((pagoInteres.toFixed(0)))}</td>
 			<td style="text-align: right;">${formatter.format((pagoCapital.toFixed(0)))}</td>
@@ -279,4 +226,89 @@ function btnLimpiarForm() {
 	$("#montoTotal").html("0,00");
 
 }
+
+$(document).ready(function () {
+	/** Datatable de listado de clientes con prestamos */
+	tableListClientes = $('#tableListClientes').dataTable({
+		"aProcessing": true, "aServerSide": true, "language": {
+			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+		}, "ajax": {
+			"url": " " + base_url + "/Prestamos/getClientesLoan", "dataSrc": ""
+		}, "columns": [
+			{"data": "idpersona"},
+			{"data": "identificacion"},
+			{"data": "nombres"},
+			{"data": "telefono"},
+			{"data": "prestamos"},
+			{"data": "options"}
+		],
+		"resonsieve": "true",
+		"bDestroy": true,
+		"iDisplayLength": 10,
+		"order": [[0, "desc"]]
+
+	});
+	/** Datatable de listado de préstamos */
+	tablePrestamos = $('#tablePrestamos').dataTable({
+		"aProcessing": true, "aServerSide": true, "language": {
+			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+		}, "ajax": {
+			"url": " " + base_url + "/Prestamos/getPrestamos",
+			"dataSrc": ""
+		},
+		"columns": [
+			{"data": "idprestamo"},
+			{"data": "cliente"},
+			{"data": "fecha"},
+			{"data": "forma_pago"},
+			{"data": "num_cuotas"},
+			{"data": "valor_cuota"},
+			{"data": "monto_credito"},
+			{"data": "monto_total"},
+			{"data": "abonos"},
+			{"data": "saldo"},
+			{"data": "estado"},
+			{"data": "options"}
+		],
+		"columnDefs": [
+			{'className': "textcenter", "targets": [3]},
+			{'className': "textcenter", "targets": [4]},
+			{'className': "textright", "targets": [5]},
+			{'className': "textright", "targets": [6]},
+			{'className': "textright", "targets": [7]},
+			{'className': "textright", "targets": [8]},
+			{'className': "textcenter", "targets": [9]}
+		],
+		'dom': 'lBfrtip',
+		'buttons': [
+			{
+				"extend": "copyHtml5",
+				"text": "<i class='far fa-copy'></i> Copiar",
+				"titleAttr": "Copiar",
+				"className": "btn btn-secondary"
+			}, {
+				"extend": "excelHtml5",
+				"text": "<i class='fas fa-file-excel'></i> Excel",
+				"titleAttr": "Esportar a Excel",
+				"className": "btn btn-success"
+			}, {
+				"extend": "pdfHtml5",
+				"text": "<i class='fas fa-file-pdf'></i> PDF",
+				"titleAttr": "Esportar a PDF",
+				"className": "btn btn-danger"
+			}, {
+				"extend": "csvHtml5",
+				"text": "<i class='fas fa-file-csv'></i> CSV",
+				"titleAttr": "Esportar a CSV",
+				"className": "btn btn-info"
+			}
+		],
+		"resonsieve": "true",
+		"bDestroy": true,
+		"iDisplayLength": 10,
+		"order": [[0, "desc"]]
+	});
+
+});
+/** Fin Document Ready */
 

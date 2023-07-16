@@ -28,7 +28,7 @@
 		}
 		
 		public function insertPrestamo(int $idUsuario, int $intMonto, int $intInteres, int $intCuotas, int $intValorCuota, int $intMontoTotal, string $strFormaPago, string
-	$strMoneda, $dtFecha)
+				$strMoneda, $dtFecha)
 		{
 			$this->intidUsuario = $idUsuario;
 			$this->intMonto = $intMonto;
@@ -96,6 +96,16 @@
 			$return = $request_insert;
 			
 			return $return;
+			
+		}
+		
+		public function selectPrestamos()
+		{
+			$sql = "SELECT idprestamo,cliente,DATE_FORMAT(fecha_prestamo, '%d-%m-%Y') as fecha,forma_pago,num_cuotas,valor_cuota,monto_credito,monto_total,abonos,
+       							(monto_total-abonos) as saldo,estado
+			FROM reportePrestamos";
+			$request = $this->select_all($sql);
+			return $request;
 			
 		}
 		
