@@ -4,30 +4,31 @@ let tablePrestamos;
 
 /** Evento para guardar el prestamo*/
 document.addEventListener('DOMContentLoaded', function () {
-	/** Inicializar Datatable de detalle cuotas préstamos */
-	tableCuotas = $('#tableCuotas').dataTable({
-		"aProcessing": true,
-		"aServerSide": true,
-		"language": {
-			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-		},
-		"columnDefs": [
-			{targets: [1], className: 'text-center'},
-			{targets: [2], className: 'text-center'},
-			{targets: [3], className: 'text-center'},
-			{targets: [4], className: 'text-center'},
-			{targets: [5], className: 'text-center'},
+		$(function () {
+			/** Inicializar Datatable de detalle cuotas préstamos */
+			tableCuotas = $('#tableCuotas').dataTable({
+				"aProcessing": true,
+				"aServerSide": true,
+				"language": {
+					"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+				},
+				"columnDefs": [
+					{targets: [1], className: 'text-rignt'},
+					{targets: [2], className: 'text-rignt'},
+					{targets: [3], className: 'text-rignt'},
+					{targets: [4], className: 'text-rignt'},
+					{targets: [5], className: 'text-rignt'},
 
-		],
-		"paging": true,
-		"lengthChange": false,
-		"searching": false,
-		"ordering": true,
-		"info": true,
-		"autoWidth": false,
-		"responsive": true,
-	});
-
+				],
+				"paging": true,
+				"lengthChange": false,
+				"searching": false,
+				"ordering": true,
+				"info": true,
+				"autoWidth": false,
+				"responsive": true,
+			});
+		});
 	/** Guardar Préstamo */
 	if (document.querySelector("#formPrestamo")) {
 		let formPrestamo = document.querySelector("#formPrestamo");
@@ -39,10 +40,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			let interes = $("#Interes").html();
 			let total = $("#montoTotal").html();
 
-			if (total == '0,00') {
+			/** Obtén la referencia a la DataTable */
+			let dataTable = $('#tableCuotas').DataTable();
+
+			/** Verifica si la DataTable no tiene registros */
+			if (dataTable.data().count() === 0) {
 				alerta("", "Falta ejecutar CALCULAR préstamo.", "error");
 				return false;
 			}
+
 			/** Obtener los datos de la DataTable */
 			var tabla = document.getElementById("tableCuotas");
 			var filas = tabla.getElementsByTagName("tr");
@@ -90,14 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 });
-
 /** Fin document addEventListener */
 
 /** Calcula la amortizacion del prestamo metodo frances */
 function btnCalcular() {
-	tableCuotas = $('#tableCuotas').dataTable()
 
-	let llenarTabla = document.querySelector('#tableCuotas tbody');
+	const llenarTabla = document.querySelector('#tableCuotas tbody');
 	let txtIdentificacion = document.querySelector('#txtIdentificacion').value;
 	let montoCredito = document.querySelector('#txtMonto').value;
 	let cantidadPagos = document.querySelector('#txtCuotas').value;
@@ -217,13 +221,15 @@ function openModalClientes() {
 
 /** funcion para limpiar el fomulario */
 function btnLimpiarForm() {
-	$("#tableCuotas tr").slice(1).remove();
+	let tabla = $('#tableCuotas').DataTable();
+	/** Borra todos los datos de la DataTable */
+	tabla.clear().draw();
 	document.getElementById("formPrestamo").reset();
 	$('#listFormPago').select2('val', '1');
 	$('#listMoneda').select2('val', '1');
-	$("#valorCuota").html("0,00");
-	$("#Interes").html("0,00");
-	$("#montoTotal").html("0,00");
+	$("#valorCuota").html("0");
+	$("#Interes").html("0");
+	$("#montoTotal").html("0");
 
 }
 
