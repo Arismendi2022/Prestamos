@@ -1,34 +1,11 @@
-let tableCuotas;
 let tableListClientes;
 let tablePrestamos;
+let tableCuotas
 
-/** Evento para guardar el prestamo*/
+
+
+	/** Evento para guardar el prestamo*/
 document.addEventListener('DOMContentLoaded', function () {
-		$(function () {
-			/** Inicializar Datatable de detalle cuotas préstamos */
-			tableCuotas = $('#tableCuotas').dataTable({
-				"aProcessing": true,
-				"aServerSide": true,
-				"language": {
-					"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-				},
-				"columnDefs": [
-					{targets: [1], className: 'text-rignt'},
-					{targets: [2], className: 'text-rignt'},
-					{targets: [3], className: 'text-rignt'},
-					{targets: [4], className: 'text-rignt'},
-					{targets: [5], className: 'text-rignt'},
-
-				],
-				"paging": true,
-				"lengthChange": false,
-				"searching": false,
-				"ordering": true,
-				"info": true,
-				"autoWidth": false,
-				"responsive": true,
-			});
-		});
 	/** Guardar Préstamo */
 	if (document.querySelector("#formPrestamo")) {
 		let formPrestamo = document.querySelector("#formPrestamo");
@@ -100,6 +77,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /** Calcula la amortizacion del prestamo metodo frances */
 function btnCalcular() {
+	/** Inicializar Datatable de detalle cuotas préstamos */
+	var calcular = $(function () {
+		tableCuotas = $('#tableCuotas').dataTable({
+			"aProcessing": true,
+			"aServerSide": true,
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+			},
+			"columnDefs": [
+				{targets: [1], className: 'text-rignt'},
+				{targets: [2], className: 'text-rignt'},
+				{targets: [3], className: 'text-rignt'},
+				{targets: [4], className: 'text-rignt'},
+				{targets: [5], className: 'text-rignt'},
+
+			],
+			"paging": true,
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+		});
+	});
 
 	const llenarTabla = document.querySelector('#tableCuotas tbody');
 	let txtIdentificacion = document.querySelector('#txtIdentificacion').value;
@@ -148,7 +150,7 @@ function btnCalcular() {
 		//style: 'currency',
 		currency: 'USD',
 		minimumFractionDigits: 0,
-		round: Math.round
+		round: Math.ceil
 	})
 
 	/** agregamos los valores calculados */
@@ -161,9 +163,9 @@ function btnCalcular() {
 
 	/** Calcular calendario de amortización */
 	for (let i = 1; i <= cantidadPagos; i++) {
-		pagoInteres = montoCredito * tasaInteresPeriodica;
-		pagoCapital = cuotaMes - pagoInteres;
-		montoCredito = montoCredito - pagoCapital;
+		pagoInteres = Math.abs(montoCredito * tasaInteresPeriodica);
+		pagoCapital = Math.abs(cuotaMes - pagoInteres);
+		montoCredito = Math.abs(montoCredito - pagoCapital);
 		/** Formato fechas */
 		const fechaPago = fechaActual.format('DD-MM-YYYY');
 		/** Pasar a la siguiente fecha de pago según la frecuencia */
@@ -193,6 +195,7 @@ function btnCalcular() {
 		llenarTabla.appendChild(row)
 	}
 }
+
 
 function fntBuscarCliente(idpersona) {
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
