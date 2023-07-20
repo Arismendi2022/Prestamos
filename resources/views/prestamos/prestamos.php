@@ -140,8 +140,8 @@
 											<div class="row">
 												<div class="col-md-4">
 													<div class="card-footer">
-														<button type="button" onclick="btnCalcular();" class="btn btn-block btn-danger btn-sm"><i class="fa-solid fa-calculator
-												mr-2"></i><b>CALCULAR</b></button>
+														<button type="button" id="btnCalcular" class="btn btn-block btn-danger btn-sm"><i class="fa-solid fa-calculator
+														mr-2"></i><b>CALCULAR</b></button>
 													</div>
 												</div>
 											</div> <!-- /.row -->
@@ -151,17 +151,17 @@
 														<div class="tile">
 															<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
 															<table id="tableCuotas" class="table table-striped table-bordered table-sm w-100">
-																<thead align="center">
+																<thead>
 																<tr>
 																	<th>#</th>
 																	<th>Fecha de Pago</th>
-																	<th>Monto Cuota</th>
-																	<th>Interes</th>
-																	<th>Capital</th>
-																	<th>Saldo</th>
+																	<th class="right-margin">Monto Cuota</th>
+																	<th class="right-margin">Interes</th>
+																	<th class="right-margin">Capital</th>
+																	<th class="right-margin">Saldo</th>
 																</tr>
 																</thead>
-																<tbody>
+																<tbody class="text-right">
 																</tbody>
 															</table>
 															<!-- /.Table -->

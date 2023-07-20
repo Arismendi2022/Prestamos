@@ -1,10 +1,9 @@
+//et tableCuotas;
 let tableListClientes;
 let tablePrestamos;
-let tableCuotas
 
 
-
-	/** Evento para guardar el prestamo*/
+/** Evento para guardar el prestamo*/
 document.addEventListener('DOMContentLoaded', function () {
 	/** Guardar Préstamo */
 	if (document.querySelector("#formPrestamo")) {
@@ -75,128 +74,126 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 /** Fin document addEventListener */
 
-/** Calcula la amortizacion del prestamo metodo frances */
-function btnCalcular() {
-	/** Inicializar Datatable de detalle cuotas préstamos */
-	var calcular = $(function () {
-		tableCuotas = $('#tableCuotas').dataTable({
-			"aProcessing": true,
-			"aServerSide": true,
-			"language": {
-				"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-			},
-			"columnDefs": [
-				{targets: [1], className: 'text-rignt'},
-				{targets: [2], className: 'text-rignt'},
-				{targets: [3], className: 'text-rignt'},
-				{targets: [4], className: 'text-rignt'},
-				{targets: [5], className: 'text-rignt'},
-
-			],
-			"paging": true,
-			"lengthChange": false,
-			"searching": false,
-			"ordering": true,
-			"info": true,
-			"autoWidth": false,
-			"responsive": true,
-		});
+/** Inicializar Datatable de detalle cuotas préstamos */
+$(document).ready(function () {
+	tableCuotas = $('#tableCuotas').dataTable({
+		"aProcessing": true,
+		"aServerSide": true,
+		"language": {
+			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+		},
+		"columnDefs": [
+			{'className': "textcenter", "targets": [0]},
+			{'className': "textcenter", "targets": [1]},
+			{'className': "textright", "targets": [2]},
+			{'className': "textright", "targets": [3]},
+			{'className': "textright", "targets": [4]},
+			{'className': "textright", "targets": [5]}
+		],
+		"paging": true,
+		"lengthChange": false,
+		"searching": false,
+		"ordering": true,
+		"info": true,
+		"autoWidth": false,
+		"responsive": true,
+		"bDestroy": true,
 	});
+	/** Calcula la amortizacion del prestamo metodo frances */
+	$('#btnCalcular').on('click', function () {
 
-	const llenarTabla = document.querySelector('#tableCuotas tbody');
-	let txtIdentificacion = document.querySelector('#txtIdentificacion').value;
-	let montoCredito = document.querySelector('#txtMonto').value;
-	let cantidadPagos = document.querySelector('#txtCuotas').value;
-	let tasaInteresAnual = document.querySelector('#txtInteres').value;
-	let frecuenciaPago = document.querySelector('#listFormPago').value;
-	let listMoneda = document.querySelector('#listMoneda').value;
-	let fechaInicio = document.querySelector('#datePicker').value;
+		//let llenarTabla = document.querySelector('#tableCuotas tbody');
+		let txtIdentificacion = document.querySelector('#txtIdentificacion').value;
+		let montoCredito = document.querySelector('#txtMonto').value;
+		let cantidadPagos = document.querySelector('#txtCuotas').value;
+		let tasaInteresAnual = document.querySelector('#txtInteres').value;
+		let frecuenciaPago = document.querySelector('#listFormPago').value;
+		let listMoneda = document.querySelector('#listMoneda').value;
+		let fechaInicio = document.querySelector('#datePicker').value;
 
-	/** Eliminar cualquier carácter que no sea un dígito */
-	montoCredito = montoCredito.replace(/\./g, "");
+		/** Eliminar cualquier carácter que no sea un dígito */
+		montoCredito = montoCredito.replace(/\./g, "");
 
-	/** Creamos un objeto dayjs con la fecha de inicio */
-	let fechaActual = dayjs(fechaInicio).add(1, 'month');
+		/** Creamos un objeto dayjs con la fecha de inicio */
+		let fechaActual = dayjs(fechaInicio).add(1, 'month');
 
-	if (txtIdentificacion == '' || montoCredito == '' || cantidadPagos == '' || tasaInteresAnual == '' || cantidadPagos == '' || listMoneda == '' || fechaInicio == '') {
-		alerta("Atención", "Todos los campos son obligatorios.", "error");
-		return false;
-	}
-
-	// Borrar el contenido de la DataTable
-	while (llenarTabla.firstChild) {
-		llenarTabla.removeChild(llenarTabla.firstChild);
-	}
-
-	/** Convertir la tasa de interés anual a tasa de interés periódica */
-	var tasaInteresPeriodica;
-	if (frecuenciaPago === 'Mensual') {
-		tasaInteresPeriodica = tasaInteresAnual / 12 / 100;
-	} else if (frecuenciaPago === 'Semanal') {
-		tasaInteresPeriodica = tasaInteresAnual / 52 / 100;
-	} else if (frecuenciaPago === 'Diario') {
-		tasaInteresPeriodica = tasaInteresAnual / 365 / 100;
-	} else if (frecuenciaPago === 'Quincenal') {
-		tasaInteresPeriodica = tasaInteresAnual / 24 / 100;
-	} else {
-		throw new Error('Frecuencia de pago no válida');
-	}
-
-	/** para calcular la amortización del crédito utilizando el método francés */
-	cuotaMes = montoCredito * (tasaInteresPeriodica / (1 - Math.pow(1 + tasaInteresPeriodica, -cantidadPagos)));
-
-	/** formato de numeros */
-	const formatter = new Intl.NumberFormat('es-CO', {
-		//style: 'currency',
-		currency: 'USD',
-		minimumFractionDigits: 0,
-		round: Math.ceil
-	})
-
-	/** agregamos los valores calculados */
-	const montoTotal = cuotaMes * cantidadPagos
-	const intereses = montoTotal - montoCredito
-
-	document.querySelector("#valorCuota").innerHTML = formatter.format((cuotaMes.toFixed(0)));
-	document.querySelector("#Interes").innerHTML = formatter.format((intereses.toFixed(0)));
-	document.querySelector("#montoTotal").innerHTML = formatter.format((montoTotal.toFixed(0)));
-
-	/** Calcular calendario de amortización */
-	for (let i = 1; i <= cantidadPagos; i++) {
-		pagoInteres = Math.abs(montoCredito * tasaInteresPeriodica);
-		pagoCapital = Math.abs(cuotaMes - pagoInteres);
-		montoCredito = Math.abs(montoCredito - pagoCapital);
-		/** Formato fechas */
-		const fechaPago = fechaActual.format('DD-MM-YYYY');
-		/** Pasar a la siguiente fecha de pago según la frecuencia */
-		switch (frecuenciaPago) {
-			case "Mensual":
-				fechaActual = fechaActual.add(1, "month");
-				break;
-			case "Semanal":
-				fechaActual = fechaActual.add(1, "week");
-				break;
-			case "Diario":
-				fechaActual = fechaActual.add(1, "day");
-				break;
-			case "Quincenal":
-				fechaActual = fechaActual.add(15, "day");
-				break;
+		if (txtIdentificacion == '' || montoCredito == '' || cantidadPagos == '' || tasaInteresAnual == '' || cantidadPagos == '' || listMoneda == '' || fechaInicio == '') {
+			alerta("Atención", "Todos los campos son obligatorios.", "error");
+			return false;
 		}
-		var row = document.createElement('tr');
-		row.innerHTML = `
-			<td style="text-align: center;">${[i]}</td>
-			<td style="text-align: center;">${fechaPago}</td>
-			<td style="text-align: right;">${formatter.format((cuotaMes.toFixed(0)))}</td>
-			<td style="text-align: right;">${formatter.format((pagoInteres.toFixed(0)))}</td>
-			<td style="text-align: right;">${formatter.format((pagoCapital.toFixed(0)))}</td>
-			<td style="text-align: right;">${formatter.format((montoCredito.toFixed(0)))}</td>
-		`;
-		llenarTabla.appendChild(row)
-	}
-}
 
+		/** Convertir la tasa de interés anual a tasa de interés periódica */
+		var tasaInteresPeriodica;
+		if (frecuenciaPago === 'Mensual') {
+			tasaInteresPeriodica = tasaInteresAnual / 12 / 100;
+		} else if (frecuenciaPago === 'Semanal') {
+			tasaInteresPeriodica = tasaInteresAnual / 52 / 100;
+		} else if (frecuenciaPago === 'Diario') {
+			tasaInteresPeriodica = tasaInteresAnual / 365 / 100;
+		} else if (frecuenciaPago === 'Quincenal') {
+			tasaInteresPeriodica = tasaInteresAnual / 24 / 100;
+		} else {
+			throw new Error('Frecuencia de pago no válida');
+		}
 
+		/** para calcular la amortización del crédito utilizando el método francés */
+		cuotaMes = montoCredito * (tasaInteresPeriodica / (1 - Math.pow(1 + tasaInteresPeriodica, -cantidadPagos)));
+
+		/** formato de numeros */
+		const formatter = new Intl.NumberFormat('es-CO', {
+			//style: 'currency',
+			currency: 'USD',
+			minimumFractionDigits: 0,
+			round: Math.ceil
+		})
+
+		/** agregamos los valores calculados */
+		const montoTotal = cuotaMes * cantidadPagos
+		const intereses = montoTotal - montoCredito
+
+		document.querySelector("#valorCuota").innerHTML = formatter.format((cuotaMes.toFixed(0)));
+		document.querySelector("#Interes").innerHTML = formatter.format((intereses.toFixed(0)));
+		document.querySelector("#montoTotal").innerHTML = formatter.format((montoTotal.toFixed(0)));
+
+		const table = $('#tableCuotas').DataTable();
+		table.clear();
+
+		/** Calcular calendario de amortización */
+		for (let i = 1; i <= cantidadPagos; i++) {
+			pagoInteres = Math.abs(montoCredito * tasaInteresPeriodica);
+			pagoCapital = Math.abs(cuotaMes - pagoInteres);
+			montoCredito = Math.abs(montoCredito - pagoCapital);
+			/** Formato fechas */
+			const fechaPago = fechaActual.format('DD-MM-YYYY');
+			/** Pasar a la siguiente fecha de pago según la frecuencia */
+			switch (frecuenciaPago) {
+				case "Mensual":
+					fechaActual = fechaActual.add(1, "month");
+					break;
+				case "Semanal":
+					fechaActual = fechaActual.add(1, "week");
+					break;
+				case "Diario":
+					fechaActual = fechaActual.add(1, "day");
+					break;
+				case "Quincenal":
+					fechaActual = fechaActual.add(15, "day");
+					break;
+			}
+			table.row.add([
+				i,
+				fechaPago,
+				formatter.format((cuotaMes.toFixed(0))),
+				formatter.format((pagoInteres.toFixed(0))),
+				formatter.format((pagoCapital.toFixed(0))),
+				formatter.format((montoCredito.toFixed(0)))
+			]);
+		}
+		table.draw();
+	})
+});
+
+/** funcion buscar clientes */
 function fntBuscarCliente(idpersona) {
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	let ajaxUrl = base_url + '/Prestamos/getClienteLoan/' + idpersona;
@@ -218,22 +215,23 @@ function fntBuscarCliente(idpersona) {
 	}
 }
 
-function openModalClientes() {
-	$('#modalListClientes').modal('show');
-}
-
 /** funcion para limpiar el fomulario */
 function btnLimpiarForm() {
 	let tabla = $('#tableCuotas').DataTable();
 	/** Borra todos los datos de la DataTable */
 	tabla.clear().draw();
 	document.getElementById("formPrestamo").reset();
-	$('#listFormPago').select2('val', '1');
-	$('#listMoneda').select2('val', '1');
+	$("#listFormPago").val("Diario").trigger("change");
+	$("#listMoneda").val("COP").trigger("change");
 	$("#valorCuota").html("0");
 	$("#Interes").html("0");
 	$("#montoTotal").html("0");
 
+}
+
+/** modal busca de clientes */
+function openModalClientes() {
+	$('#modalListClientes').modal('show');
 }
 
 $(document).ready(function () {
@@ -320,4 +318,5 @@ $(document).ready(function () {
 
 });
 /** Fin Document Ready */
+
 

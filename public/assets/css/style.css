@@ -58,5 +58,9 @@
 }
 
 
+/* Estilos para agregar un margen derecho al título de la columna en la DataTable */
+#tableCuotas th.right-margin {
+    padding-right: 35px; /* Ajusta el tamaño del margen derecho según tus necesidades */
+}
 
 
