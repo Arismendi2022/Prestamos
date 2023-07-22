@@ -1,2 +1,2 @@
-# Prestamos
-Aplicación de prestamos con metodo frances.
+# Préstamos
+Aplicación de préstamos con metodo frances.
