@@ -107,32 +107,27 @@
 					}
 					
 					if ($_SESSION['permisosMod']['r']) {
-						$btnView = '<button type="button" class="btn btn-info btn-sm btnViewUsuario" onClick = "fntViewUsuario(' . $arrData[$i]['idpersona'] . ')" title = "Ver usuario" ><i
-				class="far fa-eye" ></i ></button>';
+						$btnView = '<button type="button" class="btn btn-info btn-sm" onClick="fntViewUsuario(' . $arrData[$i]['idpersona'] . ')" title="Ver usuario"><i class="far fa-eye"></i></button>';
 					}
-					
 					if ($_SESSION['permisosMod']['u']) {
 						if (($_SESSION['idUser'] == 1 and $_SESSION['userData']['idrol'] == 1) ||
 							($_SESSION['userData']['idrol'] == 1 and $arrData[$i]['idrol'] != 1)) {
-							$btnEdit = '<button type="button" class="btn btn-primary  btn-sm btnEditUsuario" onClick = "fntEditUsuario(this,' . $arrData[$i]['idpersona'] . ')" title = "Editar
-				usuario" ><i class="fas fa-pencil-alt" ></i ></button>';
+							$btnEdit = '<button type="button" class="btn btn-primary btn-sm" onClick="fntEditUsuario(this,' . $arrData[$i]['idpersona'] . ')" title="Editar usuario"><i class="fas fa-pencil-alt"></i></button>';
 						} else {
-							$btnEdit = '<button class="btn btn-secondary btn-sm" disabled ><i class="fas fa-pencil-alt"></i></button>';
+							$btnEdit = '<button type="button" class="btn btn-secondary btn-sm" disabled ><i class="fas fa-pencil-alt"></i></button>';
 						}
 					}
-					
 					if ($_SESSION['permisosMod']['d']) {
 						if (($_SESSION['idUser'] == 1 and $_SESSION['userData']['idrol'] == 1) ||
 							($_SESSION['userData']['idrol'] == 1 and $arrData[$i]['idrol'] != 1) and
 							($_SESSION['userData']['idpersona'] != $arrData[$i]['idpersona'])
 						) {
-							$btnDelete = '<button type="button" class="btn btn-danger btn-sm btnDelUsuario" onClick = "fntDelUsuario(' . $arrData[$i]['idpersona'] . ')" title = "Eliminar usuario"
-				><i class="far fa-trash-alt" ></i ></button>';
+							$btnDelete = '<button class="btn btn-danger btn-sm" onClick="fntDelUsuario(' . $arrData[$i]['idpersona'] . ')" title="Eliminar usuario"><i class="far fa-trash-alt"></i></button>';
 						} else {
 							$btnDelete = '<button class="btn btn-secondary btn-sm" disabled ><i class="far fa-trash-alt"></i></button>';
 						}
-						$arrData[$i]['options'] = '<div class="text-center">' . $btnView . ' ' . $btnEdit . ' ' . $btnDelete . '</div>';
 					}
+					$arrData[$i]['options'] = '<div class="text-center">' . $btnView . ' ' . $btnEdit . ' ' . $btnDelete . '</div>';
 				}
 				echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 			}

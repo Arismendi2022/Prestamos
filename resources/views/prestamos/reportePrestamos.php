@@ -30,7 +30,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="card card-info">
+					<div class="card card-info card-outline">
 						<div class="card-header">
 							<h3 class="card-title w-100 text-center font-size-20"><b>LISTADO DE PRESTAMOS</b></h3>
 						</div> <!-- /.card-header -->

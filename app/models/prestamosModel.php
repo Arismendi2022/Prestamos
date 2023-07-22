@@ -82,8 +82,8 @@
 			$this->intSaldo = $intSaldo;
 			$return = 0;
 			
-			/** inserta items pagos */
-			$query_insert = "insert into pagos(prestamoid,num_cuota,fecha_cuota,valor_cuota,interes,capital,saldo)
+			/** inserta items amortizacion */
+			$query_insert = "insert into amortizacion(prestamoid,num_cuota,fecha_cuota,valor_cuota,interes,capital,saldo)
 												values(?,?,?,?,?,?,?)";
 			$arrData = array($this->intConsecutivo,
 				$this->nroCuota,

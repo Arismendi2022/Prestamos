@@ -11,7 +11,7 @@
 				die();
 			}
 			getPermisos(MPRESTAMOS);
-			
+			getPermisos(MLSTPRESTAMOS);
 		}
 		
 		public function Prestamos()
@@ -45,44 +45,45 @@
 					$strFormaPago = strClean($_POST['listFormPago']);
 					$strMoneda = strClean($_POST['listMoneda']);
 					$dtFecha = date("Y-m-d", strtotime($_POST['fecha_prestamo']));
+					$request_user = "";
 					
-					$request_user = $this->model->insertPrestamo($idUsuario,
-						$intMonto,
-						$intInteres,
-						$intCuotas,
-						$intValorCuota,
-						$intMontoTotal,
-						$strFormaPago,
-						$strMoneda,
-						$dtFecha);
-					
-					/** Detalle prestamo */
-					$datos = json_decode($_POST['datos'], true);
-					
-					/** Recorrer los datos y enviarlos a la base de datos */
-					foreach ($datos as $row) {
-						$columna1 = $row[0];
-						$columna2 = $row[1];
-						$columna3 = $row[2];
-						$columna4 = $row[3];
-						$columna5 = $row[4];
-						$columna6 = $row[5];
-						
-						$nroCuota = intval($columna1);
-						$dtFecha = date('Y-m-d', strtotime(strClean($columna2)));
-						$intCuota = intval(quitarMillar($columna3));
-						$intInteres = intval(quitarMillar($columna4));
-						$intCapital = intval(quitarMillar($columna5));
-						$intSaldo = intval(quitarMillar($columna6));
-						
-						$request_user = $this->model->insertPrestamoItems($nroCuota,
-							$dtFecha,
-							$intCuota,
+					if ($_SESSION['permisosMod']['w']) {
+						$request_user = $this->model->insertPrestamo($idUsuario,
+							$intMonto,
 							$intInteres,
-							$intCapital,
-							$intSaldo);
+							$intCuotas,
+							$intValorCuota,
+							$intMontoTotal,
+							$strFormaPago,
+							$strMoneda,
+							$dtFecha);
+						
+						/** Detalle prestamo */
+						$datos = json_decode($_POST['datos'], true);
+						/** Recorrer los datos y enviarlos a la base de datos */
+						foreach ($datos as $row) {
+							$columna1 = $row[0];
+							$columna2 = $row[1];
+							$columna3 = $row[2];
+							$columna4 = $row[3];
+							$columna5 = $row[4];
+							$columna6 = $row[5];
+							
+							$nroCuota = intval($columna1);
+							$dtFecha = date('Y-m-d', strtotime(strClean($columna2)));
+							$intCuota = intval(quitarMillar($columna3));
+							$intInteres = intval(quitarMillar($columna4));
+							$intCapital = intval(quitarMillar($columna5));
+							$intSaldo = intval(quitarMillar($columna6));
+							
+							$request_user = $this->model->insertPrestamoItems($nroCuota,
+								$dtFecha,
+								$intCuota,
+								$intInteres,
+								$intCapital,
+								$intSaldo);
+						}
 					}
-					
 					/** Final Detalle prestamo */
 					if ($request_user > 0) {
 						$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
@@ -147,7 +148,6 @@
 			if (empty($_SESSION['permisosMod']['r'])) {
 				header("Location:" . base_url() . '/dashboard');
 			}
-			
 			$data['page_tag'] = "Reporte de Prestamos";
 			$data['page_title'] = "Reporte de Préstamos - <small> Sistema de Crédito</small>";
 			$data['page_name'] = "reporte prestamos";
@@ -163,7 +163,7 @@
 				for ($i = 0; $i < count($arrData); $i++) {
 					$btnView = '';
 					if ($arrData[$i]['estado'] == 1) {
-						$arrData[$i]['estado'] = '<span class="badge badge-danger">Pendiente</span>';
+						$arrData[$i]['estado'] = '<span class="badge badge-warning">Pendiente</span>';
 					} else {
 						$arrData[$i]['estado'] = '<span class="badge badge-primary">Pagado</span>';
 					}
@@ -183,7 +183,6 @@
 			}
 			die();
 		}
-		
 		
 	}
 	/** end file prestamos.php **/
