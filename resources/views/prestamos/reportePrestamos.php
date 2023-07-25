@@ -1,5 +1,6 @@
 <?php
 	headerAdmin($data);
+	getModal('modalPrestamos', $data);
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div id="contentAjax"></div>

@@ -109,6 +109,7 @@ function fntViewInfo(idpersona) {
 		if (request.readyState == 4 && request.status == 200) {
 			let objData = JSON.parse(request.responseText);
 			if (objData.status) {
+
 				document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
 				document.querySelector("#celNombre").innerHTML = objData.data.nombres;
 				document.querySelector("#celApellido").innerHTML = objData.data.apellidos;
@@ -120,7 +121,7 @@ function fntViewInfo(idpersona) {
 				document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
 				$('#modalViewCliente').modal('show');
 			} else {
-				swal("Error", objData.msg, "error");
+				alerta("Error", objData.msg, "error");
 			}
 		}
 	}

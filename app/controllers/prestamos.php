@@ -174,7 +174,7 @@
 					$arrData[$i]['saldo'] = SMONEY . ' ' . formatMoney($arrData[$i]['saldo']);
 					
 					if ($_SESSION['permisosMod']['r']) {
-						$btnView = '<button type="button" class="btn btn-primary btn-sm" onClick="fntViewInfo(' . $arrData[$i]['idprestamo'] . ')" title="Ver préstamo"><i class="far fa-eye"></i></button>';
+						$btnView = '<button type="button" class="btn btn-primary btn-sm" onClick="fntViewLoan(' . $arrData[$i]['idprestamo'] . ')" title="Ver préstamo"><i class="far fa-eye"></i></button>';
 					}
 					$arrData[$i]['options'] = '<div class="text-center">' . $btnView . '</div>';
 					
@@ -184,5 +184,27 @@
 			die();
 		}
 		
+		public function getPrestamo($idprestamo)
+		{
+			if ($_SESSION['permisosMod']['r']) {
+				$idPrestamo = intval($idprestamo);
+				if ($idPrestamo > 0) {
+					$arrData = $this->model->selectPrestamo($idPrestamo);
+					$arrData['monto_credito'] = SMONEY . ' ' . formatMoney($arrData['monto_credito']);
+					$arrData['totalIntereses'] = SMONEY . ' ' . formatMoney($arrData['totalIntereses']);
+					$arrData['monto_total'] = SMONEY . ' ' . formatMoney($arrData['monto_total']);
+					$arrData['interes'] = $arrData['interes'].'%';
+					
+					if (empty($arrData)) {
+						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+					} else {
+						$arrResponse = array('status' => true, 'data' => $arrData);
+					}
+					echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+				}
+			}
+			die();
+			
+		}
 	}
 	/** end file prestamos.php **/

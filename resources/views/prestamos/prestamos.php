@@ -127,7 +127,7 @@
 													<div class="col-md-4">
 														<label for="txtFecha">Fecha Emisión <span class="required">*</span></label>
 														<div class="input-group date" id="datetimepicker" data-target-input="nearest">
-															<input type="text" id="datePicker" class="form-control datetimepicker-input" data-target="#datetimepicker" placeholder="mm/dd/yyyy"
+															<input type="text" id="datePicker" class="form-control datetimepicker-input" data-target="#datetimepicker" placeholder="dd/mm/yyyy"
 															       required="">
 															<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
 																<div class="input-group-text"><i class="fa fa-calendar"></i></div>

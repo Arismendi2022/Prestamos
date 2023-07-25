@@ -234,6 +234,55 @@ function openModalClientes() {
 	$('#modalListClientes').modal('show');
 }
 
+function fntViewLoan(idprestamo){
+	tableCuotas = $('#tableViewCotas').dataTable({
+		"aProcessing": true,
+		"aServerSide": true,
+		"language": {
+			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+		},
+
+		"paging": true,
+		"lengthChange": false,
+		"pageLength": 8,
+		"searching": false,
+		"ordering": true,
+		"info": true,
+		"autoWidth": false,
+		"responsive": true,
+		"bDestroy": true,
+	});
+
+	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+	let ajaxUrl = base_url + '/Prestamos/getPrestamo/' + idprestamo;
+	request.open("GET", ajaxUrl, true);
+	request.send();
+	request.onreadystatechange = function () {
+		if (request.readyState == 4 && request.status == 200) {
+			let objData = JSON.parse(request.responseText);
+			if (objData.status) {
+
+				document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
+				document.querySelector("#celNombre").innerHTML = objData.data.nombres;
+				document.querySelector("#celEmail").innerHTML = objData.data.email_user;
+				document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
+				document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
+				document.querySelector("#celMontoCredito").innerHTML = objData.data.monto_credito;
+				document.querySelector("#celMontoTotal").innerHTML = objData.data.monto_total;
+				document.querySelector("#celTotalIntereses").innerHTML = objData.data.totalIntereses;
+				document.querySelector("#celFechaCredito").innerHTML = objData.data.fechaPrestamo;
+				document.querySelector("#celFormaPago").innerHTML = objData.data.forma_pago;
+				document.querySelector("#celInteres").innerHTML = objData.data.interes;
+				$('#modalViewLoan').modal('show');
+			} else {
+				alerta("Error", objData.msg, "error");
+			}
+		}
+	}
+
+	//$('#modalViewLoan').modal('show');
+}
+
 $(document).ready(function () {
 	/** Datatable de listado de clientes con prestamos */
 	tableListClientes = $('#tableListClientes').dataTable({
@@ -315,7 +364,6 @@ $(document).ready(function () {
 		"iDisplayLength": 10,
 		"order": [[0, "desc"]]
 	});
-
 });
 /** Fin Document Ready */
 

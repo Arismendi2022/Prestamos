@@ -140,7 +140,7 @@ $('#myTab a').on('click', function (e) {
 /** Date picker **/
 $('#datetimepicker').datetimepicker({
 	language: 'es',
-	format: 'L'
+	format: 'DD/MM/YYYY'
 });
 
 
