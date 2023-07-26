@@ -234,13 +234,31 @@ function openModalClientes() {
 	$('#modalListClientes').modal('show');
 }
 
-function fntViewLoan(idprestamo){
+function fntViewLoan(idprestamo) {
 	tableCuotas = $('#tableViewCotas').dataTable({
 		"aProcessing": true,
 		"aServerSide": true,
 		"language": {
 			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+
 		},
+		"ajax": {
+			"url": " " + base_url + '/Prestamos/getAmortizacion/' + idprestamo,
+			"dataSrc": ""
+		}, "columns": [
+			{"data": "num_cuota"},
+			{"data": "fechaPago"},
+			{"data": "valor_cuota"},
+			{"data": "saldo"},
+			{"data": "estado"}
+		],
+		"columnDefs": [
+			{'className': "textcenter", "targets": [0]},
+			{'className': "textcenter", "targets": [1]},
+			{'className': "textright", "targets": [2]},
+			{'className': "textright", "targets": [3]},
+			{'className': "textcenter", "targets": [4]}
+		],
 
 		"paging": true,
 		"lengthChange": false,
@@ -273,6 +291,8 @@ function fntViewLoan(idprestamo){
 				document.querySelector("#celFechaCredito").innerHTML = objData.data.fechaPrestamo;
 				document.querySelector("#celFormaPago").innerHTML = objData.data.forma_pago;
 				document.querySelector("#celInteres").innerHTML = objData.data.interes;
+				document.querySelector("#celnroCuotas").innerHTML = objData.data.num_cuotas;
+				document.querySelector("#celnroCredito").innerHTML = objData.data.idprestamo;
 				$('#modalViewLoan').modal('show');
 			} else {
 				alerta("Error", objData.msg, "error");
@@ -288,8 +308,10 @@ $(document).ready(function () {
 	tableListClientes = $('#tableListClientes').dataTable({
 		"aProcessing": true, "aServerSide": true, "language": {
 			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-		}, "ajax": {
-			"url": " " + base_url + "/Prestamos/getClientesLoan", "dataSrc": ""
+		},
+		"ajax": {
+			"url": " " + base_url + "/Prestamos/getClientesLoan",
+			"dataSrc": ""
 		}, "columns": [
 			{"data": "idpersona"},
 			{"data": "identificacion"},

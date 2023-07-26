@@ -63,4 +63,7 @@
     padding-right: 35px; /* Ajusta el tamaño del margen derecho según tus necesidades */
 }
 
+#tableViewCotas th.right-margin {
+    padding-right: 40px; /* Ajusta el tamaño del margen derecho según tus necesidades */
+}
 

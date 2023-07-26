@@ -111,12 +111,20 @@
 		
 		public function selectPrestamo(int $idPrestamo){
 			$this->intIdPrestamo = $idPrestamo;
-			$sql = "SELECT  personaid, identificacion, CONCAT(nombres, ' ', apellidos) AS nombres, telefono, email_user,DATE_FORMAT(datecreated, '%d-%m-%Y') as fechaRegistro,
-        idprestamo, monto_credito, interes, num_cuotas, valor_cuota, monto_total, (monto_total-monto_credito ) as totalIntereses, forma_pago, DATE_FORMAT(fecha_prestamo, '%d-%m-%Y') as fechaPrestamo FROM prestamos
+			$sql = "SELECT personaid,identificacion,CONCAT(nombres,' ',apellidos) AS nombres,telefono,email_user,DATE_FORMAT(datecreated, '%d-%m-%Y') as fechaRegistro,
+        idprestamo,monto_credito,interes,num_cuotas,valor_cuota,monto_total,(monto_total-monto_credito ) as totalIntereses,forma_pago,DATE_FORMAT(fecha_prestamo,'%d-%m-%Y') as fechaPrestamo FROM prestamos
 				INNER JOIN persona
 				ON prestamos.personaid = persona.idpersona
 				WHERE idprestamo = $this->intIdPrestamo";
 			$request = $this->select($sql);
+			return $request;
+		}
+		
+		public function selectAmortizacion(int $idPrestamo){
+			$this->intIdPrestamo = $idPrestamo;
+			$sql = "SELECT prestamoid,num_cuota,DATE_FORMAT(fecha_cuota,'%d-%m-%Y') as fechaPago,valor_cuota,saldo,estado FROM amortizacion
+            	WHERE prestamoid = $this->intIdPrestamo";
+			$request = $this->select_all($sql);
 			return $request;
 		}
 		

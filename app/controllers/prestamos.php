@@ -163,7 +163,7 @@
 				for ($i = 0; $i < count($arrData); $i++) {
 					$btnView = '';
 					if ($arrData[$i]['estado'] == 1) {
-						$arrData[$i]['estado'] = '<span class="badge badge-warning">Pendiente</span>';
+						$arrData[$i]['estado'] = '<span class="badge badge-danger">Pendiente</span>';
 					} else {
 						$arrData[$i]['estado'] = '<span class="badge badge-primary">Pagado</span>';
 					}
@@ -193,7 +193,8 @@
 					$arrData['monto_credito'] = SMONEY . ' ' . formatMoney($arrData['monto_credito']);
 					$arrData['totalIntereses'] = SMONEY . ' ' . formatMoney($arrData['totalIntereses']);
 					$arrData['monto_total'] = SMONEY . ' ' . formatMoney($arrData['monto_total']);
-					$arrData['interes'] = $arrData['interes'].'%';
+					$arrData['interes'] = $arrData['interes'] . '%';
+					$arrData['idprestamo'] = '000'.$arrData['idprestamo'];
 					
 					if (empty($arrData)) {
 						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
@@ -204,7 +205,31 @@
 				}
 			}
 			die();
-			
 		}
+		
+		public function getAmortizacion($idprestamo)
+		{
+			if ($_SESSION['permisosMod']['r']) {
+				$idPrestamo = intval($idprestamo);
+				
+				$arrData = $this->model->selectAmortizacion($idPrestamo);
+				
+				for ($i = 0; $i < count($arrData); $i++) {
+					
+					$arrData[$i]['valor_cuota'] = SMONEY . ' ' . formatMoney($arrData[$i]['valor_cuota']);
+					$arrData[$i]['saldo'] = SMONEY . ' ' . formatMoney($arrData[$i]['saldo']);
+					
+					if ($arrData[$i]['estado'] == 0) {
+						$arrData[$i]['estado'] = '<span class="badge bg-success">Pagado</span>';
+					} else {
+						$arrData[$i]['estado'] = '<span class="badge bg-danger">Pendiente</span>';
+					}
+				}
+				echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
+		
+		
 	}
 	/** end file prestamos.php **/
