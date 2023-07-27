@@ -156,13 +156,13 @@
 																<tr>
 																	<th>#</th>
 																	<th>Fecha de Pago</th>
-																	<th class="right-margin">Monto Cuota</th>
+																	<th>Monto Cuota</th>
 																	<th class="right-margin">Interes</th>
 																	<th class="right-margin">Capital</th>
-																	<th class="right-margin">Saldo</th>
+																	<th>Saldo</th>
 																</tr>
 																</thead>
-																<tbody class="text-right">
+																<tbody class="right-margin">
 																</tbody>
 															</table>
 															<!-- /.Table -->

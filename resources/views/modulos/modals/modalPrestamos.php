@@ -54,12 +54,6 @@
 									<span id="celIdentificacion" class="description" style="font-size:13px; color:#000000">79425387<br></span>
 								</div><!-- /.user-block -->
 							</div><!-- /.col -->
-							<div class="col-sm-5">
-								<ul class="list-unstyled">
-									<li class="float-right"><b>Email: </b><span id="celEmail" style="color: blue;">Arismendi.Guiza@yahoo.com</span>
-									</li>
-								</ul>
-							</div>
 						</div><!-- /.row -->
 						<div class="row">
 							<div class="col-sm-4">
@@ -70,13 +64,15 @@
 								</div><!-- /.user-block -->
 							</div><!-- /.col -->
 							<div class="col-sm-4">
-								<ul class="list-unstyled">
-									<li class="float-center"><b>Ciudad:</b> Bogotá</li>
+								<ul class="list-unstyled" style="font-size:13px; color:#000000">
+									<li><b>Direeción: </b> <span id="celDireccion"> Calle 12</span></li>
+									<li class="float-center"><b>Ciudad: </b> Bogotá</li>
 								</ul>
 							</div>
 							<div class="col-sm-4">
-								<ul class="list-unstyled">
-									<li class="float-right"><b>Telefono: </b><span id="celTelefono"> 350-847-3667</span></li>
+								<ul class="list-unstyled" style="font-size:13px; color:#000000">
+									<li class="float-right"><b>Email: </b><span id="celEmail" style="color: blue;">Arismendi.Guiza@yahoo.com</span></li>
+									<li class="float-right"><b>Teléfono: </b><span id="celTelefono"> 3508473267</span> </li>
 								</ul>
 							</div>
 						</div><!-- /.row -->
@@ -97,13 +93,13 @@
 										</div>
 										<div class="float-right">
 											Fecha Credito: <span id="celFechaCredito"> 25/07/2023</span><br>
-											<b>Nro Credito: <span id="celnroCredito" style="color: blue;"> 10</span></b><br>
+											<b>Nro Credito: <span id="celnroCredito"> 10</span></b><br>
 											Forma Pago: <span id="celFormaPago"> Mensual</span><br>
 											Nro Cuotas: <span id="celnroCuotas"> 10</span><br>
 										</div>
 									</div>
 									<div class="table-responsive">
-										<table id="tableViewCotas" class="table table-striped table-bordered table-sm w-100">
+										<table id="tableViewCuotas" class="table table-striped table-bordered table-sm" style="width:100%">
 											<thead>
 											<tr class="active" style="background-color: #F2F8FF">
 												<th>Nro Cuota</th>
@@ -113,7 +109,7 @@
 												<th>Estado</th>
 											</tr>
 											</thead>
-											<tbody>
+											<tbody class="right-margin">
 											</tbody>
 										</table>
 									</div>
@@ -129,6 +125,7 @@
 		</div>
 	</div>
 </div>
+
 
 
 

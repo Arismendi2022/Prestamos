@@ -44,6 +44,7 @@
 }
 .textright{
     text-align: right;
+    margin-right: 10px;
 }
 .textleft{
     text-align: left;
@@ -57,13 +58,9 @@
     font-size: 18px; /* Tamaño de fuente inicial */
 }
 
-
-/* Estilos para agregar un margen derecho al título de la columna en la DataTable */
-#tableCuotas th.right-margin {
-    padding-right: 35px; /* Ajusta el tamaño del margen derecho según tus necesidades */
-}
-
-#tableViewCotas th.right-margin {
-    padding-right: 40px; /* Ajusta el tamaño del margen derecho según tus necesidades */
+/* Aquí definimos la clase para el margen derecho */
+.right-margin {
+    text-align: right;
+    margin-right: 35px; /* Ajusta el valor según tus necesidades */
 }
 

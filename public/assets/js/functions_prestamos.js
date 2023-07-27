@@ -1,6 +1,7 @@
 //et tableCuotas;
 let tableListClientes;
 let tablePrestamos;
+let tableCuotas
 
 
 /** Evento para guardar el prestamo*/
@@ -115,6 +116,7 @@ $(document).ready(function () {
 		montoCredito = montoCredito.replace(/\./g, "");
 
 		/** Creamos un objeto dayjs con la fecha de inicio */
+		//let fechaActual = dayjs(fechaInicio).add(1, 'month');
 		let fechaActual = dayjs(fechaInicio).add(1, 'month');
 
 		if (txtIdentificacion == '' || montoCredito == '' || cantidadPagos == '' || tasaInteresAnual == '' || cantidadPagos == '' || listMoneda == '' || fechaInicio == '') {
@@ -235,7 +237,7 @@ function openModalClientes() {
 }
 
 function fntViewLoan(idprestamo) {
-	tableCuotas = $('#tableViewCotas').dataTable({
+	tableCuotas = $('#tableViewCuotas').dataTable({
 		"aProcessing": true,
 		"aServerSide": true,
 		"language": {
@@ -284,6 +286,7 @@ function fntViewLoan(idprestamo) {
 				document.querySelector("#celNombre").innerHTML = objData.data.nombres;
 				document.querySelector("#celEmail").innerHTML = objData.data.email_user;
 				document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
+				document.querySelector("#celDireccion").innerHTML = objData.data.direccionfiscal;
 				document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
 				document.querySelector("#celMontoCredito").innerHTML = objData.data.monto_credito;
 				document.querySelector("#celMontoTotal").innerHTML = objData.data.monto_total;
@@ -349,13 +352,16 @@ $(document).ready(function () {
 			{"data": "options"}
 		],
 		"columnDefs": [
+			{'className': "textcenter", "targets": [0]},
+			{'className': "textcenter", "targets": [2]},
 			{'className': "textcenter", "targets": [3]},
 			{'className': "textcenter", "targets": [4]},
 			{'className': "textright", "targets": [5]},
 			{'className': "textright", "targets": [6]},
 			{'className': "textright", "targets": [7]},
 			{'className': "textright", "targets": [8]},
-			{'className': "textcenter", "targets": [9]}
+			{'className': "textright", "targets": [9]},
+			{'className': "textcenter", "targets": [10]}
 		],
 		'dom': 'lBfrtip',
 		'buttons': [
