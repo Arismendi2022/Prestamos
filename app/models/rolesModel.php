@@ -18,8 +18,7 @@
 			if($_SESSION['idUser'] != 1 ){
 				$whereAdmin = " and idrol != 1 ";
 			}
-			
-			$sql = "SELECT * FROM rol WHERE estado != 0".$whereAdmin;
+			$sql = "SELECT * FROM tbl_rol".$whereAdmin;
 			$request = $this->select_all($sql);
 			return $request;
 		}
@@ -27,7 +26,7 @@
 		public function selectRol(int $idrol)
 		{
 			$this->intIdrol = $idrol;
-			$sql = "SELECT * FROM rol WHERE idrol = $this->intIdrol";
+			$sql = "SELECT * FROM tbl_rol WHERE idrol = $this->intIdrol";
 			$request = $this->select($sql);
 			return $request;
 		}
@@ -39,12 +38,12 @@
 			$this->strDescripcion = $descripcion;
 			$this->intStatus = $status;
 			
-			$sql = "SELECT * FROM rol WHERE nombrerol = '{$this->strRol}' ";
+			$sql = "SELECT * FROM tbl_rol WHERE nombrerol = '{$this->strRol}' ";
 			$request = $this->select_all($sql);
 			
 			if(empty($request))
 			{
-				$query_insert  = "INSERT INTO rol(nombrerol,descripcion,estado) VALUES(?,?,?)";
+				$query_insert  = "INSERT INTO tbl_rol(nombrerol,descripcion,estado) VALUES(?,?,?)";
 				$arrData = array($this->strRol, $this->strDescripcion, $this->intStatus);
 				$request_insert = $this->insert($query_insert,$arrData);
 				$return = $request_insert;
@@ -60,12 +59,12 @@
 			$this->strDescripcion = $descripcion;
 			$this->intStatus = $status;
 			
-			$sql = "SELECT * FROM rol WHERE nombrerol = '$this->strRol' AND idrol != $this->intIdrol";
+			$sql = "SELECT * FROM tbl_rol WHERE nombrerol = '$this->strRol' AND idrol != $this->intIdrol";
 			$request = $this->select_all($sql);
 			
 			if(empty($request))
 			{
-				$sql = "UPDATE rol SET nombrerol = ?, descripcion = ?, estado = ? WHERE idrol = $this->intIdrol ";
+				$sql = "UPDATE tbl_rol SET nombrerol = ?, descripcion = ?, estado = ? WHERE idrol = $this->intIdrol ";
 				$arrData = array($this->strRol, $this->strDescripcion, $this->intStatus);
 				$request = $this->update($sql,$arrData);
 			}else{
@@ -77,13 +76,12 @@
 		public function deleteRol(int $idrol)
 		{
 			$this->intIdrol = $idrol;
-			$sql = "SELECT * FROM usuarios WHERE rolid = $this->intIdrol";
+			$sql = "SELECT * FROM tbl_usuarios WHERE rolid = $this->intIdrol";
 			$request = $this->select_all($sql);
 			if(empty($request))
 			{
-				$sql = "UPDATE rol SET estado = ? WHERE idrol = $this->intIdrol ";
-				$arrData = array(0);
-				$request = $this->update($sql,$arrData);
+				$sql = "DELETE FROM tbl_rol WHERE idrol = $this->intIdrol ";
+				$request = $this->delete($sql,$arrData);
 				if($request)
 				{
 					$request = 'ok';
@@ -96,6 +94,5 @@
 			return $request;
 		}
 		
-		
 	}
-	// end files rolesModel.php
+	/** end files rolesModel.php */

@@ -67,8 +67,7 @@
 															<div class="input-group-prepend">
 																<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
 															</div>
-															<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required=""
-															       disabled="">
+															<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required readonly>
 														</div>
 													</div>
 												</div>
@@ -81,22 +80,20 @@
 															<div class="input-group-prepend">
 																<span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
 															</div>
-															<input type="text" class="form-control font-weight-bold font-size-20" id="txtMonto" name="txtMonto" oninput="formatearInput
-																                                                                               (this)"
-															       required="">
+															<input type="text" class="form-control font-weight-bold font-size-20" id="txtMonto" name="txtMonto" oninput="formatearInput(this)" required>
 														</div>
 													</div>
 													
 													<div class="form-group col-md-3">
 														<label for="txtCuota">Nro Cuotas <span class="required">*</span></label>
-														<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtCuotas" name="txtCuotas" required=""
+														<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtCuotas" name="txtCuotas" required
 														       onkeypress="return controlTag(event);">
 													</div>
 													
 													<div class="form-group col-md-3">
 														<label for="txtInteres">Interes Anual <span class="required">*</span></label>
 														<div class="input-group">
-															<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtInteres" name="txtInteres" required=""
+															<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtInteres" name="txtInteres" required
 															       onkeypress="return controlTag(event);">
 															<div class="input-group-append">
 																<span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
@@ -118,7 +115,7 @@
 													</div>
 													<div class="col-md-4">
 														<label for="listMoneda">T. Moneda <span class="required">*</span></label>
-														<select class="form-control select2" id="listMoneda" name="listMoneda" required="">
+														<select class="form-control select2" id="listMoneda" name="listMoneda" required>
 															<option value="COP">COP</option>
 															<option value="USD">USD</option>
 															<option value="EUR">EUR</option>
@@ -128,7 +125,7 @@
 														<label for="txtFecha">Fecha Emisión <span class="required">*</span></label>
 														<div class="input-group date" id="datetimepicker" data-target-input="nearest">
 															<input type="text" id="datePicker" class="form-control datetimepicker-input" data-target="#datetimepicker" placeholder="dd/mm/yyyy"
-															       required="">
+															       required readonly>
 															<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
 																<div class="input-group-text"><i class="fa fa-calendar"></i></div>
 															</div>

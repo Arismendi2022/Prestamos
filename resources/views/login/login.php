@@ -79,9 +79,15 @@
 <script src="<?= ROOT ?>/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="<?= ROOT ?>/admin/plugins/select2/js/select2.full.min.js"></script>
 <!-- InputMask -->
 <script src="<?=ROOT?>/admin/plugins/moment/moment.min.js"></script>
 <script src="<?=ROOT?>/admin/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- date-range-picker -->
+<script src="<?= ROOT ?>/admin/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="<?= ROOT ?>/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- SweetAlert2 JS -->
 <script src="<?= ROOT ?>/admin/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <!-- AdminLTE App -->

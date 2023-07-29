@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		let formRol = document.querySelector("#formRol");
 		formRol.onsubmit = function (e) {
 			e.preventDefault();
-
 			const intIdRol = document.querySelector('#idRol').value;
 			const strNombre = document.querySelector('#txtNombre').value;
 			const strDescripcion = document.querySelector('#txtDescripcion').value;
@@ -44,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			request.send(formData);
 			request.onreadystatechange = function () {
 				if (request.readyState === 4 && request.status === 200) {
-
 					const objData = JSON.parse(request.responseText);
 					if (objData.status) {
 						$('#modalFormRol').modal("hide");
@@ -59,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 });
-
 
 $("#tableRoles").DataTable();
 
@@ -76,7 +73,7 @@ function openModal() {
 window.addEventListener('load', function () {
 }, false);
 
-// evento click para boton editar rol
+/** evento click para boton editar rol */
 function fntEditRol(idrol) {
 	document.querySelector('#titleModal').innerHTML = "Actualizar Rol";
 	document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
@@ -111,8 +108,7 @@ function fntEditRol(idrol) {
 	}
 }
 
-
-// evento click para boton eliminar rol
+/** evento click para boton eliminar rol */
 function fntDelRol(idrol) {
 	var idrol = idrol;
 	confirmarBorrado("Eliminar Rol", "¿Realmente quiere eliminar el Rol?", "warning").then((borrar) => {
@@ -138,7 +134,7 @@ function fntDelRol(idrol) {
 	})
 }
 
-// evento click para boton permisos rol
+/** evento click para boton permisos rol */
 function fntPermisos(idrol) {
 	var idrol = idrol;
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -156,7 +152,7 @@ function fntPermisos(idrol) {
 	}
 }
 
-// Guardar permisos
+/** Guardar permisos */
 function fntSavePermisos(evnet) {
 	evnet.preventDefault();
 	const request = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");

@@ -136,13 +136,11 @@ $('#myTab a').on('click', function (e) {
 	$(this).tab('show')
 });
 
-
 /** Date picker **/
 $('#datetimepicker').datetimepicker({
 	language: 'es',
 	format: 'L'
 });
-
 
 /** select2 */
 $(function () {

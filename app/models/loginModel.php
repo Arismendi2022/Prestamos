@@ -16,10 +16,9 @@
 		{
 			$this->strUsuario = $usuario;
 			$this->strPassword = $password;
-			$sql = "SELECT idpersona,estado FROM persona WHERE
+			$sql = "SELECT idusuario,estado FROM tbl_usuarios WHERE
 					email_user = '$this->strUsuario' and
-					password = '$this->strPassword' and
-					estado != 0 ";
+					password = '$this->strPassword'";
 			$request = $this->select($sql);
 			return $request;
 		}
@@ -27,21 +26,18 @@
 		public function sessionLogin(int $iduser){
 			$this->intIdUsuario = $iduser;
 			//BUSCAR ROLE
-			$sql = "SELECT p.idpersona,
-							p.identificacion,
-							p.nombres,
-							p.apellidos,
-							p.telefono,
-							p.email_user,
-							p.nit,
-							p.nombrefiscal,
-							p.direccionfiscal,
+			$sql = "SELECT u.idusuario,
+							u.identificacion,
+							u.nombres,
+							u.apellidos,
+							u.telefono,
+							u.email_user,
 							r.idrol,r.nombrerol,
-							p.estado
-					FROM persona p
-					INNER JOIN rol r
-					ON p.rolid = r.idrol
-					WHERE p.idpersona = $this->intIdUsuario";
+							u.estado
+					FROM tbl_usuarios u
+					INNER JOIN tbl_rol r
+					ON u.rolid = r.idrol
+					WHERE u.idusuario = $this->intIdUsuario";
 			$request = $this->select($sql);
 			$_SESSION['userData'] = $request;
 			return $request;

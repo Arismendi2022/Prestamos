@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			"dataSrc":""
 		},
 		"columns":[
-			{"data":"idpersona"},
+			{"data":"idusuario"},
 			{"data":"nombres"},
 			{"data":"apellidos"},
 			{"data":"email_user"},
@@ -60,12 +60,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			let strNombre = document.querySelector('#txtNombre').value;
 			let strApellido = document.querySelector('#txtApellido').value;
 			let strEmail = document.querySelector('#txtEmail').value;
+			let strDireecion = document.querySelector('#txtDireccion').value;
 			let strTelefono = document.querySelector('#txtTelefono').value;
 			let intTipousuario = document.querySelector('#listRolid').value;
 			let strPassword = document.querySelector('#txtPassword').value;
 			let intStatus = document.querySelector('#listStatus').value;
 
-			if (strIdentificacion == '' || strApellido == '' || strNombre == '' || strEmail == '' || strTelefono == '' || intTipousuario == '') {
+			if (strIdentificacion == '' || strApellido == '' || strNombre == '' || strEmail == '' || strDireecion =='' ||strTelefono == '' || intTipousuario == '') {
 				alerta("Atención", "Todos los campos son obligatorios.", "error");
 				return false;
 			}
@@ -83,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			let formData = new FormData(formUsuario);
 			request.open("POST", ajaxUrl, true);
 			request.send(formData);
-
 			request.onreadystatechange = function () {
 				if (request.readyState == 4 && request.status == 200) {
 					let objData = JSON.parse(request.responseText);
@@ -238,9 +238,9 @@ function fntRolesUsuario() {
 	}
 }
 
-function fntViewUsuario(idpersona){
+function fntViewUsuario(idusuario){
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	let ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
+	let ajaxUrl = base_url+'/Usuarios/getUsuario/'+idusuario;
 	request.open("GET",ajaxUrl,true);
 	request.send();
 	request.onreadystatechange = function(){
@@ -269,14 +269,15 @@ function fntViewUsuario(idpersona){
 	}
 }
 
-function fntEditUsuario(element,idpersona){
+/** Editar Usuarios */
+function fntEditUsuario(element,idusuario){
 	rowTable = element.parentNode.parentNode.parentNode;
 	document.querySelector('#titleModal').innerHTML ="Actualizar Usuario";
 	document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
 	document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
 	document.querySelector('#btnText').innerHTML ="Actualizar";
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-	let ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
+	let ajaxUrl = base_url+'/Usuarios/getUsuario/'+idusuario;
 	request.open("GET",ajaxUrl,true);
 	request.send();
 	request.onreadystatechange = function(){
@@ -286,10 +287,11 @@ function fntEditUsuario(element,idpersona){
 
 			if(objData.status)
 			{
-				document.querySelector("#idUsuario").value = objData.data.idpersona;
+				document.querySelector("#idUsuario").value = objData.data.idusuario;
 				document.querySelector("#txtIdentificacion").value = objData.data.identificacion;
 				document.querySelector("#txtNombre").value = objData.data.nombres;
 				document.querySelector("#txtApellido").value = objData.data.apellidos;
+				document.querySelector("#txtDireccion").value = objData.data.direccion;
 				document.querySelector("#txtTelefono").value = objData.data.telefono;
 				document.querySelector("#txtEmail").value = objData.data.email_user;
 				document.querySelector("#listRolid").value =objData.data.idrol;
@@ -308,12 +310,12 @@ function fntEditUsuario(element,idpersona){
 	}
 }
 
-function fntDelUsuario(idpersona) {
+function fntDelUsuario(idusuario) {
 	confirmarBorrado("Eliminar Usuario", "¿Realmente quiere eliminar el Usuario?", "warning").then((borrar) => {
 		if (borrar) {
 			const request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 			let ajaxUrl = base_url+'/Usuarios/delUsuario';
-			let strData = "idUsuario="+idpersona;
+			let strData = "idUsuario="+idusuario;
 			request.open("POST", ajaxUrl, true);
 			request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			request.send(strData);
@@ -331,7 +333,6 @@ function fntDelUsuario(idpersona) {
 		}
 	})
 }
-
 
 function openModal() {
 	document.querySelector("#idUsuario").value = "";

@@ -12,11 +12,10 @@
 	date_default_timezone_set('America/Bogota');
 	
 	/** Datos de conexion a Base de Datos **/
-	const DB_HOST = "localhost";
-	const DB_NAME = "db_prestamos";
-	const DB_USER = "root";
-	const DB_PASSWORD = "";
-	const DB_CHARSET = "utf8";
+	define("USUARIO", "soporte");
+	define("PASSWORD", "admin");
+	define("DATABASE", "inet_prestamo_db");
+	define("SERVIDOR", "ALFA\SQLEXPRESS");
 	
 	/** Delimitador decimal y millar EJ: 24.189,00 **/
 	const SPD = ",";

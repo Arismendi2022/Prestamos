@@ -31,30 +31,34 @@
 						</div>
 					</div>
 					<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="txtTelefono">Dirección</label>
+								<input type="text" class="form-control" id="txtDireccion" name="txtDireccion" required="">
+							</div>
 						<div class="form-group col-md-6">
 							<label for="txtTelefono">Teléfono</label>
 							<input type="text" class="form-control" id="txtTelefono" name="txtTelefono" required="">
 						</div>
+					</div>
+					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="txtEmail">Email</label>
 							<input type="email" class="form-control valid validEmail" id="txtEmail" name="txtEmail" required="">
 						</div>
-					</div>
-					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="listRolid">Tipo usuario</label>
 							<select class="form-control select2" id="listRolid" name="listRolid" required="">
 							</select>
 						</div>
+					</div>
+					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="listStatus">Status</label>
+							<label for="listStatus">Estado</label>
 							<select class="form-control select2" id="listStatus" name="listStatus" required="">
 								<option value="1">Activo</option>
 								<option value="2">Inactivo</option>
 							</select>
 						</div>
-					</div>
-					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="txtPassword">Password</label>
 							<input type="password" class="form-control" id="txtPassword" name="txtPassword">

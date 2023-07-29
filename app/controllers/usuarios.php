@@ -29,8 +29,8 @@
 		public function setUsuario()
 		{
 			if ($_POST) {
-				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmail'])
-					|| empty($_POST['listRolid']) || empty($_POST['listStatus'])) {
+				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtDireccion']) || empty($_POST['txtTelefono'])
+					|| empty($_POST['txtEmail']) || empty($_POST['listRolid']) || empty($_POST['listStatus'])) {
 					
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
 				} else {
@@ -38,6 +38,7 @@
 					$strIdentificacion = intval(strClean($_POST['txtIdentificacion']));
 					$strNombre = ucwords(strClean($_POST['txtNombre']));
 					$strApellido = ucwords(strClean($_POST['txtApellido']));
+					$strDireccion = strClean($_POST['txtDireccion']);
 					$strTelefono = strClean($_POST['txtTelefono']);
 					$strEmail = strtolower(strClean($_POST['txtEmail']));
 					$intTipoId = intval(strClean($_POST['listRolid']));
@@ -51,6 +52,7 @@
 							$request_user = $this->model->insertUsuario($strIdentificacion,
 								$strNombre,
 								$strApellido,
+								$strDireccion,
 								$strTelefono,
 								$strEmail,
 								$strPassword,
@@ -66,6 +68,7 @@
 								$strIdentificacion,
 								$strNombre,
 								$strApellido,
+								$strDireccion,
 								$strTelefono,
 								$strEmail,
 								$strPassword,
@@ -107,12 +110,12 @@
 					}
 					
 					if ($_SESSION['permisosMod']['r']) {
-						$btnView = '<button type="button" class="btn btn-info btn-sm" onClick="fntViewUsuario(' . $arrData[$i]['idpersona'] . ')" title="Ver usuario"><i class="far fa-eye"></i></button>';
+						$btnView = '<button type="button" class="btn btn-info btn-sm" onClick="fntViewUsuario(' . $arrData[$i]['idusuario'] . ')" title="Ver usuario"><i class="far fa-eye"></i></button>';
 					}
 					if ($_SESSION['permisosMod']['u']) {
 						if (($_SESSION['idUser'] == 1 and $_SESSION['userData']['idrol'] == 1) ||
 							($_SESSION['userData']['idrol'] == 1 and $arrData[$i]['idrol'] != 1)) {
-							$btnEdit = '<button type="button" class="btn btn-primary btn-sm" onClick="fntEditUsuario(this,' . $arrData[$i]['idpersona'] . ')" title="Editar usuario"><i class="fas fa-pencil-alt"></i></button>';
+							$btnEdit = '<button type="button" class="btn btn-primary btn-sm" onClick="fntEditUsuario(this,' . $arrData[$i]['idusuario'] . ')" title="Editar usuario"><i class="fas fa-pencil-alt"></i></button>';
 						} else {
 							$btnEdit = '<button type="button" class="btn btn-secondary btn-sm" disabled ><i class="fas fa-pencil-alt"></i></button>';
 						}
@@ -120,9 +123,9 @@
 					if ($_SESSION['permisosMod']['d']) {
 						if (($_SESSION['idUser'] == 1 and $_SESSION['userData']['idrol'] == 1) ||
 							($_SESSION['userData']['idrol'] == 1 and $arrData[$i]['idrol'] != 1) and
-							($_SESSION['userData']['idpersona'] != $arrData[$i]['idpersona'])
+							($_SESSION['userData']['idusuario'] != $arrData[$i]['idusuario'])
 						) {
-							$btnDelete = '<button class="btn btn-danger btn-sm" onClick="fntDelUsuario(' . $arrData[$i]['idpersona'] . ')" title="Eliminar usuario"><i class="far fa-trash-alt"></i></button>';
+							$btnDelete = '<button class="btn btn-danger btn-sm" onClick="fntDelUsuario(' . $arrData[$i]['idusuario'] . ')" title="Eliminar usuario"><i class="far fa-trash-alt"></i></button>';
 						} else {
 							$btnDelete = '<button class="btn btn-secondary btn-sm" disabled ><i class="far fa-trash-alt"></i></button>';
 						}
@@ -134,10 +137,10 @@
 			die();
 		}
 		
-		public function getUsuario($idpersona)
+		public function getUsuario($idusuario)
 		{
 			if ($_SESSION['permisosMod']['r']) {
-				$idusuario = intval($idpersona);
+				$idusuario = intval($idusuario);
 				if ($idusuario > 0) {
 					$arrData = $this->model->selectUsuario($idusuario);
 					if (empty($arrData)) {
@@ -155,8 +158,8 @@
 		{
 			if ($_POST) {
 				if ($_SESSION['permisosMod']['d']) {
-					$intIdpersona = intval($_POST['idUsuario']);
-					$requestDelete = $this->model->deleteUsuario($intIdpersona);
+					$intidusuario = intval($_POST['idUsuario']);
+					$requestDelete = $this->model->deleteUsuario($intidusuario);
 					if ($requestDelete) {
 						$arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el usuario');
 					} else {
