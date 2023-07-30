@@ -18,7 +18,7 @@
 			if($_SESSION['idUser'] != 1 ){
 				$whereAdmin = " and idrol != 1 ";
 			}
-			$sql = "SELECT * FROM tbl_rol".$whereAdmin;
+			$sql = "SELECT * FROM tbl_rol WHERE estado != 0".$whereAdmin;
 			$request = $this->select_all($sql);
 			return $request;
 		}
@@ -72,7 +72,7 @@
 			}
 			return $request;
 		}
-		//elimina rol
+		/** elimina rol */
 		public function deleteRol(int $idrol)
 		{
 			$this->intIdrol = $idrol;
@@ -80,8 +80,9 @@
 			$request = $this->select_all($sql);
 			if(empty($request))
 			{
-				$sql = "DELETE FROM tbl_rol WHERE idrol = $this->intIdrol ";
-				$request = $this->delete($sql,$arrData);
+				$sql = "UPDATE tbl_rol SET estado = ? WHERE idrol = $this->intIdrol ";
+				$arrData = array(0);
+				$request = $this->update($sql,$arrData);
 				if($request)
 				{
 					$request = 'ok';

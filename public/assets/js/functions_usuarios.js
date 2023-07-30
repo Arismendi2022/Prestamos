@@ -237,7 +237,7 @@ function fntRolesUsuario() {
 		}
 	}
 }
-
+/** Ver Usuarios */
 function fntViewUsuario(idusuario){
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	let ajaxUrl = base_url+'/Usuarios/getUsuario/'+idusuario;
@@ -268,7 +268,6 @@ function fntViewUsuario(idusuario){
 		}
 	}
 }
-
 /** Editar Usuarios */
 function fntEditUsuario(element,idusuario){
 	rowTable = element.parentNode.parentNode.parentNode;
@@ -309,7 +308,7 @@ function fntEditUsuario(element,idusuario){
 		$('#modalFormUsuario').modal('show');
 	}
 }
-
+/** Eliminar Usuarios */
 function fntDelUsuario(idusuario) {
 	confirmarBorrado("Eliminar Usuario", "¿Realmente quiere eliminar el Usuario?", "warning").then((borrar) => {
 		if (borrar) {

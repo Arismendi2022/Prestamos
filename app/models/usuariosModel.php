@@ -71,7 +71,7 @@
 					FROM tbl_usuarios u
 					INNER JOIN tbl_rol r
 					ON u.rolid = r.idrol
-					".$whereAdmin;
+					WHERE u.estado != 0 ".$whereAdmin;
 			$request = $this->select_all($sql);
 			return $request;
 		}
@@ -142,8 +142,9 @@
 		public function deleteUsuario(int $intIdusuario)
 		{
 			$this->intIdUsuario = $intIdusuario;
-			$sql = "DELETE FROM tbl_usuarios WHERE idusuario = $this->intIdUsuario ";
-			$request = $this->delete($sql, $arrData);
+			$sql = "UPDATE tbl_usuarios SET estado = ? WHERE idusuario = $this->intIdUsuario ";
+			$arrData = array(0);
+			$request = $this->update($sql, $arrData);
 			return $request;
 		}
 		
