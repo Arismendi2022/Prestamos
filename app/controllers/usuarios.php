@@ -29,6 +29,7 @@
 		public function setUsuario()
 		{
 			if ($_POST) {
+				
 				if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtDireccion']) || empty($_POST['txtTelefono'])
 					|| empty($_POST['txtEmail']) || empty($_POST['listRolid']) || empty($_POST['listStatus'])) {
 					
@@ -57,7 +58,7 @@
 								$strEmail,
 								$strPassword,
 								$intTipoId,
-								$intStatus);
+								$intStatus,);
 						}
 						
 					} else {
@@ -73,7 +74,7 @@
 								$strEmail,
 								$strPassword,
 								$intTipoId,
-								$intStatus);
+								$intStatus,);
 							
 						}
 					}
@@ -202,32 +203,6 @@
 						$strTelefono,
 						$strPassword);
 					if ($request_user) {
-						sessionUser($_SESSION['idUser']);
-						$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
-					} else {
-						$arrResponse = array("status" => false, "msg" => 'No es posible actualizar los datos.');
-					}
-				}
-				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-			}
-			die();
-		}
-		
-		public function putDFical()
-		{
-			if ($_POST) {
-				if (empty($_POST['txtNit']) || empty($_POST['txtNombreFiscal']) || empty($_POST['txtDirFiscal'])) {
-					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
-				} else {
-					$idUsuario = $_SESSION['idUser'];
-					$strNit = strClean($_POST['txtNit']);
-					$strNomFiscal = strClean($_POST['txtNombreFiscal']);
-					$strDirFiscal = strClean($_POST['txtDirFiscal']);
-					$request_datafiscal = $this->model->updateDataFiscal($idUsuario,
-						$strNit,
-						$strNomFiscal,
-						$strDirFiscal);
-					if ($request_datafiscal) {
 						sessionUser($_SESSION['idUser']);
 						$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
 					} else {

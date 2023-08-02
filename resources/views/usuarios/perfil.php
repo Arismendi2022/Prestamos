@@ -148,18 +148,18 @@
 											<div class="row mb-4">
 												<div class="col-md-6">
 													<label>Identificación Tributaria</label>
-													<input class="form-control valid validNumber" type="text" id="txtNit" name="txtNit" value="<?= $_SESSION['userData']['nit']; ?>"
-													       onkeypress="return controlTag(event);">
+													<input class="form-control valid validNumber" type="text" id="txtNit" name="txtNit" value=""
+													       onkeypress="return controlTag(event);" readonly>
 												</div>
 												<div class="col-md-6">
 													<label>Nombre fiscal</label>
-													<input class="form-control" type="text" id="txtNombreFiscal" name="txtNombreFiscal" value="<?= $_SESSION['userData']['nombrefiscal']; ?>">
+													<input class="form-control" type="text" id="txtNombreFiscal" name="txtNombreFiscal" value="" readonly>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-md-12 mb-4">
 													<label>Dirección fiscal</label>
-													<input class="form-control" type="text" id="txtDirFiscal" name="txtDirFiscal" value="<?= $_SESSION['userData']['direccionfiscal']; ?>">
+													<input class="form-control" type="text" id="txtDirFiscal" name="txtDirFiscal" value="" readonly>
 												</div>
 											</div>
 											<div class="row mb-10">

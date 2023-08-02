@@ -49,6 +49,8 @@
 <script src="<?= ROOT ?>/admin/plugins/dayjs/dayjs.min.js"></script>
 <!-- Numeraljs-->
 <script src="<?= ROOT ?>/admin/plugins/numeral/numeral.min.js"></script>
+<!-- Files input-->
+<script src="<?= ROOT ?>/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
 <!-- Buttons js -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
@@ -75,6 +77,12 @@
 	$('ul.nav-treeview a').filter(function () {
 		return this.href == url;
 	}).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
+</script>
+
+<script>
+	$(function () {
+		bsCustomFileInput.init();
+	});
 </script>
 
 </body>

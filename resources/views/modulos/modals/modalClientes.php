@@ -29,6 +29,13 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-4">
+							<label for="listStatus">Genero <span class="required">*</span></label>
+							<select class="form-control select2" id="listStatus" name="listStatus" required="">
+								<option value="1">Masculino</option>
+								<option value="2">Femenino</option>
+							</select>
+						</div>
+						<div class="form-group col-md-4">
 							<label for="txtTelefono">Teléfono <span class="required">*</span></label>
 							<input type="text" class="form-control" id="txtTelefono" name="txtTelefono" required="">
 						</div>
@@ -36,31 +43,20 @@
 							<label for="txtEmail">Email <span class="required">*</span></label>
 							<input type="email" class="form-control valid validEmail" id="txtEmail" name="txtEmail" required="">
 						</div>
-						<div class="form-group col-md-4">
-							<label for="txtPassword">Password </label>
-							<input type="password" class="form-control" id="txtPassword" name="txtPassword" >
-						</div>
 					</div>
 					<hr>
 					<p class="text-primary">Datos Fiscales.</p>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label>Identificación Tributaria <span class="required"></span></label>
-							<input class="form-control valid validNumber" type="text" id="txtNit" name="txtNit" onkeypress="return controlTag(event);">
-						</div>
-						<div class="form-group col-md-6">
-							<label>Nombre fiscal <span class="required"></span></label>
-							<input class="form-control" type="text" id="txtNombreFiscal" name="txtNombreFiscal">
-						</div>
-						
-						<div class="form-group col-md-12">
-							<label>Dirección fiscal <span class="required">*</span></label>
+							<label>Dirección <span class="required">*</span></label>
 							<input class="form-control" type="text" id="txtDirFiscal" name="txtDirFiscal" required="">
 						</div>
-					
+						<div class="form-group col-md-6">
+							<label>Ciudad <span class="required"></span></label>
+							<input class="form-control" type="text" id="txtCiudad" name="txtCiudad">
+						</div>
 					</div>
 					<div class="form-row">
-					
 					</div>
 					<div class="tile-footer">
 						<button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
@@ -102,20 +98,16 @@
 						<td id="celTelefono">Larry</td>
 					</tr>
 					<tr>
-						<td>Email (Usuario):</td>
+						<td>Email:</td>
 						<td id="celEmail">Larry</td>
 					</tr>
 					<tr>
-						<td>Identificación Tributaria:</td>
-						<td id="celIde">Larry</td>
-					</tr>
-					<tr>
-						<td>Nombre Fiscal:</td>
-						<td id="celNomFiscal">Larry</td>
-					</tr>
-					<tr>
-						<td>Dirección Fiscal:</td>
+						<td>Dirección:</td>
 						<td id="celDirFiscal">Larry</td>
+					</tr>
+					<tr>
+						<td>Ciudad:</td>
+						<td id="celCiudad">Larry</td>
 					</tr>
 					<tr>
 						<td>Fecha registro:</td>

@@ -14,7 +14,7 @@
 	/** Datos de conexion a Base de Datos **/
 	define("USUARIO", "soporte");
 	define("PASSWORD", "admin");
-	define("DATABASE", "inet_prestamo_db");
+	define("DATABASE", "inet_prestamos_db");
 	define("SERVIDOR", "ALFA\SQLEXPRESS");
 	
 	/** Delimitador decimal y millar EJ: 24.189,00 **/

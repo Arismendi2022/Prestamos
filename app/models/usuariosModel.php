@@ -6,6 +6,7 @@
 		private $strIdentificacion;
 		private $strNombre;
 		private $strApellido;
+		private $strImagen;
 		private $strDireccion;
 		private $strTelefono;
 		private $strEmail;
@@ -22,10 +23,9 @@
 			parent::__construct();
 		}
 		
-		public function insertUsuario(string $identificacion, string $nombre, string $apellido, string $direccion, string $telefono, string $email, string $password, int
-		$tipoid, int $status)
+		public function insertUsuario(string $identificacion, string $nombre, string $apellido, string $direccion, string $telefono, string $email, string
+		$password, int $tipoid, int $status)
 		{
-			
 			$this->strIdentificacion = $identificacion;
 			$this->strNombre = $nombre;
 			$this->strApellido = $apellido;
@@ -88,8 +88,8 @@
 			return $request;
 		}
 		
-		public function updateUsuario(int $idUsuario, string $identificacion, string $nombre, string $apellido, string $direccion, string $telefono, string $email, string
-		$password, int $tipoid, int $status)
+		public function updateUsuario(int $idUsuario, string $identificacion, string $nombre, string $apellido, string $direccion, string $telefono, string
+		$email, string $password, int $tipoid, int $status)
 		{
 			$this->intIdUsuario = $idUsuario;
 			$this->strIdentificacion = $identificacion;
@@ -176,21 +176,6 @@
 			$request = $this->update($sql,$arrData);
 			return $request;
 		}
-		
-		public function updateDataFiscal(int $idUsuario, string $strNit, string $strNomFiscal, string $strDirFiscal){
-			$this->intIdUsuario = $idUsuario;
-			$this->strNit = $strNit;
-			$this->strNomFiscal = $strNomFiscal;
-			$this->strDirFiscal = $strDirFiscal;
-			$sql = "UPDATE persona SET nit=?, nombrefiscal=?, direccionfiscal=?
-						WHERE idpersona = $this->intIdUsuario ";
-			$arrData = array($this->strNit,
-				$this->strNomFiscal,
-				$this->strDirFiscal);
-			$request = $this->update($sql,$arrData);
-			return $request;
-		}
-		
 		
 	}
 	/** End of file usuariosModel.php **/

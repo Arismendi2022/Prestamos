@@ -30,6 +30,7 @@
 							u.identificacion,
 							u.nombres,
 							u.apellidos,
+							u.foto,
 							u.telefono,
 							u.email_user,
 							r.idrol,r.nombrerol,

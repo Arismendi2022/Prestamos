@@ -1,5 +1,6 @@
 let tableUsuarios;
 let rowTable;
+
 document.addEventListener('DOMContentLoaded', function () {
 
 	tableUsuarios = $('#tableUsuarios').dataTable( {
@@ -101,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 });
-
 /** Actualizar Perfil **/
 if(document.querySelector("#formPerfil")){
 	let formPerfil = document.querySelector("#formPerfil");
@@ -332,7 +332,7 @@ function fntDelUsuario(idusuario) {
 		}
 	})
 }
-
+/* modal formularuo usuarios */
 function openModal() {
 	document.querySelector("#idUsuario").value = "";
 	document.querySelector(".modal-header").classList.replace("headerUpdate", "headerRegister");
@@ -341,8 +341,10 @@ function openModal() {
 	document.querySelector("#titleModal").innerHTML = "Nuevo Usuario";
 	document.querySelector("#formUsuario").reset();
 	$("#modalFormUsuario").modal("show");
+	$('#listRolid').select2();
+	$('#listStatus').select2();
 }
-
+/* Modal formulario perfil usuarios*/
 function openModalPerfil(){
 	$('#modalFormPerfil').modal('show');
 }
