@@ -1,4 +1,164 @@
-<!-- /.modal -->
+<!-- Modal Prestamos-->
+<div class="modal fade" id="modalFormPrestamo" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog modal-xl modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title" id="titleModal">Nuevo Préstamo</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="formPrestamos" name="formPrestamos" class="form-horizontal">
+					<input type="hidden" id="idUsuario" name="idUsuario" value="">
+					<div class="row">
+						<div class="col-md-9">
+							<!--Información del Cliente-->
+							<div class="card card-outline card-success">
+								<div class="card-header">
+									<h4 class="card-title w-100 text-center"><b>INFORMACION DEL CREDITO</b></h4>
+								</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="txtIdentificacion">Identificación <span class="required">*</span></label>
+											<div class="input-group">
+												<input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return
+													controlTag(event);">
+												<div class="input-group-append">
+													<button type="button" onclick="openModalClientes();" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
+												</div>
+											</div>
+										</div>
+										<div class="form-group col-md-12">
+											<label for="txtNombre">Nombres y Apellidos </span></label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+												</div>
+												<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required readonly>
+											</div>
+										</div>
+									</div> <!-- /.crow -->
+									<div class="row">
+										<div class="col-md-4">
+											<label for="txtMonto">Monto del Préstamo <span class="required">*</span></label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
+												</div>
+												<input type="text" class="form-control font-weight-bold font-size-20" id="txtMonto" name="txtMonto" oninput="formatearInput(this)" required>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label for="txtCuota">Nro Cuotas <span class="required">*</span></label>
+											<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtCuotas" name="txtCuotas" required
+											       onkeypress="return controlTag(event);">
+										</div>
+										<div class="col-md-4">
+											<label for="txtInteres">Interes Anual <span class="required">*</span></label>
+											<div class="input-group">
+												<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtInteres" name="txtInteres" required
+												       onkeypress="return controlTag(event);">
+												<div class="input-group-append">
+													<span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
+												</div>
+											</div>
+										
+										</div>
+									</div> <!-- /.crow -->
+									<div class="row">
+										<div class="col-md-4">
+											<label for="listFormPago">Forma de Pago <span class="required">*</span></label>
+											<select class="form-control select2" id="listFormPago" name="listFormPago" required="">
+												<option value="Diario">Diario</option>
+												<option value="Mensual">Mensual</option>
+												<option value="Quincenal">Quincenal</option>
+												<option value="Semanal">Semanal</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<label for="listMoneda">T. Moneda <span class="required">*</span></label>
+											<select class="form-control select2" id="listMoneda" name="listMoneda" required>
+												<option value="COP">COP</option>
+												<option value="USD">USD</option>
+												<option value="EUR">EUR</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<label for="txtFecha">Fecha Emisión <span class="required">*</span></label>
+											<div class="input-group date" id="datetimepicker" data-target-input="nearest" readonly>
+												<input type="text" id="datePicker" class="form-control datetimepicker-input" data-target="#datetimepicker" readonly placeholder="dd/mm/yyyy"
+												       required>
+												<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+													<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+												</div>
+											</div>
+										</div>
+									</div> <!-- /.row -->
+								</div>
+								<!-- /.card-body -->
+								<div class="row">
+									<div class="col-md-12 mb-4">
+										<div class="card-footer">
+											<button type="button" id="btnCalcular" class="btn btn-danger"><i class="fa-solid fa-calculator mr-2"></i><b>CALCULAR</b></button>
+										</div>
+										<!-- /.card-footer -->
+									</div>
+								</div> <!-- /.row -->
+							</div>
+							<!-- /.card -->
+						</div>
+						<div class="col-md-3">
+							<div class="card card-outline card-success">
+								<div class="card-header">
+									<h4 class="card-title w-100 text-center"><b>VALORES CALCULADOS</b></h4>
+								</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-12 text-center">
+											<span>Valor por Cuota</span>
+											<h5><span id="valorCuota" class="font-weight-bold">0</span></h5>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 text-center">
+											<span>Interes</span>
+											<h5><span id="Interes" class="font-weight-bold">0</span></h5>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 text-center">
+											<span>Monto Total</span>
+											<h5><span id="montoTotal" class="font-weight-bold">0</span></h5>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /.card -->
+							<div class="card card-warning card-outline">
+								<div class="card-header">
+									<h4 class="card-title w-100 text-center"><b>ACCIONES</b></h4>
+								</div>
+								<div class="card-body">
+									<button id="btnActionForm" class="btn btn-block btn-success" type="submit" disabled ><span id="btnText"><b>GUARDAR PRESTAMO</b></span></button>
+									<button type="button" class="btn btn-block btn-info"><b>IMP. PRESTAMO</b></button>
+									<button type="button" onclick="btnLimpiarForm();" class="btn btn-block btn-danger"><b>LIMPIAR CAMPOS</b></button>
+								</div>
+							</div>
+							<!-- /.card -->
+						</div>
+					</div>
+					<div class="card-footer">
+						<button class="btn btn-secondary" type="button" style="float: right" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle mr-2"></i>Cerrar</button>
+					</div>
+				</form> <!-- /.form -->
+			</div> <!-- /.body -->
+		</div>
+	</div>
+</div>
+
+<!-- /.modal Buscar clientes-->
 <div class="modal fade" id="modalListClientes" tabindex="-1" role="dialog" aria-hidden="true">>
 	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">
@@ -9,21 +169,29 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<table id="tableListClientes" class="table table table-striped table-bordered" style="width:100%">
-					<thead>
-					<tr>
-						<th>ID</th>
-						<th>Identificación</th>
-						<th>Nombres</th>
-						<th>Telefono</th>
-						<th>Estado</th>
-						<th class="text-center">Acciones</th>
-					</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
-				<!-- /.Table -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="tile">
+							<div class="table-responsive">
+								<table id="tableListClientes" class="table table-hover table-striped table-bordered" style="width:100%">
+									<thead>
+									<tr>
+										<th>ID</th>
+										<th>Identificaion</th>
+										<th>Nombre Completo</th>
+										<th>Telefono</th>
+										<th>Estado</th>
+										<th class="text-center">Acciones</th>
+									</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<!-- /.Table -->
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer justify-content-right">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -72,7 +240,7 @@
 							<div class="col-sm-4">
 								<ul class="list-unstyled" style="font-size:13px; color:#000000">
 									<li class="float-right"><b>Email: </b><span id="celEmail" style="color: blue;">Arismendi.Guiza@yahoo.com</span></li>
-									<li class="float-right"><b>Teléfono: </b><span id="celTelefono"> 3508473267</span> </li>
+									<li class="float-right"><b>Teléfono: </b><span id="celTelefono"> 3508473267</span></li>
 								</ul>
 							</div>
 						</div><!-- /.row -->
@@ -125,6 +293,7 @@
 		</div>
 	</div>
 </div>
+
 
 
 

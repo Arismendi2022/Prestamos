@@ -34,14 +34,14 @@
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
 				} else {
 					$idUsuario = intval($_POST['idUsuario']);
-					$strIdentificacion = strClean($_POST['txtIdentificacion']);
+					$strIdentificacion = intval(strClean($_POST['txtIdentificacion']));
 					$strNombre = ucwords(strClean($_POST['txtNombre']));
 					$strApellido = ucwords(strClean($_POST['txtApellido']));
 					$intGenero = intval(strClean($_POST['listStatus']));
 					$strTelefono = strClean($_POST['txtTelefono']);
 					$strEmail = strtolower(strClean($_POST['txtEmail']));
-					$strDirFiscal = strClean($_POST['txtDirFiscal']);
-					$strCiudad = strClean($_POST['txtCiudad']);
+					$strDirFiscal = ucwords(strClean($_POST['txtDirFiscal']));
+					$strCiudad = ucwords(strClean($_POST['txtCiudad']));
 					$request_user = "";
 					
 					if ($idUsuario == 0) {

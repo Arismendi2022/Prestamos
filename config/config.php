@@ -28,12 +28,11 @@
 	const MDASHBOARD = 1;
 	const MCLIENTES = 2;
 	const MPRESTAMOS = 3;
-	const MLSTPRESTAMOS = 4;
-	const MPAGOS = 5;
-	const MUSUARIOS = 6;
-	const MROLES = 7;
-	const MREPORTES = 8;
-	const MCONTABILIDAD = 9;
+	const MPAGOS = 4;
+	const MUSUARIOS = 5;
+	const MROLES = 6;
+	const MREPORTES = 7;
+	const MCONTABILIDAD = 8;
 	
 	/** Roles **/
 	const RADMINISTRADOR = 1;

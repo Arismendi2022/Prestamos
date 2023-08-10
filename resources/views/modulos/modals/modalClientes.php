@@ -12,7 +12,6 @@
 				<form id="formCliente" name="formCliente" class="form-horizontal">
 					<input type="hidden" id="idUsuario" name="idUsuario" value="">
 					<p class="text-primary">Los campos con asterisco (<span class="required">*</span>) son obligatorios.</p>
-					
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="txtIdentificacion">Identificación <span class="required">*</span></label>

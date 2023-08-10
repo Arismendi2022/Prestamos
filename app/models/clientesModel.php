@@ -124,9 +124,9 @@
 			return $request;
 		}
 		
-		public function deleteCliente(int $intidcliente)
+		public function deleteCliente(int $intIdcliente)
 		{
-			$this->intIdUsuario = $intidcliente;
+			$this->intIdUsuario = $intIdcliente;
 			$sql = "UPDATE tbl_clientes SET estado = ? WHERE idcliente = $this->intIdUsuario ";
 			$arrData = array(0);
 			$request = $this->update($sql,$arrData);

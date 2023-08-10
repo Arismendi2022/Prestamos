@@ -11,7 +11,6 @@
 				die();
 			}
 			getPermisos(MPRESTAMOS);
-			getPermisos(MLSTPRESTAMOS);
 		}
 		
 		public function Prestamos()
@@ -37,37 +36,39 @@
 				} else {
 					/** cabecera prestamos */
 					$idUsuario = intval($_POST['idUsuario']);
+					$dtFecha = date("Y-m-d", strtotime($_POST['fecha_prestamo']));
 					$intMonto = intval(quitarMillar($_POST['txtMonto']));
-					$intInteres = intval($_POST['txtInteres']);
 					$intCuotas = intval($_POST['txtCuotas']);
+					$intInteres = intval($_POST['txtInteres']);
 					$intValorCuota = intVal(quitarMillar($_POST['valor_cuota']));
+					$intTotalInteres = intVal(quitarMillar($_POST['valor_interes']));
 					$intMontoTotal = intVal(quitarMillar($_POST['valor_total']));
 					$strFormaPago = strClean($_POST['listFormPago']);
 					$strMoneda = strClean($_POST['listMoneda']);
-					$dtFecha = date("Y-m-d", strtotime($_POST['fecha_prestamo']));
 					$request_user = "";
 					
 					if ($_SESSION['permisosMod']['w']) {
 						$request_user = $this->model->insertPrestamo($idUsuario,
+							$dtFecha,
 							$intMonto,
-							$intInteres,
 							$intCuotas,
+							$intInteres,
 							$intValorCuota,
+							$intTotalInteres,
 							$intMontoTotal,
 							$strFormaPago,
-							$strMoneda,
-							$dtFecha);
+							$strMoneda);
 						
 						/** Detalle prestamo */
 						$datos = json_decode($_POST['datos'], true);
 						/** Recorrer los datos y enviarlos a la base de datos */
 						foreach ($datos as $row) {
-							$columna1 = $row[0];
-							$columna2 = $row[1];
-							$columna3 = $row[2];
-							$columna4 = $row[3];
-							$columna5 = $row[4];
-							$columna6 = $row[5];
+							$columna1 = $row['nroCuota'];
+							$columna2 = $row['Fecha'];
+							$columna3 = $row['Cuota'];
+							$columna4 = $row['Interes'];
+							$columna5 = $row['Capital'];
+							$columna6 = $row['Saldo'];
 							
 							$nroCuota = intval($columna1);
 							$dtFecha = date('Y-m-d', strtotime(strClean($columna2)));
@@ -103,14 +104,14 @@
 				for ($i = 0; $i < count($arrData); $i++) {
 					$btnAgregar = '';
 					
-					if ($arrData[$i]['prestamos'] == 0) {
-						$arrData[$i]['prestamos'] = '<span class="badge badge-success">Sin Prestamos</span>';
+					if ($arrData[$i]['prestamo'] == 0) {
+						$arrData[$i]['prestamo'] = '<span class="badge badge-success">Sin Prestamos</span>';
 					} else {
-						$arrData[$i]['prestamos'] = '<span class="badge badge-danger">Con Prestamos</span>';
+						$arrData[$i]['prestamo'] = '<span class="badge badge-danger">Con Prestamos</span>';
 					}
 					
 					if ($_SESSION['permisosMod']['r']) {
-						$btnAgregar = '<button type="button" class="btn btn-info btn-sm" onClick="fntBuscarCliente(' . $arrData[$i]['idpersona'] . ')" title="Agregar Cliente">
+						$btnAgregar = '<button type="button" class="btn btn-info btn-sm" onClick="fntBuscarCliente(' . $arrData[$i]['idcliente'] . ')" title="Agregar Cliente">
 							<i class="fa-solid fa-plus"></i></button>';
 					}
 					
@@ -121,14 +122,14 @@
 			die();
 		}
 		
-		public function getClienteLoan($idpersona)
+		public function getClienteLoan($idcliente)
 		{
 			if ($_SESSION['permisosMod']['r']) {
-				$idusuario = intval($idpersona);
+				$idusuario = intval($idcliente);
 				if ($idusuario > 0) {
-					$arrData = $this->model->selectClienteLoan($idusuario);
+					$arrData = $this->model->selectClienteLoan($idcliente);
 					
-					if ($arrData['prestamos'] == '1') {
+					if ($arrData['prestamo'] == '1') {
 						$arrResponse = array('status' => false, 'msg' => '¡Cliente con préstamo pendiente.',);
 					} else {
 						if (empty($arrData)) {
@@ -141,18 +142,6 @@
 				}
 			}
 			die();
-		}
-		
-		public function reportePrestamos()
-		{
-			if (empty($_SESSION['permisosMod']['r'])) {
-				header("Location:" . base_url() . '/dashboard');
-			}
-			$data['page_tag'] = "Reporte de Prestamos";
-			$data['page_title'] = "Reporte de Préstamos - <small> Sistema de Crédito</small>";
-			$data['page_name'] = "reporte prestamos";
-			$data['page_functions_js'] = "functions_prestamos.js";
-			$this->views->getView($this, "reportePrestamos", $data);
 		}
 		
 		public function getPrestamos()
@@ -168,8 +157,8 @@
 						$arrData[$i]['estado'] = '<span class="badge badge-primary">Pagado</span>';
 					}
 					$arrData[$i]['valor_cuota'] = SMONEY . ' ' . formatMoney($arrData[$i]['valor_cuota']);
-					$arrData[$i]['monto_credito'] = SMONEY . ' ' . formatMoney($arrData[$i]['monto_credito']);
-					$arrData[$i]['monto_total'] = SMONEY . ' ' . formatMoney($arrData[$i]['monto_total']);
+					$arrData[$i]['monto_prestamo'] = SMONEY . ' ' . formatMoney($arrData[$i]['monto_prestamo']);
+					$arrData[$i]['total_pagar'] = SMONEY . ' ' . formatMoney($arrData[$i]['total_pagar']);
 					$arrData[$i]['abonos'] = SMONEY . ' ' . formatMoney($arrData[$i]['abonos']);
 					$arrData[$i]['saldo'] = SMONEY . ' ' . formatMoney($arrData[$i]['saldo']);
 					
@@ -194,7 +183,7 @@
 					$arrData['totalIntereses'] = SMONEY . ' ' . formatMoney($arrData['totalIntereses']);
 					$arrData['monto_total'] = SMONEY . ' ' . formatMoney($arrData['monto_total']);
 					$arrData['interes'] = $arrData['interes'] . '%';
-					$arrData['idprestamo'] = '000'.$arrData['idprestamo'];
+					$arrData['idprestamo'] = '000' . $arrData['idprestamo'];
 					
 					if (empty($arrData)) {
 						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');

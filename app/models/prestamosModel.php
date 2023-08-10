@@ -10,55 +10,58 @@
 		
 		public function selectClientesLoan()
 		{
-			$sql = "SELECT idpersona,identificacion,concat(nombres,' ',apellidos) as nombres,telefono,prestamos
-				FROM persona
-				WHERE rolid = " . RCLIENTES . " and estado != 0 ";
+			$sql = "SELECT idcliente,identificacion,concat(nombres,' ',apellidos) as nombres,telefono,prestamo
+				FROM tbl_clientes
+				WHERE estado != 0 ";
 			$request = $this->select_all($sql);
 			return $request;
 		}
 		
-		public function selectClienteloan(int $idpersona)
+		public function selectClienteloan(int $idcliente)
 		{
-			$this->intIdUsuario = $idpersona;
-			$sql = "SELECT idpersona,identificacion,concat(nombres, ' ', apellidos) as nombres,telefono,email_user,estado,prestamos
-				FROM persona
-				WHERE idpersona = $this->intIdUsuario and rolid = " . RCLIENTES;
+			$this->intIdUsuario = $idcliente;
+			$sql = "SELECT idcliente,identificacion,concat(nombres, ' ', apellidos) as nombres,telefono,email,estado,prestamo
+				FROM tbl_clientes
+				WHERE idcliente = $this->intIdUsuario";
 			$request = $this->select($sql);
 			return $request;
 		}
 		
-		public function insertPrestamo(int $idUsuario, int $intMonto, int $intInteres, int $intCuotas, int $intValorCuota, int $intMontoTotal, string $strFormaPago, string
-				$strMoneda, $dtFecha)
+		public function insertPrestamo(int $idUsuario, $dtFecha, int $intMonto, int $intCuotas, int $intInteres, int $intValorCuota, int $intTotalInteres ,int $intMontoTotal,
+																	 string $strFormaPago, string $strMoneda)
 		{
 			$this->intidUsuario = $idUsuario;
+			$this->dtFecha = $dtFecha;
 			$this->intMonto = $intMonto;
-			$this->intInteres = $intInteres;
 			$this->intCuotas = $intCuotas;
+			$this->intInteres = $intInteres;
 			$this->intValorCuota = $intValorCuota;
+			$this->intTotalInteres = $intTotalInteres;
 			$this->intMontoTotal = $intMontoTotal;
 			$this->strFormaPago = $strFormaPago;
 			$this->strMoneda = $strMoneda;
-			$this->dtFecha = $dtFecha;
+			
 			$return = 0;
 			
 			/** inserta cabecera prestamos */
-			$query_insert = "insert into prestamos(personaid,monto_credito,interes,num_cuotas,valor_cuota,monto_total,forma_pago,moneda,fecha_prestamo)
-												values(?,?,?,?,?,?,?,?,?)";
+			$query_insert = "insert into tbl_prestamos(clienteid,fecha_prestamo,monto_prestamo,nro_cuotas,interes,valor_cuota,total_interes,total_pagar,forma_pago,moneda)
+												values(?,?,?,?,?,?,?,?,?,?)";
 			$arrData = array($this->intidUsuario,
+				$this->dtFecha,
 				$this->intMonto,
-				$this->intInteres,
 				$this->intCuotas,
+				$this->intInteres,
 				$this->intValorCuota,
+				$this->intTotalInteres,
 				$this->intMontoTotal,
 				$this->strFormaPago,
-				$this->strMoneda,
-				$this->dtFecha);
+				$this->strMoneda);
 			$request_insert = $this->insert($query_insert, $arrData);
 			$return = $request_insert;
 			
 			/** actualizamos estado prestamo en clientes */
 			$this->intIdUsuario = $idUsuario;
-			$sql = "UPDATE persona SET prestamos = ? WHERE idpersona = $this->intIdUsuario";
+			$sql = "UPDATE tbl_clientes SET prestamo = ? WHERE idcliente = $this->intIdUsuario";
 			$arrData = array(1);
 			$request = $this->update($sql,$arrData);
 			/** retornamos a controlador prestamos */
@@ -69,7 +72,7 @@
 		public function insertPrestamoItems(int $nroCuota, $dtFecha, int $intCuota, int $intInteres,int $intCapital,int $intSaldo)
 		{
 			/** actualizamos el consecutivo del prestamo */
-			$sql = "CALL consecutivoPrestamo()";
+			$sql = "EXEC proc_consecutivoPrestamo;";
 			$request = $this->select($sql);
 			$consecutivo = $request['consecutivo'];
 			
@@ -83,7 +86,7 @@
 			$return = 0;
 			
 			/** inserta items amortizacion */
-			$query_insert = "insert into amortizacion(prestamoid,num_cuota,fecha_cuota,valor_cuota,interes,capital,saldo)
+			$query_insert = "insert into tbl_amortizacion(prestamoid,nro_cuota,fecha_cuota,valor_cuota,interes,capital,saldo)
 												values(?,?,?,?,?,?,?)";
 			$arrData = array($this->intConsecutivo,
 				$this->nroCuota,
@@ -101,9 +104,9 @@
 		
 		public function selectPrestamos()
 		{
-			$sql = "SELECT idprestamo,cliente,DATE_FORMAT(fecha_prestamo, '%d-%m-%Y') as fecha,forma_pago,num_cuotas,valor_cuota,monto_credito,monto_total,abonos,
-       							(monto_total-abonos) as saldo,estado
-			FROM reportePrestamos";
+			$sql = "SELECT idprestamo,cliente,FORMAT(fecha_prestamo, 'dd-MM-yyyy') as fecha_prestamo,forma_pago,nro_cuotas,valor_cuota,monto_prestamo,total_pagar,abonos,
+       							(total_pagar-abonos) as saldo,estado
+			FROM view_reportePrestamos";
 			$request = $this->select_all($sql);
 			return $request;
 			
@@ -111,8 +114,8 @@
 		
 		public function selectPrestamo(int $idPrestamo){
 			$this->intIdPrestamo = $idPrestamo;
-			$sql = "SELECT personaid,identificacion,CONCAT(nombres,' ',apellidos) AS nombres,telefono,direccionfiscal,email_user,DATE_FORMAT(datecreated, '%d-%m-%Y') as fechaRegistro,
-        idprestamo,monto_credito,interes,num_cuotas,valor_cuota,monto_total,(monto_total-monto_credito ) as totalIntereses,forma_pago,DATE_FORMAT(fecha_prestamo,'%d-%m-%Y') as fechaPrestamo FROM prestamos
+			$sql = "SELECT personaid,identificacion,CONCAT(nombres,' ',apellidos) AS nombres,telefono,direccionfiscal,email_user,FORMAT(datecreated, 'dd-MM-yyyy') as fechaRegistro,
+        idprestamo,monto_credito,interes,num_cuotas,valor_cuota,monto_total,(monto_total-monto_credito ) as totalIntereses,forma_pago,FORMAT(fecha_prestamo,'dd-MM-yyyy') as fechaPrestamo FROM prestamos
 				INNER JOIN persona
 				ON prestamos.personaid = persona.idpersona
 				WHERE idprestamo = $this->intIdPrestamo";
@@ -122,7 +125,7 @@
 		
 		public function selectAmortizacion(int $idPrestamo){
 			$this->intIdPrestamo = $idPrestamo;
-			$sql = "SELECT prestamoid,num_cuota,DATE_FORMAT(fecha_cuota,'%d-%m-%Y') as fechaPago,valor_cuota,saldo,estado FROM amortizacion
+			$sql = "SELECT prestamoid,num_cuota,FORMAT(fecha_cuota,'dd-mm-yyyy') as fechaPago,valor_cuota,saldo,estado FROM amortizacion
             	WHERE prestamoid = $this->intIdPrestamo";
 			$request = $this->select_all($sql);
 			return $request;

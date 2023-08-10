@@ -64,3 +64,15 @@
     margin-right: 35px; /* Ajusta el valor según tus necesidades */
 }
 
+/* Aplicar estilos a las columnas específicas */
+#tableListClientes td:nth-child(3),
+#tableListClientes th:nth-child(3) {
+    width: 150px; /* Ancho deseado para la tercera columna */
+}
+
+/* Aplicar estilos a las columnas específicas */
+#tablePrestamos td:nth-child(2),
+#tablePrestamos th:nth-child(2) {
+    width: 120px; /* Ancho deseado para la segunda columna */
+}
+
