@@ -27,7 +27,7 @@
 			return $request;
 		}
 		
-		public function insertPrestamo(int $idUsuario, $dtFecha, int $intMonto, int $intCuotas, int $intInteres, int $intValorCuota, int $intTotalInteres ,int $intMontoTotal,
+		public function insertPrestamo(int    $idUsuario, $dtFecha, int $intMonto, int $intCuotas, int $intInteres, int $intValorCuota, int $intTotalInteres, int $intMontoTotal,
 																	 string $strFormaPago, string $strMoneda)
 		{
 			$this->intidUsuario = $idUsuario;
@@ -63,13 +63,13 @@
 			$this->intIdUsuario = $idUsuario;
 			$sql = "UPDATE tbl_clientes SET prestamo = ? WHERE idcliente = $this->intIdUsuario";
 			$arrData = array(1);
-			$request = $this->update($sql,$arrData);
+			$request = $this->update($sql, $arrData);
 			/** retornamos a controlador prestamos */
 			return $return;
 		}
 		
 		/** inserta detalle prestamos */
-		public function insertPrestamoItems(int $nroCuota, $dtFecha, int $intCuota, int $intInteres,int $intCapital,int $intSaldo)
+		public function insertPrestamoItems(int $nroCuota, $dtFecha, int $intCuota, int $intInteres, int $intCapital, int $intSaldo)
 		{
 			/** actualizamos el consecutivo del prestamo */
 			$sql = "EXEC proc_consecutivoPrestamo;";
@@ -112,20 +112,22 @@
 			
 		}
 		
-		public function selectPrestamo(int $idPrestamo){
+		public function selectPrestamo(int $idPrestamo)
+		{
 			$this->intIdPrestamo = $idPrestamo;
-			$sql = "SELECT personaid,identificacion,CONCAT(nombres,' ',apellidos) AS nombres,telefono,direccionfiscal,email_user,FORMAT(datecreated, 'dd-MM-yyyy') as fechaRegistro,
-        idprestamo,monto_credito,interes,num_cuotas,valor_cuota,monto_total,(monto_total-monto_credito ) as totalIntereses,forma_pago,FORMAT(fecha_prestamo,'dd-MM-yyyy') as fechaPrestamo FROM prestamos
-				INNER JOIN persona
-				ON prestamos.personaid = persona.idpersona
+			$sql = "SELECT clienteid,identificacion,CONCAT(nombres,' ',apellidos) AS nombres,telefono,direccion,ciudad,email,FORMAT(fecha_prestamo, 'dd-MM-yyyy') as fechaRegistro,
+        idprestamo,monto_prestamo,interes,nro_cuotas,valor_cuota,total_pagar,total_interes,forma_pago,FORMAT(fecha_prestamo,'dd-MM-yyyy') as fechaPrestamo FROM tbl_prestamos
+				INNER JOIN tbl_clientes
+				ON tbl_prestamos.clienteid = tbl_clientes.idcliente
 				WHERE idprestamo = $this->intIdPrestamo";
 			$request = $this->select($sql);
 			return $request;
 		}
 		
-		public function selectAmortizacion(int $idPrestamo){
+		public function selectAmortizacion(int $idPrestamo)
+		{
 			$this->intIdPrestamo = $idPrestamo;
-			$sql = "SELECT prestamoid,num_cuota,FORMAT(fecha_cuota,'dd-mm-yyyy') as fechaPago,valor_cuota,saldo,estado FROM amortizacion
+			$sql = "SELECT prestamoid,nro_cuota,FORMAT(fecha_cuota,'dd-MM-yyyy') as fechaPago,valor_cuota,saldo,estado FROM tbl_amortizacion
             	WHERE prestamoid = $this->intIdPrestamo";
 			$request = $this->select_all($sql);
 			return $request;

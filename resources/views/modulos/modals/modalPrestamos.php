@@ -2,7 +2,7 @@
 <div class="modal fade" id="modalFormPrestamo" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-dialog modal-xl modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<div class="modal-header bg-primary">
+			<div class="modal-header bg-info">
 				<h5 class="modal-title" id="titleModal">Nuevo Préstamo</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -141,7 +141,7 @@
 									<h4 class="card-title w-100 text-center"><b>ACCIONES</b></h4>
 								</div>
 								<div class="card-body">
-									<button id="btnActionForm" class="btn btn-block btn-success" type="submit" disabled ><span id="btnText"><b>GUARDAR PRESTAMO</b></span></button>
+									<button id="btnActionForm" class="btn btn-block btn-success" type="submit" disabled><span id="btnText"><b>GUARDAR PRESTAMO</b></span></button>
 									<button type="button" class="btn btn-block btn-info"><b>IMP. PRESTAMO</b></button>
 									<button type="button" onclick="btnLimpiarForm();" class="btn btn-block btn-danger"><b>LIMPIAR CAMPOS</b></button>
 								</div>
@@ -205,7 +205,7 @@
 <div class="modal fade" id="modalViewLoan" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-dialog modal-lg modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<div class="modal-header bg-primary">
+			<div class="modal-header bg-info">
 				<h5 class="modal-title" id="exampleModalCenterTitle">Detalle Préstamo</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -234,13 +234,17 @@
 							<div class="col-sm-4">
 								<ul class="list-unstyled" style="font-size:13px; color:#000000">
 									<li><b>Direeción: </b> <span id="celDireccion"> Calle 12</span></li>
-									<li class="float-center"><b>Ciudad: </b> Bogotá</li>
+									<li class="float-center"><b>Ciudad: </b><span id="celCiudad"> Bogotá</span></li>
 								</ul>
 							</div>
 							<div class="col-sm-4">
 								<ul class="list-unstyled" style="font-size:13px; color:#000000">
 									<li class="float-right"><b>Email: </b><span id="celEmail" style="color: blue;">Arismendi.Guiza@yahoo.com</span></li>
-									<li class="float-right"><b>Teléfono: </b><span id="celTelefono"> 3508473267</span></li>
+									<li class="float-right"><b>Teléfono: </b><span id="celTelefono"> 3508473267</span>
+										<div class="btn-group-horizontal">
+											<a type="button" class="btn-xs bg-red" href="#">Send SMS</a>
+										</div>
+									</li>
 								</ul>
 							</div>
 						</div><!-- /.row -->
@@ -267,9 +271,9 @@
 										</div>
 									</div>
 									<div class="table-responsive">
-										<table id="tableViewCuotas" class="table table-striped table-bordered table-sm" style="width:100%">
+										<table id="tableViewCuotas" class="table table-striped table-sm" style="width:100%">
 											<thead>
-											<tr class="active" style="background-color: #F2F8FF">
+											<tr class="active" style="background-color: #dff0d8">
 												<th>Nro Cuota</th>
 												<th>Fecha Pago</th>
 												<th class="right-margin">Total Cuota</th>
@@ -288,7 +292,7 @@
 				</div><!-- /.card -->
 			</div> <!-- /.body -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
 			</div>
 		</div>
 	</div>

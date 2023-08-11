@@ -85,16 +85,12 @@ $(document).ready(function () {
 		let tasaInteresAnual = document.querySelector('#txtInteres').value;
 		let frecuenciaPago = document.querySelector('#listFormPago').value;
 		let listMoneda = document.querySelector('#listMoneda').value;
-		let fechaInicio = document.querySelector('#datePicker').value;
+		let fechaActual = dayjs(document.querySelector('#datePicker').value);
 
 		/** Eliminar cualquier carácter que no sea un dígito */
 		montoCredito = montoCredito.replace(/\./g, "");
 
-		/** Creamos un objeto dayjs con la fecha de inicio */
-			//let fechaActual = dayjs(fechaInicio).add(1, 'month');
-		let fechaActual = dayjs(fechaInicio).add(0, 'month');
-
-		if (txtIdentificacion == '' || montoCredito == '' || cantidadPagos == '' || tasaInteresAnual == '' || cantidadPagos == '' || listMoneda == '' || fechaInicio == '') {
+		if (txtIdentificacion == '' || montoCredito == '' || cantidadPagos == '' || tasaInteresAnual == '' || cantidadPagos == '' || listMoneda == '' || fechaActual == '') {
 			alerta("Atención", "Todos los campos son obligatorios.", "error");
 			return false;
 		}
@@ -135,8 +131,7 @@ $(document).ready(function () {
 			pagoInteres = Math.abs(montoCredito * tasaInteresPeriodica);
 			pagoCapital = Math.abs(cuotaMes - pagoInteres);
 			montoCredito = Math.abs(montoCredito - pagoCapital);
-			/** Formato fechas */
-			const fechaPago = fechaActual.format('DD-MM-YYYY');
+
 			/** Pasar a la siguiente fecha de pago según la frecuencia */
 			switch (frecuenciaPago) {
 				case "Mensual":
@@ -154,7 +149,7 @@ $(document).ready(function () {
 			}
 			amortizationData.push({
 				nroCuota: i,
-				Fecha: fechaPago,
+				Fecha: fechaActual.format('YYYY-MM-DD'),
 				Cuota: formatter.format((cuotaMes.toFixed(0))),
 				Interes: formatter.format((pagoInteres.toFixed(0))),
 				Capital: formatter.format((pagoCapital.toFixed(0))),
@@ -260,20 +255,29 @@ function fntViewLoan(idprestamo) {
 
 		},
 		"ajax": {
-			"url": " " + base_url + '/Prestamos/getAmortizacion/' + idprestamo, "dataSrc": ""
+			"url": " " + base_url + '/Prestamos/getAmortizacion/' + idprestamo,
+			"dataSrc": ""
 		},
-		"columns": [{"data": "num_cuota"}, {"data": "fechaPago"}, {"data": "valor_cuota"}, {"data": "saldo"}, {"data": "estado"}],
-		"columnDefs": [{'className': "textcenter", "targets": [0]}, {'className': "textcenter", "targets": [1]}, {
-			'className': "textright",
-			"targets": [2]
-		}, {'className': "textright", "targets": [3]}, {'className': "textcenter", "targets": [4]}],
+		"columns": [
+			{"data": "nro_cuota"},
+			{"data": "fechaPago"},
+			{"data": "valor_cuota"},
+			{"data": "saldo"},
+			{"data": "estado"}
+		],
+		"columnDefs": [
+			{'className': "textcenter", "targets": [0]},
+			{'className': "textcenter", "targets": [1]},
+			{'className': "textright", "targets": [2]},
+			{'className': "textright", "targets": [3]},
+			{'className': "textcenter", "targets": [4]}
+		],
 
-		"paging": true,
+		"paging": false,
 		"lengthChange": false,
-		"pageLength": 8,
 		"searching": false,
 		"ordering": true,
-		"info": true,
+		"info": false,
 		"autoWidth": false,
 		"responsive": true,
 		"bDestroy": true,
@@ -290,17 +294,18 @@ function fntViewLoan(idprestamo) {
 
 				document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
 				document.querySelector("#celNombre").innerHTML = objData.data.nombres;
-				document.querySelector("#celEmail").innerHTML = objData.data.email_user;
+				document.querySelector("#celEmail").innerHTML = objData.data.email;
 				document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
-				document.querySelector("#celDireccion").innerHTML = objData.data.direccionfiscal;
+				document.querySelector("#celDireccion").innerHTML = objData.data.direccion;
+				document.querySelector("#celCiudad").innerHTML = objData.data.ciudad;
 				document.querySelector("#celFechaRegistro").innerHTML = objData.data.fechaRegistro;
-				document.querySelector("#celMontoCredito").innerHTML = objData.data.monto_credito;
-				document.querySelector("#celMontoTotal").innerHTML = objData.data.monto_total;
-				document.querySelector("#celTotalIntereses").innerHTML = objData.data.totalIntereses;
+				document.querySelector("#celMontoCredito").innerHTML = objData.data.monto_prestamo;
+				document.querySelector("#celMontoTotal").innerHTML = objData.data.total_pagar;
+				document.querySelector("#celTotalIntereses").innerHTML = objData.data.total_interes;
 				document.querySelector("#celFechaCredito").innerHTML = objData.data.fechaPrestamo;
 				document.querySelector("#celFormaPago").innerHTML = objData.data.forma_pago;
 				document.querySelector("#celInteres").innerHTML = objData.data.interes;
-				document.querySelector("#celnroCuotas").innerHTML = objData.data.num_cuotas;
+				document.querySelector("#celnroCuotas").innerHTML = objData.data.nro_cuotas;
 				document.querySelector("#celnroCredito").innerHTML = objData.data.idprestamo;
 				$('#modalViewLoan').modal('show');
 			} else {

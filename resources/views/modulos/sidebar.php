@@ -44,7 +44,7 @@
 					</a>
 				</li>
 				<?php } ?>
-				<?php if(!empty($_SESSION['permisos'][1]['r'])){ ?>
+				<?php if(!empty($_SESSION['permisos'][3]['r'])){ ?>
 					<li class="nav-item">
 						<a href="<?=ROOT?>/prestamos" class="nav-link">
 						<i class="nav-icon fa-solid fa-landmark"></i>
@@ -54,7 +54,7 @@
 					</a>
 				</li>
 				<?php } ?>
-				<?php if(!empty($_SESSION['permisos'][5]['r'])){ ?>
+				<?php if(!empty($_SESSION['permisos'][4]['r'])){ ?>
 				<li class="nav-item">
 					<a href="<?=ROOT?>/pagos" class="nav-link">
 						<i class="nav-icon fas fa-hand-holding-usd"></i>
@@ -64,7 +64,7 @@
 					</a>
 				</li>
 				<?php } ?>
-				<?php if(!empty($_SESSION['permisos'][6]['r']) || !empty($_SESSION['permisos'][7]['r'])){ ?>
+				<?php if(!empty($_SESSION['permisos'][5]['r']) || !empty($_SESSION['permisos'][6]['r'])){ ?>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fa-solid fa-user-gear"></i>
@@ -75,7 +75,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-						<?php if(!empty($_SESSION['permisos'][6]['r'])){ ?>
+						<?php if(!empty($_SESSION['permisos'][5]['r'])){ ?>
 							<a href="<?=ROOT?>/usuarios" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Usuarios</p>
@@ -83,7 +83,7 @@
 						<?php } ?>
 						</li>
 						<li class="nav-item">
-						<?php if(!empty($_SESSION['permisos'][7]['r'])){ ?>
+						<?php if(!empty($_SESSION['permisos'][6]['r'])){ ?>
 							<a href="<?=ROOT?>/roles" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Roles</p>
@@ -93,7 +93,7 @@
 					</ul>
 				</li>
 				<?php } ?>
-				<?php if(!empty($_SESSION['permisos'][8]['r'])){ ?>
+				<?php if(!empty($_SESSION['permisos'][7]['r'])){ ?>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fa-solid fa-chart-line"></i>
@@ -104,7 +104,7 @@
 					</a>
 				</li>
 				<?php } ?>
-				<?php if(!empty($_SESSION['permisos'][9]['r'])){ ?>
+				<?php if(!empty($_SESSION['permisos'][8]['r'])){ ?>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fa-solid fa-scale-balanced"></i>

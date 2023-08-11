@@ -152,7 +152,7 @@
 				for ($i = 0; $i < count($arrData); $i++) {
 					$btnView = '';
 					if ($arrData[$i]['estado'] == 1) {
-						$arrData[$i]['estado'] = '<span class="badge badge-danger">Pendiente</span>';
+						$arrData[$i]['estado'] = '<span class="badge badge-warning">Pendiente</span>';
 					} else {
 						$arrData[$i]['estado'] = '<span class="badge badge-primary">Pagado</span>';
 					}
@@ -179,9 +179,9 @@
 				$idPrestamo = intval($idprestamo);
 				if ($idPrestamo > 0) {
 					$arrData = $this->model->selectPrestamo($idPrestamo);
-					$arrData['monto_credito'] = SMONEY . ' ' . formatMoney($arrData['monto_credito']);
-					$arrData['totalIntereses'] = SMONEY . ' ' . formatMoney($arrData['totalIntereses']);
-					$arrData['monto_total'] = SMONEY . ' ' . formatMoney($arrData['monto_total']);
+					$arrData['monto_prestamo'] = SMONEY . ' ' . formatMoney($arrData['monto_prestamo']);
+					$arrData['total_interes'] = SMONEY . ' ' . formatMoney($arrData['total_interes']);
+					$arrData['total_pagar'] = SMONEY . ' ' . formatMoney($arrData['total_pagar']);
 					$arrData['interes'] = $arrData['interes'] . '%';
 					$arrData['idprestamo'] = '000' . $arrData['idprestamo'];
 					

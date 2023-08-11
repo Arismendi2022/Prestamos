@@ -73,6 +73,6 @@
 /* Aplicar estilos a las columnas específicas */
 #tablePrestamos td:nth-child(2),
 #tablePrestamos th:nth-child(2) {
-    width: 120px; /* Ancho deseado para la segunda columna */
+    width: 150px; /* Ancho deseado para la segunda columna */
 }
 

@@ -138,8 +138,8 @@ $('#myTab a').on('click', function (e) {
 
 /** Date picker **/
 $('#datetimepicker').datetimepicker({
-	language: 'es',
-	format: 'L'
+	language: 'en', // Lenguaje en inglés
+	format: 'L' // Formato dd/mm/yyyy
 });
 
 /** select2 */
