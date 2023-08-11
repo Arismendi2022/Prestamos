@@ -18,8 +18,7 @@
 			parent::__construct();
 		}
 		
-		public function insertCliente(string $identificacion, string $nombre, string $apellido, int $genero, string $telefono, string $email, string $dirFiscal, string
-		$ciudad)
+		public function insertCliente(string $identificacion, string $nombre, string $apellido, int $genero, string $telefono, string $email, string $dirFiscal, string $ciudad)
 		{
 			$this->strIdentificacion = $identificacion;
 			$this->strNombre = $nombre;
@@ -63,7 +62,8 @@
 			return $request;
 		}
 		
-		public function selectCliente(int $idcliente){
+		public function selectCliente(int $idcliente)
+		{
 			$this->intIdUsuario = $idcliente;
 			$sql = "SELECT idcliente,identificacion,nombres,apellidos,genero,telefono,email,direccion,ciudad,estado, FORMAT(fecha_creado,'dd-MM-yyyy') as fechaRegistro
 				FROM tbl_clientes
@@ -72,53 +72,38 @@
 			return $request;
 		}
 		
-		public function updateCliente(int $idUsuario, string $identificacion, string $nombre, string $apellido, string $telefono, string $email, string $password, string $nit,
-																	string $nomFiscal, string $dirFiscal){
+		public function updateCliente(int    $idUsuario, string $identificacion, string $nombre, string $apellido, int $genero, string $telefono, string $email,
+																	string $dirFiscal, string $ciudad)
+		{
 			
 			$this->intIdUsuario = $idUsuario;
 			$this->strIdentificacion = $identificacion;
 			$this->strNombre = $nombre;
 			$this->strApellido = $apellido;
+			$this->intGenero = $genero;
 			$this->strTelefono = $telefono;
 			$this->strEmail = $email;
-			$this->strPassword = $password;
-			$this->strNit = $nit;
-			$this->strNomFiscal = $nomFiscal;
 			$this->strDirFiscal = $dirFiscal;
+			$this->strCiudad = $ciudad;
 			
-			$sql = "SELECT * FROM tbl_clientes WHERE (email_user = '{$this->strEmail}' AND idcliente != $this->intIdUsuario)
+			$sql = "SELECT * FROM tbl_clientes WHERE (email = '{$this->strEmail}' AND idcliente != $this->intIdUsuario)
 									  OR (identificacion = '{$this->strIdentificacion}' AND idcliente != $this->intIdUsuario) ";
 			$request = $this->select_all($sql);
 			
-			if(empty($request))
-			{
-				if($this->strPassword  != "")
-				{
-					$sql = "UPDATE tbl_clientes SET identificacion=?, nombres=?, apellidos=?, telefono=?, email=?, password=?, nit=?, nombrefiscal=?, direccionfiscal=?
+			if (empty($request)) {
+				$sql = "UPDATE tbl_clientes SET identificacion=?, nombres=?, apellidos=?, genero=?, telefono=?, email=?, direccion=?, ciudad=?
 						WHERE idcliente = $this->intIdUsuario ";
-					$arrData = array($this->strIdentificacion,
-						$this->strNombre,
-						$this->strApellido,
-						$this->strTelefono,
-						$this->strEmail,
-						$this->strPassword,
-						$this->strNit,
-						$this->strNomFiscal,
-						$this->strDirFiscal);
-				}else{
-					$sql = "UPDATE tbl_clientes SET identificacion=?, nombres=?, apellidos=?, telefono=?, email=?, nit=?, nombrefiscal=?, direccionfiscal=?
-						WHERE idcliente = $this->intIdUsuario ";
-					$arrData = array($this->strIdentificacion,
-						$this->strNombre,
-						$this->strApellido,
-						$this->strTelefono,
-						$this->strEmail,
-						$this->strNit,
-						$this->strNomFiscal,
-						$this->strDirFiscal);
-				}
-				$request = $this->update($sql,$arrData);
-			}else{
+				$arrData = array($this->strIdentificacion,
+					$this->strNombre,
+					$this->strApellido,
+					$this->intGenero,
+					$this->strTelefono,
+					$this->strEmail,
+					$this->strDirFiscal,
+					$this->strCiudad);
+				
+				$request = $this->update($sql, $arrData);
+			} else {
 				$request = 0;
 			}
 			return $request;
@@ -129,7 +114,7 @@
 			$this->intIdUsuario = $intIdcliente;
 			$sql = "UPDATE tbl_clientes SET estado = ? WHERE idcliente = $this->intIdUsuario ";
 			$arrData = array(0);
-			$request = $this->update($sql,$arrData);
+			$request = $this->update($sql, $arrData);
 			return $request;
 		}
 		
