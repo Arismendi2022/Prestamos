@@ -150,7 +150,7 @@
 						</div>
 					</div>
 					<div class="card-footer">
-						<button class="btn btn-secondary" type="button" style="float: right" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle mr-2"></i>Cerrar</button>
+						<button class="btn btn-outline-secondary" type="button" style="float: right" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle mr-2"></i>Cerrar</button>
 					</div>
 				</form> <!-- /.form -->
 			</div> <!-- /.body -->
@@ -242,7 +242,7 @@
 									<li class="float-right"><b>Email: </b><span id="celEmail" style="color: blue;">Arismendi.Guiza@yahoo.com</span></li>
 									<li class="float-right"><b>Teléfono: </b><span id="celTelefono"> 3508473267</span>
 										<div class="btn-group-horizontal">
-											<a type="button" class="btn-xs bg-red" href="#">Send SMS</a>
+											<a type="button" class="btn-xs bg-blue" href="#">Send SMS</a>
 										</div>
 									</li>
 								</ul>
@@ -271,13 +271,15 @@
 										</div>
 									</div>
 									<div class="table-responsive">
-										<table id="tableViewCuotas" class="table table-striped table-sm" style="width:100%">
+										<table id="tableViewCuotas" class= "table table-striped table-bordered table-sm" style="width:100%">
 											<thead>
 											<tr class="active" style="background-color: #dff0d8">
-												<th>Nro Cuota</th>
+												<th>Cuota</th>
 												<th>Fecha Pago</th>
-												<th class="right-margin">Total Cuota</th>
-												<th class="right-margin">Total Saldo</th>
+												<th class="right-margin">Cuota</th>
+												<th class="right-margin">Interes</th>
+												<th class="right-margin">Capital</th>
+												<th class="right-margin">Saldo</th>
 												<th>Estado</th>
 											</tr>
 											</thead>
@@ -292,7 +294,7 @@
 				</div><!-- /.card -->
 			</div> <!-- /.body -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-info" data-dismiss="modal"> <i class="fa fa-fw fa-lg fa-times-circle mr-1"></i>Cerrar</button>
 			</div>
 		</div>
 	</div>

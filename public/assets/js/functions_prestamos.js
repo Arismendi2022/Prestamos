@@ -262,6 +262,8 @@ function fntViewLoan(idprestamo) {
 			{"data": "nro_cuota"},
 			{"data": "fechaPago"},
 			{"data": "valor_cuota"},
+			{"data": "interes"},
+			{"data": "capital"},
 			{"data": "saldo"},
 			{"data": "estado"}
 		],
@@ -270,13 +272,15 @@ function fntViewLoan(idprestamo) {
 			{'className': "textcenter", "targets": [1]},
 			{'className': "textright", "targets": [2]},
 			{'className': "textright", "targets": [3]},
-			{'className': "textcenter", "targets": [4]}
+			{'className': "textright", "targets": [4]},
+			{'className': "textright", "targets": [5]},
+			{'className': "textcenter", "targets": [6]}
 		],
 
 		"paging": false,
 		"lengthChange": false,
 		"searching": false,
-		"ordering": true,
+		"ordering": false,
 		"info": false,
 		"autoWidth": false,
 		"responsive": true,
@@ -349,6 +353,7 @@ $(document).ready(function () {
 
 /* Modal formulario préstamos */
 function openModal() {
+	document.querySelector('#idUsuario').value = "";
 	document.querySelector("#formPrestamos").reset();
 	$('#modalFormPrestamo').modal('show');
 	//$('#listStatus').select2();

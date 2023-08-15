@@ -2,7 +2,6 @@ let tableUsuarios;
 let rowTable;
 
 document.addEventListener('DOMContentLoaded', function () {
-
 	tableUsuarios = $('#tableUsuarios').dataTable( {
 		"aProcessing":true,
 		"aServerSide":true,

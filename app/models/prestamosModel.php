@@ -127,7 +127,7 @@
 		public function selectAmortizacion(int $idPrestamo)
 		{
 			$this->intIdPrestamo = $idPrestamo;
-			$sql = "SELECT prestamoid,nro_cuota,FORMAT(fecha_cuota,'dd-MM-yyyy') as fechaPago,valor_cuota,saldo,estado FROM tbl_amortizacion
+			$sql = "SELECT prestamoid,nro_cuota,FORMAT(fecha_cuota,'dd-MM-yyyy') as fechaPago,valor_cuota, interes, capital, saldo, estado FROM tbl_amortizacion
             	WHERE prestamoid = $this->intIdPrestamo";
 			$request = $this->select_all($sql);
 			return $request;

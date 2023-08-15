@@ -183,7 +183,7 @@
 					$arrData['total_interes'] = SMONEY . ' ' . formatMoney($arrData['total_interes']);
 					$arrData['total_pagar'] = SMONEY . ' ' . formatMoney($arrData['total_pagar']);
 					$arrData['interes'] = $arrData['interes'] . '%';
-					$arrData['idprestamo'] = '000' . $arrData['idprestamo'];
+					$arrData['idprestamo'] = '0000' . $arrData['idprestamo'];
 					
 					if (empty($arrData)) {
 						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
@@ -206,6 +206,8 @@
 				for ($i = 0; $i < count($arrData); $i++) {
 					
 					$arrData[$i]['valor_cuota'] = SMONEY . ' ' . formatMoney($arrData[$i]['valor_cuota']);
+					$arrData[$i]['interes'] = SMONEY . ' ' . formatMoney($arrData[$i]['interes']);
+					$arrData[$i]['capital'] = SMONEY . ' ' . formatMoney($arrData[$i]['capital']);
 					$arrData[$i]['saldo'] = SMONEY . ' ' . formatMoney($arrData[$i]['saldo']);
 					
 					if ($arrData[$i]['estado'] == 0) {

@@ -54,6 +54,10 @@
     font-size: 20px; /* Tamaño de fuente inicial */
 }
 
+.font-size-24 {
+    font-size: 24px; /* Tamaño de fuente inicial */
+}
+
 .font-size {
     font-size: 18px; /* Tamaño de fuente inicial */
 }
@@ -70,9 +74,5 @@
     width: 150px; /* Ancho deseado para la tercera columna */
 }
 
-/* Aplicar estilos a las columnas específicas */
-#tablePrestamos td:nth-child(2),
-#tablePrestamos th:nth-child(2) {
-    width: 150px; /* Ancho deseado para la segunda columna */
-}
+
 
