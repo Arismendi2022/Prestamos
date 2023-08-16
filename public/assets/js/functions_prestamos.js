@@ -353,6 +353,7 @@ $(document).ready(function () {
 
 /* Modal formulario préstamos */
 function openModal() {
+	btnLimpiarForm()
 	document.querySelector('#idUsuario').value = "";
 	document.querySelector("#formPrestamos").reset();
 	$('#modalFormPrestamo').modal('show');

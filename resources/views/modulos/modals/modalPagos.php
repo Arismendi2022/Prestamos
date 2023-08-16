@@ -24,7 +24,7 @@
 											<input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return
 														controlTag(event);">
 											<div class="input-group-append">
-												<button type="button" onclick="openModalClientes();" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
+												<button type="button" onclick="modalClientesPrestamos();" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
 											</div>
 										</div>
 									</div>
@@ -71,31 +71,31 @@
 										<div class="row">
 											<div class="col-md-12 text-center">
 												<span>Monto Préstamo</span>
-												<h3><span id="valorCuota" class="font-weight-bold">0</span></h3>
+												<h3><span id="montoTotal" class="font-weight-bold" aria-disabled="">0</span></h3>
 											</div>
 										</div>
-										<div class="row mt-2">
-											<div class="col-md-12 text-center">
+										<div class="row">
+											<div class="col-md-12 md-2 text-center">
 												<span>No. Préstamo</span>
-												<h6><span id="Interes"></span></h6>
+												<h5><span id="nroPrestamo"> </span></h5>
 											</div>
 										</div>
-										<div class="row mt-2">
-											<div class="col-md-12 text-center">
+										<div class="row">
+											<div class="col-md-12 md-2 text-center">
 												<span>Plazo Préstamo</span>
-												<h6><span id="montoTotal"></span></h6>
+												<h6><span id="plazoPrestamo"> </span></h6>
 											</div>
 										</div>
-										<div class="row mt-2">
+										<div class="row">
 											<div class="col-md-12 text-center">
 												<span>Tipo moneda</span>
-												<h6><span id="montoTotal"></span></h6>
+												<h6><span id="tipoMoneda"> </span></h6>
 											</div>
 										</div>
 									</div>
 									<!-- /.card-body -->
 								</div>
-								<div class="card card-danger">
+								<div class="card card-olive">
 									<div class="card-header">
 										<h4 class="card-title"><b>PAGAR</b></h4>
 									</div>
@@ -106,7 +106,8 @@
 												<div class="input-group">
 													<input class="form-control text-center text-bold font-size-24" id="txtMonto" name="txtMonto" type="text" required placeholder="0.00" readonly>
 												</div>
-												<button id="btnActionForm" class="btn btn-block btn-success mt-4" type="submit"><span id="btnText"><b>PAGAR</b></span></button>
+												<button id="btnActionForm" class="btn btn-block btn-info mt-4" type="submit"><span id="btnText"><b>PAGAR</b></span></button>
+												<button type="button" onclick="btnLimpiarForm();" class="btn btn-block btn-danger mt-3"><b>LIMPIAR CAMPOS</b></button>
 											</div>
 										</div>
 									</div>
@@ -130,3 +131,36 @@
 	</div>
 </div>
 
+<!-- /.modal -->
+<div class="modal fade" id="modalClientesPrestamos" tabindex="-1" role="dialog" aria-hidden="true">>
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-gradient-lightblue">
+				<h5 class="modal-title w-100 text-center" id="titleModal"><b>Listado de Clientes con Préstamos</b></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table id="tableClientesPrestamos" class="table table table-striped table-bordered" style="width:100%">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th style="width: 300px">Clientes</th>
+						<th>Monto</th>
+						<th>Estado</th>
+						<th>Acciones</th>
+					</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<!-- /.Table -->
+			</div>
+			<div class="modal-footer justify-content-right">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+</div>

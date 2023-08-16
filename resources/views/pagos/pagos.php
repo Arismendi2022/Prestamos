@@ -45,7 +45,7 @@
 										<thead>
 										<tr>
 											<th>ID</th>
-											<th style="width: 200px">Clientes</th>
+											<th style="width: 250px">Clientes</th>
 											<th>Nro. Prestamo</th>
 											<th>Fecha Pago</th>
 											<th class="text-right">Vr. Cancelado</th>
