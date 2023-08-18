@@ -283,7 +283,7 @@
 												<th>Estado</th>
 											</tr>
 											</thead>
-											<tbody class="right-margin">
+											<tbody>
 											</tbody>
 										</table>
 									</div>

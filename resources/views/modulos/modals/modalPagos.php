@@ -40,10 +40,10 @@
 									<div class="row">
 										<div class="col-md-12">
 												<h6 class="tile-title mt-2"><b>LISTADO DE CUOTAS</b></h6>
-											<table id="tableAmorizacion" class="table table-striped table-bordered table-sm w-100">
+											<table id="tableQuotas" class="table table-striped table-bordered table-sm w-100">
 												<thead>
 												<tr>
-													<th>#</th>
+													<th><input type="checkbox" value="1" id="select-all"></th>
 													<th>No. Cuota</th>
 													<th class="text-center">Fecha de Pago</th>
 													<th class="right-margin">Monto Cuota</th>
@@ -71,7 +71,7 @@
 										<div class="row">
 											<div class="col-md-12 text-center">
 												<span>Monto Préstamo</span>
-												<h3><span id="montoTotal" class="font-weight-bold" aria-disabled="">0</span></h3>
+												<h3><span id="montoTotal" class="font-weight-bold" aria-disabled="">0.00</span></h3>
 											</div>
 										</div>
 										<div class="row">
@@ -104,9 +104,9 @@
 											<div class="form-group col-md-12 text-center">
 												<label class="control-label">Monto Total</label>
 												<div class="input-group">
-													<input class="form-control text-center text-bold font-size-24" id="txtMonto" name="txtMonto" type="text" required placeholder="0.00" readonly>
+													<input class="form-control text-center text-bold font-size-24" id="txtMonto" name="txtMonto" type="text" required="" placeholder="0.00" readonly>
 												</div>
-												<button id="btnActionForm" class="btn btn-block btn-info mt-4" type="submit"><span id="btnText"><b>PAGAR</b></span></button>
+												<button id="btnActionForm" class="btn btn-block btn-info mt-3" type="submit" disabled><span id="btnText"><b>PAGAR</b></span></button>
 												<button type="button" onclick="btnLimpiarForm();" class="btn btn-block btn-danger mt-3"><b>LIMPIAR CAMPOS</b></button>
 											</div>
 										</div>
@@ -116,7 +116,6 @@
 							</div>
 							<!-- /.card -->
 						</div>
-						
 						<div class="row">
 						</div>
 					</div>

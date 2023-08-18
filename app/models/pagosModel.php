@@ -40,20 +40,19 @@
 							INNER JOIN tbl_clientes c
 							ON p.clienteid = c.idcliente
 							WHERE p.idprestamo = $this->intIdPrestamo";
-			$requestPrestamo = $this->select($sql);
+			$request = $this->select($sql);
 			
-			if(!empty($requestPrestamo)) {
-				$sql_detalle = "SELECT prestamoid, nro_cuota, fecha_cuota, valor_cuota, estado FROM tbl_amortizacion
-							WHERE prestamoid = $this->intIdPrestamo";
-				$requestDetalle = $this->select_all($sql_detalle);
-				$request = array('prestamo' => $requestPrestamo,
-					'detalle' => $requestDetalle
-				
-				);
-			}
 			return $request;
 		}
 		
+		public function selectDetalle(int $idprestamo)
+		{
+				$this->intIdPrestamo = $idprestamo;
+				$sql = "SELECT idamortizacion, prestamoid, nro_cuota, fecha_cuota, valor_cuota, estado FROM tbl_amortizacion
+								WHERE prestamoid = $this->intIdPrestamo";
+				$request = $this->select_all($sql);
+				return $request;
+		}
 		
 	}
 	/** end files pagosModel.php */

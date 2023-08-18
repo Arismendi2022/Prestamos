@@ -23,11 +23,11 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="txtNombre">Nombres</label>
-							<input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required="">
+							<input type="text" class="form-control valid validText text-center" id="txtNombre" name="txtNombre" required="">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="txtApellido">Apellidos</label>
-							<input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required="">
+							<input type="text" class="form-control valid validText " id="txtApellido" name="txtApellido" required="">
 						</div>
 					</div>
 					<div class="form-row">

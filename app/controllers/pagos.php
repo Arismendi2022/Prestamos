@@ -30,7 +30,7 @@
 		{
 			if ($_SESSION['permisosMod']['r']) {
 				$arrData = $this->model->selectPagos();
-			
+				
 				for ($i = 0; $i < count($arrData); $i++) {
 					$arrData[$i]['prestamoid'] = '0000' . $arrData[$i]['prestamoid'];
 					$arrData[$i]['monto_pagado'] = SMONEY . ' ' . formatMoney($arrData[$i]['monto_pagado']);
@@ -46,7 +46,7 @@
 				echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 			}
 			die();
-		
+			
 		}
 		
 		public function getClientesPrestamo()
@@ -59,11 +59,11 @@
 					$arrData[$i]['monto_prestamo'] = SMONEY . ' ' . formatMoney($arrData[$i]['monto_prestamo']);
 					
 					if ($arrData[$i]['estado'] != 0) {
-						$arrData[$i]['estado'] = '<span class="badge badge-info">Pendiente</span>';
+						$arrData[$i]['estado'] = '<span class="badge badge-primary">Pendiente</span>';
 					}
 					
 					if ($_SESSION['permisosMod']['r']) {
-						$btnAgregar = '<button type="button" class="btn btn-info btn-sm" onClick="fntAddCliente(' . $arrData[$i]['idcliente'] . ')" title="Agregar Cliente">
+						$btnAgregar = '<button type="button" class="btn btn-info btn-sm" onClick="fntAddCliente(' . $arrData[$i]['idprestamo'] . ')" title="Agregar Cliente">
 							<i class="fa-solid fa-plus"></i></button>';
 					}
 					
@@ -78,16 +78,12 @@
 		{
 			if ($_SESSION['permisosMod']['r']) {
 				$idPrestamo = intval($idprestamo);
+				
 				if ($idPrestamo > 0) {
 					$arrData = $this->model->selectPrestamo($idPrestamo);
 					
-					//dep($arrData); exit;
-					
-					$arrData['prestamo']['monto_prestamo'] = SMONEY . ' ' . formatMoney($arrData['prestamo']['monto_prestamo']);
-					$arrData['prestamo']['idprestamo'] = '0000' . $arrData['prestamo']['idprestamo'];
-					//$arrData['total_interes'] = SMONEY . ' ' . formatMoney($arrData['total_interes']);
-					//$arrData['total_pagar'] = SMONEY . ' ' . formatMoney($arrData['total_pagar']);
-					//$arrData['interes'] = $arrData['interes'] . '%';
+					$arrData['monto_prestamo'] = SMONEY . ' ' . formatMoney($arrData['monto_prestamo']);
+					$arrData['idprestamo'] = '0000' . $arrData['idprestamo'];
 					
 					if (empty($arrData)) {
 						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
@@ -96,6 +92,37 @@
 					}
 					echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 				}
+			}
+			die();
+		}
+		
+		public function getDetalle($idprestamo)
+		{
+			if ($_SESSION['permisosMod']['r']) {
+				$idPrestamo = intval($idprestamo);
+				
+				$arrData = $this->model->selectDetalle($idPrestamo);
+				
+				//'<input type="checkbox" name="quota_id[$i]" '. ($row->estado ? '' : 'disabled checked') . ' data-fee='.$row->fvalor_cuota.' value='.$row->prestamoid.'>';
+				
+				for ($i = 0; $i < count($arrData); $i++) {
+					$btnCheckbox = '';
+					$arrData[$i]['valor_cuota'] = SMONEY . ' ' . formatMoney($arrData[$i]['valor_cuota']);
+					
+					if ($arrData[$i]['estado'] == 0) {
+						$arrData[$i]['estado'] = '<span class="badge bg-success">Pagado</span>';
+					} else {
+						$arrData[$i]['estado'] = '<span class="badge bg-danger">Pendiente</span>';
+					}
+					if ($_SESSION['permisosMod']['r']) {
+						$btnCheckbox = '<input type="checkbox" name="id[]" ' . ($arrData[$i]['estado'] ? '' : 'disabled checked') . ' data-cuota=' . $arrData[$i]['valor_cuota'] . ' value='
+							. $arrData[$i]['idamortizacion'] . '>';
+					}
+					
+					$arrData[$i]['checkbox'] = '<div class="text-center">' . $btnCheckbox . '</div>';
+					
+				}
+				echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 			}
 			die();
 		}

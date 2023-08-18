@@ -1,5 +1,6 @@
 let tablePagos;
 let tableClientesPrestamos;
+let tableCuotas;
 
 document.addEventListener('DOMContentLoaded', function () {
 	tablePagos = $('#tablePagos').dataTable({
@@ -97,6 +98,7 @@ $(document).ready(function () {
 
 /** mostrar cliente en form pagos */
 function fntAddCliente(idprestamo){
+
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	let ajaxUrl = base_url + '/Pagos/getClientePrestamo/' + idprestamo;
 	request.open("GET", ajaxUrl, true);
@@ -107,12 +109,12 @@ function fntAddCliente(idprestamo){
 			if (objData.status) {
 
 				document.querySelector("#idUsuario").value = objData.data.idcliente;
-				document.querySelector("#txtIdentificacion").value = objData.data['prestamo'].identificacion;
-				document.querySelector("#txtNombre").value = objData.data['prestamo'].cliente;
-				document.querySelector("#montoTotal").innerHTML = objData.data['prestamo'].monto_prestamo;
-				document.querySelector("#nroPrestamo").innerHTML = objData.data['prestamo'].idprestamo;
-				document.querySelector("#plazoPrestamo").innerHTML = objData.data['prestamo'].forma_pago;
-				document.querySelector("#tipoMoneda").innerHTML = objData.data['prestamo'].moneda;
+				document.querySelector("#txtIdentificacion").value = objData.data.identificacion;
+				document.querySelector("#txtNombre").value = objData.data.cliente;
+				document.querySelector("#montoTotal").innerHTML = objData.data.monto_prestamo;
+				document.querySelector("#nroPrestamo").innerHTML = objData.data.idprestamo;
+				document.querySelector("#plazoPrestamo").innerHTML = objData.data.forma_pago;
+				document.querySelector("#tipoMoneda").innerHTML = objData.data.moneda;
 
 				$('#modalClientesPrestamos').modal('hide');
 			} else {
@@ -120,6 +122,66 @@ function fntAddCliente(idprestamo){
 			}
 		}
 	}
+
+	tableCuotas = $('#tableQuotas').dataTable({
+		"aProcessing": true,
+		"aServerSide": true,
+		"language": {
+			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+
+		},
+		"ajax": {
+			"url": " " + base_url + '/Pagos/getDetalle/' + idprestamo,
+			"dataSrc": ""
+		},
+		"columns":[
+			{"data":"checkbox"},
+			{"data":"nro_cuota"},
+			{"data":"fecha_cuota"},
+			{"data":"valor_cuota"},
+			{"data":"estado"}
+		],
+
+		"columnDefs": [
+			{'className': "textcenter", "targets": [0]},
+			{'className': "textcenter", "targets": [1]},
+			{'className': "textcenter", "targets": [2]},
+			{'className': "textright", "targets": [3]},
+			{'className': "textcenter", "targets": [4]}
+		],
+
+		"bDestroy": true,
+		"ordering": false,
+		"searching": false,
+		"bPaginate": false, //Ocultar paginación
+		"scrollY": '50vh',
+		"scrollCollapse": true,
+	});
+
+
+	/** hacer clic en el control Seleccionar todo */
+	$('#select-all').on('click', function(){
+		/** Obtener todas las filas con la búsqueda aplicada */
+			// Inicializar la DataTable
+		var table = $('#tableQuotas').DataTable();
+		var rows = table.rows({ 'search': 'applied' }).nodes();
+		/** Marque/desmarque las casillas de todas las filas de la tabla */
+		$('input[type="checkbox"]', rows).prop('checked', this.checked);
+	});
+
+	/** Haga clic en la casilla de verificación para establecer el estado del control "Seleccionar todo" */
+	$('#tableQuotas tbody').on('change', 'input[type="checkbox"]', function(){
+		/** Si la casilla de verificación no está marcada */
+		if(!this.checked){
+			var el = $('#select-all').get(0);
+			/** Si el control "Seleccionar todo" está marcado y tiene la propiedad 'indeterminada' */
+			if(el && el.checked && ('indeterminate' in el)){
+				// Establecer el estado visual del control "Seleccionar todo"
+				// Como 'indeterminada'
+				el.indeterminate = true;
+			}
+		}
+	});
 
 
 }
@@ -140,8 +202,9 @@ function modalClientesPrestamos() {
 
 /** funcion para limpiar el fomulario */
 function btnLimpiarForm() {
+	$('#tableQuotas tbody').empty(); // Elimina todas las filas del cuerpo de la tabla
 	document.querySelector("#formPagos").reset();
-	$("#montoTotal").html('0');
+	$("#montoTotal").html('0.00');
 	$("#nroPrestamo").html('');
 	$("#plazoPrestamo").html('');
 	$("#tipoMoneda").html('');

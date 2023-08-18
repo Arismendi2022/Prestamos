@@ -285,6 +285,7 @@ function fntViewLoan(idprestamo) {
 		"autoWidth": false,
 		"responsive": true,
 		"bDestroy": true,
+
 	});
 
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');

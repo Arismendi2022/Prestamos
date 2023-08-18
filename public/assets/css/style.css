@@ -74,5 +74,12 @@
     width: 150px; /* Ancho deseado para la tercera columna */
 }
 
-
+.custom-input {
+    border: none; /* Quita el borde */
+    outline: none; /* Quita el resaltado cuando se hace clic en el campo */
+    background-color: transparent; /* Color de fondo transparente */
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
