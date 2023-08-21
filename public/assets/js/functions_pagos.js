@@ -156,31 +156,6 @@ function fntAddCliente(idprestamo) {
 		"scrollCollapse": true,
 	});
 
-	/** hacer clic en el control Seleccionar todos */
-	/*$('#select-all').on('click', function(){
-		/!** Obtener todas las filas con la búsqueda aplicada *!/
-			// Inicializar la DataTable
-		var table = $('#tableQuotas').DataTable();
-		var rows = table.rows({ 'search': 'applied' }).nodes();
-		/!** Marque/desmarque las casillas de todas las filas de la tabla *!/
-		$('input[type="checkbox"]', rows).prop('checked', this.checked);
-	});*/
-
-	/** Haga clic en la casilla de verificación para establecer el estado del control "Seleccionar todos" */
-	/*	$('#tableQuotas tbody').on('change', 'input[type="checkbox"]', function(){
-			/!** Si la casilla de verificación no está marcada *!/
-			if(!this.checked){
-				var el = $('#select-all').get(0);
-				/!** Si el control "Seleccionar todos" está marcado y tiene la propiedad 'indeterminada' *!/
-				if(el && el.checked && ('indeterminate' in el)){
-					// Establecer el estado visual del control "Seleccionar todos"
-					// Como 'indeterminada'
-					el.indeterminate = true;
-				}
-			}
-		});*/
-
-
 } /**  final fntAddCliente*/
 
 function fntPagosCuotas(idamortizacion) {
