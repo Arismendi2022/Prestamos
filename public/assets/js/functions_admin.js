@@ -168,5 +168,6 @@ function formatearInput(input) {
 	input.value = numero;
 }
 
-/** formatear números en JavaScript numeral js */
+/** formatear números en JavaScript */
+
 

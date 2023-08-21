@@ -107,7 +107,7 @@
 				
 				for ($i = 0; $i < count($arrData); $i++) {
 					$btnCheckbox = '';
-					$arrData[$i]['valor_cuota'] = SMONEY . ' ' . formatMoney($arrData[$i]['valor_cuota']);
+					$arrData[$i]['valor_cuota'] = SMONEY . '' . formatMoney($arrData[$i]['valor_cuota']);
 					
 					if ($arrData[$i]['estado'] == 0) {
 						$arrData[$i]['estado'] = '<span class="badge bg-success">Pagado</span>';
@@ -115,7 +115,8 @@
 						$arrData[$i]['estado'] = '<span class="badge bg-danger">Pendiente</span>';
 					}
 					if ($_SESSION['permisosMod']['r']) {
-						$btnCheckbox = '<input type="checkbox" name="id[]" ' . ($arrData[$i]['estado'] ? '' : 'disabled checked') . ' data-cuota=' . $arrData[$i]['valor_cuota'] . ' value='
+						$btnCheckbox = '<input type="checkbox" onClick="fntPagosCuotas('.$arrData[$i]['idamortizacion'].')" name="id[]" ' . ($arrData[$i]['estado'] ? '' : 'disabled
+						checked') . ' data-cuota=' . $arrData[$i]['valor_cuota'] . ' value='
 							. $arrData[$i]['idamortizacion'] . '>';
 					}
 					

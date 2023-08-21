@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		"order": [[0, "desc"]]
 	});
 
-
 });
 /** final addEventListener */
 
@@ -74,7 +73,6 @@ $(document).ready(function () {
 			"dataSrc": ""
 		}, "columns": [
 			{"data": "idcliente"},
-			//{"data": "identificacion"},
 			{"data": "cliente"},
 			{"data": "monto_prestamo"},
 			{"data": "estado"},
@@ -93,11 +91,11 @@ $(document).ready(function () {
 		"iDisplayLength": 10,
 		"order": [[0, "desc"]]
 	});
+
 }); /** Fin Document Ready */
 
-
 /** mostrar cliente en form pagos */
-function fntAddCliente(idprestamo){
+function fntAddCliente(idprestamo) {
 
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	let ajaxUrl = base_url + '/Pagos/getClientePrestamo/' + idprestamo;
@@ -134,12 +132,12 @@ function fntAddCliente(idprestamo){
 			"url": " " + base_url + '/Pagos/getDetalle/' + idprestamo,
 			"dataSrc": ""
 		},
-		"columns":[
-			{"data":"checkbox"},
-			{"data":"nro_cuota"},
-			{"data":"fecha_cuota"},
-			{"data":"valor_cuota"},
-			{"data":"estado"}
+		"columns": [
+			{"data": "checkbox"},
+			{"data": "nro_cuota"},
+			{"data": "fecha_cuota"},
+			{"data": "valor_cuota"},
+			{"data": "estado"}
 		],
 
 		"columnDefs": [
@@ -158,43 +156,81 @@ function fntAddCliente(idprestamo){
 		"scrollCollapse": true,
 	});
 
-
-	/** hacer clic en el control Seleccionar todo */
-	$('#select-all').on('click', function(){
-		/** Obtener todas las filas con la búsqueda aplicada */
+	/** hacer clic en el control Seleccionar todos */
+	/*$('#select-all').on('click', function(){
+		/!** Obtener todas las filas con la búsqueda aplicada *!/
 			// Inicializar la DataTable
 		var table = $('#tableQuotas').DataTable();
 		var rows = table.rows({ 'search': 'applied' }).nodes();
-		/** Marque/desmarque las casillas de todas las filas de la tabla */
+		/!** Marque/desmarque las casillas de todas las filas de la tabla *!/
 		$('input[type="checkbox"]', rows).prop('checked', this.checked);
-	});
+	});*/
 
-	/** Haga clic en la casilla de verificación para establecer el estado del control "Seleccionar todo" */
-	$('#tableQuotas tbody').on('change', 'input[type="checkbox"]', function(){
-		/** Si la casilla de verificación no está marcada */
-		if(!this.checked){
-			var el = $('#select-all').get(0);
-			/** Si el control "Seleccionar todo" está marcado y tiene la propiedad 'indeterminada' */
-			if(el && el.checked && ('indeterminate' in el)){
-				// Establecer el estado visual del control "Seleccionar todo"
-				// Como 'indeterminada'
-				el.indeterminate = true;
+	/** Haga clic en la casilla de verificación para establecer el estado del control "Seleccionar todos" */
+	/*	$('#tableQuotas tbody').on('change', 'input[type="checkbox"]', function(){
+			/!** Si la casilla de verificación no está marcada *!/
+			if(!this.checked){
+				var el = $('#select-all').get(0);
+				/!** Si el control "Seleccionar todos" está marcado y tiene la propiedad 'indeterminada' *!/
+				if(el && el.checked && ('indeterminate' in el)){
+					// Establecer el estado visual del control "Seleccionar todos"
+					// Como 'indeterminada'
+					el.indeterminate = true;
+				}
 			}
+		});*/
+
+
+} /**  final fntAddCliente*/
+
+function fntPagosCuotas(idamortizacion) {
+	$('input:checkbox').on('change', function () {
+		//console.log('chand', $(this).val())
+		let total = 0;
+
+		$('input:checkbox:enabled:checked').each(function () {
+			total += isNaN(parseFloat($(this).attr('data-cuota').replace(/[$€,.]/g, ''))) ? 0 : parseFloat($(this).attr('data-cuota').replace(/[$€,.]/g, ''));
+		});
+
+		const numero = total;
+		const numeroFormateado = new Intl.NumberFormat('es-ES').format(numero);
+
+		$("#txtMonto").val(numeroFormateado);
+
+		if (total != 0) {
+			$('#btnActionForm').attr('disabled', false);
+		} else {
+			$('#btnActionForm').attr('disabled', true);
 		}
+
 	});
 
-
 }
+
+/** guardamos los pagos de los prestamos*/
+if (document.querySelector("#formPagos")) {
+	let formPagos = document.querySelector("#formPagos");
+	formPagos.onsubmit = function (e) {
+		e.preventDefault();
+
+
+	}
+
+};
+
+
 /** imprimir recibo de pago */
-function fntImprimirPago(){
+function fntImprimirPago() {
 
 }
+
 /** modalformulario pagos*/
 function openModal() {
 	btnLimpiarForm()
 	$('#modalFormPagos').modal('show');
 
 }
+
 /** modal busca de clientes con préstamos */
 function modalClientesPrestamos() {
 	$('#modalClientesPrestamos').modal('show');

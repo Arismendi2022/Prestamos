@@ -43,14 +43,15 @@
 											<table id="tableQuotas" class="table table-striped table-bordered table-sm w-100">
 												<thead>
 												<tr>
-													<th><input type="checkbox" value="1" id="select-all"></th>
+													<!--<th><input type="checkbox" value="1" id="select-all"></th>-->
+													<th>#</th>
 													<th>No. Cuota</th>
 													<th class="text-center">Fecha de Pago</th>
 													<th class="right-margin">Monto Cuota</th>
 													<th class="text-center">Estado</th>
 												</tr>
 												</thead>
-												<tbody class="right-margin">
+												<tbody>
 												</tbody>
 											</table>
 											<!-- /.Table -->
@@ -104,9 +105,11 @@
 											<div class="form-group col-md-12 text-center">
 												<label class="control-label">Monto Total</label>
 												<div class="input-group">
-													<input class="form-control text-center text-bold font-size-24" id="txtMonto" name="txtMonto" type="text" required="" placeholder="0.00" readonly>
+													<input class="form-control text-center text-bold font-size-24" id="txtMonto" name="txtMonto" type="text"
+													       required="" placeholder="0.00" readonly>
 												</div>
-												<button id="btnActionForm" class="btn btn-block btn-info mt-3" type="submit" disabled><span id="btnText"><b>PAGAR</b></span></button>
+												<button id="btnActionForm" class="btn btn-block btn-info mt-3" type="submit" disabled><span
+														id="btnText"><b>PAGAR</b></span></button>
 												<button type="button" onclick="btnLimpiarForm();" class="btn btn-block btn-danger mt-3"><b>LIMPIAR CAMPOS</b></button>
 											</div>
 										</div>
