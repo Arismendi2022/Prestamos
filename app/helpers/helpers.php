@@ -103,6 +103,17 @@
 		return str_replace(".", "", $numero); // Elimina el punto en los millares
 	}
 	
+	function limpiarValores($valor) {
+		// Eliminar el símbolo monetario
+		$valorSinSimbolo = preg_replace("/[^0-9.]/", "", $valor);
+		
+		// Eliminar el formato de millares
+		$valorFinal = str_replace(".", "", $valorSinSimbolo);
+		
+		return $valorFinal;
+	}
+	
+	
 	//Genera una contraseña de 10 caracteres
 	function passGenerator($length = 10)
 	{

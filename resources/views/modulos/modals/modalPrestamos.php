@@ -47,7 +47,7 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
 												</div>
-												<input type="text" class="form-control font-weight-bold font-size-20" id="txtMonto" name="txtMonto" oninput="formatearInput(this)" required>
+												<input type="text" class="form-control font-weight-bold font-size-20" id="txtMonto" name="txtMonto" oninput="formatoMillares(this)" required>
 											</div>
 										</div>
 										<div class="col-md-4">

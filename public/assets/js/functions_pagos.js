@@ -59,6 +59,56 @@ document.addEventListener('DOMContentLoaded', function () {
 		"order": [[0, "desc"]]
 	});
 
+	/** guardamos los pagos de los prestamos*/
+	if (document.querySelector("#formPagos")) {
+		let formPagos = document.querySelector("#formPagos");
+		formPagos.onsubmit = function (e) {
+			e.preventDefault();
+
+			let idPrestamo = document.querySelector('#nroPrestamo').textContent;
+
+				//  **********************
+			var dataTable = $('#tableQuotas').DataTable()
+			selectPagos = [];
+
+			$('input[name="id[]"]:checked').each(function() {
+				var id = $(this).val();
+				var numeroCuota = dataTable.row($(this).closest('tr')).data().nro_cuota;
+				var valorCuota = dataTable.row($(this).closest('tr')).data().valor_cuota;
+				selectPagos.push({id_cuota: id, nro_cuota: numeroCuota, valor_cuota: valorCuota});
+			});
+
+			//console.log(selectPagos);
+
+
+			/** Crear un objeto FormData */
+			let formData = new FormData(formPagos);
+			formData.append('idPrestamo', idPrestamo);
+			formData.append('datos', JSON.stringify(selectPagos));
+
+			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+			let ajaxUrl = base_url + '/Pagos/setPagos';
+			//let formData = new FormData(formPagos);
+			request.open("POST", ajaxUrl, true);
+			request.send(formData);
+			request.onreadystatechange = function () {
+				if (request.readyState == 4 && request.status == 200) {
+					let objData = JSON.parse(request.responseText);
+					if (objData.status) {
+
+						$('#modalFormPagos').modal("hide");
+						formPagos.reset();
+						alerta("Pagos", objData.msg, "success");
+						tablePagos.api().ajax.reload();
+					} else {
+						alerta("Error", objData.msg, "error");
+					}
+				}
+			}
+
+		}
+	}
+
 });
 /** final addEventListener */
 
@@ -106,7 +156,7 @@ function fntAddCliente(idprestamo) {
 			let objData = JSON.parse(request.responseText);
 			if (objData.status) {
 
-				document.querySelector("#idUsuario").value = objData.data.idcliente;
+				document.querySelector("#idCliente").value = objData.data.idcliente;
 				document.querySelector("#txtIdentificacion").value = objData.data.identificacion;
 				document.querySelector("#txtNombre").value = objData.data.cliente;
 				document.querySelector("#montoTotal").innerHTML = objData.data.monto_prestamo;
@@ -156,23 +206,24 @@ function fntAddCliente(idprestamo) {
 		"scrollCollapse": true,
 	});
 
-} /**  final fntAddCliente*/
+}
 
-function fntPagosCuotas(idamortizacion) {
+/**  final fntAddCliente*/
+
+function fntPagosCuotas() {
 	$('input:checkbox').on('change', function () {
-		//console.log('chand', $(this).val())
-		let total = 0;
 
+		let total = 0;
 		$('input:checkbox:enabled:checked').each(function () {
 			total += isNaN(parseFloat($(this).attr('data-cuota').replace(/[$€,.]/g, ''))) ? 0 : parseFloat($(this).attr('data-cuota').replace(/[$€,.]/g, ''));
 		});
 
 		const numero = total;
-		const numeroFormateado = new Intl.NumberFormat('es-ES').format(numero);
+		const totalPago = new Intl.NumberFormat('es-ES').format(numero);
 
-		$("#txtMonto").val(numeroFormateado);
+		$("#txtMonto").val(totalPago);
 
-		if (total != 0) {
+		if (totalPago != 0) {
 			$('#btnActionForm').attr('disabled', false);
 		} else {
 			$('#btnActionForm').attr('disabled', true);
@@ -182,26 +233,17 @@ function fntPagosCuotas(idamortizacion) {
 
 }
 
-/** guardamos los pagos de los prestamos*/
-if (document.querySelector("#formPagos")) {
-	let formPagos = document.querySelector("#formPagos");
-	formPagos.onsubmit = function (e) {
-		e.preventDefault();
-
-
-	}
-
-};
-
-
 /** imprimir recibo de pago */
 function fntImprimirPago() {
+
+	alerta('En construción...')
 
 }
 
 /** modalformulario pagos*/
 function openModal() {
 	btnLimpiarForm()
+	document.querySelector('#idCliente').value = "";
 	$('#modalFormPagos').modal('show');
 
 }
@@ -214,6 +256,7 @@ function modalClientesPrestamos() {
 /** funcion para limpiar el fomulario */
 function btnLimpiarForm() {
 	$('#tableQuotas tbody').empty(); // Elimina todas las filas del cuerpo de la tabla
+	document.querySelector('#idCliente').value = "";
 	document.querySelector("#formPagos").reset();
 	$("#montoTotal").html('0.00');
 	$("#nroPrestamo").html('');

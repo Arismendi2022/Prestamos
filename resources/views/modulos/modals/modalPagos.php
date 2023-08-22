@@ -10,7 +10,7 @@
 			</div>
 			<div class="modal-body">
 				<form id="formPagos" name="formPagos" class="form-horizontal">
-					<input type="hidden" id="idUsuario" name="idUsuario" value="">
+					<input type="hidden" id="idCliente" name="idCliente" value="">
 					<div class="row">
 						<div class="col-md-8">
 							<div class="card card-info">
@@ -108,9 +108,10 @@
 													<input class="form-control text-center text-bold font-size-24" id="txtMonto" name="txtMonto" type="text"
 													       required="" placeholder="0.00" readonly>
 												</div>
-												<button id="btnActionForm" class="btn btn-block btn-info mt-3" type="submit" disabled><span
+												<button id="btnActionForm" class="btn btn-block btn-success mt-3" type="submit" disabled><i class="fa-solid fa-circle-check mr-2"></i><span
 														id="btnText"><b>PAGAR</b></span></button>
-												<button type="button" onclick="btnLimpiarForm();" class="btn btn-block btn-danger mt-3"><b>LIMPIAR CAMPOS</b></button>
+												<button type="button" onclick="btnLimpiarForm();" class="btn btn-block btn-danger mt-3"><i class="fa-solid fa-circle-xmark mr-2"></i><b>LIMPIAR
+												                                                                                                                                    CAMPOS</b></button>
 											</div>
 										</div>
 									</div>

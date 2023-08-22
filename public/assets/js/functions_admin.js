@@ -153,21 +153,11 @@ $(function () {
 	})
 });
 
-/** fotmato numero input */
-function formatearInput(input) {
-	// Obtener el valor actual del campo de entrada
-	var numero = input.value;
-
-	// Eliminar cualquier carácter que no sea un dígito
-	numero = numero.replace(/\D/g, '');
-
-	// Aplicar el formato deseado (por ejemplo, separador de miles)
-	numero = numero.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-	// Actualizar el valor del campo de entrada
-	input.value = numero;
-}
-
 /** formatear números en JavaScript */
+function formatoMillares(input) {
+	const numero = input.value.replace(/\D/g, ''); // Eliminar todos los caracteres que no sean dígitos
+	const numeroFormateado = new Intl.NumberFormat('es-CO').format(numero); // Aplicar formato de millares
+	input.value = numeroFormateado;
+}
 
 

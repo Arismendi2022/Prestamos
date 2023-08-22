@@ -26,6 +26,33 @@
 			$this->views->getView($this, "pagos", $data);
 		}
 		
+		public function setPagos(){
+			if ($_POST) {
+				
+				$idPrestamo = intval($_POST['idPrestamo']);
+				$idCliente = intval($_POST['idCliente']);
+				
+				/** Detalle prestamo */
+				$datos = json_decode($_POST['datos'], true);
+				/** Recorrer los datos y enviarlos a la base de datos */
+				foreach ($datos as $row) {
+					$intIdCuota = $row['id_cuota'];
+					$intnroCuota= $row['nro_cuota'];
+					$intCuota = $row['valor_cuota'];
+					
+					$id_cuota = intval($intIdCuota);
+					$nro_cuota = intval($intnroCuota);
+					$valor_cuota = intval(limpiarValores($intCuota));
+					
+				}
+				
+				dep($valor_cuota); exit;
+				
+				
+			}
+			
+		}
+		
 		public function getPagos()
 		{
 			if ($_SESSION['permisosMod']['r']) {
@@ -103,8 +130,6 @@
 				
 				$arrData = $this->model->selectDetalle($idPrestamo);
 				
-				//'<input type="checkbox" name="quota_id[$i]" '. ($row->estado ? '' : 'disabled checked') . ' data-fee='.$row->fvalor_cuota.' value='.$row->prestamoid.'>';
-				
 				for ($i = 0; $i < count($arrData); $i++) {
 					$btnCheckbox = '';
 					$arrData[$i]['valor_cuota'] = SMONEY . '' . formatMoney($arrData[$i]['valor_cuota']);
@@ -115,9 +140,8 @@
 						$arrData[$i]['estado'] = '<span class="badge bg-danger">Pendiente</span>';
 					}
 					if ($_SESSION['permisosMod']['r']) {
-						$btnCheckbox = '<input type="checkbox" onClick="fntPagosCuotas('.$arrData[$i]['idamortizacion'].')" name="id[]" ' . ($arrData[$i]['estado'] ? '' : 'disabled
-						checked') . ' data-cuota=' . $arrData[$i]['valor_cuota'] . ' value='
-							. $arrData[$i]['idamortizacion'] . '>';
+						$btnCheckbox = '<input type="checkbox" onClick="fntPagosCuotas()" name="id[]" ' . ($arrData[$i]['estado'] ? '' : 'disabled
+						checked') . ' data-cuota=' . $arrData[$i]['valor_cuota'] . ' value='.$arrData[$i]['idamortizacion'].'>';
 					}
 					
 					$arrData[$i]['checkbox'] = '<div class="text-center">' . $btnCheckbox . '</div>';
@@ -127,6 +151,7 @@
 			}
 			die();
 		}
-		
+	
+	
 		
 	} /** Final Archivo pagos.php */
