@@ -26,32 +26,48 @@
 			$this->views->getView($this, "pagos", $data);
 		}
 		
-		public function setPagos(){
+		public function setPagos()
+		{
 			if ($_POST) {
+				
 				
 				$idPrestamo = intval($_POST['idPrestamo']);
 				$idCliente = intval($_POST['idCliente']);
 				
-				/** Detalle prestamo */
-				$datos = json_decode($_POST['datos'], true);
-				/** Recorrer los datos y enviarlos a la base de datos */
-				foreach ($datos as $row) {
-					$intIdCuota = $row['id_cuota'];
-					$intnroCuota= $row['nro_cuota'];
-					$intCuota = $row['valor_cuota'];
+				if ($_SESSION['permisosMod']['w']) {
+					/** Detalle prestamo */
+					$datos = json_decode($_POST['datos'], true);
+					/** Recorrer los datos y enviarlos a la base de datos */
+					foreach ($datos as $row) {
+						$intIdCuota = $row['id'];
+						$intnroCuota = $row['ncuota'];
+						$intCuota = $row['cuota'];
+						
+						$idCuota = intval($intIdCuota);
+						$nroCuota = intval($intnroCuota);
+						$valorCuota = intval(limpiarValores($intCuota));
+						
+						$request_pagos = $this->model->insertPagos($idPrestamo,
+														$idCliente,
+														$valorCuota,
+														$nroCuota);
+						
+						$request_pagos = $this->model->updatePrestamo($idCuota);
 					
-					$id_cuota = intval($intIdCuota);
-					$nro_cuota = intval($intnroCuota);
-					$valor_cuota = intval(limpiarValores($intCuota));
+					}
 					
 				}
+				if ($request_pagos > 0) {
+					$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+				} else {
+					$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+				}
 				
-				dep($valor_cuota); exit;
-				
-				
+				echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 			}
-			
+			die();
 		}
+		
 		
 		public function getPagos()
 		{
@@ -86,11 +102,11 @@
 					$arrData[$i]['monto_prestamo'] = SMONEY . ' ' . formatMoney($arrData[$i]['monto_prestamo']);
 					
 					if ($arrData[$i]['estado'] != 0) {
-						$arrData[$i]['estado'] = '<span class="badge badge-primary">Pendiente</span>';
+						$arrData[$i]['estado'] = '<span class="badge badge-success">Pendiente</span>';
 					}
 					
 					if ($_SESSION['permisosMod']['r']) {
-						$btnAgregar = '<button type="button" class="btn btn-info btn-sm" onClick="fntAddCliente(' . $arrData[$i]['idprestamo'] . ')" title="Agregar Cliente">
+						$btnAgregar = '<button type="button" class="btn btn-primary btn-sm" onClick="fntAddCliente(' . $arrData[$i]['idprestamo'] . ')" title="Agregar Cliente">
 							<i class="fa-solid fa-plus"></i></button>';
 					}
 					
@@ -133,25 +149,27 @@
 				for ($i = 0; $i < count($arrData); $i++) {
 					$btnCheckbox = '';
 					$arrData[$i]['valor_cuota'] = SMONEY . '' . formatMoney($arrData[$i]['valor_cuota']);
+					$arrDatos[$i]['estado'] = $arrData[$i]['estado'];
 					
 					if ($arrData[$i]['estado'] == 0) {
 						$arrData[$i]['estado'] = '<span class="badge bg-success">Pagado</span>';
 					} else {
 						$arrData[$i]['estado'] = '<span class="badge bg-danger">Pendiente</span>';
 					}
+					
 					if ($_SESSION['permisosMod']['r']) {
-						$btnCheckbox = '<input type="checkbox" onClick="fntPagosCuotas()" name="id[]" ' . ($arrData[$i]['estado'] ? '' : 'disabled
-						checked') . ' data-cuota=' . $arrData[$i]['valor_cuota'] . ' value='.$arrData[$i]['idamortizacion'].'>';
+						$btnCheckbox = '<input type="checkbox" onClick="fntPagosCuotas()" name="id[]" '. ($arrDatos[$i]['estado'] ? '' : 'disabled checked') . " data-id=" .
+							$arrData[$i]['idamortizacion'] . " data-nCuota=" . $arrData[$i]['nro_cuota'] . " data-cuota=" . $arrData[$i]['valor_cuota'] . ' value='
+							. $arrData[$i]['idamortizacion'] . '>';
 					}
 					
 					$arrData[$i]['checkbox'] = '<div class="text-center">' . $btnCheckbox . '</div>';
-					
 				}
+				
 				echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 			}
 			die();
 		}
-	
-	
+		
 		
 	} /** Final Archivo pagos.php */

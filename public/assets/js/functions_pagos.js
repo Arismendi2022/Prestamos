@@ -67,19 +67,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			let idPrestamo = document.querySelector('#nroPrestamo').textContent;
 
-				//  **********************
-			var dataTable = $('#tableQuotas').DataTable()
-			selectPagos = [];
+			let selectedCheckboxes = document.querySelectorAll('input[name="id[]"]:checked');
+			let selectPagos = [];
 
-			$('input[name="id[]"]:checked').each(function() {
-				var id = $(this).val();
-				var numeroCuota = dataTable.row($(this).closest('tr')).data().nro_cuota;
-				var valorCuota = dataTable.row($(this).closest('tr')).data().valor_cuota;
-				selectPagos.push({id_cuota: id, nro_cuota: numeroCuota, valor_cuota: valorCuota});
+			selectedCheckboxes.forEach(function (checkbox) {
+				if (checkbox.checked && !checkbox.disabled) {
+					var data = {
+						id: checkbox.getAttribute('data-id'),
+						ncuota: checkbox.getAttribute('data-ncuota'),
+						cuota: checkbox.getAttribute('data-cuota')
+					};
+					selectPagos.push(data);
+				}
 			});
-
-			//console.log(selectPagos);
-
 
 			/** Crear un objeto FormData */
 			let formData = new FormData(formPagos);
@@ -219,7 +219,7 @@ function fntPagosCuotas() {
 		});
 
 		const numero = total;
-		const totalPago = new Intl.NumberFormat('es-ES').format(numero);
+		const totalPago = new Intl.NumberFormat('es-CO').format(numero);
 
 		$("#txtMonto").val(totalPago);
 
@@ -236,7 +236,7 @@ function fntPagosCuotas() {
 /** imprimir recibo de pago */
 function fntImprimirPago() {
 
-	alerta('En construción...')
+	alerta('', 'En construción...', 'warning')
 
 }
 

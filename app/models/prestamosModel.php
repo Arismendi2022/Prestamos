@@ -27,7 +27,7 @@
 			return $request;
 		}
 		
-		public function insertPrestamo(int    $idUsuario, $dtFecha, int $intMonto, int $intCuotas, int $intInteres, int $intValorCuota, int $intTotalInteres, int $intMontoTotal,
+		public function insertPrestamo(int $idUsuario, $dtFecha, int $intMonto, int $intCuotas, int $intInteres, int $intValorCuota, int $intTotalInteres, int $intMontoTotal,
 																	 string $strFormaPago, string $strMoneda)
 		{
 			$this->intidUsuario = $idUsuario;
