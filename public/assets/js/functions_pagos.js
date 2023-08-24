@@ -1,7 +1,3 @@
-let tablePagos;
-let tableClientesPrestamos;
-let tableCuotas;
-
 document.addEventListener('DOMContentLoaded', function () {
 	tablePagos = $('#tablePagos').dataTable({
 		"aProcessing": true,
@@ -202,14 +198,13 @@ function fntAddCliente(idprestamo) {
 		"ordering": false,
 		"searching": false,
 		"bPaginate": false, //Ocultar paginación
-		"scrollY": '50vh',
+		"scrollY": '34vh',
 		"scrollCollapse": true,
 	});
 
 }
 
 /**  final fntAddCliente*/
-
 function fntPagosCuotas() {
 	$('input:checkbox').on('change', function () {
 
@@ -259,7 +254,7 @@ function btnLimpiarForm() {
 	document.querySelector('#idCliente').value = "";
 	document.querySelector("#formPagos").reset();
 	$("#montoTotal").html('0.00');
-	$("#nroPrestamo").html('');
+	$("#nroPrestamo").html('0');
 	$("#plazoPrestamo").html('');
 	$("#tipoMoneda").html('');
 

@@ -14,7 +14,7 @@
 					<div class="row">
 						<div class="col-md-9">
 							<!--Información del Cliente-->
-							<div class="card card-outline card-success">
+							<div class="card card-outline card-olive">
 								<div class="card-header">
 									<h4 class="card-title w-100 text-center"><b>INFORMACION DEL CREDITO</b></h4>
 								</div>
@@ -110,7 +110,7 @@
 							<!-- /.card -->
 						</div>
 						<div class="col-md-3">
-							<div class="card card-outline card-success">
+							<div class="card card-lightblue">
 								<div class="card-header">
 									<h4 class="card-title w-100 text-center"><b>VALORES CALCULADOS</b></h4>
 								</div>
@@ -118,19 +118,19 @@
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Valor por Cuota</span>
-											<h5><span id="valorCuota" class="font-weight-bold">0</span></h5>
+											<h4><span id="valorCuota" class="font-weight-bold">0</span></h4>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Interes</span>
-											<h5><span id="Interes" class="font-weight-bold">0</span></h5>
+											<h4><span id="Interes" class="font-weight-bold">0</span></h4>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Monto Total</span>
-											<h5><span id="montoTotal" class="font-weight-bold">0</span></h5>
+											<h4><span id="montoTotal" class="font-weight-bold">0</span></h4>
 										</div>
 									</div>
 								</div>

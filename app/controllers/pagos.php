@@ -29,8 +29,6 @@
 		public function setPagos()
 		{
 			if ($_POST) {
-				
-				
 				$idPrestamo = intval($_POST['idPrestamo']);
 				$idCliente = intval($_POST['idCliente']);
 				
@@ -48,15 +46,16 @@
 						$valorCuota = intval(limpiarValores($intCuota));
 						
 						$request_pagos = $this->model->insertPagos($idPrestamo,
-														$idCliente,
-														$valorCuota,
-														$nroCuota);
-						
+							$idCliente,
+							$valorCuota,
+							$nroCuota);
+						/** actualiza es estado de la cuota pagada */
 						$request_pagos = $this->model->updatePrestamo($idCuota);
-					
 					}
-					
+					/** cambia el  estado de prestamo en clientes y prestamos se pago en su totalidad */
+					$request_pagos = $this->model->updateEstadoPrestamo($idPrestamo, $idCliente);
 				}
+				
 				if ($request_pagos > 0) {
 					$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
 				} else {
@@ -67,7 +66,6 @@
 			}
 			die();
 		}
-		
 		
 		public function getPagos()
 		{
@@ -107,7 +105,7 @@
 					
 					if ($_SESSION['permisosMod']['r']) {
 						$btnAgregar = '<button type="button" class="btn btn-primary btn-sm" onClick="fntAddCliente(' . $arrData[$i]['idprestamo'] . ')" title="Agregar Cliente">
-							<i class="fa-solid fa-plus"></i></button>';
+							<i class="fa-solid fa-check"></i></button>';
 					}
 					
 					$arrData[$i]['options'] = '<div class="text-center">' . $btnAgregar . '</div>';
@@ -149,18 +147,17 @@
 				for ($i = 0; $i < count($arrData); $i++) {
 					$btnCheckbox = '';
 					$arrData[$i]['valor_cuota'] = SMONEY . '' . formatMoney($arrData[$i]['valor_cuota']);
-					$arrDatos[$i]['estado'] = $arrData[$i]['estado'];
+					
+					if ($_SESSION['permisosMod']['r']) {
+						$btnCheckbox = '<input type="checkbox" onClick="fntPagosCuotas()" name="id[]" ' . ($arrData[$i]['estado'] ? '' : 'disabled checked') . " data-id=" .
+							$arrData[$i]['idamortizacion'] . " data-nCuota=" . $arrData[$i]['nro_cuota'] . " data-cuota=" . $arrData[$i]['valor_cuota'] . ' value='
+							. $arrData[$i]['idamortizacion'] . '>';
+					}
 					
 					if ($arrData[$i]['estado'] == 0) {
 						$arrData[$i]['estado'] = '<span class="badge bg-success">Pagado</span>';
 					} else {
 						$arrData[$i]['estado'] = '<span class="badge bg-danger">Pendiente</span>';
-					}
-					
-					if ($_SESSION['permisosMod']['r']) {
-						$btnCheckbox = '<input type="checkbox" onClick="fntPagosCuotas()" name="id[]" '. ($arrDatos[$i]['estado'] ? '' : 'disabled checked') . " data-id=" .
-							$arrData[$i]['idamortizacion'] . " data-nCuota=" . $arrData[$i]['nro_cuota'] . " data-cuota=" . $arrData[$i]['valor_cuota'] . ' value='
-							. $arrData[$i]['idamortizacion'] . '>';
 					}
 					
 					$arrData[$i]['checkbox'] = '<div class="text-center">' . $btnCheckbox . '</div>';

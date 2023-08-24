@@ -64,7 +64,7 @@
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<div class="card card-lightblue">
+								<div class="card card-olive">
 									<div class="card-header">
 										<h4 class="card-title"><b>INFORMACION CUOTAS</b></h4>
 									</div>
@@ -78,7 +78,7 @@
 										<div class="row">
 											<div class="col-md-12 md-2 text-center">
 												<span>No. Préstamo</span>
-												<h5><span id="nroPrestamo"> </span></h5>
+												<h5><span id="nroPrestamo"> 0</span></h5>
 											</div>
 										</div>
 										<div class="row">
@@ -96,7 +96,7 @@
 									</div>
 									<!-- /.card-body -->
 								</div>
-								<div class="card card-olive">
+								<div class="card card-lightblue">
 									<div class="card-header">
 										<h4 class="card-title"><b>PAGAR</b></h4>
 									</div>
