@@ -14,7 +14,7 @@
 					<div class="row">
 						<div class="col-md-9">
 							<!--Información del Cliente-->
-							<div class="card card-outline card-olive">
+							<div class="card card-outline card-orange">
 								<div class="card-header">
 									<h4 class="card-title w-100 text-center"><b>INFORMACION DEL CREDITO</b></h4>
 								</div>
@@ -136,7 +136,7 @@
 								</div>
 							</div>
 							<!-- /.card -->
-							<div class="card card-warning card-outline">
+							<div class="card card-info">
 								<div class="card-header">
 									<h4 class="card-title w-100 text-center"><b>ACCIONES</b></h4>
 								</div>

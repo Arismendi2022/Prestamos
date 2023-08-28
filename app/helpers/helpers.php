@@ -136,3 +136,11 @@
 		return $cantidad;
 	}
 	
+	//Formato para valores monetarios
+	function formatPorcentaje($cantidad)
+	{
+		$cantidad = number_format($cantidad, 2, SPD, SPM);
+		return $cantidad;
+	}
+	
+	
