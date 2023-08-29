@@ -29,9 +29,9 @@
 			<div class="row">
 				<div class="col-lg-3 col-6">
 					<!-- small box -->
-					<div class="small-box bg-info">
+					<div class="small-box bg-warning">
 						<div class="inner">
-							<h3><?= SMONEY.' '.formatMoney($data['prestamosActivos']) ?></h3
+							<h3><?= SMONEY . ' ' . formatMoney($data['prestamosActivos']) ?></h3
 							<p>Préstamos Activos</p>
 						</div>
 						<div class="icon">
@@ -43,10 +43,16 @@
 				<!-- ./col -->
 				<div class="col-lg-3 col-6">
 					<!-- small box -->
-					<div class="small-box bg-warning">
+					<div class="small-box bg-info">
 						<div class="inner">
-							<h3>44</h3>
-							<p>Total Abonos</p>
+							<div class="flex-container">
+								<h3><?= SMONEY . ' ' . formatMoney($data['pagosAnio']) ?></h3>
+								<h3 class="float-right mr-4"><?= $data['pagosHoy'] ?></h3>
+							</div>
+							<div class="flex-container">
+								<p>Total Pagos</p>
+								<p class="float-right">Pagos Hoy</p>
+							</div>
 						</div>
 						<div class="icon">
 							<i class="ion ion-pie-graph"></i>
@@ -59,7 +65,7 @@
 					<!-- small box -->
 					<div class="small-box bg-success">
 						<div class="inner">
-							<h3><?= formatPorcentaje($data['porcentajeRecaudo']) ?><sup style="font-size: 20px">%</sup></h3>
+							<h3><?= formatDecimal($data['porcentajeRecaudo']) ?><sup style="font-size: 20px">%</sup></h3>
 							
 							<p>Porcentaje de Recaudo</p>
 						</div>
@@ -74,7 +80,7 @@
 					<!-- small box -->
 					<div class="small-box bg-danger">
 						<div class="inner">
-							<h3><?= SMONEY.' '.formatMoney($data['saldoCaja']) ?></h3>
+							<h3><?= SMONEY . ' ' . formatMoney($data['saldoCaja']) ?></h3>
 							<p>Saldo en Caja</p>
 						</div>
 						<div class="icon">

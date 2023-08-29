@@ -41,7 +41,7 @@
 	const RAGENTE = 4;
 	
 	/** Capital inicial */
-	const CAPITAL = "700000";
+	const CAPITAL = 700000;
 	
 
 	

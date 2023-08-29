@@ -136,8 +136,8 @@
 		return $cantidad;
 	}
 	
-	//Formato para valores monetarios
-	function formatPorcentaje($cantidad)
+	//Formato para valores con decimales
+	function formatDecimal($cantidad)
 	{
 		$cantidad = number_format($cantidad, 2, SPD, SPM);
 		return $cantidad;

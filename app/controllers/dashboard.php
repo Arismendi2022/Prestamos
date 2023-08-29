@@ -26,14 +26,12 @@
 			$mes = date('m');
 			
 			$data['prestamosActivos'] = $this->model->selectPrestamosActivos();
-			//dep($data['prestamosAnio']);exit;
 			$data['saldoCaja'] = $this->model->selectSaldoCaja();
-			$data['saldoCaja'] = (CAPITAL - $data['prestamosActivos'])+ $data['saldoCaja'];
+			$data['saldoCaja'] = (CAPITAL - $data['prestamosActivos']) + $data['saldoCaja'];
 			$data['porcentajeRecaudo'] = $this->model->selectPorcentajeRecaudo();
-			//dep($data['totalRecaudo']); exit;
-			
-			
-		 
+			$data['pagosAnio'] = $this->model->selectPagosAnio($anio);
+			$data['pagosHoy'] = $this->model->selectPagosHoy();
+			//dep($data['pagosHoy']); exit;
 			
 			$this->views->getView($this, "dashboard", $data);
 		}
