@@ -113,7 +113,6 @@
 		return $valorFinal;
 	}
 	
-	
 	//Genera una contraseña de 10 caracteres
 	function passGenerator($length = 10)
 	{
@@ -142,5 +141,22 @@
 		$cantidad = number_format($cantidad, 2, SPD, SPM);
 		return $cantidad;
 	}
+	
+	function Meses(){
+		$meses = array("Ene",
+			"Feb",
+			"Mar",
+			"Abr",
+			"May",
+			"Jun",
+			"Jul",
+			"Ago",
+			"Sep",
+			"Oct",
+			"Nov",
+			"Dic");
+		return $meses;
+	}
+
 	
 	

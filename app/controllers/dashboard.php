@@ -24,14 +24,18 @@
 			
 			$anio = date('Y');
 			$mes = date('m');
-			
+			/** Tarjetas */
 			$data['prestamosActivos'] = $this->model->selectPrestamosActivos();
 			$data['saldoCaja'] = $this->model->selectSaldoCaja();
 			$data['saldoCaja'] = (CAPITAL - $data['prestamosActivos']) + $data['saldoCaja'];
 			$data['porcentajeRecaudo'] = $this->model->selectPorcentajeRecaudo();
 			$data['pagosAnio'] = $this->model->selectPagosAnio($anio);
 			$data['pagosHoy'] = $this->model->selectPagosHoy();
-			//dep($data['pagosHoy']); exit;
+			/** Graficos */
+			$data['chartPrestamos'] = $this->model->selectChartPrestamos();
+			$data['chartPagos'] = $this->model->selectChartPagos($anio);
+			
+			//dep($data['chartPagos']); exit;
 			
 			$this->views->getView($this, "dashboard", $data);
 		}
