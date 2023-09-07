@@ -27,15 +27,15 @@
 			/** Tarjetas */
 			$data['prestamosActivos'] = $this->model->selectPrestamosActivos();
 			$data['saldoCaja'] = $this->model->selectSaldoCaja();
-			$data['saldoCaja'] = (CAPITAL - $data['prestamosActivos']) + $data['saldoCaja'];
 			$data['porcentajeRecaudo'] = $this->model->selectPorcentajeRecaudo();
 			$data['pagosAnio'] = $this->model->selectPagosAnio($anio);
 			$data['pagosHoy'] = $this->model->selectPagosHoy();
 			/** Graficos */
-			$data['chartPrestamos'] = $this->model->selectChartPrestamos();
-			$data['chartPagos'] = $this->model->selectChartPagos($anio);
+			$data['grafPrestamos'] = $this->model->selectChartPrestamos();
+			$data['grafPagos'] = $this->model->selectChartPagos($anio);
+			$data['grafInteres'] = $this->model->selectChartInteres($anio);
 			
-			//dep($data['chartPagos']); exit;
+			//dep($data['chartInteres']); exit;
 			
 			$this->views->getView($this, "dashboard", $data);
 		}

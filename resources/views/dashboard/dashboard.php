@@ -96,7 +96,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<!-- PIE CHART -->
-					<div class="card">
+					<div class="card card-success">
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fas fa-chart-pie mr-1"></i>
@@ -106,7 +106,7 @@
 							</div>
 						</div><!-- /.card-header -->
 						<div class="card-body">
-							<div id="prestamosActivos" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></div>
+							<div id="prestamosActivos" style="min-height: 270px; height: 270px; max-height: 270px; max-width: 100%;"></div>
 						</div>
 			      <!-- /.card-body -->
 					</div>
@@ -115,7 +115,7 @@
 				<!-- /.col (LEFT) -->
 				<div class="col-md-6">
 					<!-- BAR CHART -->
-					<div class="card">
+					<div class="card card-lightblue">
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fas far fa-chart-bar mr-1"></i>
@@ -123,13 +123,34 @@
 							</h3>
 						</div>
 						<div class="card-body">
-							<div id="pagosMes" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></div>
+							<div id="pagosMes" style="min-height: 270px; height: 270px; max-height: 270px; max-width: 100%;"></div>
 						</div>
 						<!-- /.card-body -->
 					</div>
 					<!-- /.card -->
 				</div>
 				<!-- /.col (RIGHT) -->
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<!-- LINE CHART -->
+					<div class="card card-primary">
+						<div class="card-header">
+							<h3 class="card-title">
+								<i class="fas fa-chart-line mr-1"></i>
+								Interes Anual  <b> <?= SMONEY.' '.formatMoney($data['grafInteres']['total']) ?> </b>
+							</h3>
+							<div class="card-tools">
+							</div>
+						</div><!-- /.card-header -->
+						<div class="card-body">
+							<div id="interes" style="min-height: 270px; height: 270px; max-height: 270px; max-width: 100%;"></div>
+						</div>
+						      <!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col (LEFT) -->
 			</div>
 			<!-- /.row (main row) -->
 		</div><!-- /.container-fluid -->
@@ -177,7 +198,7 @@
 			colorByPoint: true,
 			data: [
 				<?php
-				foreach ($data['chartPrestamos'] AS $pagos){
+				foreach ($data['grafPrestamos'] AS $pagos){
 				echo "{name:'".$pagos['nombre']."',y:".$pagos['total']."},";
 				}
 				?>
@@ -236,7 +257,7 @@
 				colorByPoint: true,
 				data: [
 					<?php
-					foreach ($data['chartPagos']['meses'] as $mes) {
+					foreach ($data['grafPagos']['meses'] as $mes) {
 						echo "['".$mes['mes']."',".formatMoney($mes['pagos'])."],";
 					}
 					?>
@@ -245,7 +266,51 @@
 		],
 	});
 	
-	/** Speedometer */
+	/** Line */
+	Highcharts.chart('interes', {
+		chart: {
+			type: 'line'
+		},
+		title: {
+			text: ''
+		},
+		subtitle: {
+			text: ''
+		},
+		xAxis: {
+			categories: [
+				<?php
+				foreach ($data['grafInteres']['meses'] as $mes) {
+					echo "'".$mes['mes']."',";
+				}
+				?>
+			]
+		},
+		yAxis: {
+			title: {
+				text: ''
+			}
+		},
+		plotOptions: {
+			line: {
+				dataLabels: {
+					enabled: true
+				},
+				enableMouseTracking: false
+			}
+		},
+		series: [{
+			name: '',
+			data: [
+				<?php
+				foreach ($data['grafInteres']['meses'] as $mes) {
+					echo $mes['interes'].",";
+				}
+				?>
+			]
+		}]
+	});
+	
 
 </script>
 

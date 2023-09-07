@@ -9,7 +9,8 @@
 		
 		public function selectPrestamosActivos()
 		{
-			$sql = "SELECT COALESCE(SUM(monto_prestamo),0) AS total FROM tbl_prestamos WHERE estado = 1 ;";
+			$sql = "SELECT ISNULL((SUM(monto_prestamo)-SUM(abonos)),0) AS total FROM view_saldoPrestamos
+							WHERE estado != 0";
 			$request = $this->select($sql);
 			$arrData = $request['total'];
 			return $arrData;
@@ -17,11 +18,14 @@
 		
 		public function selectSaldoCaja()
 		{
-			$sql = "SELECT SUM(interes) AS interes FROM tbl_amortizacion WHERE estado = 0";
+			$sql = "SELECT ISNULL(SUM(abonos),0) as abonos FROM view_reportePrestamos WHERE estado = 1";
+			$sql_loan = "SELECT ISNULL(SUM(monto_prestamo),0) AS total FROM tbl_prestamos WHERE estado = 1";
 			$request = $this->select($sql);
-			$arrData = $request['interes'];
+			$request_loan = $this->select($sql_loan);
+			$arrData = (MCAPITAL - $request_loan['total']) + $request['abonos'];
 			return $arrData;
 		}
+		
 		
 		public function selectPorcentajeRecaudo()
 		{
@@ -52,10 +56,8 @@
 		
 		public function selectChartPrestamos()
 		{
-			$sql = "SELECT clienteid, (nombres) AS nombre, (monto_prestamo) AS total FROM  tbl_prestamos p
-							INNER JOIN tbl_clientes c
-							ON c.idcliente = p.clienteid
-							WHERE p.estado != 0;";
+			$sql = "SELECT idprestamo, idcliente, nombres AS nombre,  (monto_prestamo-abonos) AS total FROM view_saldoPrestamos
+							WHERE estado = 1";
 			$arrData = $this->select_all($sql);
 			return $arrData;
 		}
@@ -84,6 +86,35 @@
 			}
 			$arrPagos = array('anio' => $anio, 'meses' => $arrMPagos);
 			return $arrPagos;
+		}
+		
+		public function selectChartInteres(int $anio)
+		{
+			$totalInteresAnio = 0;
+			$arrMInteres = array();
+			$arrMeses = Meses();
+			for ($i = 1; $i <= 12; $i++) {
+				$arrData = array('anio' => '', 'no_mes' => '', 'mes' => '', 'interes' => '');
+				$sql = "SELECT $anio AS anio, $i As mes, SUM(interes) AS interes FROM tbl_amortizacion
+								WHERE MONTH(fecha_cuota) = $i AND YEAR(fecha_cuota) = $anio AND estado = 0
+								GROUP BY MONTH(fecha_cuota);";
+				$interesMes = $this->select($sql);
+				$arrData['mes'] = $arrMeses[$i - 1];
+				if (empty($interesMes)) {
+					$arrData['anio'] = $anio;
+					$arrData['no_mes'] = $i;
+					$arrData['interes'] = 0;
+				} else {
+					$arrData['anio'] = $interesMes['anio'];
+					$arrData['no_mes'] = $interesMes['mes'];
+					$arrData['interes'] = $interesMes['interes'];
+					$totalInteresAnio += $interesMes['interes'];
+				}
+				array_push($arrMInteres, $arrData);
+				
+			}
+			$arrInteres = array('anio' => $anio, 'total' => $totalInteresAnio, 'meses' => $arrMInteres);
+			return $arrInteres;
 		}
 		
 		
