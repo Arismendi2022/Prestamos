@@ -31,11 +31,12 @@
 			$data['pagosAnio'] = $this->model->selectPagosAnio($anio);
 			$data['pagosHoy'] = $this->model->selectPagosHoy();
 			/** Graficos */
-			$data['grafPrestamos'] = $this->model->selectChartPrestamos();
-			$data['grafPagos'] = $this->model->selectChartPagos($anio);
-			$data['grafInteres'] = $this->model->selectChartInteres($anio);
+			$data['totalPrestamos'] = $this->model->selectChartPrestamos();
+			$data['totalPagos'] = $this->model->selectChartPagos($anio);
+			$data['totalInteres'] = $this->model->selectChartInteres($anio);
+			$data['saldoPrestamos'] = $this->model->saldoPrestamos();
 			
-			//dep($data['chartInteres']); exit;
+			//dep($data['grafSaldoPrestamos']); exit;
 			
 			$this->views->getView($this, "dashboard", $data);
 		}

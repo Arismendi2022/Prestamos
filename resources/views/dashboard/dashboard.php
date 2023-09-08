@@ -57,7 +57,7 @@
 						<div class="icon">
 							<i class="ion ion-pie-graph"></i>
 						</div>
-						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+						<a href="#" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<!-- ./col -->
@@ -108,7 +108,7 @@
 						<div class="card-body">
 							<div id="prestamosActivos" style="min-height: 270px; height: 270px; max-height: 270px; max-width: 100%;"></div>
 						</div>
-			      <!-- /.card-body -->
+						      <!-- /.card-body -->
 					</div>
 					<!-- /.card -->
 				</div>
@@ -138,7 +138,7 @@
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fas fa-chart-line mr-1"></i>
-								Interes Anual  <b> <?= SMONEY.' '.formatMoney($data['grafInteres']['total']) ?> </b>
+								Interes total por año <b> <?= SMONEY . ' ' . formatMoney($data['totalInteres']['total']) ?> </b>
 							</h3>
 							<div class="card-tools">
 							</div>
@@ -151,6 +151,23 @@
 					<!-- /.card -->
 				</div>
 				<!-- /.col (LEFT) -->
+				<div class="col-md-6">
+					<!-- BAR CHART -->
+					<div class="card card-olive">
+						<div class="card-header">
+							<h3 class="card-title">
+								<i class="fas far fa-chart-bar mr-1"></i>
+								Capital Préstado
+							</h3>
+						</div>
+						<div class="card-body">
+							<div id="capitalPrestado" style="min-height: 270px; height: 270px; max-height: 270px; max-width: 100%;"></div>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col (RIGHT) -->
 			</div>
 			<!-- /.row (main row) -->
 		</div><!-- /.container-fluid -->
@@ -198,11 +215,11 @@
 			colorByPoint: true,
 			data: [
 				<?php
-				foreach ($data['grafPrestamos'] AS $pagos){
-				echo "{name:'".$pagos['nombre']."',y:".$pagos['total']."},";
+				foreach ($data['totalPrestamos'] as $pagos) {
+					echo "{name:'" . $pagos['nombre'] . "',y:" . $pagos['total'] . "},";
 				}
 				?>
-				]
+			]
 		}]
 	});
 	
@@ -257,8 +274,8 @@
 				colorByPoint: true,
 				data: [
 					<?php
-					foreach ($data['grafPagos']['meses'] as $mes) {
-						echo "['".$mes['mes']."',".formatMoney($mes['pagos'])."],";
+					foreach ($data['totalPagos']['meses'] as $mes) {
+						echo "['" . $mes['mes'] . "'," . formatMoney($mes['pagos']) . "],";
 					}
 					?>
 				],
@@ -280,8 +297,8 @@
 		xAxis: {
 			categories: [
 				<?php
-				foreach ($data['grafInteres']['meses'] as $mes) {
-					echo "'".$mes['mes']."',";
+				foreach ($data['totalInteres']['meses'] as $mes) {
+					echo "'" . $mes['mes'] . "',";
 				}
 				?>
 			]
@@ -303,14 +320,106 @@
 			name: '',
 			data: [
 				<?php
-				foreach ($data['grafInteres']['meses'] as $mes) {
-					echo $mes['interes'].",";
+				foreach ($data['totalInteres']['meses'] as $mes) {
+					echo $mes['interes'] . ",";
 				}
 				?>
 			]
 		}]
 	});
 	
-
+	/** GAUGE */
+	Highcharts.chart('capitalPrestado', {
+		
+		chart: {
+			type: 'gauge',
+			plotBackgroundColor: null,
+			plotBackgroundImage: null,
+			plotBorderWidth: 0,
+			plotShadow: false,
+			height: '42%'
+		},
+		
+		title: {
+			text: ''
+		},
+		
+		pane: {
+			startAngle: -90,
+			endAngle: 89.9,
+			background: null,
+			center: ['50%', '75%'],
+			size: '130%'
+		},
+		
+		// the value axi
+		yAxis: {
+			min: 0,
+			max: 100,
+			tickPixelInterval: 72,
+			tickPosition: 'inside',
+			tickColor: Highcharts.defaultOptions.chart.backgroundColor || '#FFFFFF',
+			tickLength: 20,
+			tickWidth: 2,
+			minorTickInterval: null,
+			labels: {
+				distance: 20,
+				style: {
+					fontSize: '14px'
+				}
+			},
+			lineWidth: 0,
+			plotBands: [{
+				from: 0,
+				to: 60,
+				color: '#55BF3B', // green
+				thickness: 20
+			}, {
+				from: 60,
+				to: 80,
+				color: '#DDDF0D', // yellow
+				thickness: 20
+			}, {
+				from: 80,
+				to: 100,
+				color: '#DF5353', // red
+				thickness: 20
+			}]
+		},
+		
+		series: [{
+			name: 'Préstado',
+			data: [<?= number_format($data['saldoPrestamos'],2) ?>],
+			tooltip: {
+				valueSuffix: ' %'
+			},
+			dataLabels: {
+				format: '{y} %',
+				borderWidth: 0,
+				color: (
+					Highcharts.defaultOptions.title &&
+					Highcharts.defaultOptions.title.style &&
+					Highcharts.defaultOptions.title.style.color
+				) || '#333333',
+				style: {
+					fontSize: '16px'
+				}
+			},
+			dial: {
+				radius: '80%',
+				backgroundColor: 'gray',
+				baseWidth: 12,
+				baseLength: '0%',
+				rearLength: '0%'
+			},
+			pivot: {
+				backgroundColor: 'gray',
+				radius: 6
+			}
+			
+		}]
+		
+	});
+	
 </script>
 

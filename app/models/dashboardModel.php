@@ -117,6 +117,14 @@
 			return $arrInteres;
 		}
 		
+		public function saldoPrestamos(){
+			$sql = "EXEC proc_saldoPrestamos";
+			$request = $this->select($sql);
+			$arrData = ($request['total'] * 100) / MCAPITAL;
+			return $arrData;
+			
+		}
+		
 		
 	}
 	/** Fin Archivo dashboarModel.php */
