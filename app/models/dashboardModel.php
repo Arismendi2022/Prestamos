@@ -97,7 +97,7 @@
 				$arrData = array('anio' => '', 'no_mes' => '', 'mes' => '', 'interes' => '');
 				$sql = "SELECT $anio AS anio, $i As mes, SUM(interes) AS interes FROM tbl_amortizacion
 								WHERE MONTH(fecha_cuota) = $i AND YEAR(fecha_cuota) = $anio AND estado = 0
-								GROUP BY MONTH(fecha_cuota);";
+								GROUP BY MONTH(fecha_cuota)";
 				$interesMes = $this->select($sql);
 				$arrData['mes'] = $arrMeses[$i - 1];
 				if (empty($interesMes)) {
@@ -122,6 +122,32 @@
 			$request = $this->select($sql);
 			$arrData = ($request['total'] * 100) / MCAPITAL;
 			return $arrData;
+			
+		}
+		
+		public function montosPrestados(int $anio){
+			$arrMontos = array();
+			$arrMeses = Meses();
+			for ($i = 1; $i <= 12; $i++) {
+				$arrData = array('anio' => '', 'no_mes' => '', 'mes' => '', 'total' => '');
+				$sql = "SELECT $anio AS anio, $i AS mes, ISNULL(SUM(monto_prestamo),0) AS total FROM  tbl_prestamos
+								WHERE MONTH(fecha_prestamo) = $i AND YEAR(fecha_prestamo) = $anio
+								GROUP BY MONTH(fecha_prestamo)";
+				$montosPrestados = $this->select($sql);
+				$arrData['mes'] = $arrMeses[$i - 1];
+				if (empty($montosPrestados)) {
+					$arrData['anio'] = $anio;
+					$arrData['no_mes'] = $i;
+					$arrData['total'] = 0;
+				} else {
+					$arrData['anio'] = $montosPrestados['anio'];
+					$arrData['no_mes'] = $montosPrestados['mes'];
+					$arrData['total'] = $montosPrestados['total'];
+				}
+				array_push($arrMontos, $arrData);
+			}
+			$arrMontoPagado = array('anio' => $anio, 'meses' => $arrMontos);
+			return $arrMontoPagado;
 			
 		}
 		

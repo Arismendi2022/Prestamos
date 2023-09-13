@@ -110,9 +110,27 @@
 						<i class="nav-icon fa-solid fa-scale-balanced"></i>
 						<p>
 							Contabilidad
-							<span class="right badge badge-danger">New</span>
+							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<?php if(!empty($_SESSION['permisos'][5]['r'])){ ?>
+								<a href="<?=ROOT?>/contabilidad" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Flujo de caja</p>
+								</a>
+							<?php } ?>
+						</li>
+						<li class="nav-item">
+							<?php if(!empty($_SESSION['permisos'][6]['r'])){ ?>
+								<a href="<?=ROOT?>/contabilidad/balance" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Hoja de balance</p>
+								</a>
+							<?php } ?>
+						</li>
+					</ul>
 				</li>
 				<?php } ?>
 				<li class="nav-item">

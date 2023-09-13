@@ -96,7 +96,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<!-- PIE CHART -->
-					<div class="card card-success">
+					<div class="card card-lime card-outline">
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fas fa-chart-pie mr-1"></i>
@@ -106,7 +106,9 @@
 							</div>
 						</div><!-- /.card-header -->
 						<div class="card-body">
-							<div id="prestamosActivos" style="min-height: 270px; height: 270px; max-height: 270px; max-width: 100%;"></div>
+							<figure class="highcharts-figure">
+								<div id="prestamosActivos" style="width: 100%; height: 260px; margin: 0 auto"></div>
+							</figure>
 						</div>
 						      <!-- /.card-body -->
 					</div>
@@ -115,7 +117,7 @@
 				<!-- /.col (LEFT) -->
 				<div class="col-md-6">
 					<!-- BAR CHART -->
-					<div class="card card-lightblue">
+					<div class="card card-orange card-outline">
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fas far fa-chart-bar mr-1"></i>
@@ -123,7 +125,9 @@
 							</h3>
 						</div>
 						<div class="card-body">
-							<div id="pagosMes" style="min-height: 270px; height: 270px; max-height: 270px; max-width: 100%;"></div>
+							<figure class="highcharts-figure">
+								<div id="pagosMes" style="width: 100%; height: 260px; margin: 0 auto"></div>
+							</figure>
 						</div>
 						<!-- /.card-body -->
 					</div>
@@ -134,7 +138,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<!-- LINE CHART -->
-					<div class="card card-primary">
+					<div class="card card-success card-outline">
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fas fa-chart-line mr-1"></i>
@@ -144,7 +148,9 @@
 							</div>
 						</div><!-- /.card-header -->
 						<div class="card-body">
-							<div id="interes" style="min-height: 270px; height: 270px; max-height: 270px; max-width: 100%;"></div>
+							<figure class="highcharts-figure">
+								<div id="interes" style="width: 100%; height: 260px; margin: 0 auto"></div>
+							</figure>
 						</div>
 						      <!-- /.card-body -->
 					</div>
@@ -153,7 +159,7 @@
 				<!-- /.col (LEFT) -->
 				<div class="col-md-6">
 					<!-- BAR CHART -->
-					<div class="card card-olive">
+					<div class="card card-primary card-outline">
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fas far fa-chart-bar mr-1"></i>
@@ -161,9 +167,55 @@
 							</h3>
 						</div>
 						<div class="card-body">
-							<div id="capitalPrestado" style="min-height: 270px; height: 270px; max-height: 270px; max-width: 100%;"></div>
+							<figure class="highcharts-figure">
+								<div id="capitalPrestado" style="width: 100%; height: 260px; margin: 0 auto"></div>
+							</figure>
 						</div>
 						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col (RIGHT) -->
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<!-- LINE CHART -->
+					<div class="card card-indigo card-outline">
+						<div class="card-header">
+							<h3 class="card-title">
+								<i class="fas fa-chart-line mr-1"></i>
+								Montos Prestados año: <?= $data['montosPrestados']['anio'] ?>
+							</h3>
+							<div class="card-tools">
+							</div>
+						</div><!-- /.card-header -->
+						<div class="card-body">
+							<figure class="highcharts-figure">
+								<div id="montoPrestado" style="width: 100%; height: 260px; margin: 0 auto"></div>
+							</figure>
+						</div>
+						      <!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col (LEFT) -->
+				<div class="col-md-6">
+					<!-- LINE CHART -->
+					<div class="card card-olive card-outline">
+						<div class="card-header">
+							<h3 class="card-title">
+								<i class="fas fa-chart-line mr-1"></i>
+								Rentabilidad
+							</h3>
+							<div class="card-tools">
+							</div>
+						</div><!-- /.card-header -->
+						<div class="card-body">
+							<figure class="highcharts-figure">
+								<div id="container" style="width: 100%; height: 260px;"></div>
+							</figure>
+						</div>
+						      <!-- /.card-body -->
 					</div>
 					<!-- /.card -->
 				</div>
@@ -180,7 +232,7 @@
 
 <script>
 	
-	/** Pie chart 3D **/
+	/** Pie chart **/
 	Highcharts.chart('prestamosActivos', {
 		chart: {
 			plotBackgroundColor: null,
@@ -337,7 +389,8 @@
 			plotBackgroundImage: null,
 			plotBorderWidth: 0,
 			plotShadow: false,
-			height: '42%'
+			height: '' +
+				'40%'
 		},
 		
 		title: {
@@ -349,7 +402,7 @@
 			endAngle: 89.9,
 			background: null,
 			center: ['50%', '75%'],
-			size: '130%'
+			size: '120%'
 		},
 		
 		// the value axi
@@ -388,8 +441,8 @@
 		},
 		
 		series: [{
-			name: 'Préstado',
-			data: [<?= number_format($data['saldoPrestamos'],2) ?>],
+			name: 'Préstamos',
+			data: [<?= number_format($data['saldoPrestamos'], 2) ?>],
 			tooltip: {
 				valueSuffix: ' %'
 			},
@@ -418,8 +471,86 @@
 			}
 			
 		}]
+	});
+	
+	/** Columnas 3D */
+	const chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'montoPrestado',
+			type: 'column',
+			options3d: {
+				enabled: true,
+				alpha: 5,
+				beta: 12,
+				depth: 50,
+				viewDistance: 25
+			}
+		},
+		xAxis: {
+			type: 'category',
+			labels: {
+				rotation: 0,
+				style: {
+					fontSize: '12px',
+					fontFamily: 'Verdana, sans-serif'
+				}
+			}
+		},
+		yAxis: {
+			title: {
+				enabled: false
+			}
+		},
+		tooltip: {
+			headerFormat: '<b>{point.key}</b><br>',
+			pointFormat: 'Préstamos: ${point.y}'
+		},
+		title: {
+			text: '',
+			align: 'left'
+		},
+		subtitle: {
+			text: '',
+			align: 'left'
+		},
+		legend: {
+			enabled: false
+		},
+		plotOptions: {
+			column: {
+				depth: 25
+			}
+		},
+		series: [{
+			name: 'Préstamos',
+			data: [
+				<?php
+				foreach ($data['montosPrestados']['meses'] as $mes) {
+					echo "['" . $mes['mes'] . "'," . $mes['total'] . "],";
+				}
+				?>
+			],
+			colorByPoint: true,
+		}],
 		
 	});
 	
+	// Add some life
+	setInterval(() => {
+		const chart = Highcharts.charts[0];
+		if (chart && !chart.renderer.forExport) {
+			const point = chart.series[0].points[0],
+				inc = Math.round((Math.random() - 0.5) * 20);
+			
+			let newVal = point.y + inc;
+			if (newVal < 0 || newVal > 200) {
+				newVal = point.y - inc;
+			}
+			
+			point.update(newVal);
+		}
+		
+	}, 3000);
+
 </script>
 

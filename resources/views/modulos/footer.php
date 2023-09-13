@@ -23,9 +23,9 @@
 <script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!--Highcharts-->
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <!-- Select2 -->
 <script src="<?= ROOT ?>/admin/plugins/select2/js/select2.full.min.js"></script>

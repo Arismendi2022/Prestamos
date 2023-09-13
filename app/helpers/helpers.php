@@ -128,14 +128,14 @@
 		return $pass;
 	}
 	
-	//Formato para valores monetarios
+	//Formato para valores monetarios 0 decimales
 	function formatMoney($cantidad)
 	{
 		$cantidad = number_format($cantidad, 0, SPD, SPM);
 		return $cantidad;
 	}
 	
-	//Formato para valores con decimales
+	//Formato para valores con 2 decimales
 	function formatDecimal($cantidad)
 	{
 		$cantidad = number_format($cantidad, 2, SPD, SPM);
