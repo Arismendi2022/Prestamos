@@ -183,7 +183,7 @@
 					<div class="card card-indigo card-outline">
 						<div class="card-header">
 							<h3 class="card-title">
-								<i class="fas fa-chart-line mr-1"></i>
+								<i class="fas fa-chart-column mr-1"></i>
 								Montos Prestados año: <?= $data['montosPrestados']['anio'] ?>
 							</h3>
 							<div class="card-tools">
@@ -204,7 +204,7 @@
 					<div class="card card-olive card-outline">
 						<div class="card-header">
 							<h3 class="card-title">
-								<i class="fas fa-chart-line mr-1"></i>
+								<i class="fas fa-chart-area mr-1"></i>
 								Rentabilidad
 							</h3>
 							<div class="card-tools">
@@ -310,7 +310,7 @@
 				borderWidth: 0,
 				dataLabels: {
 					enabled: true,
-					format: '{point.y:,0f}'
+					format: '${point.y:,0f}'
 				}
 			}
 		},
@@ -363,11 +363,13 @@
 		plotOptions: {
 			line: {
 				dataLabels: {
-					enabled: true
+					enabled: true,
+					format: '${point.y:,0f}'
 				},
 				enableMouseTracking: false
 			}
 		},
+		
 		series: [{
 			name: '',
 			data: [
@@ -480,9 +482,9 @@
 			type: 'column',
 			options3d: {
 				enabled: true,
-				alpha: 5,
+				alpha: 3,
 				beta: 12,
-				depth: 50,
+				depth: 60,
 				viewDistance: 25
 			}
 		},
@@ -516,9 +518,15 @@
 		legend: {
 			enabled: false
 		},
+		
 		plotOptions: {
 			column: {
-				depth: 25
+				depth: 25,
+				dataLabels: {
+					enabled: true,
+					format: '${point.y:,0f}'
+				},
+				enableMouseTracking: true
 			}
 		},
 		series: [{
@@ -535,7 +543,7 @@
 		
 	});
 	
-	// Add some life
+	/** Añade algo de vida */
 	setInterval(() => {
 		const chart = Highcharts.charts[0];
 		if (chart && !chart.renderer.forExport) {
