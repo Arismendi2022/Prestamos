@@ -335,16 +335,18 @@
 		],
 	});
 	
-	/** Line */
+	/** Line Area */
 	Highcharts.chart('interes', {
 		chart: {
-			type: 'line'
+			zoomType: 'x'
 		},
 		title: {
-			text: ''
+			text: '',
+			align: 'left'
 		},
 		subtitle: {
-			text: ''
+			text: '',
+			align: 'left'
 		},
 		xAxis: {
 			categories: [
@@ -360,18 +362,44 @@
 				text: ''
 			}
 		},
+		
+		legend: {
+			enabled: false
+		},
 		plotOptions: {
-			line: {
+			series: {
 				dataLabels: {
 					enabled: true,
 					format: '${point.y:,0f}'
 				},
-				enableMouseTracking: false
+				fillColor: {
+					linearGradient: {
+						x1: 0,
+						y1: 0,
+						x2: 0,
+						y2: 1
+					},
+					stops: [
+						[0, Highcharts.getOptions().colors[2]],
+						[1, Highcharts.color(Highcharts.getOptions().colors[2]).setOpacity(0.1).get('rgba')]
+					]
+				},
+				marker: {
+					radius: 4
+				},
+				lineWidth: 2,
+				states: {
+					hover: {
+						lineWidth: 2
+					}
+				},
+				threshold: null
 			}
 		},
 		
 		series: [{
-			name: '',
+			type: 'areaspline',
+			name: 'Interes',
 			data: [
 				<?php
 				foreach ($data['totalInteres']['meses'] as $mes) {
@@ -542,6 +570,8 @@
 		}],
 		
 	});
+	
+	/** Area */
 	
 	/** Añade algo de vida */
 	setInterval(() => {
