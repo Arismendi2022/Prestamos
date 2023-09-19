@@ -36,8 +36,9 @@
 			$data['totalInteres'] = $this->model->selectChartInteres($anio);
 			$data['saldoPrestamos'] = $this->model->saldoPrestamos();
 			$data['montosPrestados'] = $this->model->montosPrestados($anio);
+			$data['pagosPrestamos'] = $this->model->selectPagosPrestamos();
 			
-			//dep($data['montosPrestados']); exit;
+			//dep($data['pagosPrestamos']); exit;
 			
 			$this->views->getView($this, "dashboard", $data);
 		}

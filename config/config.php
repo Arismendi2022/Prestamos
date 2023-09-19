@@ -5,7 +5,7 @@
 		define('ROOT', 'http://localhost/banco/public');
 	} else {
 		
-		define('ROOT', 'http://banco.net');
+		define('ROOT', 'http://banco.co');
 	}
 	
 	/** Zona horaria **/

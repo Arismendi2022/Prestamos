@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						formPagos.reset();
 						alerta("Pagos", objData.msg, "success");
 						tablePagos.api().ajax.reload();
+						tableClientesPrestamos.api().ajax.reload();
 					} else {
 						alerta("Error", objData.msg, "error");
 					}
@@ -240,11 +241,11 @@ function openModal() {
 	btnLimpiarForm()
 	document.querySelector('#idCliente').value = "";
 	$('#modalFormPagos').modal('show');
-
 }
 
 /** modal busca de clientes con préstamos */
 function modalClientesPrestamos() {
+	tableClientesPrestamos.api().ajax.reload();
 	$('#modalClientesPrestamos').modal('show');
 }
 

@@ -205,14 +205,14 @@
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fas fa-chart-area mr-1"></i>
-								Rentabilidad
+								Préstamos vs Pagos
 							</h3>
 							<div class="card-tools">
 							</div>
 						</div><!-- /.card-header -->
 						<div class="card-body">
 							<figure class="highcharts-figure">
-								<div id="container" style="width: 100%; height: 260px;"></div>
+								<div id="pagosPrestamos" style="width: 100%; height: 260px;"></div>
 							</figure>
 						</div>
 						      <!-- /.card-body -->
@@ -385,9 +385,9 @@
 					]
 				},
 				marker: {
-					radius: 4
+					radius: 3
 				},
-				lineWidth: 2,
+				lineWidth: 1,
 				states: {
 					hover: {
 						lineWidth: 2
@@ -406,7 +406,7 @@
 					echo $mes['interes'] . ",";
 				}
 				?>
-			]
+			],
 		}]
 	});
 	
@@ -419,8 +419,7 @@
 			plotBackgroundImage: null,
 			plotBorderWidth: 0,
 			plotShadow: false,
-			height: '' +
-				'40%'
+			height: '' + '40%'
 		},
 		
 		title: {
@@ -571,7 +570,54 @@
 		
 	});
 	
-	/** Area */
+	/** Donut */
+	Highcharts.chart('pagosPrestamos', {
+		chart: {
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false,
+			type: 'pie'
+		},
+		title: {
+			text: '',
+			align: 'left'
+		},
+		tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		},
+		accessibility: {
+			point: {
+				valueSuffix: '%'
+			}
+		},
+		plotOptions: {
+			pie: {
+				size: '110%',
+				innerSize: '50%',
+				borderRadius: 1,
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+				}
+			}
+		},
+		colors: ['#fe6a35', '#00e272', '#d568fb'],
+		
+		series: [{
+			name: 'Total',
+			colorByPoint: true,
+			data: [
+				<?php
+				foreach ($data['pagosPrestamos'] as $pagos) {
+					echo "{name:'" . $pagos['nombre'] . "',y:" . $pagos['total'] . "},";
+				}
+				?>
+			]
+		}]
+	});
+	
 	
 	/** Añade algo de vida */
 	setInterval(() => {
@@ -589,6 +635,6 @@
 		}
 		
 	}, 3000);
-
+	
 </script>
 

@@ -151,6 +151,17 @@
 			
 		}
 		
+		public function selectPagosPrestamos(){
+			$sql = "SELECT 'prestamos' AS nombre, SUM(total_pagar) AS total FROM view_reportePrestamos
+							WHERE estado = 1
+							UNION ALL
+							SELECT 'abonos' AS nombre, SUM(abonos) AS total FROM view_reportePrestamos
+							WHERE estado = 1
+							ORDER BY total DESC;";
+			$arrData = $this->select_all($sql);
+			return $arrData;
+		}
+		
 		
 	}
 	/** Fin Archivo dashboarModel.php */
