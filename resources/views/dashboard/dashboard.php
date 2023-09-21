@@ -205,14 +205,14 @@
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fas fa-chart-area mr-1"></i>
-								Préstamos vs Pagos
+								Préstamos / Pagos
 							</h3>
 							<div class="card-tools">
 							</div>
 						</div><!-- /.card-header -->
 						<div class="card-body">
 							<figure class="highcharts-figure">
-								<div id="pagosPrestamos" style="width: 100%; height: 260px;"></div>
+								<div id="pagosPrestamos" style="width: 100%; height: 260px; margin: 0 auto"></div>
 							</figure>
 						</div>
 						      <!-- /.card-body -->
@@ -310,7 +310,7 @@
 				borderWidth: 0,
 				dataLabels: {
 					enabled: true,
-					format: '${point.y:,0f}'
+					format: '{point.y:,0f}'
 				}
 			}
 		},
@@ -370,7 +370,7 @@
 			series: {
 				dataLabels: {
 					enabled: true,
-					format: '${point.y:,0f}'
+					format: '{point.y:,0f}'
 				},
 				fillColor: {
 					linearGradient: {
@@ -551,7 +551,7 @@
 				depth: 25,
 				dataLabels: {
 					enabled: true,
-					format: '${point.y:,0f}'
+					format: '{point.y:,0f}'
 				},
 				enableMouseTracking: true
 			}

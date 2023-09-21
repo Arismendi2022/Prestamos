@@ -157,7 +157,7 @@
 							UNION ALL
 							SELECT 'abonos' AS nombre, SUM(abonos) AS total FROM view_reportePrestamos
 							WHERE estado = 1
-							ORDER BY total DESC;";
+							ORDER BY nombre DESC;";
 			$arrData = $this->select_all($sql);
 			return $arrData;
 		}

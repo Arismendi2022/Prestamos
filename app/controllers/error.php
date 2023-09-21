@@ -8,7 +8,11 @@
 		
 		public function notFound()
 		{
-			$this->views->getView($this,"error");
+      $data['page_tag'] = "Página de error";
+      $data['page_title'] = "404 - Página de error";
+      $data['page_name'] = "error";
+      $data['page_functions_js'] = "functions_error.js";
+			$this->views->getView($this,"error",$data);
 		}
 	}
 	
