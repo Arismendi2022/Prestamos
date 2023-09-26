@@ -617,8 +617,7 @@
 			]
 		}]
 	});
-	
-	
+ 
 	/** Añade algo de vida */
 	setInterval(() => {
 		const chart = Highcharts.charts[0];
@@ -637,4 +636,3 @@
 	}, 3000);
 	
 </script>
-
