@@ -19,12 +19,15 @@
 <script src="<?= ROOT ?>/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap Toggle JS -->
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<!-- Font Awesome JS -->
+<script src="https://kit.fontawesome.com/d11cf095c6.js" crossorigin="anonymous"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!--Highcharts-->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/dashboards/dashboards.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js">
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <!-- Select2 -->

@@ -27,7 +27,7 @@
 				<?php if(!empty($_SESSION['permisos'][1]['r'])){ ?>
 				<li class="nav-item">
 					<a href="<?=ROOT?>/dashboard" class="nav-link">
-						<i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fa-solid fa-gauge-high"></i>
 						<p>
 							Dashboard
 						</p>

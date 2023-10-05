@@ -9,7 +9,7 @@
 				<div class="row mb-2">
 					<div class="col-sm-6">
 						<div class="input-group">
-							<h1><i class="fa-brands fa-stack-overflow"></i> <?= $data['page_title'] ?>
+							<h1><i class="fa-regular fa-folder-open"></i> <?= $data['page_title'] ?>
 								<?php if ($_SESSION['permisosMod']['w']) { ?>
 									<button class="btn btn-primary ml-2" type="button" onclick="openModal();"><i class="fa-solid fa-circle-plus"></i> Nuevo</button>
 								<?php } ?>

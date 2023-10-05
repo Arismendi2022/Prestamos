@@ -9,8 +9,6 @@
 	
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome CSS -->
-	<link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/fontawesome-free/css/all.min.css">
 	<!-- SweetAlert2 CSS -->
 	<link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/sweetalert2/sweetalert2.min.css">
 	<!-- icheck bootstrap -->
@@ -37,7 +35,7 @@
 					<input id="txtEmail" name="txtEmail" type="email" class="form-control" placeholder="Email" autofocus>
 					<div class="input-group-append">
 						<div class="input-group-text">
-							<span class="fas fa-envelope"></span>
+							<span class="fa-solid fa-envelope"></span>
 						</div>
 					</div>
 				</div>
@@ -45,7 +43,7 @@
 					<input id="txtPassword" name="txtPassword" type="password" class="form-control" placeholder="Password">
 					<div class="input-group-append">
 						<div class="input-group-text">
-							<span class="fas fa-lock"></span>
+							<span class="fa-solid fa-lock"></span>
 						</div>
 					</div>
 				</div>
@@ -57,7 +55,7 @@
 					<!-- /.col -->
 					<div class="col-md-12">
 						<div class="form-group btn-container mt-2">
-							<button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt fa-lg mr-2"></i>INGRESAR</button>
+							<button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-right-to-bracket fa-lg mr-2"></i>INGRESAR</button>
 						</div>
 					</div>
 					<!-- /.col -->
@@ -78,6 +76,8 @@
 <!-- jQuery -->
 <script src="<?= ROOT ?>/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
+<!-- Font Awesome JS -->
+<script src="https://kit.fontawesome.com/d11cf095c6.js" crossorigin="anonymous"></script>
 <script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
 <script src="<?= ROOT ?>/admin/plugins/select2/js/select2.full.min.js"></script>
