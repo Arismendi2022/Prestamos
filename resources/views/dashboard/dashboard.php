@@ -583,7 +583,7 @@
       align: 'left'
     },
     tooltip: {
-      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>'
     },
     accessibility: {
       point: {
