@@ -99,7 +99,7 @@
 						<i class="nav-icon fa-solid fa-chart-line"></i>
 						<p>
 							Reportes
-							<span class="right badge badge-primary">New</span>
+							<span class="right badge badge-danger">New</span>
 						</p>
 					</a>
 				</li>

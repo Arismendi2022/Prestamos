@@ -73,7 +73,6 @@
 				$arrData = $this->model->selectPagos();
 				
 				for ($i = 0; $i < count($arrData); $i++) {
-					$arrData[$i]['prestamoid'] = '0000' . $arrData[$i]['prestamoid'];
 					$arrData[$i]['monto_pagado'] = SMONEY . ' ' . formatMoney($arrData[$i]['monto_pagado']);
 					
 					if ($_SESSION['permisosMod']['r']) {

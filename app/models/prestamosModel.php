@@ -116,7 +116,8 @@
 		{
 			$this->intIdPrestamo = $idPrestamo;
 			$sql = "SELECT clienteid,identificacion,CONCAT(nombres,' ',apellidos) AS nombres,telefono,direccion,ciudad,email,FORMAT(fecha_prestamo, 'dd-MM-yyyy') as fechaRegistro,
-        idprestamo,monto_prestamo,interes,nro_cuotas,valor_cuota,total_pagar,total_interes,forma_pago,FORMAT(fecha_prestamo,'dd-MM-yyyy') as fechaPrestamo FROM tbl_prestamos
+        RIGHT(REPLICATE('0', 6) + CONVERT(VARCHAR(6), idprestamo), 6) AS idprestamo,monto_prestamo,interes,nro_cuotas,valor_cuota,total_pagar,total_interes,forma_pago,
+    		FORMAT(fecha_prestamo,'dd-MM-yyyy') as fechaPrestamo FROM tbl_prestamos
 				INNER JOIN tbl_clientes
 				ON tbl_prestamos.clienteid = tbl_clientes.idcliente
 				WHERE idprestamo = $this->intIdPrestamo";

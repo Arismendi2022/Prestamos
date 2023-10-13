@@ -183,7 +183,6 @@
 					$arrData['total_interes'] = SMONEY . ' ' . formatMoney($arrData['total_interes']);
 					$arrData['total_pagar'] = SMONEY . ' ' . formatMoney($arrData['total_pagar']);
 					$arrData['interes'] = $arrData['interes'] . '%';
-					$arrData['idprestamo'] = '0000' . $arrData['idprestamo'];
 					
 					if (empty($arrData)) {
 						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');

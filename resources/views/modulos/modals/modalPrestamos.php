@@ -239,12 +239,12 @@
 							</div>
 							<div class="col-sm-4">
 								<ul class="list-unstyled" style="font-size:13px; color:#000000">
-									<li class="float-right"><b>Email: </b><span id="celEmail" style="color: blue;">Arismendi.Guiza@yahoo.com</span></li>
-									<li class="float-right"><b>Teléfono: </b><span id="celTelefono"> 3508473267</span>
+									<li ><b>Email: </b><span id="celEmail" style="color: blue;">Arismendi.Guiza@yahoo.com</span></li>
 										<div class="btn-group-horizontal">
-											<a type="button" class="btn-xs bg-blue" href="#">Send SMS</a>
+											<a type="button" class="btn-xs bg-red mr-2" href="#">Enviar Email</a>
+											<a type="button" class="btn-xs bg-blue" href="#">Enviar archivos para firma</a>
 										</div>
-									</li>
+									<li ><b>Teléfono: </b><span id="celTelefono"> 3508473267</span></li>
 								</ul>
 							</div>
 						</div><!-- /.row -->
