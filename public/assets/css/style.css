@@ -113,6 +113,19 @@
     font-size: 42px;
 }
 
+/** alineamos <span> a la derecha con espacios iguales*/
+.aligned-span {
+    text-align: right; /* Alinea el texto a la derecha */
+    width: 90px; /* Ancho fijo para cada span */
+    display: inline-block;
+}
+
+/** alineamos <span> a la izquierda con espacios iguales */
+.aligned-span-iz {
+    text-align: left; /* Alinea el texto a la izquierda */
+    width: 130px; /* Ancho fijo para cada span */
+    display: inline-block;
+}
 
 
 

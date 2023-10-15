@@ -123,7 +123,6 @@
 					$arrData = $this->model->selectPrestamo($idPrestamo);
 					
 					$arrData['monto_prestamo'] = SMONEY . ' ' . formatMoney($arrData['monto_prestamo']);
-					$arrData['idprestamo'] = '0000' . $arrData['idprestamo'];
 					
 					if (empty($arrData)) {
 						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');

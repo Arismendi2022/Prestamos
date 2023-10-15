@@ -35,8 +35,8 @@
 		{
 			$this->intIdPrestamo = $idprestamo;
 			$request = array();
-			$sql = "SELECT p.idprestamo, c.idcliente,c.identificacion, CONCAT(c.nombres, ' ', c.apellidos ) AS cliente, p.monto_prestamo, forma_pago, moneda
-							FROM tbl_prestamos p
+			$sql = "SELECT RIGHT(REPLICATE('0', 6) + CONVERT(VARCHAR(6), p.idprestamo), 6) AS idprestamo, c.idcliente,c.identificacion, CONCAT(c.nombres, ' ', c.apellidos ) AS cliente,
+    					p.monto_prestamo, forma_pago, moneda FROM tbl_prestamos p
 							INNER JOIN tbl_clientes c
 							ON p.clienteid = c.idcliente
 							WHERE p.idprestamo = $this->intIdPrestamo";
