@@ -119,7 +119,7 @@ $(document).ready(function () {
 
 			"dataSrc": ""
 		}, "columns": [
-			{"data": "idcliente"},
+			{"data": "idprestamo"},
 			{"data": "cliente"},
 			{"data": "monto_prestamo"},
 			{"data": "estado"},

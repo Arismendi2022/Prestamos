@@ -4,14 +4,14 @@
 	{
 		public function __construct()
 		{
-			parent::__construct();
+			parent::__construct ();
 			
-			session_start();
+			session_start ();
 			if (empty($_SESSION['login'])) {
-				header('Location: ' . base_url() . '/login');
+				header ('Location: ' . base_url () . '/login');
 				die();
 			}
-			getPermisos(MDASHBOARD);
+			getPermisos (MDASHBOARD);
 		}
 		
 		public function dashboard()
@@ -21,25 +21,26 @@
 			$data['page_name'] = "dashboard";
 			$data['page_functions_js'] = "functions_dashboard.js";
 			
-			$anio = date('Y');
-			$mes = date('m');
+			$anio = date ('Y');
+			$mes = date ('m');
 			/** Tarjetas */
-			$data['prestamosActivos'] = $this->model->selectPrestamosActivos();
-			$data['saldoCaja'] = $this->model->selectSaldoCaja();
-			$data['porcentajeRecaudo'] = $this->model->selectPorcentajeRecaudo();
-			$data['pagosAnio'] = $this->model->selectPagosAnio($anio);
-			$data['pagosHoy'] = $this->model->selectPagosHoy();
+			$data['prestamosActivos'] = $this->model->selectPrestamosActivos ();
+			$data['saldoCaja'] = $this->model->selectSaldoCaja ();
+			$data['porcentajeRecaudo'] = $this->model->selectPorcentajeRecaudo ();
+			$data['pagosAnio'] = $this->model->selectPagosAnio ($anio);
+			$data['pagosHoy'] = $this->model->selectPagosHoy ();
+			$data['pagosCartera'] = $this->model->selectCartera ();
 			/** Graficos */
-			$data['totalPrestamos'] = $this->model->selectChartPrestamos();
-			$data['totalPagos'] = $this->model->selectChartPagos($anio);
-			$data['totalInteres'] = $this->model->selectChartInteres($anio);
-			$data['saldoPrestamos'] = $this->model->saldoPrestamos();
-			$data['montosPrestados'] = $this->model->montosPrestados($anio);
-			$data['pagosPrestamos'] = $this->model->selectPagosPrestamos();
+			$data['totalPrestamos'] = $this->model->selectChartPrestamos ();
+			$data['totalPagos'] = $this->model->selectChartPagos ($anio);
+			$data['totalInteres'] = $this->model->selectChartInteres ($anio);
+			$data['saldoPrestamos'] = $this->model->saldoPrestamos ();
+			$data['montosPrestados'] = $this->model->montosPrestados ($anio);
+			$data['pagosPrestamos'] = $this->model->selectPagosPrestamos ();
 			
-			//dep($data['pagosPrestamos']); exit;
+			//dep($data['pagosCartera']); exit;
 			
-			$this->views->getView($this, "dashboard", $data);
+			$this->views->getView ($this, "dashboard", $data);
 		}
 		
 		

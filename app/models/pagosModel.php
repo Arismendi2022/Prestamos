@@ -22,7 +22,8 @@
 		
 		public function selectClientesPrestamo()
 		{
-			$sql = "SELECT p.idprestamo, c.idcliente,c.identificacion, CONCAT(c.nombres, ' ', c.apellidos ) AS cliente, p.monto_prestamo, p.estado FROM tbl_prestamos p
+			$sql = "SELECT RIGHT(REPLICATE('0', 6) + CONVERT(VARCHAR(6), p.idprestamo), 6) AS idprestamo, c.idcliente,c.identificacion, CONCAT(c.nombres, ' ',
+    					c.apellidos ) AS cliente, p.monto_prestamo, p.estado FROM tbl_prestamos p
 							INNER JOIN tbl_clientes c
 							ON p.clienteid = c.idcliente
 							WHERE p.estado != 0";

@@ -1,6 +1,6 @@
 <!-- Modal Pagos-->
 <div class="modal fade" id="modalFormPagos" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-dialog modal-xl " role="document">
+	<div class="modal-dialog modal-dialog modal-xl" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-light">
 				<h5 class="modal-title w-100 text-center" id="titleModal"><b>FORMULARIO DE PAGO</b></h5>
@@ -39,7 +39,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12">
-												<h6 class="tile-title mt-2"><b>LISTADO DE CUOTAS</b></h6>
+											<h6 class="tile-title mt-2"><b>LISTADO DE CUOTAS</b></h6>
 											<table id="tableQuotas" class="table table-striped table-bordered table-sm w-100">
 												<thead>
 												<tr>
@@ -106,12 +106,12 @@
 												<label class="control-label">Monto Total</label>
 												<div class="input-group">
 													<input class="form-control text-center text-bold font-size-24" id="txtMonto" name="txtMonto" type="text"
-													       required="" placeholder="0.00" readonly>
+																 required="" placeholder="0.00" readonly>
 												</div>
 												<button id="btnActionForm" class="btn btn-block btn-success mt-3" type="submit" disabled><i class="fa-solid fa-circle-check mr-2"></i><span
 														id="btnText"><b>PAGAR</b></span></button>
 												<button type="button" onclick="btnLimpiarForm();" class="btn btn-block btn-danger mt-3"><i class="fa-solid fa-circle-xmark mr-2"></i><b>LIMPIAR
-												                                                                                                                                    CAMPOS</b></button>
+														CAMPOS</b></button>
 											</div>
 										</div>
 									</div>
