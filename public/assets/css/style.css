@@ -127,5 +127,11 @@
     display: inline-block;
 }
 
+/* Aplicar estilos a las columnas específicas */
+#tableClientesPrestamos td:nth-child(2),
+#tableClientesPrestamos th:nth-child(2) {
+    width: 120px; /* Ancho deseado para la tercera columna */
+}
+
 
 

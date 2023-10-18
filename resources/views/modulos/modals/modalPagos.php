@@ -145,19 +145,23 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<table id="tableClientesPrestamos" class="table table table-striped table-bordered" style="width:100%">
-					<thead>
-					<tr>
-						<th>ID</th>
-						<th style="width: 300px">Clientes</th>
-						<th>Monto</th>
-						<th>Estado</th>
-						<th>Acciones</th>
-					</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
+				<div class="row">
+					<div class="col-md-12">
+						<table id="tableClientesPrestamos" class="table table-hover table-striped table-bordered" style="width:100%">
+							<thead>
+							<tr>
+								<th>ID</th>
+								<th>Clientes</th>
+								<th>Monto</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
 				<!-- /.Table -->
 			</div>
 			<div class="modal-footer justify-content-right">
