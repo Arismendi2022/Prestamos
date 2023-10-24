@@ -136,10 +136,15 @@ $('#myTab a').on('click', function (e) {
 	$(this).tab('show')
 });
 
+
 /** Date picker **/
 $('#datetimepicker').datetimepicker({
-	language: 'en', // Lenguaje en inglés
 	format: 'L' // Formato dd/mm/yyyy
+});
+
+//Date picker
+$('#reservaFecha').datetimepicker({
+	format: 'DD/MM/YYYY'
 });
 
 /** select2 */
@@ -159,5 +164,4 @@ function formatoMillares(input) {
 	const numeroFormateado = new Intl.NumberFormat('es-CO').format(numero); // Aplicar formato de millares
 	input.value = numeroFormateado;
 }
-
 

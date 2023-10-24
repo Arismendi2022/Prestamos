@@ -8,7 +8,7 @@
 		<b>Versión</b> 1.3.0
 	</div>
 	<!-- Default to the left -->
-	<strong>Copyright &copy; <?= date("Y") ?> <a href="#">Sistema de Crédito</a>.</strong> Reservados todos los derechos.
+	<strong>Copyright &copy; <?= date ("Y") ?> <a href="#">Sistema de Crédito</a>.</strong> Reservados todos los derechos.
 </footer>
 </div>
 <!-- ./wrapper -->
@@ -20,7 +20,7 @@
 <!-- Bootstrap Toggle JS -->
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <!-- Font Awesome JS -->
-<script src="https://kit.fontawesome.com/d11cf095c6.js" crossorigin="anonymous"></script>
+<script src="<?= ROOT ?>/admin/plugins/fontawesome/js/fontawesome.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!--Highcharts-->
@@ -60,10 +60,9 @@
 <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
 
-
 <!-- Funciones propias -->
-<script src="<?= media(); ?>/assets/js/functions_admin.js"></script>
-<script src="<?= media(); ?>/assets/js/<?= $data['page_functions_js']; ?>"></script>
+<script src="<?= media (); ?>/assets/js/functions_admin.js"></script>
+<script src="<?= media (); ?>/assets/js/<?= $data['page_functions_js']; ?>"></script>
 
 <script>
 	/** agregar clase activa y permanecer abierto cuando se selecciona */

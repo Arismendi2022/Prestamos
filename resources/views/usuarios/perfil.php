@@ -1,6 +1,6 @@
 <?php
-	headerAdmin($data);
-	getModal('modalPerfil', $data);
+	headerAdmin ($data);
+	getModal ('modalPerfil', $data);
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -89,7 +89,7 @@
 							<hr>
 							<strong><i class="far fa-file-alt mr-1"></i> Notas</strong>
 							<p class="text-muted">El mejor apoyo para el
-							                      crecimiento y progreso. Únete en esta plataforma.</p>
+								crecimiento y progreso. Únete en esta plataforma.</p>
 						</div>
 						<!-- /.card-body -->
 					</div>
@@ -112,7 +112,7 @@
 									<div class="content">
 										<h5>DATOS PERSONALES
 											<button class="btn btn-sm btn-primary ml-2" type="button" onclick="openModalPerfil();"><i class="fas fa-pencil-alt"
-											                                                                                          aria-hidden="true"></i></button>
+																																																								aria-hidden="true"></i></button>
 										</h5>
 									</div>
 									<table class="table table-bordered">
@@ -149,7 +149,7 @@
 												<div class="col-md-6">
 													<label>Identificación Tributaria</label>
 													<input class="form-control valid validNumber" type="text" id="txtNit" name="txtNit" value=""
-													       onkeypress="return controlTag(event);" readonly>
+																 onkeypress="return controlTag(event);" readonly>
 												</div>
 												<div class="col-md-6">
 													<label>Nombre fiscal</label>
@@ -187,6 +187,6 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php footerAdmin($data); ?>
+<?php footerAdmin ($data); ?>
 
 

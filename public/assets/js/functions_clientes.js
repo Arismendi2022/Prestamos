@@ -130,6 +130,7 @@ function fntEditInfo(element, idcliente) {
 	document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
 	document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
 	document.querySelector('#btnText').innerHTML = "Actualizar";
+	
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	let ajaxUrl = base_url + '/Clientes/getCliente/' + idcliente;
 	request.open("GET", ajaxUrl, true);

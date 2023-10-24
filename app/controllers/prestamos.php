@@ -37,12 +37,12 @@
 					/** cabecera prestamos */
 					$idUsuario = intval ($_POST['idUsuario']);
 					$dtFecha = date ("Y-m-d", strtotime ($_POST['fecha_prestamo']));
-					$intMonto = intval (quitarMillar ($_POST['txtMonto']));
+					$intMonto = intval (removerMiles ($_POST['txtMonto']));
 					$intCuotas = intval ($_POST['txtCuotas']);
 					$intInteres = intval ($_POST['txtInteres']);
-					$intValorCuota = intVal (quitarMillar ($_POST['valor_cuota']));
-					$intTotalInteres = intVal (quitarMillar ($_POST['valor_interes']));
-					$intMontoTotal = intVal (quitarMillar ($_POST['valor_total']));
+					$intValorCuota = intVal (removerMiles ($_POST['valor_cuota']));
+					$intTotalInteres = intVal (removerMiles ($_POST['valor_interes']));
+					$intMontoTotal = intVal (removerMiles ($_POST['valor_total']));
 					$strFormaPago = strClean ($_POST['listFormPago']);
 					$strMoneda = strClean ($_POST['listMoneda']);
 					$request_user = "";
@@ -72,10 +72,10 @@
 							
 							$nroCuota = intval ($columna1);
 							$dtFecha = date ('Y-m-d', strtotime (strClean ($columna2)));
-							$intCuota = intval (quitarMillar ($columna3));
-							$intInteres = intval (quitarMillar ($columna4));
-							$intCapital = intval (quitarMillar ($columna5));
-							$intSaldo = intval (quitarMillar ($columna6));
+							$intCuota = intval (removerMiles ($columna3));
+							$intInteres = intval (removerMiles ($columna4));
+							$intCapital = intval (removerMiles ($columna5));
+							$intSaldo = intval (removerMiles ($columna6));
 							
 							$request_user = $this->model->insertPrestamoItems ($nroCuota,
 								$dtFecha,

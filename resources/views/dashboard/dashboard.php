@@ -60,7 +60,7 @@
 						<div class="icon">
 							<i class="fa-solid fa-chart-column mr-1"></i>
 						</div>
-						<a href="#" onclick="openModal();" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+						<a href="#" <?php if (!empty($_SESSION['permisos'][MPAGOS]['r'])) { ?> onclick="openModal();" <?php } ?>class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<!-- ./col -->

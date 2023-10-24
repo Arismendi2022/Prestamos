@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- daterange picker -->
   <link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/daterangepicker/daterangepicker.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+	<link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -55,6 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="dropdown-menu settings-menu dropdown-menu-right">
           <li><a class="dropdown-item" href="#"><i class="fa fa-cog mr-2"></i>Opciones</a></li>
           <li><a class="dropdown-item" href="<?= ROOT ?>/usuarios/perfil/"><i class="fa fa-user mr-2"></i>Perfil</a></li>
+          <li><a class="dropdown-item" href="<?= ROOT ?>/empresa/"><i class="fa-solid fa-building mr-2"></i>Empresa</a></li>
           <li><a class="dropdown-item" href="<?= ROOT ?>/logout/"><i class="fa fa-sign-out mr-2"></i>Cerrar Sesión</a></li>
         </ul>
       </li>

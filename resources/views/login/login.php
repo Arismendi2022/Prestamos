@@ -76,9 +76,9 @@
 <!-- jQuery -->
 <script src="<?= ROOT ?>/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<!-- Font Awesome JS -->
-<script src="https://kit.fontawesome.com/d11cf095c6.js" crossorigin="anonymous"></script>
 <script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Font Awesome JS -->
+<script src="<?= ROOT ?>/admin/plugins/fontawesome/js/fontawesome.js"></script>
 <!-- Select2 -->
 <script src="<?= ROOT ?>/admin/plugins/select2/js/select2.full.min.js"></script>
 <!-- InputMask -->

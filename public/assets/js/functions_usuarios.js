@@ -60,13 +60,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			let strNombre = document.querySelector('#txtNombre').value;
 			let strApellido = document.querySelector('#txtApellido').value;
 			let strEmail = document.querySelector('#txtEmail').value;
-			let strDireecion = document.querySelector('#txtDireccion').value;
+			let strDireccion = document.querySelector('#txtDireccion').value;
 			let strTelefono = document.querySelector('#txtTelefono').value;
 			let intTipousuario = document.querySelector('#listRolid').value;
 			let strPassword = document.querySelector('#txtPassword').value;
 			let intStatus = document.querySelector('#listStatus').value;
 
-			if (strIdentificacion == '' || strApellido == '' || strNombre == '' || strEmail == '' || strDireecion =='' ||strTelefono == '' || intTipousuario == '') {
+			if (strIdentificacion == '' || strApellido == '' || strNombre == '' || strEmail == '' || strDireccion =='' ||strTelefono == '' || intTipousuario == '') {
 				alerta("Atención", "Todos los campos son obligatorios.", "error");
 				return false;
 			}

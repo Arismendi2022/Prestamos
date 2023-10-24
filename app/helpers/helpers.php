@@ -99,7 +99,7 @@
 	}
 	
 	/** Elimina el punto en los millares */
-	function quitarMillar($numero) {
+	function removerMiles($numero) {
 		return str_replace(".", "", $numero); // Elimina el punto en los millares
 	}
 	
@@ -128,7 +128,7 @@
 		return $pass;
 	}
 	
-	//Formato para valores monetarios 0 decimales
+	//Formato para valores monetarios sin decimales
 	function formatMoney($cantidad)
 	{
 		$cantidad = number_format($cantidad, 0, SPD, SPM);
@@ -140,6 +140,12 @@
 	{
 		$cantidad = number_format($cantidad, 2, SPD, SPM);
 		return $cantidad;
+	}
+	
+	/** Convertir fecha con formato (dd/mm/yyyy) a (yyyy-mm-dd) */
+	function convertDateFormat($originalDate) {
+		$dateTime = DateTime::createFromFormat('d/m/Y', $originalDate);
+		return $dateTime->format('Y-m-d');
 	}
 	
 	function Meses(){
@@ -157,6 +163,7 @@
 			"Dic");
 		return $meses;
 	}
+	
 
 	
 	
