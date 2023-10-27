@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- SweetAlert2 CSS -->
 	<link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/sweetalert2/sweetalert2.min.css">
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/fontawesome-free/css/all.min.css">
 	<!-- icheck bootstrap -->
 	<link rel="stylesheet" href="<?= ROOT ?>/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 	<!-- Theme style -->
@@ -77,8 +79,6 @@
 <script src="<?= ROOT ?>/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= ROOT ?>/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Font Awesome JS -->
-<script src="<?= ROOT ?>/admin/plugins/fontawesome/js/fontawesome.js"></script>
 <!-- Select2 -->
 <script src="<?= ROOT ?>/admin/plugins/select2/js/select2.full.min.js"></script>
 <!-- InputMask -->

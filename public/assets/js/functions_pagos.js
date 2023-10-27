@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		],
 		"resonsieve": "true",
 		"bDestroy": true,
+		"searching": false,
 		"iDisplayLength": 10,
 		"order": [[0, "desc"]]
 	});
@@ -138,7 +139,7 @@ $(document).ready(function () {
 		"iDisplayLength": 10,
 		"order": [[0, "desc"]]
 	});
-
+	
 }); /** Fin Document Ready */
 
 /** mostrar cliente en form pagos */

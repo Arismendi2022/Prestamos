@@ -30,26 +30,96 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4">
-					<div class="card card-primary card-outline">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							
-							<p class="card-text">
-								Some quick example text to build on the card title and make up the bulk of the card's
-								content.
-							</p>
-							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+					<!-- Widget: user widget style 1 -->
+					<div class="card card-widget widget-user shadow-lg">
+						<!-- Add the bg color to the header using any of the bg-* classes -->
+						<div class="widget-user-header text-white"
+								 style="background: url('<?= ROOT ?>/admin/dist/img/photo1.png') center center;">
+							<h2 class="widget-user-username text-right"><b>MONEYSOFT</b></h2>
+							<h5 class="widget-user-desc text-right">Sistema de crédito</h5>
 						</div>
-					</div><!-- /.card -->
+						<div class="widget-user-image">
+							<img class="img-circle" src="<?= ROOT ?>/admin/dist/img/logo_empresa.jpg" alt="User Image">
+						</div>
+						<div class="card-footer">
+							<div class="row">
+								<div class="col-sm-4 border-right">
+									<div class="description-block">
+										<h5 class="description-header">3,200</h5>
+										<span class="description-text">SALES</span>
+									</div>
+									<!-- /.description-block -->
+								</div>
+								<!-- /.col -->
+								<div class="col-sm-4 border-right">
+									<div class="description-block">
+										<h5 class="description-header">13,000</h5>
+										<span class="description-text">FOLLOWERS</span>
+									</div>
+									<!-- /.description-block -->
+								</div>
+								<!-- /.col -->
+								<div class="col-sm-4">
+									<div class="description-block">
+										<h5 class="description-header">35</h5>
+										<span class="description-text">PRODUCTS</span>
+									</div>
+									<!-- /.description-block -->
+								</div>
+								<!-- /.col -->
+							</div>
+							<!-- /.row -->
+						</div>
+					</div>
+					<!-- /.widget-user -->
+					<!-- About Me Box -->
+					<div class="card card-primary">
+						<div class="card-header">
+							<h3 class="card-title">About Me</h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<strong><i class="fas fa-book mr-1"></i> Education</strong>
+							
+							<p class="text-muted">
+								B.S. in Computer Science from the University of Tennessee at Knoxville
+							</p>
+							
+							<hr>
+							
+							<strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+							
+							<p class="text-muted">Malibu, California</p>
+							
+							<hr>
+							
+							<strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+							
+							<p class="text-muted">
+								<span class="tag tag-danger">UI Design</span>
+								<span class="tag tag-success">Coding</span>
+								<span class="tag tag-info">Javascript</span>
+								<span class="tag tag-warning">PHP</span>
+								<span class="tag tag-primary">Node.js</span>
+							</p>
+							
+							<hr>
+							
+							<strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+							
+							<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
 				</div>
 				<!-- /.col -->
 				<div class="col-md-8">
-					<div class="card card-primary card-outline">
+					<div class="card card-primary card-outline card-tabs">
 						<div class="card-header p-2">
-							<ul class="nav nav-pills" id="myTab">
-								<li class="nav-item"><a class="nav-link active" href="#datosEmpresa" data-toggle="tab">Datos Empresa</a></li>
-								<li class="nav-item"><a class="nav-link" href="#patrimonio" data-toggle="tab" role="tab">Patrimonio</a></li>
+							<ul class="nav nav-tabs" id="myTab">
+								<li class="nav-item"><a class="nav-link active" href="#datosEmpresa" data-toggle="pill" role="tab">Datos Empresa</a></li>
+								<li class="nav-item"><a class="nav-link" href="#patrimonio" data-toggle="pill" role="tab">Patrimonio</a></li>
 							</ul>
 						</div><!-- /.card-header -->
 						<div class="card-body">
@@ -105,10 +175,12 @@
 								<!-- /.tab-pane -->
 								<div class="tab-pane fade" id="patrimonio">
 									<div class="content">
-										<h5>Capital de trabajo
-											<button class="btn btn-success btn-sm ml-2" type="button" onclick="openModal();"><i class="fa-solid fa-circle-plus"></i> Agregar Capital
-											</button>
-										</h5>
+										<div class="row">
+											<h5>Capital de trabajo
+												<button class="btn btn-primary btn-sm ml-2" type="button" onclick="openModal();"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
+											</h5>
+											<h5 class="mx-5">Total Capital: <span id="totalCapital"> $0,00</span></h5>
+										</div>
 										<br>
 										<div class="row">
 											<div class="col-md-12">
@@ -121,18 +193,11 @@
 															<th class="text-right">Capital($)</th>
 															<th class="text-center">Efectivo/Banco</th>
 															<th>Descripción</th>
-															<th class="text-center" >Acciones</th>
+															<th class="text-center">Acciones</th>
 														</tr>
 														</thead>
 														<tbody>
 														</tbody>
-														<!--	<tr class="bg-gray-light">
-																<td><b>Total</b></td>
-																<td class="text-right"><b>$700.000,00</b></td>
-																<td></td>
-																<td></td>
-																<td></td>
-															</tr>-->
 													</table>
 												</div>
 											</div>

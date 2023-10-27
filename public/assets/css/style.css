@@ -134,16 +134,15 @@
 }
 
 /** altura de las filas de la datatable*/
-#tablePagos, #tableCapital td {
-    padding: 8px;
+#tablePagos th, #tablePagos td, #tableCapital td, #tableCapital th {
+    padding: 7px;
 }
 
 /* Aplicar estilos a las columnas específicas */
 #tableCapital td:nth-child(5),
 #tableCapital th:nth-child(5) {
-    width: 180px; /* Ancho deseado para la cuarta columna */
+    width: 120px; /* Ancho deseado para la cuarta columna */
 }
-
 
 
 

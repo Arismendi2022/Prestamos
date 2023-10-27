@@ -28,10 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		],
 		"resonsieve": "true",
 		"bDestroy": true,
+		//"ordering": false,
 		"searching": false,
 		"iDisplayLength": 10,
 		"order": [[0, "desc"]]
 	});
+	recalcularCapital()
 	
 })
 
@@ -63,6 +65,7 @@ if (document.querySelector("#formCapital")) {
 					formCapital.reset();
 					alerta("Capital", objData.msg, "success");
 					tableCapital.api().ajax.reload();
+					recalcularCapital()
 				} else {
 					alerta("Error", objData.msg, "error");
 				}
@@ -103,8 +106,28 @@ function fntEditCapital(idcapital) {
 
 /** borrar capital */
 function fntDelCapital(idcapital) {
-	alerta('Eliminar')
-	
+	confirmarBorrado("Eliminar capital", "¿Realmente quiere eliminar capital?", "warning").then((borrar) => {
+		if (borrar) {
+			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+			let ajaxUrl = base_url + '/empresa/delCapital';
+			let strData = "idCapital=" + idcapital;
+			request.open("POST", ajaxUrl, true);
+			request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			request.send(strData);
+			request.onreadystatechange = function () {
+				if (request.readyState == 4 && request.status == 200) {
+					let objData = JSON.parse(request.responseText);
+					if (objData.status) {
+						alerta("Eliminar!", objData.msg, "success");
+						tableCapital.api().ajax.reload();
+						recalcularCapital()
+					} else {
+						alerta("Atención!", objData.msg, "error");
+					}
+				}
+			}
+		}
+	})
 }
 
 /** llama al modal capital */
@@ -118,4 +141,24 @@ function openModal() {
 	document.querySelector("#formCapital").reset();
 	$('#listCuentas').select2();
 	$('#modalFormCapital').modal('show');
+}
+
+/** calcula el total del capital a la fecha */
+function recalcularCapital() {
+	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+	let ajaxUrl = base_url + '/empresa/getPatrimonio';
+	request.open("GET", ajaxUrl, true);
+	request.send();
+	request.onreadystatechange = function () {
+		if (request.readyState == 4 && request.status == 200) {
+			let objData = JSON.parse(request.responseText);
+			
+			if (objData.status) {
+				let totalCapital = objData.data.total
+				
+				$("#totalCapital").html(totalCapital);
+			}
+		}
+	}
+	
 }

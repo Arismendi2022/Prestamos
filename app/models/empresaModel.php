@@ -54,9 +54,6 @@
 			$this->strDescripcion = $descripcion;
 			$this->strCuentas = $cuentas;
 			
-			$sql = "SELECT * FROM tbl_capital WHERE fecha = '$this->strFecha' AND idcapital != $this->intIdCapital";
-			$request = $this->select_all ($sql);
-			
 			if (empty($request)) {
 				$sql = "UPDATE tbl_capital SET fecha = ?, capital = ?, cuenta = ?, descripcion = ? WHERE idcapital = $this->intIdCapital";
 				$arrData = array ($this->strFecha, $this->intMonto, $this->strCuentas, $this->strDescripcion);
@@ -66,6 +63,25 @@
 				$request = 0;
 			}
 			
+			return $request;
+		}
+		
+		/** Borrar capital */
+		public function deleteCapital(int $intIdcapital)
+		{
+			$this->intIdCapital = $intIdcapital;
+			$sql = "UPDATE tbl_capital SET estado = ? WHERE idcapital = $this->intIdCapital";
+			$arrData = array (0);
+			$request = $this->update ($sql, $arrData);
+			
+			return $request;
+		}
+		
+		/** Total capital  */
+		public function selectPatrimonio()
+		{
+			$sql = "EXEC proc_obtenerCapital";
+			$request = $this->select ($sql);
 			return $request;
 		}
 		

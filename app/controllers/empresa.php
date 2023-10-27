@@ -23,6 +23,7 @@
 			$data['page_title'] = "Informacion General";
 			$data['page_name'] = "empresa";
 			$data['page_functions_js'] = "functions_empresa.js";
+			
 			$this->views->getView ($this, "empresa", $data);
 		}
 		
@@ -85,10 +86,12 @@
 					$arrData[$i]['capital'] = SMONEY . formatMoney ($arrData[$i]['capital']);
 					
 					if ($_SESSION['permisosMod']['u']) {
-						$btnEdit = '<button type="button" class="btn btn-primary btn-sm btnEditCapital" onClick="fntEditCapital(' . $arrData[$i]['idcapital'] . ')" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>';
+						$btnEdit = '<button type="button" class="btn btn-info btn-sm btnEditCapital" onClick="fntEditCapital(' . $arrData[$i]['idcapital'] . ')" title="Editar">
+							<i class="fa-solid fa-pen-to-square"></i></button>';
 					}
 					if ($_SESSION['permisosMod']['d']) {
-						$btnDelete = '<button type="button" class="btn btn-danger btn-sm btnDelCapital" onClick="fntDelCapital(' . $arrData[$i]['idcapital'] . ')" title="Eliminar"><i class="fas fa-trash-alt"></i></button>';
+						$btnDelete = '<button type="button" class="btn btn-danger btn-sm btnDelCapital" onClick="fntDelCapital(' . $arrData[$i]['idcapital'] . ')" title="Eliminar">
+							<i class="fas fa-trash-alt"></i></button>';
 					}
 					$arrData[$i]['options'] = '<div class="text-center">' . $btnEdit . ' ' . $btnDelete . '</div>';
 					
@@ -116,6 +119,43 @@
 					echo json_encode ($arrResponse, JSON_UNESCAPED_UNICODE);
 				}
 			}
+			die();
+		}
+		
+		public function delCapital()
+		{
+			if ($_POST) {
+				if ($_SESSION['permisosMod']['d']) {
+					$intidcapital = intval ($_POST['idCapital']);
+					$requestDelete = $this->model->deleteCapital ($intidcapital);
+					if ($requestDelete) {
+						$arrResponse = array ('status' => true, 'msg' => 'Se ha eliminado el capital ');
+					} else {
+						$arrResponse = array ('status' => false, 'msg' => 'Error al eliminar el capital.');
+					}
+					echo json_encode ($arrResponse, JSON_UNESCAPED_UNICODE);
+				}
+			}
+			die();
+		}
+		
+		/** traemos el valor del capital */
+		public function getPatrimonio()
+		{
+			if ($_SESSION['permisosMod']['r']) {
+				
+				$arrData = $this->model->selectPatrimonio ();
+				$arrData['total'] = SMONEY . formatMoney ($arrData['total']);
+				
+				if (empty($arrData)) {
+					$arrResponse = array ('status' => false, 'msg' => 'Datos no encontrados.');
+				} else {
+					$arrResponse = array ('status' => true, 'data' => $arrData);
+				}
+				
+				echo json_encode ($arrResponse, JSON_UNESCAPED_UNICODE);
+			}
+			
 			die();
 		}
 		
