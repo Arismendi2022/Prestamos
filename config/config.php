@@ -40,8 +40,6 @@
 	const RCLIENTES = 3;
 	const RAGENTE = 4;
 	
-	/** Capital inicial */
-	const MCAPITAL = 700000;
 	
 
 	

@@ -21,7 +21,7 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="form-group col-md-4">
-											<label id="txtIdentificacion">Identificación <span class="required">*</span></label>
+											<label for="txtIdentificacion">Identificación <span class="required">*</span></label>
 											<div class="input-group">
 												<input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return
 													controlTag(event);">
@@ -31,7 +31,7 @@
 											</div>
 										</div>
 										<div class="form-group col-md-12">
-											<label id="txtNombre">Nombres y Apellidos </span></label>
+											<label for="txtNombre">Nombres y Apellidos </span></label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
@@ -42,7 +42,7 @@
 									</div> <!-- /.crow -->
 									<div class="row">
 										<div class="col-md-4">
-											<label id="txtMonto">Monto del Préstamo <span class="required">*</span></label>
+											<label for="txtMonto">Monto del Préstamo <span class="required">*</span></label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
@@ -51,12 +51,12 @@
 											</div>
 										</div>
 										<div class="col-md-4">
-											<label id="txtCuota">Nro Cuotas <span class="required">*</span></label>
+											<label for="txtCuota">Nro Cuotas <span class="required">*</span></label>
 											<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtCuotas" name="txtCuotas" required
 														 onkeypress="return controlTag(event);">
 										</div>
 										<div class="col-md-4">
-											<label id="txtInteres">Interes Anual <span class="required">*</span></label>
+											<label for="txtInteres">Interes Anual <span class="required">*</span></label>
 											<div class="input-group">
 												<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtInteres" name="txtInteres" required
 															 onkeypress="return controlTag(event);">
@@ -69,7 +69,7 @@
 									</div> <!-- /.crow -->
 									<div class="row">
 										<div class="col-md-4">
-											<label id="listFormPago">Forma de Pago <span class="required">*</span></label>
+											<label for="listFormPago">Forma de Pago <span class="required">*</span></label>
 											<select class="form-control select2" id="listFormPago" name="listFormPago" required="">
 												<option value="Diario">Diario</option>
 												<option value="Mensual">Mensual</option>
@@ -78,7 +78,7 @@
 											</select>
 										</div>
 										<div class="col-md-4">
-											<label id="listMoneda">T. Moneda <span class="required">*</span></label>
+											<label for="listMoneda">T. Moneda <span class="required">*</span></label>
 											<select class="form-control select2" id="listMoneda" name="listMoneda" required>
 												<option value="COP">COP</option>
 												<option value="USD">USD</option>
@@ -86,11 +86,11 @@
 											</select>
 										</div>
 										<div class="col-md-4">
-											<label id="txtFecha">Fecha Emisión <span class="required">*</span></label>
-											<div class="input-group date" id="datetimepicker" data-target-input="nearest" readonly>
-												<input type="text" id="datePicker" class="form-control datetimepicker-input" data-target="#datetimepicker" readonly placeholder="dd/mm/yyyy"
+											<label for="txtFecha">Fecha Emisión <span class="required">*</span></label>
+											<div class="input-group date" id="reservaFecha" data-target-input="nearest" readonly>
+												<input type="text" id="fechaInicio" class="form-control datetimepicker-input" data-target="#reservaFecha" placeholder="dd/mm/yyyy"
 															 required>
-												<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+												<div class="input-group-append" data-target="#reservaFecha" data-toggle="datetimepicker">
 													<div class="input-group-text"><i class="fa fa-calendar"></i></div>
 												</div>
 											</div>
@@ -118,19 +118,19 @@
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Valor por Cuota</span>
-											<h4><span id="valorCuota" class="font-weight-bold">0</span></h4>
+											<h4><span id="valorCuota" class="font-weight-bold">0,00</span></h4>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Interes</span>
-											<h4><span id="Interes" class="font-weight-bold">0</span></h4>
+											<h4><span id="Interes" class="font-weight-bold">0,00</span></h4>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Monto Total</span>
-											<h4><span id="montoTotal" class="font-weight-bold">0</span></h4>
+											<h4><span id="montoTotal" class="font-weight-bold">0,00</span></h4>
 										</div>
 									</div>
 								</div>

@@ -18,11 +18,16 @@
 		
 		public function selectSaldoCaja()
 		{
+			/** Patrimonio total */
+			$sql_capital = "EXEC proc_obtenerCapital";
+			$capital = $this->select ($sql_capital);
+			
 			$sql = "SELECT ISNULL(SUM(abonos),0) as abonos FROM view_reportePrestamos WHERE estado = 1";
 			$sql_loan = "SELECT ISNULL(SUM(monto_prestamo),0) AS total FROM tbl_prestamos WHERE estado = 1";
+			
 			$request = $this->select ($sql);
 			$request_loan = $this->select ($sql_loan);
-			$arrData = (MCAPITAL - $request_loan['total']) + $request['abonos'];
+			$arrData = ($capital['total'] - $request_loan['total']) + $request['abonos'];
 			return $arrData;
 		}
 		
@@ -119,9 +124,12 @@
 		
 		public function saldoPrestamos()
 		{
+			$sql_capital = "EXEC proc_obtenerCapital";
+			$capital = $this->select ($sql_capital);
+			
 			$sql = "EXEC proc_saldoPrestamos";
 			$request = $this->select ($sql);
-			$arrData = ($request['total'] * 100) / MCAPITAL;
+			$arrData = ($request['total'] * 100) / $capital['total'];
 			return $arrData;
 			
 		}

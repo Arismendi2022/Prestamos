@@ -136,13 +136,7 @@ $('#myTab a').on('click', function (e) {
 	$(this).tab('show')
 });
 
-
-/** Date picker **/
-$('#datetimepicker').datetimepicker({
-	format: 'L' // Formato dd/mm/yyyy
-});
-
-//Date picker
+/** funcion datetimepicker */
 $('#reservaFecha').datetimepicker({
 	format: 'DD/MM/YYYY'
 });

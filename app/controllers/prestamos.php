@@ -36,7 +36,7 @@
 				} else {
 					/** cabecera prestamos */
 					$idUsuario = intval ($_POST['idUsuario']);
-					$dtFecha = date ("Y-m-d", strtotime ($_POST['fecha_prestamo']));
+					$dtFecha = convertDateFormat($_POST['fecha_prestamo']);
 					$intMonto = intval (removerMiles ($_POST['txtMonto']));
 					$intCuotas = intval ($_POST['txtCuotas']);
 					$intInteres = intval ($_POST['txtInteres']);
@@ -71,7 +71,8 @@
 							$columna6 = $row['Saldo'];
 							
 							$nroCuota = intval ($columna1);
-							$dtFecha = date ('Y-m-d', strtotime (strClean ($columna2)));
+							//$dtFecha = date ('Y-m-d', strtotime (strClean ($columna2)));
+							$dtFecha = convertDateFormat(strClean ($columna2));
 							$intCuota = intval (removerMiles ($columna3));
 							$intInteres = intval (removerMiles ($columna4));
 							$intCapital = intval (removerMiles ($columna5));

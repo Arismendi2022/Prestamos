@@ -15,7 +15,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="txtIdentificacion">Identificación <span class="required">*</span></label>
-							<input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return controlTag(event);" >
+							<input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return controlTag(event);">
 						</div>
 						<div class="form-group col-md-4">
 							<label for="txtNombre">Nombres <span class="required">*</span></label>
