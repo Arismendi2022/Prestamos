@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 	
 });
-/** Fin document addEventListener */
 
 /** Calcula la amortizacion del prestamo metodo frances */
 $(document).ready(function () {
@@ -81,15 +80,19 @@ $(document).ready(function () {
 		/** Array para guardar los datos de amortización */
 		const amortizationData = [];
 		
-		let intIdentificacion = document.querySelector('#txtIdentificacion').value;
-		let montoCredito = (document.querySelector('#txtMonto').value).replace(/\./g, ""); /** Eliminar cualquier carácter que no sea un dígito */
-		let cantidadPagos = document.querySelector('#txtCuotas').value;
-		let tasaInteresAnual = document.querySelector('#txtInteres').value;
-		let frecuenciaPago = document.querySelector('#listFormPago').value;
-		let listMoneda = document.querySelector('#listMoneda').value;
-		let fechaInicio = dayjs(document.querySelector('#fechaInicio').value);
+		let intIdentificacion = parseInt($("#txtIdentificacion").val());
+		let montoCredito      = parseInt($("#txtMonto").val().replace(/\./g, "")); /** Eliminar cualquier carácter que no sea un dígito */
+		let cantidadPagos     = parseInt($("#txtCuotas").val());
+		let tasaInteresAnual  = parseInt($("#txtInteres").val());
+		let frecuenciaPago    = $("#listFormPago").val();
+		let listMoneda        = $("#listMoneda").val();
+		let fechaInicial      = cambiarFormatoFecha($("#fechaInicio").val());
 		
-		if (intIdentificacion == '' || montoCredito == '' || cantidadPagos == '' || tasaInteresAnual == '' || cantidadPagos == '' || listMoneda == '' || fechaInicio == '') {
+		let fechaInicio = dayjs(fechaInicial)
+		
+		if ($("#txtIdentificacion").val() === "" || $("#txtNombre").val() === "" || $("#txtMonto").val() === "" || $("#txtCuotas").val() === "" || $("#txtInteres").val() === "" ||
+				$("#listFormPago").val() === "" || $("#txtMoneda").val() === "" || $("#fechaInicio").val() === "") {
+			
 			alerta("Atención", "Todos los campos son obligatorios.", "error");
 			return false;
 		}
@@ -146,6 +149,7 @@ $(document).ready(function () {
 					fechaInicio = fechaInicio.add(15, "day");
 					break;
 			}
+			
 			amortizationData.push({
 				nroCuota: i,
 				Fecha: fechaInicio.format('YYYY-MM-DD'),
@@ -155,6 +159,7 @@ $(document).ready(function () {
 				Saldo: formatter.format((montoCredito.toFixed(0)))
 			});
 		}
+		
 		$('#btnActionForm').attr('disabled', false);
 		saveAmortizationData(amortizationData);
 	})
@@ -168,10 +173,10 @@ function saveAmortizationData(data) {
 		formPrestamos.onsubmit = function (e) {
 			e.preventDefault();
 			
-			let fecha   = $("#fechaInicio").val();
-			let cuota   = $("#valorCuota").val();
-			let interes = $("#Interes").val();
-			let total   = $("#montoTotal").val();
+			let fecha = $("#fechaInicio").val();
+			let cuota = $("#valorCuota").html();
+			let interes = $("#Interes").html();
+			let total = $("#montoTotal").html();
 			
 			/** Crear un objeto FormData */
 			let formData = new FormData(formPrestamos);
@@ -234,9 +239,9 @@ function btnLimpiarForm() {
 	document.querySelector("#formPrestamos").reset();
 	$('#listFormPago').select2();
 	$('#listMoneda').select2();
-	$("#valorCuota").html("0,00");
-	$("#Interes").html("0,00");
-	$("#montoTotal").html("0,00");
+	$("#valorCuota").html('0,00');
+	$("#Interes").html('0,00');
+	$("#montoTotal").html('0,00');
 	$('#btnActionForm').attr('disabled', true);
 }
 
@@ -311,7 +316,6 @@ function fntViewLoan(idprestamo) {
 		}
 	}
 	
-	//$('#modalViewLoan').modal('show');
 }
 
 /** Datatable de listado de clientes con prestamos */
@@ -335,7 +339,7 @@ $(document).ready(function () {
 		"columnDefs": [
 			{'className': "textcenter", "targets": [0]},
 			{'className': "textcenter", "targets": [4]}
-			],
+		],
 		
 		"resonsieve": "true",
 		"bDestroy": true,

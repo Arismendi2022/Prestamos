@@ -384,7 +384,7 @@
 					},
 					stops: [
 						[0, Highcharts.getOptions().colors[2]],
-						[1, Highcharts.color(Highcharts.getOptions().colors[2]).setOpacity(0.1).get('rgba')]
+						[1, Highcharts.color(Highcharts.getOptions().colors[2]).setOpacity(0.05).get('rgba')]
 					]
 				},
 				marker: {
@@ -401,7 +401,7 @@
 		},
 		
 		series: [{
-			type: 'areaspline',
+			type: 'area', // areaspline
 			name: 'Interes',
 			data: [
 				<?php

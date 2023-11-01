@@ -159,3 +159,19 @@ function formatoMillares(input) {
 	input.value = numeroFormateado;
 }
 
+/** cambiar formato de fecha para dayjs de (dd/mm/yyyy a mm/dd/yyyy)*/
+function cambiarFormatoFecha(fecha) {
+	// Divide la fecha en día, mes y año
+	var partes = fecha.split("/");
+	
+	if (partes.length === 3) {
+		// Reorganiza las partes para el nuevo formato
+		var nuevaFecha = partes[1] + "/" + partes[0] + "/" + partes[2];
+		
+		return nuevaFecha;
+	} else {
+		// En caso de un formato incorrecto, devuelve la fecha original
+		return fecha;
+	}
+}
+
