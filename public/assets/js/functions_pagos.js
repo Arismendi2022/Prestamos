@@ -255,7 +255,7 @@ function btnLimpiarForm() {
 	$('#tableQuotas tbody').empty(); // Elimina todas las filas del cuerpo de la tabla
 	document.querySelector('#idCliente').value = "";
 	document.querySelector("#formPagos").reset();
-	$("#montoTotal").html('0.00');
+	$("#montoTotal").html('0,00');
 	$("#nroPrestamo").html('0');
 	$("#plazoPrestamo").html('');
 	$("#tipoMoneda").html('');

@@ -31,12 +31,12 @@
 											</div>
 										</div>
 										<div class="form-group col-md-12">
-											<label for="txtNombre">Nombres y Apellidos </span></label>
+											<label for="txtNombre">Nombres y Apellidos <span class="required">*</span></label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
 												</div>
-												<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required readonly>
+												<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required="" readonly>
 											</div>
 										</div>
 									</div> <!-- /.crow -->
@@ -101,7 +101,7 @@
 								<div class="row">
 									<div class="col-md-12 mb-4">
 										<div class="card-footer">
-											<button type="button" id="btnCalcular" class="btn btn-danger"><i class="fa-solid fa-calculator mr-2"></i><b>CALCULAR</b></button>
+											<button type="submit" id="btnCalcular" class="btn btn-danger"><i class="fa-solid fa-calculator mr-2"></i><b>CALCULAR</b></button>
 										</div>
 										<!-- /.card-footer -->
 									</div>

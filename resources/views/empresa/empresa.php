@@ -1,6 +1,6 @@
 <?php
-	headerAdmin ($data);
-	getModal ('modalCapital', $data);
+	headerAdmin($data);
+	getModal('modalCapital', $data);
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -35,8 +35,8 @@
 						<!-- Add the bg color to the header using any of the bg-* classes -->
 						<div class="widget-user-header text-white"
 								 style="background: url('<?= ROOT ?>/admin/dist/img/photo1.png') center center;">
-							<h2 class="widget-user-username text-right"><b>MONEYSOFT</b></h2>
-							<h5 class="widget-user-desc text-right">Sistema de crédito</h5>
+							<li class="widget-user-desc text-right" style="font-size:40px; color:#FFF"><strong>iBANKING</strong></li>
+							<li class="widget-user-desc text-right" style="font-size:13px; color:#FFF"><b>SISTEMA DE CREDITO EN LINEA</b></li>
 						</div>
 						<div class="widget-user-image">
 							<img class="img-circle" src="<?= ROOT ?>/admin/dist/img/logo_empresa.jpg" alt="User Image">
@@ -219,4 +219,4 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php footerAdmin ($data); ?>
+<?php footerAdmin($data); ?>

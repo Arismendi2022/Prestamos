@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			{"data": "saldo"},
 			{"data": "estado"},
 			{"data": "options"}],
-		
+
 		"columnDefs": [
 			{'className': "textcenter", "targets": [0]},
 			{'className': "textcenter", "targets": [2]},
@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			{'className': "textright", "targets": [9]},
 			{'className': "textcenter", "targets": [10]}
 		],
-		
+
 		'dom': 'lBfrtip',
-		
+
 		'buttons': [
 			{
 				"extend": "copyHtml5",
@@ -65,38 +65,40 @@ document.addEventListener('DOMContentLoaded', function () {
 				"className": "btn btn-info"
 			}
 		],
-		
+
 		"resonsieve": "true",
 		"bDestroy": true,
 		"iDisplayLength": 10,
 		"order": [[0, "desc"]]
 	});
-	
+
 });
 
 /** Calcula la amortizacion del prestamo metodo frances */
-$(document).ready(function () {
-	$('#btnCalcular').on('click', function () {
+if (document.querySelector("#formPrestamos")) {
+	let formPrestamos = document.querySelector("#formPrestamos");
+	formPrestamos.onsubmit = function (e) {
+		e.preventDefault();
 		/** Array para guardar los datos de amortización */
 		const amortizationData = [];
-		
-		let intIdentificacion = parseInt($("#txtIdentificacion").val());
-		let montoCredito      = parseInt($("#txtMonto").val().replace(/\./g, "")); /** Eliminar cualquier carácter que no sea un dígito */
-		let cantidadPagos     = parseInt($("#txtCuotas").val());
-		let tasaInteresAnual  = parseInt($("#txtInteres").val());
-		let frecuenciaPago    = $("#listFormPago").val();
-		let listMoneda        = $("#listMoneda").val();
-		let fechaInicial      = cambiarFormatoFecha($("#fechaInicio").val());
-		
-		let fechaInicio = dayjs(fechaInicial)
-		
-		if ($("#txtIdentificacion").val() === "" || $("#txtNombre").val() === "" || $("#txtMonto").val() === "" || $("#txtCuotas").val() === "" || $("#txtInteres").val() === "" ||
-				$("#listFormPago").val() === "" || $("#txtMoneda").val() === "" || $("#fechaInicio").val() === "") {
-			
+
+		let intIdentificacion = parseInt(document.getElementById("txtIdentificacion").value);
+		let strNombre         = document.getElementById("txtNombre").value;
+		let montoCredito      = parseInt(document.getElementById("txtMonto").value.replace(/\./g, "")) /** Eliminar cualquier carácter que no sea un dígito */;
+		let cantidadPagos     = parseInt(document.getElementById("txtCuotas").value);
+		let tasaInteresAnual  = parseInt(document.getElementById("txtInteres").value)
+		let frecuenciaPago    = document.getElementById("listFormPago").value;
+		let listMoneda        = document.getElementById("listMoneda").value;
+		let fechaInicial      = cambiarFormatoFecha(document.getElementById("fechaInicio").value)
+
+		let fechaInicio       = dayjs(fechaInicial)
+
+		if (isNaN(intIdentificacion) || isNaN(montoCredito) || isNaN(cantidadPagos) || isNaN(tasaInteresAnual) || isNaN(fechaInicial) || strNombre == "" || frecuenciaPago == "" ||
+			listMoneda == "") {
 			alerta("Atención", "Todos los campos son obligatorios.", "error");
 			return false;
 		}
-		
+
 		/** Convertir la tasa de interés anual a tasa de interés periódica */
 		var tasaInteresPeriodica;
 		if (frecuenciaPago === 'Mensual') {
@@ -110,30 +112,27 @@ $(document).ready(function () {
 		} else {
 			throw new Error('Frecuencia de pago no válida');
 		}
-		
 		/** para calcular la amortización del crédito utilizando el método francés */
 		cuotaMes = montoCredito * (tasaInteresPeriodica / (1 - Math.pow(1 + tasaInteresPeriodica, -cantidadPagos)));
-		
 		/** formato de numeros */
 		const formatter = new Intl.NumberFormat('es-CO', {
 			//style: 'currency',
 			currency: 'USD', minimumFractionDigits: 0, round: Math.ceil
 		})
-		
 		/** agregamos los valores calculados */
 		const montoTotal = cuotaMes * cantidadPagos
 		const intereses = montoTotal - montoCredito
-		
+
 		document.querySelector("#valorCuota").innerHTML = formatter.format((cuotaMes.toFixed(0)));
 		document.querySelector("#Interes").innerHTML = formatter.format((intereses.toFixed(0)));
 		document.querySelector("#montoTotal").innerHTML = formatter.format((montoTotal.toFixed(0)));
-		
+
 		/** Calcular calendario de amortización */
 		for (let i = 1; i <= cantidadPagos; i++) {
 			pagoInteres = Math.abs(montoCredito * tasaInteresPeriodica);
 			pagoCapital = Math.abs(cuotaMes - pagoInteres);
 			montoCredito = Math.abs(montoCredito - pagoCapital);
-			
+
 			/** Pasar a la siguiente fecha de pago según la frecuencia */
 			switch (frecuenciaPago) {
 				case "Mensual":
@@ -149,7 +148,6 @@ $(document).ready(function () {
 					fechaInicio = fechaInicio.add(15, "day");
 					break;
 			}
-			
 			amortizationData.push({
 				nroCuota: i,
 				Fecha: fechaInicio.format('YYYY-MM-DD'),
@@ -159,12 +157,12 @@ $(document).ready(function () {
 				Saldo: formatter.format((montoCredito.toFixed(0)))
 			});
 		}
-		
+
 		$('#btnActionForm').attr('disabled', false);
 		saveAmortizationData(amortizationData);
-	})
-	
-});
+
+	}
+}
 
 /** Guardar Préstamo */
 function saveAmortizationData(data) {
@@ -172,32 +170,32 @@ function saveAmortizationData(data) {
 		let formPrestamos = document.querySelector("#formPrestamos");
 		formPrestamos.onsubmit = function (e) {
 			e.preventDefault();
-			
-			let fecha = $("#fechaInicio").val();
-			let cuota = $("#valorCuota").html();
+
+			let fecha   = $("#fechaInicio").val();
+			let cuota   = $("#valorCuota").html();
 			let interes = $("#Interes").html();
-			let total = $("#montoTotal").html();
-			
+			let total   = $("#montoTotal").html();
+
 			/** Crear un objeto FormData */
 			let formData = new FormData(formPrestamos);
 			formData.append('datos', JSON.stringify(data));
-			
+
 			/** Agrega otras variables al objeto FormData */
 			formData.append('fecha_prestamo', fecha);
 			formData.append('valor_cuota', cuota);
 			formData.append('valor_interes', interes);
 			formData.append('valor_total', total);
-			
+
 			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 			let ajaxUrl = base_url + '/Prestamos/setPrestamo';
 			request.open("POST", ajaxUrl, true);
 			request.send(formData);
-			
+
 			request.onreadystatechange = function () {
 				if (request.readyState == 4 && request.status == 200) {
 					let objData = JSON.parse(request.responseText);
 					if (objData.status) {
-						
+
 						alerta("Guardar!", objData.msg, "success");
 						btnLimpiarForm();
 						tableListClientes.api().ajax.reload();
@@ -221,11 +219,11 @@ function fntBuscarCliente(idcliente) {
 		if (request.readyState == 4 && request.status == 200) {
 			let objData = JSON.parse(request.responseText);
 			if (objData.status) {
-				
+
 				document.querySelector("#idUsuario").value = objData.data.idcliente;
 				document.querySelector("#txtIdentificacion").value = objData.data.identificacion;
 				document.querySelector("#txtNombre").value = objData.data.nombres;
-				
+
 				$('#modalListClientes').modal('hide');
 			} else {
 				alerta("", objData.msg, "error");
@@ -257,20 +255,29 @@ function fntViewLoan(idprestamo) {
 		"aServerSide": true,
 		"language": {
 			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-			
+
 		},
 		"ajax": {
 			"url": " " + base_url + '/Prestamos/getAmortizacion/' + idprestamo, "dataSrc": ""
 		},
-		"columns": [{"data": "nro_cuota"}, {"data": "fechaPago"}, {"data": "valor_cuota"}, {"data": "interes"}, {"data": "capital"}, {"data": "saldo"}, {"data": "estado"}],
-		"columnDefs": [{'className': "textcenter", "targets": [0]}, {'className': "textcenter", "targets": [1]}, {
-			'className': "textright",
-			"targets": [2]
-		}, {'className': "textright", "targets": [3]}, {'className': "textright", "targets": [4]}, {'className': "textright", "targets": [5]}, {
-			'className': "textcenter",
-			"targets": [6]
-		}],
-		
+		"columns": [
+			{"data": "nro_cuota"},
+			{"data": "fechaPago"},
+			{"data": "valor_cuota"},
+			{"data": "interes"},
+			{"data": "capital"},
+			{"data": "saldo"},
+			{"data": "estado"}
+		],
+		"columnDefs": [
+			{'className': "textcenter", "targets": [0]},
+			{'className': "textcenter", "targets": [1]},
+			{'className': "textright", "targets": [2]},
+			{'className': "textright", "targets": [3]},
+			{'className': "textright", "targets": [4]},
+			{'className': "textright", "targets": [5]},
+			{'className': "textcenter", "targets": [6]}
+		],
 		"paging": false,
 		"lengthChange": false,
 		"searching": false,
@@ -279,9 +286,8 @@ function fntViewLoan(idprestamo) {
 		"autoWidth": false,
 		"responsive": true,
 		"bDestroy": true,
-		
 	});
-	
+
 	let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	let ajaxUrl = base_url + '/Prestamos/getPrestamo/' + idprestamo;
 	request.open("GET", ajaxUrl, true);
@@ -290,9 +296,9 @@ function fntViewLoan(idprestamo) {
 		if (request.readyState == 4 && request.status == 200) {
 			let objData = JSON.parse(request.responseText);
 			if (objData.status) {
-				
+
 				let datoGenero = objData.data.genero == 1 ? 'Masculino' : 'Femenino';
-				
+
 				document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacion;
 				document.querySelector("#celNombre").innerHTML = objData.data.nombres;
 				document.querySelector("#celEmail").innerHTML = objData.data.email;
@@ -315,7 +321,7 @@ function fntViewLoan(idprestamo) {
 			}
 		}
 	}
-	
+
 }
 
 /** Datatable de listado de clientes con prestamos */
@@ -325,7 +331,7 @@ $(document).ready(function () {
 			"url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
 		}, "ajax": {
 			"url": " " + base_url + "/Prestamos/getClientesLoan",
-			
+
 			"dataSrc": ""
 		}, "columns": [
 			{"data": "idcliente"},
@@ -335,17 +341,17 @@ $(document).ready(function () {
 			{"data": "prestamo"},
 			{"data": "options"}
 		],
-		
+
 		"columnDefs": [
 			{'className': "textcenter", "targets": [0]},
 			{'className': "textcenter", "targets": [4]}
 		],
-		
+
 		"resonsieve": "true",
 		"bDestroy": true,
 		"iDisplayLength": 10,
 		"order": [[0, "desc"]]
-		
+
 	});
 }); /** Fin Document Ready */
 
@@ -355,7 +361,7 @@ function openModal() {
 	document.querySelector('#idUsuario').value = "";
 	document.querySelector("#formPrestamos").reset();
 	$('#modalFormPrestamo').modal('show');
-	
+
 }
 
 
