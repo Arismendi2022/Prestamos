@@ -46,7 +46,7 @@
 				<!-- ./col -->
 				<div class="col-lg-3 col-6">
 					<!-- small box -->
-					<div class="small-box bg-info">
+					<div class="small-box bg-success">
 						<div class="inner">
 							<div class="flex-container">
 								<h3><?= SMONEY . ' ' . formatMoney ($data['pagosAnio']) ?></h3>
@@ -66,7 +66,7 @@
 				<!-- ./col -->
 				<div class="col-lg-3 col-6">
 					<!-- small box -->
-					<div class="small-box bg-success">
+					<div class="small-box bg-info">
 						<div class="inner">
 							<h3><?= formatDecimal ($data['porcentajeRecaudo']) ?><sup style="font-size: 20px">%</sup></h3>
 							
@@ -208,7 +208,7 @@
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fa-solid fa-chart-column mr-1"></i>
-								Préstamos / Pagos
+								Préstamos y Pagos año: <?= date('Y') ?>
 							</h3>
 							<div class="card-tools">
 							</div>
@@ -377,32 +377,30 @@
 				},
 				fillColor: {
 					linearGradient: {
-						x1: 0,
-						y1: 0,
-						x2: 0,
+						x1: 1,
+						y1: 1,
+						x2: 1,
 						y2: 1
 					},
 					stops: [
-						[0, Highcharts.getOptions().colors[2]],
-						[1, Highcharts.color(Highcharts.getOptions().colors[2]).setOpacity(0.05).get('rgba')]
+						[0, Highcharts.getOptions().colors[0]],
+						[1, Highcharts.color(Highcharts.getOptions().colors[2]).setOpacity(0.3).get('rgba')],
 					]
 				},
+				
+				threshold: null,
 				marker: {
-					radius: 3
-				},
-				lineWidth: 1,
-				states: {
-					hover: {
-						lineWidth: 2
-					}
-				},
-				threshold: null
+					lineWidth: 2,
+					lineColor: null,
+					fillColor: 'white'
+				}
 			}
 		},
 		
 		series: [{
-			type: 'area', // areaspline
+			type: 'areaspline', // areaspline
 			name: 'Interes',
+			lineColor: Highcharts.getOptions().colors[1],
 			data: [
 				<?php
 				foreach ($data['totalInteres']['meses'] as $mes) {
@@ -596,7 +594,7 @@
 		plotOptions: {
 			pie: {
 				size: '110%',
-				innerSize: '50%',
+				innerSize: '60%',
 				borderRadius: 1,
 				allowPointSelect: true,
 				cursor: 'pointer',

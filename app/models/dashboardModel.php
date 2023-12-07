@@ -161,9 +161,9 @@
 			
 		}
 		
-		public function selectPagosPrestamos()
+		public function selectPagosPrestamos(int $anio)
 		{
-			$sql = "EXEC proc_recaudoPrestamos";
+			$sql = "EXEC proc_recaudoPrestamos $anio";
 			$arrData = $this->select_all ($sql);
 			return $arrData;
 		}

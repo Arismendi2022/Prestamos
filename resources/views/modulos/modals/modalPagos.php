@@ -165,7 +165,7 @@
 				<!-- /.Table -->
 			</div>
 			<div class="modal-footer justify-content-right">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-circle-xmark"></i> Cerrar</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
