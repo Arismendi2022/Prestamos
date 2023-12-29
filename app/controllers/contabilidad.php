@@ -23,10 +23,14 @@
 			$data['page_title'] = "Flujo de caja - <small>Sistema de Crédito</small>";
 			$data['page_name'] = "contabilidad";
 			$data['page_functions_js'] = "functions_contabilidad.js";
-			$this->views->getView($this, "contabilidad", $data);
+			
+			$data['flujoCaja']  = $this->model->selectFlujoCaja();
+			
+			$this->views->getView($this, "flujoCaja", $data);
+			
 		}
 		
-		public function balance()
+		public function hojaBalance()
 		{
 			if (empty($_SESSION['permisosMod']['r'])) {
 				header("Location:" . base_url() . '/dashboard');
@@ -35,7 +39,14 @@
 			$data['page_title'] = "Hoja de balance - <small>Sistema de Crédito</small>";
 			$data['page_name'] = "contabilidad";
 			$data['page_functions_js'] = "functions_contabilidad.js";
-			$this->views->getView($this, "balance", $data);
+			
+			$data['hojaBalance']  = $this->model->selectHojaBalance();
+			
+			//dep($data['hojaBalance']); exit;
+			
+			$this->views->getView($this, "hojaBalance", $data);
+			
+			
 		}
 		
 	}

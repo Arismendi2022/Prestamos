@@ -152,7 +152,7 @@
 				for($i = 0; $i < count($arrData); $i++) {
 					$btnView = '';
 					if($arrData[$i]['estado'] == 1) {
-						$arrData[$i]['estado'] = '<span class="badge badge-warning">Pendiente</span>';
+						$arrData[$i]['estado'] = '<span class="badge badge-danger">Pendiente</span>';
 					} else {
 						$arrData[$i]['estado'] = '<span class="badge badge-success">Pagado</span>';
 					}

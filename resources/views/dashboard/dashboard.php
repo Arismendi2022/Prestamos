@@ -1,6 +1,6 @@
 <?php
-	headerAdmin ($data);
-	getModal('modalCartera', $data)
+	headerAdmin($data);
+	getModal('modalCartera',$data)
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -34,8 +34,14 @@
 					<!-- small box -->
 					<div class="small-box bg-warning">
 						<div class="inner">
-							<h3><?= SMONEY . ' ' . formatMoney ($data['prestamosActivos']) ?></h3
-							<p>Préstamos Activos</p>
+							<div class="flex-container">
+								<h3><?= SMONEY . ' ' . formatMoney($data['tarjetasDashboard']['totalPrestamos']) ?></h3>
+								<h3 style="margin-right: 10px;"><?= $data['tarjetasDashboard']['cantidadPrestamos'] ?></h3>
+							</div>
+							<div class="flex-container">
+								<p>Total Préstamos</p>
+								<p class="float-right">Préstamos Activos</p>
+							</div>
 						</div>
 						<div class="icon">
 							<i class="ion ion-cash"></i>
@@ -46,31 +52,10 @@
 				<!-- ./col -->
 				<div class="col-lg-3 col-6">
 					<!-- small box -->
-					<div class="small-box bg-success">
-						<div class="inner">
-							<div class="flex-container">
-								<h3><?= SMONEY . ' ' . formatMoney ($data['pagosAnio']) ?></h3>
-								<h3 class="float-right mr-4"><?= $data['pagosHoy'] ?></h3>
-							</div>
-							<div class="flex-container">
-								<p>Total Pagos</p>
-								<p class="float-right">Pagos Hoy</p>
-							</div>
-						</div>
-						<div class="icon">
-							<i class="fa-solid fa-chart-column mr-1"></i>
-						</div>
-						<a href="#" <?php if (!empty($_SESSION['permisos'][MPAGOS]['r'])) { ?> onclick="openModal();" <?php } ?>class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-3 col-6">
-					<!-- small box -->
 					<div class="small-box bg-info">
 						<div class="inner">
-							<h3><?= formatDecimal ($data['porcentajeRecaudo']) ?><sup style="font-size: 20px">%</sup></h3>
-							
-							<p>Porcentaje de Recaudo</p>
+							<h3><?= SMONEY . ' ' . formatMoney($data['tarjetasDashboard']['totalCapital']) ?></h3>
+							<p>Capital de Trabajo</p>
 						</div>
 						<div class="icon">
 							<i class="ion ion-trophy"></i>
@@ -81,9 +66,30 @@
 				<!-- ./col -->
 				<div class="col-lg-3 col-6">
 					<!-- small box -->
+					<div class="small-box bg-success">
+						<div class="inner">
+							<div class="flex-container">
+								<h3><?= SMONEY . ' ' . formatMoney($data['tarjetasDashboard']['totalPagos']) ?></h3>
+								<h3 class="float-right mr-4"><?= ($data['tarjetasDashboard']['pagosHoy']) ?></h3>
+							</div>
+							<div class="flex-container">
+								<p>Total Pagos</p>
+								<p class="float-right">Pagos Hoy</p>
+							</div>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+						<a href="#" <?php if(!empty($_SESSION['permisos'][MPAGOS]['r'])) { ?> onclick="openModal();" <?php } ?>class="small-box-footer">Mas info <i
+								class="fas fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
 					<div class="small-box bg-danger">
 						<div class="inner">
-							<h3><?= SMONEY . ' ' . formatMoney ($data['saldoCaja']) ?></h3>
+							<h3><?= SMONEY . ' ' . formatMoney($data['tarjetasDashboard']['totalCaja']) ?></h3>
 							<p>Saldo en Caja</p>
 						</div>
 						<div class="icon">
@@ -145,7 +151,7 @@
 						<div class="card-header">
 							<h3 class="card-title">
 								<i class="fa-solid fa-chart-column mr-1"></i>
-								Interes total por año <b> <?= SMONEY . ' ' . formatMoney ($data['totalInteres']['total']) ?> </b>
+								Interes total por año <b> <?= SMONEY . ' ' . formatMoney($data['totalInteres']['total']) ?> </b>
 							</h3>
 							<div class="card-tools">
 							</div>
@@ -231,10 +237,10 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php footerAdmin ($data); ?>
+<?php footerAdmin($data); ?>
 
 <script>
-	
+
 	/** Pie chart **/
 	Highcharts.chart('prestamosActivos', {
 		chart: {
@@ -270,14 +276,14 @@
 			colorByPoint: true,
 			data: [
 				<?php
-				foreach ($data['totalPrestamos'] as $pagos) {
+				foreach($data['totalPrestamos'] as $pagos){
 					echo "{name:'" . $pagos['nombre'] . "',y:" . $pagos['total'] . "},";
 				}
 				?>
 			]
 		}]
 	});
-	
+
 	/** Columnas **/
 	Highcharts.chart('pagosMes', {
 		chart: {
@@ -303,7 +309,7 @@
 			title: {
 				text: ''
 			}
-			
+
 		},
 		legend: {
 			enabled: false
@@ -317,19 +323,19 @@
 				}
 			}
 		},
-		
+
 		tooltip: {
 			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
 			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:,0f}</b> total<br/>'
 		},
-		
+
 		series: [
 			{
 				name: 'Pagos',
 				colorByPoint: true,
 				data: [
 					<?php
-					foreach ($data['totalPagos']['meses'] as $mes) {
+					foreach($data['totalPagos']['meses'] as $mes){
 						echo "['" . $mes['mes'] . "'," . $mes['pagos'] . "],";
 					}
 					?>
@@ -337,7 +343,7 @@
 			}
 		],
 	});
-	
+
 	/** Line Area */
 	Highcharts.chart('interes', {
 		chart: {
@@ -354,7 +360,7 @@
 		xAxis: {
 			categories: [
 				<?php
-				foreach ($data['totalInteres']['meses'] as $mes) {
+				foreach($data['totalInteres']['meses'] as $mes){
 					echo "'" . $mes['mes'] . "',";
 				}
 				?>
@@ -365,7 +371,7 @@
 				text: ''
 			}
 		},
-		
+
 		legend: {
 			enabled: false
 		},
@@ -387,7 +393,7 @@
 						[1, Highcharts.color(Highcharts.getOptions().colors[2]).setOpacity(0.3).get('rgba')],
 					]
 				},
-				
+
 				threshold: null,
 				marker: {
 					lineWidth: 2,
@@ -396,24 +402,24 @@
 				}
 			}
 		},
-		
+
 		series: [{
 			type: 'areaspline', // areaspline
 			name: 'Interes',
 			lineColor: Highcharts.getOptions().colors[1],
 			data: [
 				<?php
-				foreach ($data['totalInteres']['meses'] as $mes) {
+				foreach($data['totalInteres']['meses'] as $mes){
 					echo $mes['interes'] . ",";
 				}
 				?>
 			],
 		}]
 	});
-	
+
 	/** GAUGE */
 	Highcharts.chart('capitalPrestado', {
-		
+
 		chart: {
 			type: 'gauge',
 			plotBackgroundColor: null,
@@ -422,11 +428,11 @@
 			plotShadow: false,
 			height: '' + '40%'
 		},
-		
+
 		title: {
 			text: ''
 		},
-		
+
 		pane: {
 			startAngle: -90,
 			endAngle: 89.9,
@@ -434,7 +440,7 @@
 			center: ['50%', '75%'],
 			size: '120%'
 		},
-		
+
 		// the value axi
 		yAxis: {
 			min: 0,
@@ -469,10 +475,10 @@
 				thickness: 20
 			}]
 		},
-		
+
 		series: [{
 			name: 'Préstamos',
-			data: [<?= number_format ($data['saldoPrestamos'], 2) ?>],
+			data: [<?= number_format($data['saldoPrestamos'],2) ?>],
 			tooltip: {
 				valueSuffix: ' %'
 			},
@@ -499,10 +505,10 @@
 				backgroundColor: 'gray',
 				radius: 6
 			}
-			
+
 		}]
 	});
-	
+
 	/** Columnas 3D */
 	const chart = new Highcharts.Chart({
 		chart: {
@@ -546,7 +552,7 @@
 		legend: {
 			enabled: false
 		},
-		
+
 		plotOptions: {
 			column: {
 				depth: 25,
@@ -561,16 +567,16 @@
 			name: 'Préstamos',
 			data: [
 				<?php
-				foreach ($data['montosPrestados']['meses'] as $mes) {
+				foreach($data['montosPrestados']['meses'] as $mes){
 					echo "['" . $mes['mes'] . "'," . $mes['total'] . "],";
 				}
 				?>
 			],
 			colorByPoint: true,
 		}],
-		
+
 	});
-	
+
 	/** Donut */
 	Highcharts.chart('pagosPrestamos', {
 		chart: {
@@ -605,35 +611,35 @@
 			}
 		},
 		colors: ['#fe6a35', '#00e272', '#d568fb'],
-		
+
 		series: [{
 			name: 'Total',
 			colorByPoint: true,
 			data: [
 				<?php
-				foreach ($data['pagosPrestamos'] as $pagos) {
+				foreach($data['pagosPrestamos'] as $pagos){
 					echo "{name:'" . $pagos['nombre'] . "',y:" . $pagos['total'] . "},";
 				}
 				?>
 			]
 		}]
 	});
-	
+
 	/** Añade algo de vida */
 	setInterval(() => {
 		const chart = Highcharts.charts[0];
 		if (chart && !chart.renderer.forExport) {
 			const point = chart.series[0].points[0],
 				inc = Math.round((Math.random() - 0.5) * 20);
-			
+
 			let newVal = point.y + inc;
 			if (newVal < 0 || newVal > 200) {
 				newVal = point.y - inc;
 			}
-			
+
 			point.update(newVal);
 		}
-		
+
 	}, 3000);
 
 </script>

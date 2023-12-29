@@ -93,7 +93,7 @@ if (document.querySelector("#formPrestamos")) {
 
 		let fechaInicio       = dayjs(fechaInicial)
 
-		if (isNaN(intIdentificacion) || isNaN(montoCredito) || isNaN(cantidadPagos) || isNaN(tasaInteresAnual) || isNaN(fechaInicial) || strNombre == "" || frecuenciaPago == "" ||
+		if (isNaN(intIdentificacion) || isNaN(montoCredito) || isNaN(cantidadPagos) || isNaN(tasaInteresAnual) || fechaInicial =="" || strNombre == "" || frecuenciaPago == "" ||
 			listMoneda == "") {
 			alerta("Atención", "Todos los campos son obligatorios.", "error");
 			return false;

@@ -124,7 +124,7 @@
 						</li>
 						<li class="nav-item">
 							<?php if(!empty($_SESSION['permisos'][6]['r'])){ ?>
-								<a href="<?=ROOT?>/contabilidad/balance" class="nav-link">
+								<a href="<?=ROOT?>/contabilidad/hojaBalance" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
 									<p>Hoja de balance</p>
 								</a>
