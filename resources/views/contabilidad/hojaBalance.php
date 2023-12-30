@@ -45,7 +45,6 @@
 											</tr>
 											</thead>
 											<tbody>
-											
 											<tr role="row" class="odd">
 												<td></td>
 												<td style="text-align: right;"><b><?= date('jS M Y') ?></b></td>

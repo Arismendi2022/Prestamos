@@ -7,7 +7,7 @@
 	<!-- Content Header (Page header) -->
 	<div class="content-header">
 		<div class="container-fluid">
-			<div class="row mb-2">
+			<div class="row">
 				<div class="col-sm-6">
 					<div class="input-group">
 						<h1><i class="fa-solid fa-gauge"></i> <?= $data['page_title'] ?>
@@ -69,11 +69,11 @@
 					<div class="small-box bg-success">
 						<div class="inner">
 							<div class="flex-container">
-								<h3><?= SMONEY . ' ' . formatMoney($data['tarjetasDashboard']['totalPagos']) ?></h3>
+								<h3><?= SMONEY . ' ' . formatMoney($data['tarjetasDashboard']['interesPendiente']) ?></h3>
 								<h3 class="float-right mr-4"><?= ($data['tarjetasDashboard']['pagosHoy']) ?></h3>
 							</div>
 							<div class="flex-container">
-								<p>Total Pagos</p>
+								<p>Intereses Pendientes</p>
 								<p class="float-right">Pagos Hoy</p>
 							</div>
 						</div>
@@ -103,7 +103,7 @@
 			<!-- /.row -->
 			<!-- Graficos -->
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<!-- PIE CHART -->
 					<div class="card card-lime card-outline">
 						<div class="card-header">
@@ -116,7 +116,7 @@
 						</div><!-- /.card-header -->
 						<div class="card-body">
 							<figure class="highcharts-figure">
-								<div id="prestamosActivos" style="width: 100%; height: 260px; margin: 0 auto"></div>
+								<div id="prestamosActivos" style="width: 100%; height: 180px; margin: 0 auto"></div>
 							</figure>
 						</div>
 						<!-- /.card-body -->
@@ -124,7 +124,7 @@
 					<!-- /.card -->
 				</div>
 				<!-- /.col (LEFT) -->
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<!-- BAR CHART -->
 					<div class="card card-orange card-outline">
 						<div class="card-header">
@@ -135,7 +135,26 @@
 						</div>
 						<div class="card-body">
 							<figure class="highcharts-figure">
-								<div id="pagosMes" style="width: 100%; height: 260px; margin: 0 auto"></div>
+								<div id="pagosMes" style="width: 100%; height: 180px; margin: 0 auto"></div>
+							</figure>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col (CENTER) -->
+				<div class="col-md-4">
+					<!--LINE CHART-->
+					<div class="card card-success card-outline">
+						<div class="card-header">
+							<h3 class="card-title">
+								<i class="fa-solid fa-chart-column mr-1"></i>
+								Interes total por año <b> <?= SMONEY . ' ' . formatMoney($data['totalInteres']['total']) ?> </b>
+							</h3>
+						</div>
+						<div class="card-body">
+							<figure class="highcharts-figure">
+								<div id="interes" style="width: 100%; height: 180px; margin: 0 auto"></div>
 							</figure>
 						</div>
 						<!-- /.card-body -->
@@ -144,29 +163,9 @@
 				</div>
 				<!-- /.col (RIGHT) -->
 			</div>
+			<!-- /.row (main row) -->
 			<div class="row">
-				<div class="col-md-6">
-					<!-- LINE CHART -->
-					<div class="card card-success card-outline">
-						<div class="card-header">
-							<h3 class="card-title">
-								<i class="fa-solid fa-chart-column mr-1"></i>
-								Interes total por año <b> <?= SMONEY . ' ' . formatMoney($data['totalInteres']['total']) ?> </b>
-							</h3>
-							<div class="card-tools">
-							</div>
-						</div><!-- /.card-header -->
-						<div class="card-body">
-							<figure class="highcharts-figure">
-								<div id="interes" style="width: 100%; height: 260px; margin: 0 auto"></div>
-							</figure>
-						</div>
-						<!-- /.card-body -->
-					</div>
-					<!-- /.card -->
-				</div>
-				<!-- /.col (LEFT) -->
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<!-- BAR CHART -->
 					<div class="card card-primary card-outline">
 						<div class="card-header">
@@ -177,17 +176,15 @@
 						</div>
 						<div class="card-body">
 							<figure class="highcharts-figure">
-								<div id="capitalPrestado" style="width: 100%; height: 260px; margin: 0 auto"></div>
+								<div id="capitalPrestado" style="width: 100%; height: 180px; margin: 0 auto"></div>
 							</figure>
 						</div>
 						<!-- /.card-body -->
 					</div>
 					<!-- /.card -->
 				</div>
-				<!-- /.col (RIGHT) -->
-			</div>
-			<div class="row">
-				<div class="col-md-6">
+				<!-- /.col (LEFT) -->
+				<div class="col-md-4">
 					<!-- LINE CHART -->
 					<div class="card card-indigo card-outline">
 						<div class="card-header">
@@ -200,15 +197,15 @@
 						</div><!-- /.card-header -->
 						<div class="card-body">
 							<figure class="highcharts-figure">
-								<div id="montoPrestado" style="width: 100%; height: 260px; margin: 0 auto"></div>
+								<div id="montoPrestado" style="width: 100%; height: 180px; margin: 0 auto"></div>
 							</figure>
 						</div>
 						<!-- /.card-body -->
 					</div>
 					<!-- /.card -->
 				</div>
-				<!-- /.col (LEFT) -->
-				<div class="col-md-6">
+				<!-- /.col (CENTER) -->
+				<div class="col-md-4">
 					<!-- LINE CHART -->
 					<div class="card card-olive card-outline">
 						<div class="card-header">
@@ -221,7 +218,7 @@
 						</div><!-- /.card-header -->
 						<div class="card-body">
 							<figure class="highcharts-figure">
-								<div id="pagosPrestamos" style="width: 100%; height: 260px; margin: 0 auto"></div>
+								<div id="pagosPrestamos" style="width: 100%; height: 180px; margin: 0 auto"></div>
 							</figure>
 						</div>
 						<!-- /.card-body -->
@@ -247,6 +244,7 @@
 			plotBackgroundColor: null,
 			plotBorderWidth: null,
 			plotShadow: false,
+			height: '' + '40%',
 			type: 'pie'
 		},
 		title: {
@@ -599,7 +597,7 @@
 		},
 		plotOptions: {
 			pie: {
-				size: '110%',
+				size: '120%',
 				innerSize: '60%',
 				borderRadius: 1,
 				allowPointSelect: true,
