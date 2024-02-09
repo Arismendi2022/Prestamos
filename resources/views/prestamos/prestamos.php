@@ -44,7 +44,7 @@
 									<thead>
 									<tr>
 										<th>iD</th>
-										<th style="width: 180px">Cliente</th>
+										<th style="width: 170px">Cliente</th>
 										<th>Fecha Crédito</th>
 										<th>Forma</th>
 										<th>Cuotas</th>

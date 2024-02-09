@@ -56,7 +56,7 @@
 		}
 		
 		/** guardamos los pagos de las cuotas */
-		public function insertPagos(int $idPrestamo, int $idCliente, int $valorCuota, int $nroCuota)
+		public function insertPagos(int $idPrestamo, int $idCliente, float $valorCuota, int $nroCuota)
 		{
 			$this->intIdPrestamo = $idPrestamo;
 			$this->intIdCliente = $idCliente;

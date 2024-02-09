@@ -27,10 +27,11 @@
 			return $request;
 		}
 		
-		public function insertPrestamo(int $idUsuario, $dtFecha, int $intMonto, int $intCuotas, int $intInteres, int $intValorCuota, int $intTotalInteres, int $intMontoTotal,
+		public function insertPrestamo(int $idUsuario, string $strDetalle, $dtFecha, float $intMonto, int $intCuotas, float $intInteres, float $intValorCuota, float $intTotalInteres, float $intMontoTotal,
 																	 string $strFormaPago, string $strMoneda)
 		{
 			$this->intidUsuario = $idUsuario;
+			$this->strDetalle = $strDetalle;
 			$this->dtFecha = $dtFecha;
 			$this->intMonto = $intMonto;
 			$this->intCuotas = $intCuotas;
@@ -44,9 +45,10 @@
 			$return = 0;
 			
 			/** inserta cabecera prestamos */
-			$query_insert = "insert into tbl_prestamos(clienteid,fecha_prestamo,monto_prestamo,nro_cuotas,interes,valor_cuota,total_interes,total_pagar,forma_pago,moneda)
-												values(?,?,?,?,?,?,?,?,?,?)";
+			$query_insert = "insert into tbl_prestamos(clienteid,detalle,fecha_prestamo,monto_prestamo,nro_cuotas,interes,valor_cuota,total_interes,total_pagar,forma_pago,moneda)
+												values(?,?,?,?,?,?,?,?,?,?,?)";
 			$arrData = array($this->intidUsuario,
+				$this->strDetalle,
 				$this->dtFecha,
 				$this->intMonto,
 				$this->intCuotas,
@@ -69,7 +71,7 @@
 		}
 		
 		/** inserta detalle prestamos */
-		public function insertPrestamoItems(int $nroCuota, $dtFecha, int $intCuota, int $intInteres, int $intCapital, int $intSaldo)
+		public function insertPrestamoItems(int $nroCuota, $dtFecha, float $intCuota, float $intInteres, float $intCapital, float $intSaldo)
 		{
 			/** actualizamos el consecutivo del prestamo */
 			$sql = "EXEC proc_consecutivoPrestamo;";
@@ -115,7 +117,7 @@
 		public function selectPrestamo(int $idPrestamo)
 		{
 			$this->intIdPrestamo = $idPrestamo;
-			$sql = "SELECT clienteid,identificacion,CONCAT(nombres,' ',apellidos) AS nombres,genero,telefono,direccion,ciudad,email,FORMAT(fecha_prestamo, 'dd-MM-yyyy') as fechaRegistro,
+			$sql = "SELECT clienteid,identificacion,CONCAT(nombres,' ',apellidos) AS nombres,genero,detalle,telefono,direccion,ciudad,email,FORMAT(fecha_prestamo, 'dd-MM-yyyy') as fechaRegistro,
         RIGHT(REPLICATE('0', 6) + CONVERT(VARCHAR(6), idprestamo), 6) AS idprestamo,monto_prestamo,interes,nro_cuotas,valor_cuota,total_pagar,total_interes,forma_pago,
     		FORMAT(fecha_prestamo,'dd-MM-yyyy') as fechaPrestamo FROM tbl_prestamos
 				INNER JOIN tbl_clientes

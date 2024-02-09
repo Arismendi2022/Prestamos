@@ -1,83 +1,86 @@
-
 function controlTag(e) {
 	tecla = (document.all) ? e.keyCode : e.which;
-	if (tecla==8) return true;
-	else if (tecla==0||tecla==9)  return true;
-	patron =/[0-9\s]/;
+	if (tecla == 8) return true;
+	else if (tecla == 0 || tecla == 9) return true;
+	patron = /[0-9\s]/;
 	n = String.fromCharCode(tecla);
 	return patron.test(n);
 }
 
-function testText(txtString){
+function testText(txtString) {
 	var stringText = new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
-	if(stringText.test(txtString)){
+	if (stringText.test(txtString)) {
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
 
-function testEntero(intCant){
+function testEntero(intCant) {
 	var intCantidad = new RegExp(/^([0-9])*$/);
-	if(intCantidad.test(intCant)){
+	if (intCantidad.test(intCant)) {
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
 
-function fntEmailValidate(email){
+function fntEmailValidate(email) {
 	var stringEmail = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})$/);
-	if (stringEmail.test(email) == false){
+	if (stringEmail.test(email) == false) {
 		return false;
-	}else{
+	} else {
 		return true;
 	}
 }
+
 // Valida texto
-function fntValidText(){
+function fntValidText() {
 	let validText = document.querySelectorAll(".validText");
-	validText.forEach(function(validText) {
-		validText.addEventListener('keyup', function(){
+	validText.forEach(function (validText) {
+		validText.addEventListener('keyup', function () {
 			let inputValue = this.value;
-			if(!testText(inputValue)){
+			if (!testText(inputValue)) {
 				this.classList.add('is-invalid');
-			}else{
+			} else {
 				this.classList.remove('is-invalid');
 			}
 		});
 	});
 }
+
 /** Valida numeros **/
-function fntValidNumber(){
+function fntValidNumber() {
 	let validNumber = document.querySelectorAll(".validNumber");
-	validNumber.forEach(function(validNumber) {
-		validNumber.addEventListener('keyup', function(){
+	validNumber.forEach(function (validNumber) {
+		validNumber.addEventListener('keyup', function () {
 			let inputValue = this.value;
-			if(!testEntero(inputValue)){
+			if (!testEntero(inputValue)) {
 				this.classList.add('is-invalid');
-			}else{
+			} else {
 				this.classList.remove('is-invalid');
 			}
 		});
 	});
 }
+
 /** Valida Email **/
-function fntValidEmail(){
+function fntValidEmail() {
 	let validEmail = document.querySelectorAll(".validEmail");
-	validEmail.forEach(function(validEmail) {
-		validEmail.addEventListener('keyup', function(){
+	validEmail.forEach(function (validEmail) {
+		validEmail.addEventListener('keyup', function () {
 			let inputValue = this.value;
-			if(!fntEmailValidate(inputValue)){
+			if (!fntEmailValidate(inputValue)) {
 				this.classList.add('is-invalid');
-			}else{
+			} else {
 				this.classList.remove('is-invalid');
 			}
 		});
 	});
 }
+
 /** Carga las funciones de validación **/
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 	fntValidText();
 	fntValidEmail();
 	fntValidNumber();
@@ -124,7 +127,7 @@ function formatoPhone($phoneNumber) {
 }
 
 /** Función para mascara de telefono **/
-$(document).ready(function() {
+$(document).ready(function () {
 	// Selecciona el campo de entrada y aplica la máscara
 	$('#txtTelefono').inputmask('999-999-9999');
 });
@@ -144,7 +147,7 @@ $('#reservaFecha').datetimepicker({
 /** select2 */
 $(function () {
 	//Initialize Select2 Elements
-	 $('.select2').select2()
+	$('.select2').select2()
 
 	//Initialize Select2 Elements
 	$('.select2bs4').select2({
@@ -154,20 +157,28 @@ $(function () {
 
 /** formatear números en JavaScript */
 function formatoMillares(input) {
-	const numero = input.value.replace(/\D/g, ''); // Eliminar todos los caracteres que no sean dígitos
-	const numeroFormateado = new Intl.NumberFormat('es-CO').format(numero); // Aplicar formato de millares
-	input.value = numeroFormateado;
+	// Obtén el valor actual del input
+	let valor = input.value;
+
+	// Elimina cualquier caracter que no sea un dígito
+	valor = valor.replace(/\D/g, '');
+
+	// Formatea el número con separadores de millares
+	valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+	// Establece el nuevo valor formateado en el input
+	input.value = valor;
 }
 
 /** cambiar formato de fecha para dayjs de (dd/mm/yyyy a mm/dd/yyyy)*/
 function cambiarFormatoFecha(fecha) {
 	// Divide la fecha en día, mes y año
 	var partes = fecha.split("/");
-	
+
 	if (partes.length === 3) {
 		// Reorganiza las partes para el nuevo formato
 		var nuevaFecha = partes[1] + "/" + partes[0] + "/" + partes[2];
-		
+
 		return nuevaFecha;
 	} else {
 		// En caso de un formato incorrecto, devuelve la fecha original

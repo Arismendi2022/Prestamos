@@ -24,7 +24,9 @@
 			$data['page_name'] = "contabilidad";
 			$data['page_functions_js'] = "functions_contabilidad.js";
 			
-			$data['flujoCaja']  = $this->model->selectFlujoCaja();
+			$anio = date('Y');
+			
+			$data['flujoCaja']  = $this->model->selectFlujoCaja($anio);
 			
 			$this->views->getView($this, "flujoCaja", $data);
 			

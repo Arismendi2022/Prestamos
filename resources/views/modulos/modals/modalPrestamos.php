@@ -30,13 +30,22 @@
 												</div>
 											</div>
 										</div>
-										<div class="form-group col-md-12">
+										<div class="form-group col-md-8">
 											<label for="txtNombre">Nombres y Apellidos <span class="required">*</span></label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fa-solid fa-user"></i></span>
 												</div>
 												<input type="text" class="form-control valid validText font-weight-bold font-size" id="txtNombre" name="txtNombre" required="" readonly>
+											</div>
+										</div>
+										<div class="form-group col-md-12">
+											<label for="txtDetalle">Detalle</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i class="fa-solid fa-circle-info"></i></i></span>
+												</div>
+												<input type="text" class="form-control" id="txtNombre" name="txtDetalle" placeholder="Ingrese detalle préstamo">
 											</div>
 										</div>
 									</div> <!-- /.crow -->
@@ -52,13 +61,18 @@
 										</div>
 										<div class="col-md-4">
 											<label for="txtCuota">Nro Cuotas <span class="required">*</span></label>
-											<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtCuotas" name="txtCuotas" required=""
-														 onkeypress="return controlTag(event);">
+											<div class="input-group">
+												<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtCuotas" name="txtCuotas" required=""
+															 onkeypress="return controlTag(event);">
+												<div class="input-group-append">
+													<span class="input-group-text"><i class="fa-solid fa-hashtag"></i></span>
+												</div>
+											</div>
 										</div>
 										<div class="col-md-4">
 											<label for="txtInteres">Interes Anual <span class="required">*</span></label>
 											<div class="input-group">
-												<input type="text" class="form-control font-weight-bold font-size valid validNumber" id="txtInteres" name="txtInteres" required=""
+												<input type="text" class="form-control font-weight-bold font-size" id="txtInteres" name="txtInteres" required=""
 															 onkeypress="return controlTag(event);">
 												<div class="input-group-append">
 													<span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
@@ -97,15 +111,37 @@
 										</div>
 									</div> <!-- /.row -->
 								</div>
-								<!-- /.card-body -->
 								<div class="row">
-									<div class="col-md-12 mb-4">
+									<div class="col-md-3">
 										<div class="card-footer">
-											<button type="submit" id="btnCalcular" class="btn btn-danger"><i class="fa-solid fa-calculator mr-2"></i><b>CALCULAR</b></button>
+											<button type="button" onclick="btnCalcular();" class="btn btn-block btn-danger btn-sm"><i class="fa-solid fa-calculator
+												mr-2"></i><b>CALCULAR</b></button>
 										</div>
-										<!-- /.card-footer -->
 									</div>
 								</div> <!-- /.row -->
+								<div class="row">
+									<div class="col-12">
+										<div class="card-footer">
+											<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
+											<table id="tableCuotas" class="table table-striped table-bordered table-sm">
+												<thead align="center">
+												<tr>
+													<th>#</th>
+													<th>Fecha de Pago</th>
+													<th>Monto Cuota</th>
+													<th>Interes</th>
+													<th>Capital</th>
+													<th>Saldo</th>
+												</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<!-- /.Table -->
+										</div>
+									</div>
+								</div> <!-- /.row -->
+								<!-- /.card-body -->
 							</div>
 							<!-- /.card -->
 						</div>
@@ -118,19 +154,19 @@
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Valor por Cuota</span>
-											<h4><span id="valorCuota" class="font-weight-bold">0,00</span></h4>
+											<h4><span id="valorCuota" class="font-weight-bold">0.00</span></h4>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Interes</span>
-											<h4><span id="Interes" class="font-weight-bold">0,00</span></h4>
+											<h4><span id="Interes" class="font-weight-bold">0.00</span></h4>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<span>Monto Total</span>
-											<h4><span id="montoTotal" class="font-weight-bold">0,00</span></h4>
+											<h4><span id="montoTotal" class="font-weight-bold">0.00</span></h4>
 										</div>
 									</div>
 								</div>
@@ -241,6 +277,7 @@
 									</div>
 									<a type="button" class="btn-xs bg-red mr-2" href="#">Enviar SMS</a>
 								</ul>
+								<span id="celDetalle" style="Color: #000; font-size: 14px">Detalle</span>
 							</div>
 						</div><!-- /.row -->
 					</div>
@@ -252,7 +289,7 @@
 								<div class="table-responsive">
 									<div class="clearfix mb-2">
 										<div class="float-left">
-											<span class="aligned-span-iz" >Monto Credito:</span> <span class="aligned-span" id="celMontoCredito" style="color: blue;">0,00</span><br>
+											<span class="aligned-span-iz">Monto Credito:</span> <span class="aligned-span" id="celMontoCredito" style="color: blue;">0,00</span><br>
 											<span class="aligned-span-iz">Total Interes:</span> <span class="aligned-span" id="celTotalIntereses" style="color: blue;">0,00</span><br>
 											<span class="aligned-span-iz">Total a Pagar:</span> <span class="aligned-span" id="celMontoTotal" style="color: blue;">0,00</span><br>
 											<span class="aligned-span-iz">Interes Anual:</span> <b><span class="aligned-span" id="celInteres" style="color: green;"> 24%</span></b>

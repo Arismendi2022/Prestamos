@@ -8,9 +8,9 @@
 		}
 		
 		/** Datos Flujo de Caja **/
-		public function selectFlujoCaja()
+		public function selectFlujoCaja(int $anio)
 		{
-			$sql     = "EXEC proc_flujoCaja";
+			$sql     = "EXEC proc_flujoCaja $anio";
 			$arrData = $this->select($sql);
 			return $arrData;
 		}

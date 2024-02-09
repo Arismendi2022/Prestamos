@@ -18,8 +18,8 @@
 	define("SERVIDOR", "ALFA\SQLEXPRESS");
 	
 	/** Delimitador decimal y millar EJ: 24.189,00 **/
-	const SPD = ",";
-	const SPM = ".";
+	const SPD = ".";
+	const SPM = ",";
 	
 	/** Símbolo de moneda **/
 	const SMONEY = "$";

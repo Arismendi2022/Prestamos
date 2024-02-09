@@ -212,11 +212,11 @@ function fntPagosCuotas() {
 
 		let total = 0;
 		$('input:checkbox:enabled:checked').each(function () {
-			total += isNaN(parseFloat($(this).attr('data-cuota').replace(/[$€,.]/g, ''))) ? 0 : parseFloat($(this).attr('data-cuota').replace(/[$€,.]/g, ''));
+			total += isNaN(parseFloat($(this).attr('data-cuota').replace(/[$€,]/g, ''))) ? 0 : parseFloat($(this).attr('data-cuota').replace(/[$€,]/g, ''));
 		});
 
 		const numero = total;
-		const totalPago = new Intl.NumberFormat('es-CO').format(numero);
+		const totalPago = new Intl.NumberFormat('en-US').format(numero);
 
 		$("#txtMonto").val(totalPago);
 
@@ -255,7 +255,7 @@ function btnLimpiarForm() {
 	$('#tableQuotas tbody').empty(); // Elimina todas las filas del cuerpo de la tabla
 	document.querySelector('#idCliente').value = "";
 	document.querySelector("#formPagos").reset();
-	$("#montoTotal").html('0,00');
+	$("#montoTotal").html('0.00');
 	$("#nroPrestamo").html('0');
 	$("#plazoPrestamo").html('');
 	$("#tipoMoneda").html('');

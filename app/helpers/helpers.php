@@ -100,7 +100,7 @@
 	
 	/** Elimina el punto en los millares */
 	function removerMiles($numero) {
-		return str_replace(".", "", $numero); // Elimina el punto en los millares
+		return str_replace(",", "", $numero); // Elimina la coma en los millares
 	}
 	
 	function limpiarValores($valor) {
@@ -108,7 +108,7 @@
 		$valorSinSimbolo = preg_replace("/[^0-9.]/", "", $valor);
 		
 		// Eliminar el formato de millares
-		$valorFinal = str_replace(".", "", $valorSinSimbolo);
+		$valorFinal = str_replace(",", "", $valorSinSimbolo);
 		
 		return $valorFinal;
 	}
@@ -131,7 +131,7 @@
 	//Formato para valores monetarios sin decimales
 	function formatMoney($cantidad)
 	{
-		$cantidad = number_format($cantidad, 0, SPD, SPM);
+		$cantidad = number_format($cantidad, 2, SPD, SPM);
 		return $cantidad;
 	}
 	

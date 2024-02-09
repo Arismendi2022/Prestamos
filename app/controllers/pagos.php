@@ -43,7 +43,7 @@
 						
 						$idCuota = intval ($intIdCuota);
 						$nroCuota = intval ($intnroCuota);
-						$valorCuota = intval (limpiarValores ($intCuota));
+						$valorCuota = floatval(limpiarValores ($intCuota));
 						
 						$request_pagos = $this->model->insertPagos ($idPrestamo,
 							$idCliente,

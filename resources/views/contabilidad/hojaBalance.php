@@ -58,7 +58,7 @@
 												<td></td>
 											</tr>
 											<tr role="row" class="even">
-												<td style="padding-left: 75px">Dinero</td>
+												<td style="padding-left: 75px">Efectivo</td>
 												<td class="text-right"><a style="color: #0c84ff"><?= SMONEY . ' ' . formatMoney($data['hojaBalance']['totalEfectivo']) ?></a></td>
 											</tr>
 											<tr role="row" class="odd">

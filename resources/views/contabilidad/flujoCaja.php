@@ -88,12 +88,13 @@
 												Efectivo (A) - (B)
 											</td>
 											<td align="right" class="text-bold"
-													style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['totalBalance']) ?></td>
+													style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['balanceEfectivo']) ?></td>
 										</tr>
 										<tr class="odd" role="row">
 											<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000;">Balance anterior</td>
 											<td class="text-right" style="font-size: 15px; border-top: 1px solid #000">Balance
-												a <?= date('d/m/Y',strtotime('last day of December ' . (date('Y') - 1))); ?><br><b>0</b></td>
+												a <?= date('d/m/Y',strtotime('last day of December ' . (date('Y') - 1))); ?>
+												<br><b><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['balanceAnterior']) ?></b></td>
 										</tr>
 										<tr class="even" role="row">
 											<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000;">Total Balance</td>
