@@ -119,28 +119,6 @@
 										</div>
 									</div>
 								</div> <!-- /.row -->
-								<div class="row">
-									<div class="col-12">
-										<div class="card-footer">
-											<h6 class="tile-title"><b>LISTADO DE CUOTAS</b></h6>
-											<table id="tableCuotas" class="table table-striped table-bordered table-sm">
-												<thead align="center">
-												<tr>
-													<th>#</th>
-													<th>Fecha de Pago</th>
-													<th>Monto Cuota</th>
-													<th>Interes</th>
-													<th>Capital</th>
-													<th>Saldo</th>
-												</tr>
-												</thead>
-												<tbody>
-												</tbody>
-											</table>
-											<!-- /.Table -->
-										</div>
-									</div>
-								</div> <!-- /.row -->
 								<!-- /.card-body -->
 							</div>
 							<!-- /.card -->
@@ -315,7 +293,7 @@
 												<th>Estado</th>
 											</tr>
 											</thead>
-											<tbody>
+											<tbody id="tableBody">
 											</tbody>
 										</table>
 									</div>

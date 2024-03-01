@@ -130,6 +130,15 @@
 								</a>
 							<?php } ?>
 						</li>
+						<li class="nav-item">
+							<?php if(!empty($_SESSION['permisos'][6]['r'])){ ?>
+								<a href="<?=ROOT?>/contabilidad/ganancias" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Ganancias y Pérdidas
+									</p>
+								</a>
+							<?php } ?>
+						</li>
 					</ul>
 				</li>
 				<?php } ?>

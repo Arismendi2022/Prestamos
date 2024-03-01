@@ -23,6 +23,13 @@
 			return $arrData;
 		}
 		
+		/** Datos Hoja de ganancias & perdidas **/
+		public function selectUtilidad()
+		{
+			$sql     = "EXEC proc_utilidad";
+			$arrData = $this->select($sql);
+			return $arrData;
+		}
 		
 	}
 		

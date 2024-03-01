@@ -9,11 +9,7 @@
 				<div class="row mb-2">
 					<div class="col-sm-6">
 						<div class="input-group">
-							<h1><i class="fa-solid fa-scale-unbalanced-flip"></i> <?= $data['page_title'] ?>
-								<?php if($_SESSION['permisosMod']['w']){ ?>
-									<button class="btn btn-primary ml-2" type="button" onclick="openModal();"><i class="fa-solid fa-circle-plus"></i> Nuevo</button>
-								<?php } ?>
-							</h1>
+							<h1><i class="fa-solid fa-scale-unbalanced-flip"></i> <?= $data['page_title'] ?></h1>
 						</div>
 					</div><!-- /.col -->
 					<div class="col-sm-6">
@@ -31,7 +27,6 @@
 		<div class="content">
 			<div class="container-fluid">
 				<div class="row">
-					
 					<div class="col-sm-12">
 						<div class="card card-info card-outline">
 							<div class="col-sm-7">

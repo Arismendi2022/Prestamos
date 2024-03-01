@@ -45,11 +45,11 @@
 									<tr>
 										<th>iD</th>
 										<th style="width: 170px">Cliente</th>
-										<th>Fecha Crédito</th>
+										<th style="width: 100px">Fecha Crédito</th>
 										<th>Forma</th>
 										<th>Cuotas</th>
 										<th>Valor Cuota</th>
-										<th>Monto Crédito</th>
+										<th style="width: 110px">Monto Crédito</th>
 										<th>Total a Pagar</th>
 										<th>Total Abonos</th>
 										<th>Saldo</th>

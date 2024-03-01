@@ -1,13 +1,14 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Toto Admin</title>
+	<title>Aris Admin</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="shortcut icon" href="https://www.loandisk.com/favicon.ico" type="image/x-icon"/>
+	<link rel="shortcut icon" href="https://www.loandisk.com/favicon.ico" type="image/x-icon" />
 	<!-- Bootstrap 3.3.5 -->
 	<link rel="stylesheet" href="https://x.loandisk.com/bootstrap/css/bootstrap.min.css">
 	<!-- Font Awesome -->
@@ -32,18 +33,15 @@
 	<script type="text/javascript" src="https://x.loandisk.com/include/js/jquery.plugin.js"></script>
 	<script type="text/javascript" src="https://x.loandisk.com/include/js/jquery.datepick.min.js"></script>
 	<script type="text/javascript" src="https://x.loandisk.com/include/js/jquery.numeric.js"></script>
-	<link rel="stylesheet" type="text/css"
-				href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/fh-3.1.7/r-2.2.5/sc-2.0.2/datatables.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/fh-3.1.7/r-2.2.5/sc-2.0.2/datatables.min.css"/>
 	
-	<script type="text/javascript"
-					src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/fh-3.1.7/r-2.2.5/sc-2.0.2/datatables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/fh-3.1.7/r-2.2.5/sc-2.0.2/datatables.min.js"></script>
 	<style type="text/css">
     #progress {
       width: 500px;
       border: 1px solid #aaa;
       height: 20px;
     }
-
     #progress .bar {
       background-color: #ccc;
       height: 20px;
@@ -62,7 +60,7 @@
 		<a href="https://x.loandisk.com/home/welcome.php" class="logo">
 			<!-- mini logo for sidebar mini 50x50 pixels -->
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Toto</b> Admin</span>
+			<span class="logo-lg"><b>Aris</b> Admin</span>
 		</a>
 		
 		<!-- Header Navbar -->
@@ -93,13 +91,12 @@
 								<!-- inner menu: contains the actual data -->
 								<ul class="menu">
 									<li>
-										<a
-											href="https://x.loandisk.com/loans/due_loans.php?search=1&start_date=01%2F01%2F2024&end_date=01%2F01%2F2024&delete_loans_due_tomorrow_notification=1">
+										<a href="https://x.loandisk.com/loans/due_loans.php?search=1&start_date=02%2F03%2F2024&end_date=02%2F03%2F2024&delete_loans_due_tomorrow_notification=1">
 											<i class="fa fa-info text-blue"></i> 1 loans are due tomorrow
 										</a>
 									</li>
 									<li>
-										<a href="https://x.loandisk.com/loans/due_loans.php?search=1&start_date=31%2F12%2F2023&end_date=31%2F12%2F2023&delete_loans_due_today_notification=1">
+										<a href="https://x.loandisk.com/loans/due_loans.php?search=1&start_date=01%2F03%2F2024&end_date=01%2F03%2F2024&delete_loans_due_today_notification=1">
 											<i class="fa fa-warning text-yellow"></i> 1 loans are due today
 										</a>
 									</li>
@@ -152,8 +149,7 @@
 			<!-- Sidebar Menu -->
 			<ul class="sidebar-menu">
 				<li><a href="https://x.loandisk.com/admin/change_branch.php"><i class="fa fa-eye"></i><span>View Another Branch</span></a></li>
-				<li style="border-top: 1px solid #000;"><a href="https://x.loandisk.com/home/home_branch.php"><i class="fa fa-circle-o text-aqua"></i> <span>Branch #1</span></a>
-				</li>
+				<li style="border-top: 1px solid #000;"><a href="https://x.loandisk.com/home/home_branch.php"><i class="fa fa-circle-o text-aqua"></i> <span>Branch #1</span></a></li>
 				<li>
 					<a href="https://x.loandisk.com/home/home_branch.php"><i class="fa fa-home"></i><span>Home Branch</span> </a>
 				</li>
@@ -260,16 +256,13 @@
 					<a href="#"><i class="fa fa-file-text-o"></i> <span>Collection Sheets</span><i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
 						<li>
-							<a href="https://x.loandisk.com/collection_sheets/manage_daily_collection_sheet.php?view_daily_collection=1"><i class="fa fa-circle-o"></i>Daily Collection
-								Sheet</a>
+							<a href="https://x.loandisk.com/collection_sheets/manage_daily_collection_sheet.php?view_daily_collection=1"><i class="fa fa-circle-o"></i>Daily Collection Sheet</a>
 						</li>
 						<li>
-							<a href="https://x.loandisk.com/collection_sheets/manage_daily_collection_sheet.php?view_missed_repayments_sheet=1"><i class="fa fa-circle-o"></i>Missed
-								Repayment Sheet</a>
+							<a href="https://x.loandisk.com/collection_sheets/manage_daily_collection_sheet.php?view_missed_repayments_sheet=1"><i class="fa fa-circle-o"></i>Missed Repayment Sheet</a>
 						</li>
 						<li>
-							<a href="https://x.loandisk.com/collection_sheets/manage_daily_collection_sheet.php?view_past_maturity_date=1"><i class="fa fa-circle-o"></i>Past Maturity
-								Date Loans</a>
+							<a href="https://x.loandisk.com/collection_sheets/manage_daily_collection_sheet.php?view_past_maturity_date=1"><i class="fa fa-circle-o"></i>Past Maturity Date Loans</a>
 						</li>
 						<li>
 							<a href="https://x.loandisk.com/collection_sheets/send_sms.php"><i class="fa fa-circle-o"></i>Send SMS</a>
@@ -483,10 +476,10 @@
 						<li>
 							<a href="https://x.loandisk.com/accounting/view_cash_flow_monthly_branch.php"><i class="fa fa-circle-o"></i>Cash Flow Monthly</a>
 						</li>
-						<li>
+						<li class="active">
 							<a href="https://x.loandisk.com/accounting/view_profit_loss_branch.php"><i class="fa fa-circle-o"></i>Profit / Loss</a>
 						</li>
-						<li class="active">
+						<li>
 							<a href="https://x.loandisk.com/accounting/balance_sheet.php"><i class="fa fa-circle-o"></i>Balance Sheet</a>
 						</li>
 						<li>
@@ -530,7 +523,7 @@
 							value="Borrowers">
 							Borrowers <span class="caret"></span>
 						</button>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu" >
 							<li><a href="#" class="category">Borrowers</a></li>
 							<li><a href="#" class="category">Loans</a></li>
 							<li><a href="#" class="category">Savings</a></li>
@@ -549,7 +542,7 @@
 							value="Branch #1">
 							Branch #1 <span class="caret"></span>
 						</button>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu" >
 							<li><a href="#" class="search_options">Branch #1</a></li>
 							<li><a href="#" class="search_options">All Branches</a></li>
 						</ul>
@@ -576,23 +569,23 @@
 			</a>
 		</script>
 		<!-- Content Header (Page header) -->
-		<section class="content-header"><h1>Balance Sheet</h1>
+		<section class="content-header"><h1>Profit / Loss</h1>
 		</section>
 		
 		<!-- Main content -->
 		<section class="content">
 			<div class="box box-success">
-				<form class="form-horizontal" method="get" enctype="multipart/form-data">
+				<form  class="form-horizontal" method="get"  enctype="multipart/form-data">
 					<input type="hidden" name="search" value="1">
 					<div class="box-body">
 						<div class="row">
 							<div class="col-xs-12">
 								<label>
-									<input type="radio" name="balance_sheet_type" id="inputCashBasis" value="cash" checked>
+									<input type="radio" name="profit_loss_type" id="inputCashBasis"  value="cash" checked>
 									Cash Basis &nbsp;&nbsp;
 								</label>
 								<label>
-									<input type="radio" name="balance_sheet_type" id="inputAccrualBasis" value="accrual">
+									<input type="radio" name="profit_loss_type"  id="inputAccrualBasis" value="accrual">
 									Accrual Basis
 								</label>
 							</div>
@@ -600,76 +593,71 @@
 					</div>
 					<div class="box-body">
 						<div class="row">
-							<div class="col-xs-5">
-								<input type="text" name="end_date" class="form-control date_select" id="endPicker" placeholder="To Date" value="31/12/2023" required>
+							<script>
+								$(function() {
+									$('#startPicker,#endPicker').datepick({
+										onSelect: customRange, showTrigger: '#calImg',
+										dateFormat: 'dd/mm/yyyy'});
+
+									function customRange(dates) {
+										if (this.id == 'startPicker') {
+											$('#endPicker').datepick('option', 'minDate', dates[0] || null);
+										}
+										else {
+											$('#startPicker').datepick('option', 'maxDate', dates[0] || null);
+										}
+									}
+								});
+							
+							</script>
+							<div class="col-xs-2">
+								<input type="text" name="start_date" class="form-control" id="startPicker" placeholder="From Date" value="01/01/2024" required>
+							</div>
+							<div class="col-xs-1  text-center" style="padding-top: 5px;">
+								to
+							</div>
+							<div class="col-xs-2">
+								<input type="text" name="end_date" class="form-control" id="endPicker" placeholder="To Date" value="01/03/2024" required>
 							</div>
 							<div class="col-xs-6">
-								<select class="form-control" name="balance_sheet_compare_periods" id="inputBalanceSheetComparePeriods" style="width: 100%;">
+								<select class="form-control" name="profit_loss_compare_periods" id="inputProfitLossComparePeriods" style="width: 100%;">
 									<option value="">Compare with Past Periods</option>
-									<optgroup label="Monthly">
-										<option value="1_monthly">
-											1 period
-										</option>
-										<option value="2_monthly">
-											2 periods
-										</option>
-										<option value="3_monthly">
-											3 periods
-										</option>
-										<option value="4_monthly">
-											4 periods
-										</option>
-										<option value="5_monthly">
-											5 periods
-										</option>
-										<option value="6_monthly">
-											6 periods
-										</option>
-										<option value="7_monthly">
-											7 periods
-										</option>
-										<option value="8_monthly">
-											8 periods
-										</option>
-										<option value="9_monthly">
-											9 periods
-										</option>
-										<option value="10_monthly">
-											10 periods
-										</option>
-									</optgroup>
-									<optgroup label="Yearly">
-										<option value="1_yearly">
-											1 period
-										</option>
-										<option value="2_yearly">
-											2 periods
-										</option>
-										<option value="3_yearly">
-											3 periods
-										</option>
-										<option value="4_yearly">
-											4 periods
-										</option>
-										<option value="5_yearly">
-											5 periods
-										</option>
-										<option value="6_yearly">
-											6 periods
-										</option>
-										<option value="7_yearly">
-											7 periods
-										</option>
-										<option value="8_yearly">
-											8 periods
-										</option>
-										<option value="9_yearly">
-											9 periods
-										</option>
-										<option value="10_yearly">
-											10 periods
-										</option>
-									</optgroup>
+									<option value="1">
+										1 period
+									</option>
+									<option value="2">
+										2 periods
+									</option>
+									<option value="3">
+										3 periods
+									</option>
+									<option value="4">
+										4 periods
+									</option>
+									<option value="5">
+										5 periods
+									</option>
+									<option value="6">
+										6 periods
+									</option>
+									<option value="7">
+										7 periods
+									</option>
+									<option value="8">
+										8 periods
+									</option>
+									<option value="9">
+										9 periods
+									</option>
+									<option value="10">
+										10 periods
+									</option>
+									<option value="11">
+										11 periods
+									</option>
+									<option value="12">
+										12 periods
+									</option>
 								</select>
 							</div>
 						</div>
@@ -677,12 +665,12 @@
 					<div class="box-body">
 						<div class="row">
 							<div class="col-xs-2">
-                <span class="input-group-btn">
-                  <button type="submit" class="btn bg-olive btn-flat">Search!</button>
-                </span>
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn bg-olive btn-flat">Search!</button>
+                    </span>
 								<span class="input-group-btn">
-                  <button type="button" class="btn bg-purple  btn-flat" onClick="parent.location='https://x.loandisk.com/accounting/balance_sheet.php'">Reset!</button>
-                </span>
+                      <button type="button" class="btn bg-purple  btn-flat" onClick="parent.location='https://x.loandisk.com/accounting/view_profit_loss_branch.php'">Reset!</button>
+                    </span>
 							</div>
 						</div>
 					</div><!-- /.box-body -->
@@ -699,78 +687,74 @@
 						<table id="reports_table" class="table table-bordered table-hover">
 							<thead>
 							<tr class="bg-gray-light">
-								<th class="text-bold" style="font-size: 22px;">Balance Sheet</th>
+								<th class="text-bold" style="font-size: 22px;">Profit / Loss Statement</th>
 								<th></th>
 							</tr>
 							</thead>
 							<tbody>
 							<tr>
 								<td></td>
-								<td style="text-align: right;"><b>31st Dec 23</b></td>
+								<td style="text-align: right;"><b>1st Jan 24</b> - <b>1st Mar 24</b></td>
 							</tr>
 							<tr>
-								<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #3D9970">Assets</td>
+								<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #3D9970">Revenue</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="text-bold" style="padding-left: 50px; font-size: 14px;">Cash and Banks</td>
+								<td class="text-bold" style="padding-left: 50px; font-size: 14px;">Revenue from Loans</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td style="padding-left: 75px">Cash</td>
-								<td class="text-right"><a
-										href="https://x.loandisk.com/accounting/dea/ledger/account_ledger/view_ledger_for_account.php?search_account_ledger=1&search_box_cash_basis=cash&search_box_from_date=01/01/2023&search_box_to_date=31/12/2023&coa_id=3&branches_select[]=55662"
-										target="_blank">8 345,08</a></td>
-							</tr>
-							<tr>
-								<td style="padding-left: 75px"><b>Total</b></td>
-								<td class="text-right"><b>8 345,08</b></td>
-							</tr>
-							<tr>
-								<td class="text-bold" style="padding-left: 50px; font-size: 14px;">Loans</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td style="padding-left: 75px">Gross Loans - Principal</td>
-								<td class="text-right"><a
-										href="https://x.loandisk.com/accounting/dea/ledger/account_ledger/view_ledger_for_account.php?search_account_ledger=1&search_box_cash_basis=cash&search_box_from_date=01/01/2023&search_box_to_date=31/12/2023&coa_id=21&branches_select[]=55662"
-										target="_blank">1 675,00</a></td>
-							</tr>
-							<tr class="bg-gray">
-								<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">Total Assets</td>
-								<td align="right" class="text-bold" style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">10 020,08</td>
-							</tr>
-							<tr>
-								<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #9c3328">Liabilities</td>
-								<td></td>
+								<td style="padding-left: 75px">Interest on Loans</td>
+								<td class="text-right"><a href="https://x.loandisk.com/accounting/dea/ledger/account_ledger/view_ledger_for_account.php?search_account_ledger=1&search_box_cash_basis=cash&search_box_from_date=01/01/2024&search_box_to_date=01/03/2024&coa_id=1&branches_select[]=57569" target="_blank">21,03</a></td>
 							</tr>
 							<tr class="">
-								<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000;">Total Liabilities</td>
-								<td class="text-bold text-right" style="font-size: 15px; border-top: 1px solid #000"></td>
+								<td class="text-bold" style="padding-left: 50px; font-size: 15px;">Total Revenue</td>
+								<td class="text-bold text-right" style="font-size: 15px;">21,03</td>
 							</tr>
 							<tr>
-								<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #9c3328">Equity</td>
+								<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #9c3328">Expenses</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td style="padding-left: 75px">Branch Equity</td>
-								<td class="text-right"><a
-										href="https://x.loandisk.com/accounting/dea/ledger/account_ledger/view_ledger_for_account.php?search_account_ledger=1&search_box_cash_basis=cash&search_box_from_date=01/01/2023&search_box_to_date=31/12/2023&coa_id=36&branches_select[]=55662"
-										target="_blank">10 000,00</a></td>
+								<td class="text-bold" style="padding-left: 50px; font-size: 14px;">Miscellaneous Expenses</td>
+								<td></td>
 							</tr>
 							<tr>
-								<td style="padding-left: 75px">Net Income After Taxes and Subsidy (Current yr)</td>
-								<td class="text-right">20,08</td>
+								<td style="padding-left: 75px">Insurance</td>
+								<td class="text-right"><a href="" target="_blank">4,00</a></td>
 							</tr>
 							<tr class="">
-								<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000;">Total Equity</td>
-								<td class="text-bold text-right" style="font-size: 15px; border-top: 1px solid #000">10 000,00</td>
+								<td class="text-bold" style="padding-left: 50px; font-size: 15px;">Total Expenses</td>
+								<td class="text-bold text-right" style="font-size: 15px;">4,00</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">Net Operating Income</td>
+								<td align="right" class="text-bold" style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">17,03</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">Net Income Before Taxes and Subsidy</td>
+								<td align="right" class="text-bold" style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">17,03</td>
+							</tr>
+							<tr>
+								<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #000000">Taxes</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="padding-left: 75px">Income Tax Expense</td>
+								<td class="text-right"></td>
 							</tr>
 							<tr class="bg-gray">
-								<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">Total Liability + Total
-									Equity (Equal to Total Assets)
-								</td>
-								<td align="right" class="text-bold" style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">10 020,08</td>
+								<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">Net Income After Taxes and Subsidy</td>
+								<td align="right" class="text-bold" style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">17,03</td>
 							</tr>
 							</tbody>
 						</table>
@@ -779,8 +763,8 @@
 				</div>
 			</div>
 			<script type="text/javascript" language="javascript">
-				$(document).ready(function () {
-					var dataTable = $('#reports_table').DataTable({
+				$(document).ready(function() {
+					var dataTable = $('#reports_table').DataTable( {
 						"paging": false,
 						"fixedHeader": {
 							"header": false,
@@ -793,9 +777,9 @@
 						"autoWidth": true,
 
 
-						"order": [[0, "asc"]],
-						"drawCallback": function (settings) {
-							$("#reports_table").wrap("<div class='table-responsive'></div>");
+						"order": [[0, "asc" ]],
+						"drawCallback": function( settings ) {
+							$("#reports_table").wrap( "<div class='table-responsive'></div>" );
 						}
 					});
 					var buttons = new $.fn.dataTable.Buttons(dataTable, {
@@ -816,7 +800,7 @@
 				});
 			</script>
 			<script>
-				$("#pre_loader").hide();
+				$( "#pre_loader" ).hide();
 			
 			</script>
 		
@@ -834,42 +818,19 @@
 <!-- REQUIRED JS SCRIPTS -->
 <script type="text/javascript">
 	$(".numeric").numeric();
-	$(".positive").numeric({negative: false});
-	$(".positive-integer").numeric({decimal: false, negative: false});
-	$(".negative-integer").numeric({decimal: false, negative: true});
-	$(".decimal-2-places").numeric({decimalPlaces: 2});
-	$(".decimal-4-places").numeric({decimalPlaces: 4});
+	$(".positive").numeric({ negative: false });
+	$(".positive-integer").numeric({ decimal: false, negative: false });
+	$(".negative-integer").numeric({ decimal: false, negative: true });
+	$(".decimal-2-places").numeric({ decimalPlaces: 2 });
+	$(".decimal-4-places").numeric({ decimalPlaces: 4 });
 	$("#remove").click(
-		function (e) {
+		function(e)
+		{
 			e.preventDefault();
 			$(".numeric,.positive,.positive-integer,.decimal-2-places,.decimal-4-places").removeNumeric();
 		}
 	);
 </script>
-<script>
-	$(function () {
-		//Initialize Select2 Elements
-		$(".period_select").select2({
-			placeholder: "Compare with Past Periods"
-
-
-		});
-
-	});
-</script>
-<script>
-	$(function () {
-		$('.date_select').datepick({
-
-			defaultDate: '31/12/2023', showTrigger: '#calImg',
-			yearRange: 'c-20:c+20', showTrigger: '#calImg',
-
-			dateFormat: 'dd/mm/yyyy',
-			minDate: '01/01/1980'
-		});
-	});
-
-</script>
-<div style="display:none">balance_sheet</div>
+<div style="display:none">view_profit_loss_branch</div>
 </body>
 </html>

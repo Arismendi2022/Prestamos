@@ -76,12 +76,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /** Calcula la amortizacion del prestamo metodo frances */
 function btnCalcular() {
+
 	/** Array para guardar los datos de amortización */
 	const amortizationData = [];
 
 	let intIdentificacion = parseInt(document.getElementById("txtIdentificacion").value);
 	let strNombre = document.getElementById("txtNombre").value;
-	let montoCredito = parseInt(document.getElementById("txtMonto").value.replace(/,/g, '')); /** Eliminar cualquier carácter que no sea un dígito */;
+	let montoCredito = parseInt(document.getElementById("txtMonto").value.replace(/,/g, '')); /** Eliminar cualquier carácter que no sea un dígito */
 	let cantidadPagos = parseInt(document.getElementById("txtCuotas").value);
 	let tasaInteresAnual = parseFloat(document.getElementById("txtInteres").value)
 	let frecuenciaPago = document.getElementById("listFormPago").value;
@@ -90,7 +91,7 @@ function btnCalcular() {
 
 	let fechaInicio = dayjs(fechaInicial)
 
-	if (isNaN(intIdentificacion) || isNaN(montoCredito) || isNaN(cantidadPagos) || isNaN(tasaInteresAnual) || fechaInicial =="" || strNombre == "" || frecuenciaPago == "" ||
+	if (isNaN(intIdentificacion) || isNaN(montoCredito) || isNaN(cantidadPagos) || isNaN(tasaInteresAnual) || fechaInicial == "" || strNombre == "" || frecuenciaPago == "" ||
 		listMoneda == "") {
 		alerta("Atención", "Todos los campos son obligatorios.", "error");
 		return false;
@@ -130,7 +131,7 @@ function btnCalcular() {
 	for (let i = 1; i <= cantidadPagos; i++) {
 		pagoInteres = Math.abs(montoCredito * tasaInteresPeriodica);
 		pagoCapital = Math.abs(cuotaMes - pagoInteres);
-		montoCredito = Math.abs(montoCredito - pagoCapital);
+		montoCredito -= Math.abs(pagoCapital);
 
 		/** Pasar a la siguiente fecha de pago según la frecuencia */
 		switch (frecuenciaPago) {
@@ -147,17 +148,18 @@ function btnCalcular() {
 				fechaInicio = fechaInicio.add(15, "day");
 				break;
 		}
+
 		amortizationData.push({
 			nroCuota: i,
 			Fecha: fechaInicio.format('YYYY-MM-DD'),
 			Cuota: formatter.format((cuotaMes.toFixed(2))),
 			Interes: formatter.format((pagoInteres.toFixed(2))),
 			Capital: formatter.format((pagoCapital.toFixed(2))),
-			Saldo: formatter.format((montoCredito.toFixed(2)))
+			Saldo: formatter.format((montoCredito.toFixed(2))),
 
 		});
-	}
 
+	}
 	$('#btnActionForm').attr('disabled', false);
 	saveAmortizationData(amortizationData);
 

@@ -47,7 +47,20 @@
 			//dep($data['hojaBalance']); exit;
 			
 			$this->views->getView($this, "hojaBalance", $data);
+		}
+		
+		public function ganancias(){
+			if (empty($_SESSION['permisosMod']['r'])) {
+				header("Location:" . base_url() . '/dashboard');
+			}
+			$data['page_tag'] = "Contabilida";
+			$data['page_title'] = "Ganancias / Perdidas";
+			$data['page_name'] = "contabilidad";
+			$data['page_functions_js'] = "functions_contabilidad.js";
 			
+			$data['utilidad']  = $this->model->selectUtilidad();
+			
+			$this->views->getView($this, "ganancias", $data);
 			
 		}
 		
