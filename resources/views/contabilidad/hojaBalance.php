@@ -54,11 +54,11 @@
 											</tr>
 											<tr role="row" class="even">
 												<td style="padding-left: 75px">Efectivo</td>
-												<td class="text-right"><a style="color: #0c84ff"><?= SMONEY . ' ' . formatMoney($data['hojaBalance']['totalEfectivo']) ?></a></td>
+												<td class="text-right"><a style="color: #0c84ff"><?= $data['hojaBalance']['totalEfectivo'] == '0' ? '' : formatMoney($data['hojaBalance']['totalEfectivo']) ?></a></td>
 											</tr>
 											<tr role="row" class="odd">
 												<td style="padding-left: 75px"><b>Total</b></td>
-												<td class="text-right"><b><?= SMONEY . ' ' . formatMoney($data['hojaBalance']['totalEfectivo']) ?></b></td>
+												<td class="text-right"><b><?= $data['hojaBalance']['totalEfectivo'] == '0' ? '' : formatMoney($data['hojaBalance']['totalEfectivo']) ?></b></td>
 											</tr>
 											<tr role="row" class="even">
 												<td class="text-bold" style="padding-left: 50px; font-size: 14px;">Préstamos</td>
@@ -66,13 +66,13 @@
 											</tr>
 											<tr role="row" class="odd">
 												<td style="padding-left: 75px">Préstamos activos</td>
-												<td class="text-right"><a style="color: #0c84ff"><?= SMONEY . ' ' . formatMoney($data['hojaBalance']['totalPrestamos']) ?></a></td>
+												<td class="text-right"><a style="color: #0c84ff"><?= $data['hojaBalance']['totalPrestamos'] == '0' ? '' : formatMoney($data['hojaBalance']['totalPrestamos']) ?></a></td>
 											</tr>
 											<tr class="bg-gray even" role="row">
 												<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">Total Activos
 												</td>
 												<td align="right" class="text-bold"
-														style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"><?= SMONEY . ' ' . formatMoney($data['hojaBalance']['totalActivos']) ?></td>
+														style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"><?= $data['hojaBalance']['totalActivos'] == '0' ? '' : formatMoney($data['hojaBalance']['totalActivos']) ?></td>
 											</tr>
 											<tr role="row" class="odd">
 												<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #9c3328">Pasivos</td>
@@ -80,7 +80,7 @@
 											</tr>
 											<tr class="even" role="row">
 												<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000;">Total Pasivos</td>
-												<td class="text-bold text-right" style="font-size: 15px; border-top: 1px solid #000">0</td>
+												<td class="text-bold text-right" style="font-size: 15px; border-top: 1px solid #000"></td>
 											</tr>
 											<tr role="row" class="odd">
 												<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #9c3328">Patrimonio</td>
@@ -88,23 +88,23 @@
 											</tr>
 											<tr role="row" class="even">
 												<td style="padding-left: 75px">Patrimonio de la empresa</td>
-												<td class="text-right"><a style="color: #0c84ff"><?= SMONEY . ' ' . formatMoney($data['hojaBalance']['totalCapital']) ?></a></td>
+												<td class="text-right"><a style="color: #0c84ff"><?= $data['hojaBalance']['totalCapital'] == '0' ? '' : formatMoney($data['hojaBalance']['totalCapital']) ?></a></td>
 											</tr>
 											<tr role="row" class="odd">
 												<td style="padding-left: 75px">Ingreso Neto Después de Impuestos y Subsidios (Año en Curso)</td>
-												<td class="text-right"><?= SMONEY . ' ' . formatMoney($data['hojaBalance']['totalInteres']) ?></td>
+												<td class="text-right"><?= $data['hojaBalance']['totalInteres'] == '0' ? '' : formatMoney($data['hojaBalance']['totalInteres']) ?></td>
 											</tr>
 											<tr class="even" role="row">
 												<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000;">Total Patrimonio</td>
 												<td class="text-bold text-right"
-														style="font-size: 15px; border-top: 1px solid #000"><?= SMONEY . ' ' . formatMoney($data['hojaBalance']['totalPatrimonio']) ?></td>
+														style="font-size: 15px; border-top: 1px solid #000"><?= $data['hojaBalance']['totalPatrimonio'] == '0' ? '' : formatMoney($data['hojaBalance']['totalPatrimonio']) ?></td>
 											</tr>
 											<tr class="bg-gray odd" role="row">
 												<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">Total Pasivo +
 													Total Patrimonio (Igual Total Activo)
 												</td>
 												<td align="right" class="text-bold"
-														style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"><?= SMONEY . ' ' . formatMoney($data['hojaBalance']['totalPatrimonio']) ?></td>
+														style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"><?= $data['hojaBalance']['totalPatrimonio'] == '0' ? '' : formatMoney($data['hojaBalance']['totalPatrimonio']) ?></td>
 											</tr>
 											</tbody>
 										</table>

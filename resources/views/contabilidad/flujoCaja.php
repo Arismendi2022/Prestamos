@@ -42,7 +42,7 @@
 										<tbody>
 										<tr role="row" class="odd">
 											<td></td>
-											<td style="text-align: right;"><b><?= date("jS M Y",strtotime('first day of January ' . date('Y'))) ?></b> - <b><?= date('jS M Y') ?></b></td>
+											<td style="text-align: right;"><b><?= date("jS M Y",strtotime('first day of January '.date('Y'))) ?></b> - <b><?= date('jS M Y') ?></b></td>
 										</tr>
 										<tr role="row" class="even">
 											<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #00b226">Ingresos</td>
@@ -50,20 +50,20 @@
 										</tr>
 										<tr role="row" class="odd">
 											<td style="padding-left: 75px">Capital de la empresa</td>
-											<td class="text-right"><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['totalCapital']) ?></td>
+											<td class="text-right"><?= $data['flujoCaja']['totalCapital'] == '0' ? '' : formatMoney($data['flujoCaja']['totalCapital']) ?></td>
 										</tr>
 										<tr role="row" class="even">
 											<td style="padding-left: 75px">Reembolso de préstamos</td>
-											<td class="text-right"><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['totalAbonos']) ?></td>
+											<td class="text-right"><?= $data['flujoCaja']['totalAbonos'] == '0' ? '' : formatMoney($data['flujoCaja']['totalAbonos']) ?></td>
 										</tr>
 										<tr role="row" class="odd">
 											<td style="padding-left: 75px">Reembolso de intereses sobre préstamos</td>
-											<td class="text-right"><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['totalInteres']) ?></td>
+											<td class="text-right"><?= $data['flujoCaja']['totalInteres'] == '0' ? '' : formatMoney($data['flujoCaja']['totalInteres']) ?></td>
 										</tr>
 										<tr class="even" role="row">
 											<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000; color: #00b226">Total de Ingresos (A)</td>
 											<td class="text-bold text-right"
-													style="font-size: 15px; border-top: 1px solid #000"><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['totalIngresos']) ?></td>
+											    style="font-size: 15px; border-top: 1px solid #000"><?= $data['flujoCaja']['totalIngresos'] == '0' ? '' : formatMoney($data['flujoCaja']['totalIngresos']) ?></td>
 										</tr>
 										<tr role="row" class="odd">
 											<td class="text-bold" style="padding-left: 25px; font-size: 18px; color: #ff2d00">Pagos</td>
@@ -71,30 +71,30 @@
 										</tr>
 										<tr role="row" class="even">
 											<td style="padding-left: 75px">Préstamos liberados (principal)</td>
-											<td class="text-right"><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['totalPrestamos']) ?></td>
+											<td class="text-right"><?= $data['flujoCaja']['totalPrestamos'] == '0' ? '' : formatMoney($data['flujoCaja']['totalPrestamos']) ?></td>
 										</tr>
 										<tr class="odd" role="row">
 											<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000; color: #ff2d00">Pagos Totales (B)</td>
 											<td class="text-bold text-right"
-													style="font-size: 15px; border-top: 1px solid #000"><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['totalPrestamos']) ?></td>
+											    style="font-size: 15px; border-top: 1px solid #000"><?= $data['flujoCaja']['totalPrestamos'] == '0' ? '' : formatMoney($data['flujoCaja']['totalPrestamos']) ?></td>
 										</tr>
 										<tr class="bg-gray even" role="row">
 											<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000">Saldo Total de
 												Efectivo (A) - (B)
 											</td>
 											<td align="right" class="text-bold"
-													style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['balanceEfectivo']) ?></td>
+											    style="font-size: 15px; border-top: 1px solid #000000; border-bottom: 1px solid #000000"><?= $data['flujoCaja']['balanceEfectivo'] == '0' ? '' : formatMoney($data['flujoCaja']['balanceEfectivo']) ?></td>
 										</tr>
 										<tr class="odd" role="row">
 											<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000;">Balance anterior</td>
 											<td class="text-right" style="font-size: 15px; border-top: 1px solid #000">Balance
-												a <?= date('d/m/Y',strtotime('last day of December ' . (date('Y') - 1))); ?>
-												<br><b><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['balanceAnterior']) ?></b></td>
+												a <?= date('d/m/Y',strtotime('last day of December '.(date('Y') - 1))); ?>
+												<br><b><?= $data['flujoCaja']['balanceAnterior'] == '0' ? '' : formatMoney($data['flujoCaja']['balanceAnterior']) ?></b></td>
 										</tr>
 										<tr class="even" role="row">
 											<td class="text-bold" style="padding-left: 25px; font-size: 15px; border-top: 1px solid #000;">Total Balance</td>
 											<td class="text-right" style="font-size: 15px; border-top: 1px solid #000">Balance a <?= date('d/m/Y') ?>
-												<br><b><?= SMONEY . ' ' . formatMoney($data['flujoCaja']['totalBalance']) ?></b></td>
+												<br><b><?= $data['flujoCaja']['totalBalance'] == '0' ? '' : formatMoney($data['flujoCaja']['totalBalance']) ?></b></td>
 										</tr>
 										
 										</tbody>
