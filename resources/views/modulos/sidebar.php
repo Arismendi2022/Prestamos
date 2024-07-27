@@ -123,6 +123,14 @@
 							<?php } ?>
 						</li>
 						<li class="nav-item">
+							<?php if(!empty($_SESSION['permisos'][5]['r'])){ ?>
+								<a href="<?=ROOT?>/contabilidad/cajaMensual" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Ingresos Diferidos</p>
+								</a>
+							<?php } ?>
+						</li>
+						<li class="nav-item">
 							<?php if(!empty($_SESSION['permisos'][6]['r'])){ ?>
 								<a href="<?=ROOT?>/contabilidad/hojaBalance" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>

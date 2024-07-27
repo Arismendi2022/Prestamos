@@ -13,7 +13,6 @@
 			getPermisos(MCONTABILIDAD);
 		}
 		
-		
 		public function contabilidad()
 		{
 			if (empty($_SESSION['permisosMod']['r'])) {
@@ -62,6 +61,21 @@
 			
 			$this->views->getView($this, "ganancias", $data);
 			
+		}
+		
+		public function cajaMensual(){
+			if (empty($_SESSION['permisosMod']['r'])) {
+				header("Location:" . base_url() . '/dashboard');
+			}
+			$data['page_tag'] = "Contabilida";
+			$data['page_title'] = "Ingresos Diferidos Mensuales";
+			$data['page_name'] = "contabilidad";
+			$data['page_functions_js'] = "functions_contabilidad.js";
+			
+			$anio = date('Y');
+			$data['ingresosDiferidos']  = $this->model->selectIngresosDiferidos($anio);
+			//dep($data['ingresosDiferidos']); exit;
+			$this->views->getView($this, "ingresosDiferidos", $data);
 		}
 		
 	}

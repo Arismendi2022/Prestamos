@@ -32,7 +32,7 @@
 							<div class="col-sm-7">
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="reports_table" class="table table-bordered table-hover dataTable no-footer" role="grid">
+										<table id="reports_table" class="table table-bordered table-hover no-footer" role="grid">
 											<thead>
 											<tr class="bg-gray-light" role="row">
 												<th class="text-bold sorting_disabled" style="font-size: 22px; width: 757px;" rowspan="1" colspan="1">Hoja de Balance</th>

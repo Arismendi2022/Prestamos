@@ -1,148 +1,190 @@
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 .headerRegister, .header-primary {
-    background: #007BFF;
-    color: #FFF;
+	background: #007BFF;
+	color: #FFF;
 }
 
 .headerUpdate {
-    background: #17A2BB;
-    color: #FFF;
+	background: #17A2BB;
+	color: #FFF;
 }
 
-.bootstrap-select > .dropdown-toggle{
-    border: 1px solid #CCC;
+.bootstrap-select > .dropdown-toggle {
+	border: 1px solid #CCC;
 }
 
 .notBlock {
-    display: none;
+	display: none;
 }
 
-.required{
-    color: red;
-    font-size: 13pt;
-    font-weight: bold;
+.required {
+	color: red;
+	font-size: 13pt;
+	font-weight: bold;
 }
 
-.center-form{
-    /*background-color: #e7e7e7;*/
-    background-image: linear-gradient(
-            to bottom,
-            #044db3 0%,
-            #044db3 50%,
-            #e7e7e7 50%,
-            #e7e7e7 100%
-    );
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.center-form {
+	/*background-color: #e7e7e7;*/
+	background-image: linear-gradient(
+		to bottom,
+		#044db3 0%,
+		#044db3 50%,
+		#e7e7e7 50%,
+		#e7e7e7 100%
+	);
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
 
-.textcenter{
-    text-align: center;
+.textcenter {
+	text-align: center;
 }
-.textright{
-    text-align: right;
-    margin-right: 10px;
+
+.textright {
+	text-align: right;
+	margin-right: 10px;
 }
-.textleft{
-    text-align: left;
+
+.textleft {
+	text-align: left;
 }
 
 .font-size-20 {
-    font-size: 20px; /* Tamaño de fuente inicial */
+	font-size: 20px; /* Tamaño de fuente inicial */
 }
 
 .font-size-24 {
-    font-size: 24px; /* Tamaño de fuente inicial */
+	font-size: 24px; /* Tamaño de fuente inicial */
 }
 
 .font-size {
-    font-size: 18px; /* Tamaño de fuente inicial */
+	font-size: 18px; /* Tamaño de fuente inicial */
 }
 
 /* Aquí definimos la clase para el margen derecho */
 .right-margin {
-    text-align: right;
-    margin-right: 35px; /* Ajusta el valor según tus necesidades */
+	text-align: right;
+	margin-right: 35px; /* Ajusta el valor según tus necesidades */
 }
 
 /* Aplicar estilos a las columnas específicas */
 #tableListClientes td:nth-child(3),
 #tableListClientes th:nth-child(3) {
-    width: 150px; /* Ancho deseado para la tercera columna */
+	width: 150px; /* Ancho deseado para la tercera columna */
 }
 
 .custom-input {
-    border: none; /* Quita el borde */
-    outline: none; /* Quita el resaltado cuando se hace clic en el campo */
-    background-color: transparent; /* Color de fondo transparente */
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
+	border: none; /* Quita el borde */
+	outline: none; /* Quita el resaltado cuando se hace clic en el campo */
+	background-color: transparent; /* Color de fondo transparente */
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .page-error {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-height: calc(80vh - 100px);
-    margin-bottom: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	min-height: calc(80vh - 100px);
+	margin-bottom: 0;
 }
 
-.page-error h1{
-    margin: 10px;
-    color: #dc3545;
-    font-size: 42px;
+.page-error h1 {
+	margin: 10px;
+	color: #dc3545;
+	font-size: 42px;
 }
 
 /** alineamos <span> a la derecha con espacios iguales*/
 .aligned-span {
-    text-align: right; /* Alinea el texto a la derecha */
-    width: 90px; /* Ancho fijo para cada span */
-    display: inline-block;
+	text-align: right; /* Alinea el texto a la derecha */
+	width: 90px; /* Ancho fijo para cada span */
+	display: inline-block;
 }
 
 /** alineamos <span> a la izquierda con espacios iguales */
 .aligned-span-iz {
-    text-align: left; /* Alinea el texto a la izquierda */
-    width: 130px; /* Ancho fijo para cada span */
-    display: inline-block;
+	text-align: left; /* Alinea el texto a la izquierda */
+	width: 130px; /* Ancho fijo para cada span */
+	display: inline-block;
 }
 
 /* Aplicar estilos a las columnas específicas */
 #tableClientesPrestamos td:nth-child(2),
 #tableClientesPrestamos th:nth-child(2) {
-    width: 120px; /* Ancho deseado para la tercera columna */
+	width: 120px; /* Ancho deseado para la tercera columna */
 }
 
 /** altura de las filas de la datatable*/
 #tablePagos th, #tablePagos td, #tableCapital td, #tableCapital th {
-    padding: 7px;
+	padding: 7px;
 }
 
 /* Aplicar estilos a las columnas específicas */
 #tableCapital td:nth-child(5),
 #tableCapital th:nth-child(5) {
-    width: 120px; /* Ancho deseado para la cuarta columna */
+	width: 120px; /* Ancho deseado para la cuarta columna */
 }
+
+/* || TABLA FUJO DE CAJA MENSUAL */
+table.dataTable {
+	border-collapse: separate !important;
+}
+
+.table > thead:first-child > tr:first-child > th {
+	border-top: 0;
+}
+table.dataTable thead > tr > th:active, table.dataTable thead > tr > td:active {
+	outline: none;
+}
+
+table.table-bordered.dataTable tbody td {
+	border-bottom-width: 0;
+}
+table.table-bordered.dataTable td {
+	border-left-width: 0;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+	border: 1px solid #f4f4f4;
+}
+
+.bg-gray {
+	color: #000 !important;
+	background-color: #d2d6de !important;
+}
+#reports_diferidos td {
+	font-size: 14px;
+}
+
+
 
 
 

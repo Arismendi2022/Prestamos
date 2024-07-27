@@ -31,5 +31,13 @@
 			return $arrData;
 		}
 		
+		public function selectIngresosDiferidos(int $anio)
+		{
+			$sql     = "EXEC proc_ingresosDiferidos $anio";
+			$arrData = $this->select_all($sql);
+			return $arrData;
+		}
+		
+		
 	}
 		
